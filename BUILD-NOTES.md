@@ -2,7 +2,8 @@
 
 **Built:** April 2026  
 **Stack:** Next.js 14.2 · App Router · TypeScript (strict) · Tailwind CSS v3 · shadcn/ui · framer-motion  
-**Build status:** ✅ `next build` passes (36 static pages, 0 TypeScript errors, 0 lint errors)
+**Build status:** ✅ `next build` passes (36 static pages, 0 TypeScript errors, 0 lint errors)  
+**GitHub:** https://github.com/gkekejian/bodies-and-pilates
 
 ---
 
@@ -157,8 +158,8 @@ npm run start
 
 ## How to Deploy to Vercel
 
-1. Push this repo to GitHub (or another git provider)
-2. Go to https://vercel.com → New Project → Import your repo
+1. The repo is already on GitHub: https://github.com/gkekejian/bodies-and-pilates
+2. Go to https://vercel.com → New Project → Import `gkekejian/bodies-and-pilates`
 3. **Framework preset:** Next.js (auto-detected)
 4. **Build command:** `npm run build` (default)
 5. **Output directory:** `.next` (default)
