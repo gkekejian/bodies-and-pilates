@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bodies and Pilates
 
-## Getting Started
+Marketing website for **Bodies and Pilates** — a boutique Pilates studio at 5251 Vineland Ave Suite 6, North Hollywood, CA 91601.
 
-First, run the development server:
+## Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind CSS v3 + shadcn/ui |
+| Animation | framer-motion |
+| Forms | react-hook-form + zod |
+| Blog | MDX via next-mdx-remote |
+| Analytics | GA4 (@next/third-parties), Meta Pixel |
+| Booking | Mindbody / Healcode widgets |
+| Instagram | Behold.so widget |
+| Hosting | Vercel (recommended) |
+
+## Local Development
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Copy and fill in environment variables
+cp .env.example .env.local
+# Edit .env.local with your API keys and widget IDs
+
+# 3. Start the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build & Deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build    # production build
+npm run start    # preview production build locally
+npm run lint     # ESLint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Deploy via [Vercel](https://vercel.com) — import this repo, set env vars from `.env.example`, and deploy.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                    # Next.js App Router pages
+  page.tsx              # Homepage
+  about/                # About page
+  classes/              # Classes index + detail pages (beginner, fullbody, flexibility, private)
+  pricing/              # Pricing (all Mindbody plans with live Buy Now links)
+  schedule/             # Schedule (Healcode widget, SSR-safe)
+  instructors/          # Instructor listing + Naira detail page
+  faq/                  # FAQ (Accordion UI, FAQPage schema)
+  contact/              # Contact page + RHF/Zod form
+  blog/                 # Blog index + [slug] dynamic MDX page
+  api/reviews/          # Google Places API reviews route (24h ISR)
+  sitemap.ts            # Dynamic XML sitemap
+  robots.ts             # robots.txt
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+components/
+  layout/               # Header, Footer, MobileBookingBar
+  sections/             # HeroSection, ClassCard, InstagramSection, etc.
+  analytics/            # GA4 + Meta Pixel loader, CCPA cookie banner
+  ui/                   # shadcn/ui components
+  contact-form.tsx      # react-hook-form + Zod contact form
+  mindbody-schedule.tsx # Healcode widget with ErrorBoundary
+  instagram-feed.tsx    # Behold.so Instagram feed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+content/blog/           # 15 draft MDX blog posts (front-matter only — ready to write)
+lib/                    # Blog utilities, breadcrumb schema helper, Mindbody loader
+public/images/          # Placeholder images (replace with real photos — see README there)
+types/                  # TypeScript ambient declarations
+```
 
-## Deploy on Vercel
+## Schema / SEO
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `HealthClub` JSON-LD in root layout
+- `FAQPage` on `/faq`
+- `Service` on each class detail page
+- `Person` on `/instructors/naira`
+- `BreadcrumbList` on every page
+- `BlogPosting` on each blog post
+- `/sitemap.xml` and `/robots.txt` auto-generated
+- 308 redirects: `/bookings → /schedule`, `/faqs → /faq`, `/post/:slug → /blog/:slug`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Owner Setup Checklist
+
+See **[BUILD-NOTES.md](./BUILD-NOTES.md)** for the complete owner checklist — env vars, widget IDs, real images, blog content, instructor bios, and deployment instructions.
+
+## License
+
+Private — all rights reserved. Bodies and Pilates © 2026.
