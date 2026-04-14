@@ -3,7 +3,9 @@
 **Built:** April 2026  
 **Stack:** Next.js 14.2 · App Router · TypeScript (strict) · Tailwind CSS v3 · shadcn/ui · framer-motion  
 **Build status:** ✅ `next build` passes (36 static pages, 0 TypeScript errors, 0 lint errors)  
-**GitHub:** https://github.com/gkekejian/bodies-and-pilates
+**GitHub:** https://github.com/gkekejian/bodies-and-pilates  
+**Live URL:** https://bodies-and-pilates.vercel.app  
+**Vercel dashboard:** https://vercel.com/gkekejians-projects/bodies-and-pilates
 
 ---
 
@@ -156,17 +158,25 @@ npm run start
 
 ---
 
-## How to Deploy to Vercel
+## Deploying to Vercel
 
-1. The repo is already on GitHub: https://github.com/gkekejian/bodies-and-pilates
-2. Go to https://vercel.com → New Project → Import `gkekejian/bodies-and-pilates`
-3. **Framework preset:** Next.js (auto-detected)
-4. **Build command:** `npm run build` (default)
-5. **Output directory:** `.next` (default)
-6. **Environment Variables:** Add all variables from `.env.example` in Vercel's Environment Variables settings
-7. **Deploy!**
+The site is already deployed and live:
 
-The site will be live at a `*.vercel.app` URL. Add a custom domain in Vercel's Domains settings.
+- **Production URL:** https://bodies-and-pilates.vercel.app
+- **Vercel dashboard:** https://vercel.com/gkekejians-projects/bodies-and-pilates
+- **GitHub repo:** https://github.com/gkekejian/bodies-and-pilates
+
+Every `git push` to `master` will automatically trigger a new Vercel deployment (GitHub integration is connected).
+
+### Re-deploying manually (CLI)
+
+```bash
+vercel --prod --yes --scope gkekejians-projects
+```
+
+### Adding environment variables
+
+Go to the Vercel dashboard → Project → **Settings → Environment Variables** and add all variables from `.env.example`. Then redeploy.
 
 ### Domain Setup
 - Point `www.bodiesandpilates.com` to Vercel via CNAME

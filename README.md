@@ -40,7 +40,9 @@ npm run start    # preview production build locally
 npm run lint     # ESLint
 ```
 
-Deploy via [Vercel](https://vercel.com) — import this repo, set env vars from `.env.example`, and deploy.
+**Live site:** https://bodies-and-pilates.vercel.app
+
+Deploy via [Vercel](https://vercel.com) — the GitHub repo is already connected. Every push to `master` auto-deploys. Set env vars from `.env.example` in the [Vercel dashboard](https://vercel.com/gkekejians-projects/bodies-and-pilates).
 
 ## Project Structure
 
