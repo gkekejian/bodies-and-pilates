@@ -1,3 +1,4 @@
+import { IMAGES } from "@/lib/images";
 import type { Metadata } from "next";
 import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassDetailClient } from "@/components/sections/class-page-client";
@@ -54,7 +55,7 @@ export default function PrivatePage() {
         title="Private Sessions"
         tagline="Entirely yours — instruction tailored to your body, your goals."
         description="Our 55-minute private sessions offer one-on-one personalized instruction tailored to your specific goals and needs. Ideal for injury rehabilitation, accelerated progress, or those who prefer individual attention."
-        imageSrc="/images/class-private.jpg"
+        imageSrc={IMAGES.classPrivate}
         imageAlt="Private Pilates session at Bodies and Pilates in North Hollywood"
         whatToExpect={[
           "A full 55-minute session dedicated exclusively to you",

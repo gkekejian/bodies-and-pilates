@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { breadcrumbSchema } from "@/lib/breadcrumb";
+import { IMAGES } from "@/lib/images";
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -24,7 +25,7 @@ const instructors = [
   {
     name: "Naira Sarkian",
     role: "Owner & Lead Instructor",
-    image: "/images/instructor-naira.jpg",
+    image: IMAGES.instructorNaira,
     href: "/instructors/naira",
     bio: "TODO: Add Naira's bio.",
     schedule: "All classes",
@@ -32,7 +33,7 @@ const instructors = [
   {
     name: "Theresia",
     role: "Instructor",
-    image: "/images/instructor-theresia.jpg",
+    image: IMAGES.instructorTheresia,
     href: "/instructors",
     bio: "TODO: Add Theresia's bio.",
     schedule: "Wednesdays",
@@ -40,7 +41,7 @@ const instructors = [
   {
     name: "Hannah",
     role: "Instructor",
-    image: "/images/instructor-hannah.jpg",
+    image: IMAGES.instructorHannah,
     href: "/instructors",
     bio: "TODO: Add Hannah's bio.",
     schedule: "Select classes",
@@ -119,7 +120,7 @@ export default function AboutPage() {
 
             <div className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-lg">
               <Image
-                src="/images/studio.jpg"
+                src={IMAGES.studio}
                 alt="Bodies and Pilates studio interior"
                 fill
                 className="object-cover object-center"

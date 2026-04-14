@@ -1,3 +1,4 @@
+import { IMAGES } from "@/lib/images";
 import type { Metadata } from "next";
 import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassDetailClient } from "@/components/sections/class-page-client";
@@ -53,7 +54,7 @@ export default function FullBodyPage() {
         title="Full Body Pilates"
         tagline="Work every muscle group — one energizing class at a time."
         description="Our classic full body class combining resistance training on different apparatuses and props! Designed to provide a full body workout targeting lower body, upper body, and core."
-        imageSrc="/images/class-fullbody.jpg"
+        imageSrc={IMAGES.classFullbody}
         imageAlt="Full Body Pilates class at Bodies and Pilates in North Hollywood"
         whatToExpect={[
           "A dynamic, energizing session using reformers and Pilates props",

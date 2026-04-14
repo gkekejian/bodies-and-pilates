@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ClassCard } from "@/components/sections/class-card";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Pilates Studio in North Hollywood | Bodies and Pilates",
@@ -148,7 +149,7 @@ export default function HomePage() {
             {/* Image */}
             <div className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-lg">
               <Image
-                src="/images/studio.jpg"
+                src={IMAGES.studio}
                 alt="Bodies and Pilates studio interior"
                 fill
                 className="object-cover object-center"

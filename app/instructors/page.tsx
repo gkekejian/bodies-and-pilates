@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Our Instructors",
@@ -31,7 +32,7 @@ const instructors = [
   {
     name: "Naira Sarkian",
     slug: "naira",
-    imageSrc: "/images/instructor-naira.jpg",
+    imageSrc: IMAGES.instructorNaira,
     title: "Owner & Lead Instructor",
     bio: "Naira is the heart of Bodies and Pilates. As owner and lead instructor, she brings a passion for personalized Pilates practice to every session, guiding students of all levels toward strength, flexibility, and body awareness.",
     detailHref: "/instructors/naira",
@@ -39,7 +40,7 @@ const instructors = [
   {
     name: "Theresia",
     slug: "theresia",
-    imageSrc: "/images/instructor-theresia.jpg",
+    imageSrc: IMAGES.instructorTheresia,
     title: "Instructor (Wednesdays)",
     // TODO: Add Theresia's biography
     bio: null,
@@ -48,7 +49,7 @@ const instructors = [
   {
     name: "Hannah",
     slug: "hannah",
-    imageSrc: "/images/instructor-hannah.jpg",
+    imageSrc: IMAGES.instructorHannah,
     title: "Instructor",
     // TODO: Add Hannah's biography
     bio: null,

@@ -1,3 +1,4 @@
+import { IMAGES } from "@/lib/images";
 import type { Metadata } from "next";
 import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassDetailClient } from "@/components/sections/class-page-client";
@@ -53,7 +54,7 @@ export default function BeginnerPage() {
         title="Beginner Pilates"
         tagline="The perfect starting point — no experience needed."
         description="Our beginner class is curated with the fundamental pilates exercises. A more slow paced, full body workout that focuses on the basics. Great for those new to the Pilates practice, individuals who may have restrictions, or those who wish to deepen their existing practice."
-        imageSrc="/images/class-beginner.jpg"
+        imageSrc={IMAGES.classBeginner}
         imageAlt="Beginner Pilates class at Bodies and Pilates in North Hollywood"
         whatToExpect={[
           "A welcoming, judgment-free environment for all fitness levels",

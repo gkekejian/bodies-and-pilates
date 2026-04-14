@@ -1,3 +1,4 @@
+import { IMAGES } from "@/lib/images";
 import type { Metadata } from "next";
 import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassDetailClient } from "@/components/sections/class-page-client";
@@ -53,7 +54,7 @@ export default function FlexibilityPage() {
         title="Flexibility & Stretch"
         tagline="Restore, release, and move with ease."
         description="Feeling tight? Our flexibility class offers a restorative experience designed to improve flexibility, prevent injury, and alleviate stress. Allow your body to rest and restore as you flow through active stretches."
-        imageSrc="/images/class-flexibility.jpg"
+        imageSrc={IMAGES.classFlexibility}
         imageAlt="Flexibility and stretch Pilates class at Bodies and Pilates in North Hollywood"
         whatToExpect={[
           "A slower, restorative pace focused on active stretching",

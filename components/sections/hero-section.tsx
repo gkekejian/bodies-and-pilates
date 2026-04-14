@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { IMAGES } from "@/lib/images";
 
 export function HeroSection() {
   return (
@@ -10,8 +11,8 @@ export function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero.jpg"
-          alt="Bodies and Pilates studio"
+          src={IMAGES.hero}
+          alt="Bodies and Pilates studio — Pilates class in action"
           fill
           className="object-cover object-center"
           priority

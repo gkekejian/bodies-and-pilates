@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+// Set to true once you've dropped your logo at /public/images/logo.png
+const HAS_LOGO_IMAGE = false;
 
 const navLinks = [
   { label: "Classes", href: "/classes" },
@@ -25,30 +24,45 @@ const navItemVariants: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: {
-      delay: i * 0.07,
-      duration: 0.28,
-      ease: "easeOut" as const,
-    },
+    transition: { delay: i * 0.07, duration: 0.28, ease: "easeOut" as const },
   }),
 };
+
+function Logo() {
+  if (HAS_LOGO_IMAGE) {
+    return (
+      <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
+        <Image
+          src="/images/logo.png"
+          alt="Bodies and Pilates"
+          width={160}
+          height={44}
+          className="h-10 w-auto"
+          priority
+        />
+      </Link>
+    );
+  }
+  return (
+    <Link
+      href="/"
+      className="font-serif text-xl font-semibold tracking-wide text-charcoal-900 transition-opacity hover:opacity-80"
+    >
+      Bodies &amp; Pilates
+    </Link>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
   const isActive = (href: string) => pathname === href;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-taupe-300/40 bg-cream-50/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link
-          href="/"
-          className="font-serif text-xl font-semibold tracking-wide text-charcoal-900 transition-opacity hover:opacity-80"
-        >
-          Bodies &amp; Pilates
-        </Link>
+        <Logo />
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
@@ -68,7 +82,7 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Right side: Book Now (always visible) + mobile hamburger */}
+        {/* Right: Book Now + hamburger */}
         <div className="flex items-center gap-3">
           <Link
             href="/pricing"
@@ -77,7 +91,6 @@ export function Header() {
             Book Now
           </Link>
 
-          {/* Mobile hamburger — hidden on desktop */}
           <div className="md:hidden">
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger
@@ -87,15 +100,8 @@ export function Header() {
                 <Menu className="size-5" />
               </SheetTrigger>
 
-              <SheetContent
-                side="right"
-                className="w-72 bg-cream-50 px-0 pt-16"
-                showCloseButton
-              >
-                <nav
-                  className="flex flex-col px-6"
-                  aria-label="Mobile navigation"
-                >
+              <SheetContent side="right" className="w-72 bg-cream-50 px-0 pt-16" showCloseButton>
+                <nav className="flex flex-col px-6" aria-label="Mobile navigation">
                   {navLinks.map((link, i) => (
                     <motion.div
                       key={link.href}

@@ -1,3 +1,4 @@
+import { IMAGES } from "@/lib/images";
 import type { Metadata } from "next";
 import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassesHeroSection, type ClassCardData } from "@/components/sections/class-page-client";
@@ -26,7 +27,7 @@ const classes: ClassCardData[] = [
     slug: "beginner",
     description:
       "Our beginner class is curated with the fundamental pilates exercises. A more slow paced, full body workout that focuses on the basics. Great for those new to the Pilates practice, individuals who may have restrictions, or those who wish to deepen their existing practice.",
-    imageSrc: "/images/class-beginner.jpg",
+    imageSrc: IMAGES.classBeginner,
     imageAlt: "Beginner Pilates class at Bodies and Pilates in North Hollywood",
   },
   {
@@ -34,7 +35,7 @@ const classes: ClassCardData[] = [
     slug: "fullbody",
     description:
       "Our classic full body class combining resistance training on different apparatuses and props! Designed to provide a full body workout targeting lower body, upper body, and core.",
-    imageSrc: "/images/class-fullbody.jpg",
+    imageSrc: IMAGES.classFullbody,
     imageAlt: "Full Body Pilates class at Bodies and Pilates in North Hollywood",
   },
   {
@@ -42,7 +43,7 @@ const classes: ClassCardData[] = [
     slug: "flexibility",
     description:
       "Feeling tight? Our flexibility class offers a restorative experience designed to improve flexibility, prevent injury, and alleviate stress. Allow your body to rest and restore as you flow through active stretches.",
-    imageSrc: "/images/class-flexibility.jpg",
+    imageSrc: IMAGES.classFlexibility,
     imageAlt: "Flexibility and stretch Pilates class at Bodies and Pilates in North Hollywood",
   },
   {
@@ -50,7 +51,7 @@ const classes: ClassCardData[] = [
     slug: "private",
     description:
       "Our 55-minute private sessions offer one-on-one personalized instruction tailored to your specific goals and needs. Ideal for injury rehabilitation, accelerated progress, or those who prefer individual attention.",
-    imageSrc: "/images/class-private.jpg",
+    imageSrc: IMAGES.classPrivate,
     imageAlt: "Private Pilates session at Bodies and Pilates in North Hollywood",
   },
 ];

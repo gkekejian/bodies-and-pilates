@@ -5,14 +5,10 @@ const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**.googleapis.com",
-      },
-      {
-        protocol: "https",
-        hostname: "**.google.com",
-      },
+      { protocol: "https", hostname: "**.googleapis.com" },
+      { protocol: "https", hostname: "**.google.com" },
+      // Unsplash stock photos (free commercial use — replace with own photos)
+      { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
   async redirects() {

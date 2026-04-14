@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Naira Sarkian | Lead Instructor & Owner",
@@ -113,7 +114,7 @@ export default function NairaPage() {
             {/* Large photo */}
             <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:mx-0 bg-cream-200 rounded-2xl overflow-hidden shadow-md">
               <Image
-                src="/images/instructor-naira.jpg"
+                src={IMAGES.instructorNaira}
                 alt="Naira Sarkian, Owner and Lead Instructor at Bodies and Pilates"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
