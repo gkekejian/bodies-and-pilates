@@ -7,7 +7,9 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "**.googleapis.com" },
       { protocol: "https", hostname: "**.google.com" },
-      // Unsplash stock photos (free commercial use — replace with own photos)
+      // Pexels stock photos (free commercial use — replace with own photos)
+      { protocol: "https", hostname: "images.pexels.com" },
+      // Unsplash (fallback / legacy)
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },

@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Bodies & Pilates logo — SVG recreation.
-  Replace with your PNG/SVG file at public/images/logo.png (or .svg).
-  Colors: sage-700 #5A6B4A / sage-500 #7D8A6D.
+  To use your actual logo: save it as public/images/logo.png, then
+  change LOGO_SRC in components/layout/header.tsx (and the src in
+  components/layout/footer.tsx) to "/images/logo.png".
+  Color: #1B6B3F (emerald green to match the uploaded logo).
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
   <defs>
-    <path id="top-arc" d="M 30,100 A 70,70 0 0,1 170,100" />
-    <path id="bottom-arc" d="M 30,100 A 70,70 0 0,0 170,100" />
+    <!-- Circular path for curved text along the TOP of the ring -->
+    <path
+      id="top-arc"
+      d="M 40,120 A 80,80 0 0,1 200,120"
+    />
   </defs>
 
-  <!-- Outer ring -->
-  <circle cx="100" cy="100" r="86" stroke="#5A6B4A" stroke-width="1.6" fill="none" />
+  <!-- Outer ring — thin, elegant -->
+  <circle cx="120" cy="120" r="96" stroke="#1B6B3F" stroke-width="1.2" fill="none" />
 
-  <!-- Curved brand text along top arc -->
-  <text font-family="Georgia, 'Times New Roman', serif" font-size="13.5" letter-spacing="3.2" fill="#5A6B4A">
-    <textPath href="#top-arc" startOffset="50%" text-anchor="middle" side="left">
-      BODIES &#x2022; PILATES
+  <!-- Curved brand text along upper arc -->
+  <text
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="13"
+    letter-spacing="4.5"
+    font-weight="400"
+    fill="#1B6B3F"
+  >
+    <textPath href="#top-arc" startOffset="50%" text-anchor="middle">
+      BODIES &amp; PILATES
     </textPath>
   </text>
 
-  <!-- Center monogram -->
-  <g fill="#5A6B4A" font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
-    <text x="72" y="118" font-size="54" font-style="italic" font-weight="600">B</text>
-    <text x="100" y="115" font-size="28" font-style="italic">&amp;</text>
-    <text x="128" y="118" font-size="54" font-style="italic" font-weight="600">P</text>
+  <!-- Center monogram: italic B & P -->
+  <g fill="#1B6B3F" font-family="Georgia, 'Times New Roman', serif" text-anchor="middle" font-style="italic">
+    <text x="88" y="142" font-size="58" font-weight="500">B</text>
+    <text x="120" y="138" font-size="24" font-weight="400">&amp;</text>
+    <text x="152" y="142" font-size="58" font-weight="500">P</text>
   </g>
 </svg>
