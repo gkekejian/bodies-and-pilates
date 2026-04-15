@@ -142,22 +142,29 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {/* Map placeholder */}
+              {/* Embedded Google Map */}
               <div className="bg-cream-50 border border-taupe-300 rounded-2xl overflow-hidden">
-                <div className="aspect-video bg-cream-200 flex flex-col items-center justify-center gap-3 p-6 text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-taupe-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0 0 21 18.382V7.618a1 1 0 0 0-1.447-.894L15 9m0 8V9m0 0L9 7" />
-                  </svg>
-                  <p className="font-sans text-sm text-charcoal-800/60">
+                <iframe
+                  title="Bodies and Pilates — 5251 Vineland Ave, North Hollywood"
+                  src="https://maps.google.com/maps?q=5251%20Vineland%20Ave%20Suite%206%2C%20North%20Hollywood%2C%20CA%2091601&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="320"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="block w-full border-0"
+                  allowFullScreen
+                />
+                <div className="px-4 py-3 border-t border-taupe-300 flex items-center justify-between gap-3 flex-wrap">
+                  <p className="font-sans text-xs text-charcoal-800/60">
                     5251 Vineland Ave Suite 6, North Hollywood, CA 91601
                   </p>
                   <a
                     href={mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-sans text-sm bg-sage-700 hover:bg-sage-500 text-cream-50 px-4 py-2 rounded-lg transition-colors duration-200"
+                    className="font-sans text-xs text-sage-700 underline underline-offset-2 hover:text-sage-500"
                   >
-                    Open in Google Maps
+                    Open in Google Maps →
                   </a>
                 </div>
               </div>

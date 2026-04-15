@@ -18,6 +18,9 @@ export const IMAGES = {
   instructorNaira: `${UNS}/photo-1494790108377-be9c29b29330?w=600&h=750&q=80&auto=format&fit=crop`,
   instructorTheresia: `${UNS}/photo-1438761681033-6461ffad8d80?w=600&h=750&q=80&auto=format&fit=crop`,
   instructorHannah: `${UNS}/photo-1534528741775-53994a69daeb?w=600&h=750&q=80&auto=format&fit=crop`,
+  instructorMarlyn: `${UNS}/photo-1580489944761-15a19d654956?w=600&h=750&q=80&auto=format&fit=crop`,
+  instructorEnrika: `${UNS}/photo-1487412720507-e7ab37603c6f?w=600&h=750&q=80&auto=format&fit=crop`,
+  instructorSita: `${UNS}/photo-1529626455594-4ff0802cfb7e?w=600&h=750&q=80&auto=format&fit=crop`,
 
   // ── Classes ────────────────────────────────────────────────────────────────
   classBeginner: `${UNS}/photo-1574680096145-d05b474e2155?w=800&h=600&q=80&auto=format&fit=crop`,

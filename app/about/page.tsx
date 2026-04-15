@@ -27,24 +27,42 @@ const instructors = [
     role: "Owner & Lead Instructor",
     image: IMAGES.instructorNaira,
     href: "/instructors/naira",
-    bio: "TODO: Add Naira's bio.",
-    schedule: "All classes",
+    bio: "Owner and lead instructor — the heart of Bodies and Pilates.",
   },
   {
-    name: "Theresia",
+    name: "Theresia Bunch",
     role: "Instructor",
     image: IMAGES.instructorTheresia,
     href: "/instructors",
-    bio: "TODO: Add Theresia's bio.",
-    schedule: "Wednesdays",
+    bio: "BS in Kinesiology and 15 years as a classical ballerina. Creative flows rooted in movement science.",
   },
   {
-    name: "Hannah",
+    name: "Hannah Pink",
     role: "Instructor",
     image: IMAGES.instructorHannah,
     href: "/instructors",
-    bio: "TODO: Add Hannah's bio.",
-    schedule: "Select classes",
+    bio: "Certified through Integrated Movement and Wellness. Professional dancer with a focus on breathwork and rehab.",
+  },
+  {
+    name: "Marlyn Ortiz",
+    role: "Instructor",
+    image: IMAGES.instructorMarlyn,
+    href: "/instructors",
+    bio: "20+ years as a dancer, choreographer, and aerialist. SUNY Purchase trained with Broadway and tour credits.",
+  },
+  {
+    name: "Enrika Navikaite",
+    role: "Instructor",
+    image: IMAGES.instructorEnrika,
+    href: "/instructors",
+    bio: "Lithuanian-born and LA-based. Certified through Karen Lord Pilates Movement — high-energy, mindful sessions.",
+  },
+  {
+    name: "Sita Acevedo",
+    role: "Instructor",
+    image: IMAGES.instructorSita,
+    href: "/instructors",
+    bio: "Aerialist and movement instructor specializing in Pilates and GYROTONIC. Creative reformer work with props.",
   },
 ];
 
@@ -263,11 +281,8 @@ export default function AboutPage() {
                   <h3 className="font-serif text-xl text-charcoal-900 mb-1">
                     {instructor.name}
                   </h3>
-                  <p className="font-sans text-sage-700 text-sm font-medium mb-2">
+                  <p className="font-sans text-sage-700 text-sm font-medium mb-3">
                     {instructor.role}
-                  </p>
-                  <p className="font-sans text-taupe-500 text-xs tracking-wide uppercase mb-4">
-                    {instructor.schedule}
                   </p>
                   <p className="font-sans text-charcoal-800 text-sm leading-relaxed">
                     {instructor.bio}
