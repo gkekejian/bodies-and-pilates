@@ -3,7 +3,11 @@ import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
 export async function generateStaticParams() {
-  return getAllPosts().map(p => ({ slug: p.slug }))
+  // Only pre-render published posts. Drafts remain visitable by direct URL
+  // but are noindexed via metadata below.
+  return getAllPosts()
+    .filter((p) => !p.draft)
+    .map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
@@ -13,6 +17,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: post.meta.title,
     description: post.meta.description,
     keywords: [post.meta.targetKeyword],
+    // Keep draft posts out of search engines
+    robots: post.meta.draft
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
   }
 }
 

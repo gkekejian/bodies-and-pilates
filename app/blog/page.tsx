@@ -28,7 +28,10 @@ const breadcrumbSchema = {
 }
 
 export default function BlogIndexPage() {
-  const posts = getAllPosts()
+  // Only show published posts to visitors.
+  // Draft posts still exist in content/blog/ for the owner to write.
+  // To publish a post: set `draft: false` in its frontmatter.
+  const posts = getAllPosts().filter((p) => !p.draft)
 
   return (
     <>
@@ -47,6 +50,25 @@ export default function BlogIndexPage() {
               back pain, pregnancy, and more.
             </p>
           </header>
+
+          {posts.length === 0 && (
+            <div className="bg-cream-100 border border-taupe-300 rounded-2xl p-12 text-center">
+              <p className="font-serif text-2xl text-charcoal-800 mb-3">
+                New articles coming soon
+              </p>
+              <p className="font-sans text-sm text-charcoal-800/70 max-w-md mx-auto">
+                We&apos;re writing practical guides on reformer Pilates,
+                flexibility, posture, and more. Check back soon — or{" "}
+                <Link
+                  href="/pricing"
+                  className="text-sage-700 underline underline-offset-2 hover:text-sage-500"
+                >
+                  start your practice
+                </Link>{" "}
+                in the meantime.
+              </p>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map(post => (

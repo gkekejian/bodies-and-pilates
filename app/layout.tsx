@@ -32,10 +32,19 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Bodies and Pilates",
     url: "https://www.bodiesandpilates.com",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Bodies and Pilates — boutique Pilates studio in North Hollywood",
+      },
+    ],
   },
   robots: { index: true, follow: true },
   twitter: {
     card: "summary_large_image",
+    images: ["/images/og-image.jpg"],
   },
 };
 
