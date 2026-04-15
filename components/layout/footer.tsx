@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 // Inline Instagram SVG — lucide-react v1.x removed brand icons
 function InstagramIcon({ className }: { className?: string }) {
@@ -49,11 +50,21 @@ export function Footer() {
             <div>
               <Link
                 href="/"
-                className="font-serif text-2xl font-semibold tracking-wide text-cream-50 transition-opacity hover:opacity-80"
+                className="inline-flex items-center gap-3 transition-opacity hover:opacity-80"
+                aria-label="Bodies and Pilates — Home"
               >
-                Bodies &amp; Pilates
+                <Image
+                  src="/images/logo.svg"
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 brightness-0 invert opacity-90"
+                />
+                <span className="font-serif text-xl font-semibold tracking-wide text-cream-50">
+                  Bodies &amp; Pilates
+                </span>
               </Link>
-              <p className="mt-1 font-sans text-sm italic text-taupe-300">
+              <p className="mt-3 font-sans text-sm italic text-taupe-300">
                 Empower Your Essence
               </p>
             </div>
