@@ -4,9 +4,9 @@ import Link from "next/link";
 import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
-  title: "Our Instructors",
+  title: { absolute: "Pilates Instructors | Bodies and Pilates North Hollywood" },
   description:
-    "Meet the certified Pilates instructors at Bodies and Pilates in North Hollywood: Naira Sarkian, Theresia Bunch, Hannah Pink, Marlyn Ortiz, Enrika Navikaite, and Sita Acevedo.",
+    "Meet the certified Pilates instructors at Bodies and Pilates in North Hollywood. Reformer, mat, and private sessions with experienced teachers.",
 };
 
 const breadcrumbSchema = {

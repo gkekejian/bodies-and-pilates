@@ -33,6 +33,7 @@ export const IMAGES = {
   classFullbody: `${PX}/31509827/pexels-photo-31509827.jpeg?${PX_OPTS}&w=800&h=1000&fit=crop`,
   classFlexibility: `${PX}/25599825/pexels-photo-25599825.jpeg?${PX_OPTS}&w=800&h=1000&fit=crop`,
   classPrivate: `${PX}/25599839/pexels-photo-25599839.jpeg?${PX_OPTS}&w=800&h=1000&fit=crop`,
+  classReformer: `${PX}/31509828/pexels-photo-31509828.jpeg?${PX_OPTS}&w=800&h=1000&fit=crop`,
 
   // ── Logo ───────────────────────────────────────────────────────────────────
   // Drop your logo at /public/images/logo.png (or .svg).

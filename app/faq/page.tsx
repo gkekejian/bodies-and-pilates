@@ -9,10 +9,10 @@ import {
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Frequently Asked Questions',
+    absolute: 'Pilates FAQ | Bodies and Pilates North Hollywood',
   },
   description:
-    'Get answers to common questions about Bodies and Pilates in North Hollywood: first class prep, attire, parking, cancellation policy, and more.',
+    'Answers to common questions about Pilates classes, pricing, and what to expect at Bodies and Pilates in North Hollywood.',
 };
 
 const faqs = [
@@ -55,6 +55,18 @@ const faqs = [
   {
     q: 'Do auto-renew classes roll over?',
     a: 'Membership credits must be used within that billing cycle. Any unused credits will not rollover.',
+  },
+  {
+    q: 'How much does Pilates cost in North Hollywood?',
+    a: 'Your first class is $25. After that, single classes start at $35, with savings on 5-packs, 10-packs, and unlimited monthly memberships. See full pricing on our pricing page.',
+  },
+  {
+    q: 'Do I need experience to take a Pilates class?',
+    a: 'No. We offer beginner-friendly classes and our instructors will guide you through every movement. The $25 first class is a great way to try Pilates with no experience needed.',
+  },
+  {
+    q: 'Is the studio near Toluca Lake, Studio City, or Burbank?',
+    a: "Yes. We're located at 5251 Vineland Ave Suite 6 in North Hollywood, about 5 minutes from Toluca Lake, 7 minutes from Studio City, and 10 minutes from Burbank.",
   },
 ];
 

@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { getAllPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
-  title: 'Pilates Blog | Tips, Guides & Insights',
+  title: { absolute: 'Pilates Blog | Bodies and Pilates North Hollywood' },
   description:
-    'Explore our Pilates blog for expert tips, guides, and insights on reformer Pilates, flexibility, back pain, pregnancy, and more.',
+    'Tips, guides, and insights on Pilates, movement, and wellness from the team at Bodies and Pilates in North Hollywood.',
 }
 
 const breadcrumbSchema = {

@@ -4,10 +4,10 @@ import ContactForm from '@/components/contact-form';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Contact Us | Bodies and Pilates North Hollywood',
+    absolute: 'Contact Bodies and Pilates | North Hollywood Pilates Studio',
   },
   description:
-    'Contact Bodies and Pilates at 5251 Vineland Ave, North Hollywood. Call (818) 653-3883 or email Naira@bodiesandpilates.com. Located near Studio City and Burbank.',
+    'Contact Bodies and Pilates in North Hollywood. Address, hours, phone, and contact form. 5251 Vineland Ave, NoHo CA 91601.',
 };
 
 const breadcrumb = breadcrumbSchema([

@@ -8,9 +8,9 @@ import { TestimonialsCarousel } from "@/components/sections/testimonials-carouse
 import { FinalCta } from "@/components/sections/final-cta";
 
 export const metadata: Metadata = {
-  title: "Pilates Studio in North Hollywood | Bodies and Pilates",
+  title: { absolute: "Pilates Studio in North Hollywood | Bodies and Pilates" },
   description:
-    "Boutique Pilates studio in North Hollywood offering reformer & mat classes, private sessions, and beginner-friendly group classes. Book your $25 first class.",
+    "Boutique Pilates studio in North Hollywood. Reformer, mat, and private classes for all levels. Your first class is $25. Book online today.",
 };
 
 // ─── Data ────────────────────────────────────────────────────────────────────

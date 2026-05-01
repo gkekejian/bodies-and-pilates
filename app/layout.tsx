@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     default: "Pilates Studio in North Hollywood | Bodies and Pilates",
   },
   description:
-    "Boutique Pilates studio in North Hollywood offering reformer & mat classes, private sessions, and beginner-friendly group classes. Book your $25 first class.",
+    "Boutique Pilates studio in North Hollywood. Reformer, mat, and private classes for all levels. Your first class is $25. Book online today.",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -48,22 +48,25 @@ export const metadata: Metadata = {
   },
 };
 
+const STUDIO_PHONE = "+1-818-653-3883";
+
 const healthClubSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "HealthClub",
-      "@id": "https://www.bodiesandpilates.com/#organization",
+      "@type": ["HealthClub", "LocalBusiness"],
+      "@id": "https://www.bodiesandpilates.com/#localbusiness",
       name: "Bodies and Pilates",
       alternateName: "Bodies & Pilates",
       description:
         "Located in North Hollywood, Bodies and Pilates provides high quality, personalized Pilates classes with state-of-the-art equipment.",
       url: "https://www.bodiesandpilates.com/",
-      telephone: "+1-818-653-3883",
+      image: "https://www.bodiesandpilates.com/images/hero.jpg",
+      telephone: STUDIO_PHONE,
       email: "Naira@bodiesandpilates.com",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "5251 Vineland Ave, Ste 6",
+        streetAddress: "5251 Vineland Ave Suite 6",
         addressLocality: "North Hollywood",
         addressRegion: "CA",
         postalCode: "91601",
@@ -71,8 +74,8 @@ const healthClubSchema = {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: "34.1689",
-        longitude: "-118.3687",
+        latitude: 34.169,
+        longitude: -118.373,
       },
       openingHoursSpecification: [
         { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "07:00", closes: "20:00" },
@@ -91,11 +94,18 @@ const healthClubSchema = {
       ],
       areaServed: [
         { "@type": "City", name: "North Hollywood" },
-        { "@type": "City", name: "Studio City" },
+        { "@type": "Place", name: "Toluca Lake" },
+        { "@type": "Place", name: "Studio City" },
         { "@type": "City", name: "Burbank" },
-        { "@type": "City", name: "Valley Village" },
-        { "@type": "City", name: "Toluca Lake" },
+        { "@type": "Place", name: "Valley Village" },
+        { "@type": "City", name: "Hollywood" },
       ],
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.bodiesandpilates.com/#organization",
+      name: "Bodies and Pilates",
+      url: "https://www.bodiesandpilates.com/",
     },
     {
       "@type": "WebSite",

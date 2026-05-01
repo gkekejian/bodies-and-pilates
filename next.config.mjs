@@ -30,6 +30,11 @@ const nextConfig = {
         destination: "/blog/:slug",
         permanent: true,
       },
+      {
+        source: "/category/all-products",
+        destination: "/pricing",
+        permanent: true,
+      },
     ];
   },
 };

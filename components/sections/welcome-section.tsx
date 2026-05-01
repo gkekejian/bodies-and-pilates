@@ -34,10 +34,17 @@ export function WelcomeSection() {
       >
         <motion.p
           variants={fadeUp}
-          className="text-sage-500 font-sans text-xs tracking-[0.25em] uppercase mb-10"
+          className="text-sage-500 font-sans text-xs tracking-[0.25em] uppercase mb-4"
         >
           01 &mdash; Welcome
         </motion.p>
+
+        <motion.h2
+          variants={fadeUp}
+          className="font-sans text-sm tracking-[0.2em] uppercase text-sage-700 mb-10"
+        >
+          Pilates Studio in North Hollywood
+        </motion.h2>
 
         <motion.div variants={fadeUp} className="max-w-4xl">
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-charcoal-900 mb-12">

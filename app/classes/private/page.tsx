@@ -5,14 +5,14 @@ import { ClassDetailClient } from "@/components/sections/class-page-client";
 import { PrivatePricingBlock } from "@/components/sections/private-pricing-block";
 
 export const metadata: Metadata = {
-  title: "Private Pilates Sessions | North Hollywood",
+  title: "Private Pilates Sessions in North Hollywood",
   description:
-    "Book a private 55-minute Pilates session in North Hollywood for personalized, one-on-one instruction. From $100. Duet sessions available at $140.",
+    "One-on-one private Pilates sessions in North Hollywood with certified instructors. $100 single session, $140 duets. Book your private today.",
   alternates: { canonical: "https://www.bodiesandpilates.com/classes/private" },
   openGraph: {
-    title: "Private Pilates Sessions | North Hollywood | Bodies and Pilates",
+    title: "Private Pilates Sessions in North Hollywood | Bodies and Pilates",
     description:
-      "Book a private 55-minute Pilates session in North Hollywood for personalized, one-on-one instruction. From $100. Duet sessions available at $140.",
+      "One-on-one private Pilates sessions in North Hollywood with certified instructors. $100 single session, $140 duets. Book your private today.",
     url: "https://www.bodiesandpilates.com/classes/private",
   },
 };
@@ -52,7 +52,7 @@ export default function PrivatePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <ClassDetailClient
-        title="Private Sessions"
+        title="Private Pilates Sessions in North Hollywood"
         tagline="Entirely yours — instruction tailored to your body, your goals."
         description="Our 55-minute private sessions offer one-on-one personalized instruction tailored to your specific goals and needs. Ideal for injury rehabilitation, accelerated progress, or those who prefer individual attention."
         imageSrc={IMAGES.classPrivate}

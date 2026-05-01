@@ -4,14 +4,14 @@ import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassDetailClient } from "@/components/sections/class-page-client";
 
 export const metadata: Metadata = {
-  title: "Full Body Pilates Class | North Hollywood",
+  title: "Mat Pilates Classes in North Hollywood",
   description:
-    "Challenge your entire body with our Full Body Pilates class in North Hollywood. Resistance training on reformers and props targeting lower body, upper body, and core. Book from $25.",
+    "Full-body mat Pilates classes in North Hollywood. Build strength, core, and flexibility in 50 minutes. Drop in for $25.",
   alternates: { canonical: "https://www.bodiesandpilates.com/classes/fullbody" },
   openGraph: {
-    title: "Full Body Pilates Class | North Hollywood | Bodies and Pilates",
+    title: "Mat Pilates Classes in North Hollywood | Bodies and Pilates",
     description:
-      "Challenge your entire body with our Full Body Pilates class in North Hollywood. Resistance training on reformers and props targeting lower body, upper body, and core. Book from $25.",
+      "Full-body mat Pilates classes in North Hollywood. Build strength, core, and flexibility in 50 minutes. Drop in for $25.",
     url: "https://www.bodiesandpilates.com/classes/fullbody",
   },
 };
@@ -51,7 +51,7 @@ export default function FullBodyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <ClassDetailClient
-        title="Full Body Pilates"
+        title="Mat Pilates Classes in North Hollywood"
         tagline="Work every muscle group — one energizing class at a time."
         description="Our classic full body class combining resistance training on different apparatuses and props! Designed to provide a full body workout targeting lower body, upper body, and core."
         imageSrc={IMAGES.classFullbody}

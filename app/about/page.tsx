@@ -7,9 +7,9 @@ import { IMAGES } from "@/lib/images";
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: { absolute: "About Bodies and Pilates | North Hollywood Pilates Studio" },
   description:
-    "Learn about Bodies and Pilates, a boutique Pilates studio in North Hollywood led by owner and instructor Naira Sarkian.",
+    "About Bodies and Pilates — a boutique Pilates studio in North Hollywood. Our story, our mission, and our instructors.",
 };
 
 // ─── Structured data ─────────────────────────────────────────────────────────
