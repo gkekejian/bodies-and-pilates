@@ -4,14 +4,14 @@ import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassDetailClient } from "@/components/sections/class-page-client";
 
 export const metadata: Metadata = {
-  title: "Flexibility & Stretch Class | North Hollywood",
+  title: "Pilates for Flexibility in North Hollywood",
   description:
-    "Release tension and restore your body with our Flexibility & Stretch Pilates class in North Hollywood. Active stretching to improve flexibility, prevent injury, and reduce stress. Book from $25.",
+    "Flexibility-focused Pilates classes in North Hollywood. Lengthen, release, and recover. $25 first class for new clients.",
   alternates: { canonical: "https://www.bodiesandpilates.com/classes/flexibility" },
   openGraph: {
-    title: "Flexibility & Stretch Class | North Hollywood | Bodies and Pilates",
+    title: "Pilates for Flexibility in North Hollywood | Bodies and Pilates",
     description:
-      "Release tension and restore your body with our Flexibility & Stretch Pilates class in North Hollywood. Active stretching to improve flexibility, prevent injury, and reduce stress. Book from $25.",
+      "Flexibility-focused Pilates classes in North Hollywood. Lengthen, release, and recover. $25 first class for new clients.",
     url: "https://www.bodiesandpilates.com/classes/flexibility",
   },
 };

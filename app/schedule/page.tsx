@@ -4,10 +4,10 @@ import { breadcrumbSchema } from '@/lib/breadcrumb';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Class Schedule | North Hollywood Pilates',
+    absolute: 'Class Schedule | Bodies and Pilates North Hollywood',
   },
   description:
-    'View our current class schedule and book your Pilates class in North Hollywood. Easy online booking through Mindbody.',
+    "Today's and this week's Pilates class schedule in North Hollywood. Book reformer, mat, and private sessions online.",
 };
 
 const MindbodySchedule = dynamic(

@@ -4,14 +4,14 @@ import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { ClassDetailClient } from "@/components/sections/class-page-client";
 
 export const metadata: Metadata = {
-  title: "Beginner Pilates Classes | North Hollywood",
+  title: "Beginner Pilates Classes in North Hollywood",
   description:
-    "Start your Pilates journey with our beginner class in North Hollywood. Fundamental exercises, slow-paced full body workout, perfect for newcomers. Book from $25.",
+    "Beginner-friendly Pilates classes in North Hollywood. Reformer and mat options for first-timers. $25 first class. No experience needed.",
   alternates: { canonical: "https://www.bodiesandpilates.com/classes/beginner" },
   openGraph: {
-    title: "Beginner Pilates Classes | North Hollywood | Bodies and Pilates",
+    title: "Beginner Pilates Classes in North Hollywood | Bodies and Pilates",
     description:
-      "Start your Pilates journey with our beginner class in North Hollywood. Fundamental exercises, slow-paced full body workout, perfect for newcomers. Book from $25.",
+      "Beginner-friendly Pilates classes in North Hollywood. Reformer and mat options for first-timers. $25 first class. No experience needed.",
     url: "https://www.bodiesandpilates.com/classes/beginner",
   },
 };
@@ -51,7 +51,7 @@ export default function BeginnerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <ClassDetailClient
-        title="Beginner Pilates"
+        title="Beginner Pilates Classes in North Hollywood"
         tagline="The perfect starting point — no experience needed."
         description="Our beginner class is curated with the fundamental pilates exercises. A more slow paced, full body workout that focuses on the basics. Great for those new to the Pilates practice, individuals who may have restrictions, or those who wish to deepen their existing practice."
         imageSrc={IMAGES.classBeginner}

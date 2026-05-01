@@ -4,9 +4,9 @@ import Link from "next/link";
 import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
-  title: "Naira Sarkian | Lead Instructor & Owner",
+  title: { absolute: "Naira, Pilates Instructor | Bodies and Pilates North Hollywood" },
   description:
-    "Meet Naira Sarkian, owner and lead Pilates instructor at Bodies and Pilates in North Hollywood. Certified instructor with a passion for personalized Pilates practice.",
+    "Naira, founder and lead instructor at Bodies and Pilates in North Hollywood. Book a class or private session with Naira today.",
 };
 
 const personSchema = {

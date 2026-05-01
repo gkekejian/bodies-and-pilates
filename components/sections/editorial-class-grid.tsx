@@ -21,27 +21,34 @@ type Klass = {
 const CLASSES: Klass[] = [
   {
     n: "01",
+    title: "Reformer",
+    tagline: "Spring-loaded resistance, refined movement.",
+    slug: "reformer",
+    image: IMAGES.classReformer,
+  },
+  {
+    n: "02",
     title: "Beginner",
     tagline: "Foundations, alignment, breath.",
     slug: "beginner",
     image: IMAGES.classBeginner,
   },
   {
-    n: "02",
+    n: "03",
     title: "Full Body",
     tagline: "Reformer + mat, every muscle.",
     slug: "fullbody",
     image: IMAGES.classFullbody,
   },
   {
-    n: "03",
+    n: "04",
     title: "Flexibility",
     tagline: "Lengthen, restore, release.",
     slug: "flexibility",
     image: IMAGES.classFlexibility,
   },
   {
-    n: "04",
+    n: "05",
     title: "Private",
     tagline: "One-on-one, fully bespoke.",
     slug: "private",
@@ -96,7 +103,9 @@ export function EditorialClassGrid() {
                 ? "lg:col-span-6 lg:col-start-7 lg:mt-24"
                 : i === 2
                 ? "lg:col-span-6 lg:col-start-1"
-                : "lg:col-span-5 lg:col-start-8 lg:-mt-24";
+                : i === 3
+                ? "lg:col-span-5 lg:col-start-8 lg:-mt-24"
+                : "lg:col-span-6 lg:col-start-3 lg:mt-12";
             return (
               <motion.div
                 key={c.slug}

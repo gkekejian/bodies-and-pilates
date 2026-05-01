@@ -4,10 +4,10 @@ import { PricingTabs } from "@/components/sections/pricing-tabs";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Pilates Class Pricing | North Hollywood | Bodies and Pilates",
+    absolute: "Pilates Class Pricing in North Hollywood | $25 First Class",
   },
   description:
-    "Transparent pricing for boutique Pilates classes in North Hollywood. First class $25, class packs from $36, unlimited memberships from $280/month.",
+    "Pilates class pricing in North Hollywood. $25 first class. Single classes from $35, 5-packs, 10-packs, and unlimited memberships. Buy online.",
 };
 
 const breadcrumb = breadcrumbSchema([
@@ -15,12 +15,32 @@ const breadcrumb = breadcrumbSchema([
   { name: "Pricing", url: "https://www.bodiesandpilates.com/pricing" },
 ]);
 
+const firstClassOffer = {
+  "@context": "https://schema.org",
+  "@type": "Offer",
+  name: "First Pilates Class",
+  description:
+    "$25 first Pilates class for new clients in North Hollywood",
+  price: "25",
+  priceCurrency: "USD",
+  availability: "https://schema.org/InStock",
+  url: "https://www.bodiesandpilates.com/pricing",
+  seller: {
+    "@type": "LocalBusiness",
+    name: "Bodies and Pilates",
+  },
+};
+
 export default function PricingPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(firstClassOffer) }}
       />
 
       <div className="bg-cream-100 min-h-screen">
