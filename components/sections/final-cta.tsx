@@ -31,7 +31,7 @@ export function FinalCta() {
             variants={fadeUp}
             className="text-sage-500 font-sans text-xs tracking-[0.3em] uppercase mb-10"
           >
-            06 &mdash; Begin
+            08 &mdash; Begin
           </motion.p>
 
           <motion.h2
@@ -53,7 +53,7 @@ export function FinalCta() {
               href="/pricing"
               className="inline-block bg-sage-700 text-cream-50 font-sans text-xs tracking-[0.25em] uppercase px-10 py-5 rounded-full hover:bg-sage-500 transition-colors duration-300"
             >
-              Claim Your First Class
+              Book Now &mdash; $25
             </Link>
           </motion.div>
         </motion.div>

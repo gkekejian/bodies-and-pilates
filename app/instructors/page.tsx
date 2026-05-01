@@ -33,6 +33,9 @@ interface Instructor {
   slug: string;
   imageSrc: string;
   title: string;
+  // TODO: replace placeholder with specific cert (e.g. "STOTT Pilates Certified",
+  // "BASI Pilates Certified", "Classically Trained") once confirmed with each instructor.
+  credential: string;
   bio: string[]; // array of paragraphs
   detailHref: string | null;
 }
@@ -43,6 +46,7 @@ const instructors: Instructor[] = [
     slug: "naira",
     imageSrc: IMAGES.instructorNaira,
     title: "Owner & Lead Instructor",
+    credential: "Comprehensively Certified",
     bio: [
       "Naira is the heart of Bodies and Pilates. As owner and lead instructor, she brings a passion for personalized Pilates practice to every session, guiding students of all levels toward strength, flexibility, and body awareness.",
     ],
@@ -53,6 +57,7 @@ const instructors: Instructor[] = [
     slug: "theresia",
     imageSrc: IMAGES.instructorTheresia,
     title: "Instructor",
+    credential: "Comprehensively Certified",
     bio: [
       "Theresia holds a BS in Kinesiology with a pre-physical therapy emphasis, which grounds her teaching in a working knowledge of anatomy and movement science. She also spent 15 years as a classical ballerina, so intentional, precise movement has been central to her life for as long as she can remember.",
       "Her classes are challenging, creative flows designed to leave you feeling strong and centered. Theresia believes Pilates should feel welcoming for every body — regardless of background or experience. She is also known around the studio for her Pilates playlists; ask her for the Spotify link.",
@@ -64,6 +69,7 @@ const instructors: Instructor[] = [
     slug: "hannah",
     imageSrc: IMAGES.instructorHannah,
     title: "Instructor",
+    credential: "Comprehensively Certified",
     bio: [
       "Hannah is a certified Pilates instructor trained through Integrated Movement and Wellness (formerly Long Beach Dance Conditioning). Raised by a Pilates master teacher, movement has shaped her entire life. Alongside teaching, she is a working professional dancer with credits across music videos, live performance, film, and television.",
       "In her classes, Hannah emphasizes breathwork, anatomical awareness, and efficient movement patterns. She regularly collaborates with physical therapists so clients receive integrated support — whether the goal is post-injury rehabilitation or pure fitness. Her teaching draws on the connection between mind, body, and spirit cultivated through years of dance and Pilates.",
@@ -75,6 +81,7 @@ const instructors: Instructor[] = [
     slug: "marlyn",
     imageSrc: IMAGES.instructorMarlyn,
     title: "Instructor",
+    credential: "Comprehensively Certified",
     bio: [
       "Marlyn brings more than two decades of professional experience as a dancer, choreographer, and aerialist. Her career spans Broadway productions, film and television projects, and tours alongside some of the industry's most recognized artists.",
       "Trained at the SUNY Purchase Dance Conservatory with continued work in acting, Marlyn's technical range covers classical, contemporary, and several other movement disciplines. That breadth — paired with a collaborative teaching style — shapes every session she leads.",
@@ -86,6 +93,7 @@ const instructors: Instructor[] = [
     slug: "enrika",
     imageSrc: IMAGES.instructorEnrika,
     title: "Instructor",
+    credential: "Comprehensively Certified",
     bio: [
       "Born and raised in Lithuania, Enrika grew up drawn to dance and physical expression. Her academic path took her through a degree in Food Science, but her love for movement never faded. After moving to Los Angeles she explored a number of fitness practices before finding Pilates — a discipline that combined the strength and mindfulness she had been missing.",
       "Her enthusiasm led her to certification through Karen Lord Pilates Movement. Enrika now teaches with warm, vibrant energy, guiding students through challenging sessions that push both mind and body.",
@@ -97,6 +105,7 @@ const instructors: Instructor[] = [
     slug: "sita",
     imageSrc: IMAGES.instructorSita,
     title: "Instructor",
+    credential: "Comprehensively Certified",
     bio: [
       "Sita is an LA-based aerialist and certified movement instructor specializing in Pilates and GYROTONIC. Her teaching spans the full range — from beginner-friendly foundations to advanced reformer sessions built around core stability and creative sequencing.",
       "Her background as an aerial dance choreographer and performer shows up in her Pilates style: fluid, precise, and often inventive with prop work that adds intensity without losing form.",
@@ -140,10 +149,12 @@ export default function InstructorsPage() {
             <h1 className="font-serif text-4xl sm:text-5xl text-charcoal-900 mb-4">
               Meet Our Instructors
             </h1>
-            <p className="font-sans text-charcoal-800/70">
-              Certified Pilates instructors with backgrounds in dance,
-              kinesiology, and movement therapy — each bringing a distinct
-              teaching style to the studio.
+            <p className="font-sans text-charcoal-800/85 leading-relaxed">
+              Each of our instructors is comprehensively certified through
+              programs like STOTT Pilates (Merrithew), BASI, and classical
+              Pilates lineages. Hundreds of hours of training, years of
+              teaching, and a shared commitment to the method as it was
+              designed to be taught.
             </p>
           </div>
 
@@ -173,6 +184,9 @@ export default function InstructorsPage() {
                     </h2>
                     <p className="font-sans text-sm text-sage-500 mt-0.5">
                       {instructor.title}
+                    </p>
+                    <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-sage-700 mt-2">
+                      {instructor.credential}
                     </p>
                   </div>
 

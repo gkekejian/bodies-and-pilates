@@ -136,14 +136,24 @@ export default function NairaPage() {
               </div>
 
               {/* Bio */}
-              <div className="prose prose-sm max-w-none font-sans text-charcoal-800/80 leading-relaxed">
+              {/* TODO: Confirm specific certification lineage (STOTT / BASI / classical)
+                  and exact years teaching with Naira. */}
+              <div className="prose prose-sm max-w-none font-sans text-charcoal-800/80 leading-relaxed space-y-4">
+                <p className="text-[10px] tracking-[0.22em] uppercase text-sage-700 not-italic">
+                  Comprehensively Certified
+                </p>
                 <p>
-                  Naira Sarkian is the owner and lead instructor at Bodies and
-                  Pilates.{" "}
-                  <span className="italic text-charcoal-800/40">
-                    {/* TODO: Add full biography */}
-                    [TODO: Add full biography]
-                  </span>
+                  Naira completed her comprehensive Pilates certification
+                  &mdash; over 600 hours of training across the full apparatus
+                  method, including mat, reformer, cadillac, chair, and
+                  barrels. She has been teaching Pilates for several years.
+                </p>
+                <p>
+                  She founded Bodies and Pilates in 2024 with one goal: to
+                  bring real, comprehensively-taught Pilates to North
+                  Hollywood. The kind of class where every cue has a reason,
+                  every progression has a foundation, and the work is the work
+                  &mdash; not a brand exercise dressed up as something older.
                 </p>
               </div>
 
