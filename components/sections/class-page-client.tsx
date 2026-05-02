@@ -147,6 +147,8 @@ export interface ClassDetailProps {
   ctas: DetailCTA[];
   /** Optional pricing callout (used on private page) */
   pricingBlock?: React.ReactNode;
+  /** Optional method/credibility paragraph rendered before the bottom CTA banner */
+  methodNote?: string;
 }
 
 export function ClassDetailClient({
@@ -159,6 +161,7 @@ export function ClassDetailClient({
   benefits,
   ctas,
   pricingBlock,
+  methodNote,
 }: ClassDetailProps) {
   return (
     <>
@@ -335,6 +338,20 @@ export function ClassDetailClient({
       {pricingBlock && (
         <section className="bg-cream-50 py-16 md:py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">{pricingBlock}</div>
+        </section>
+      )}
+
+      {/* ── Optional method / credibility note ────────────────────── */}
+      {methodNote && (
+        <section className="bg-cream-50 py-12 md:py-16">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="font-sans text-base md:text-lg text-charcoal-800/85 leading-relaxed">
+              {methodNote}
+            </p>
+            <p className="mt-4 font-sans text-[10px] tracking-[0.22em] uppercase text-sage-700">
+              Comprehensively Certified Instructors
+            </p>
+          </div>
         </section>
       )}
 

@@ -57,6 +57,7 @@ export default function PrivatePage() {
         description="Our 55-minute private sessions offer one-on-one personalized instruction tailored to your specific goals and needs. Ideal for injury rehabilitation, accelerated progress, or those who prefer individual attention."
         imageSrc={IMAGES.classPrivate}
         imageAlt="Private Pilates session at Bodies and Pilates in North Hollywood"
+        methodNote="Privates at Bodies and Pilates are with instructors who have completed 600+ hours of comprehensive Pilates training — STOTT, BASI, or classical lineages. You're not getting a fitness coach with a weekend cert. You're getting a Pilates teacher."
         whatToExpect={[
           "A full 55-minute session dedicated exclusively to you",
           "Instructor designs the workout around your specific goals",

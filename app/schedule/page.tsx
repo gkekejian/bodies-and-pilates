@@ -104,6 +104,45 @@ export default function SchedulePage() {
             <h2 className="font-serif text-2xl text-charcoal-800 mb-6">Book a Class</h2>
             <MindbodySchedule widgetId={widgetId} />
           </section>
+
+          {/* What to expect on your first visit */}
+          <section>
+            <h2 className="font-serif text-2xl text-charcoal-800 mb-6">
+              What to expect on your first visit
+            </h2>
+            <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                {
+                  step: "01",
+                  title: "Book",
+                  body: "Choose your class and reserve your spot online.",
+                },
+                {
+                  step: "02",
+                  title: "Arrive 10 minutes early",
+                  body: "Meet your instructor and get oriented.",
+                },
+                {
+                  step: "03",
+                  title: "Bring grip socks",
+                  body: "We provide everything else.",
+                },
+              ].map(({ step, title, body }) => (
+                <li
+                  key={step}
+                  className="bg-cream-50 border border-taupe-300 rounded-2xl p-6 flex flex-col gap-2"
+                >
+                  <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-sage-700">
+                    {step}
+                  </span>
+                  <h3 className="font-serif text-lg text-charcoal-800">{title}</h3>
+                  <p className="font-sans text-sm text-charcoal-800/75 leading-relaxed">
+                    {body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
         </div>
       </div>
     </>

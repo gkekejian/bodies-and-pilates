@@ -68,6 +68,14 @@ const faqs = [
     q: 'Is the studio near Toluca Lake, Studio City, or Burbank?',
     a: "Yes. We're located at 5251 Vineland Ave Suite 6 in North Hollywood, about 5 minutes from Toluca Lake, 7 minutes from Studio City, and 10 minutes from Burbank.",
   },
+  {
+    q: 'Are your instructors certified? What does that mean for me?',
+    a: 'Yes — every instructor at Bodies and Pilates has completed a full comprehensive Pilates certification, roughly 600 hours of training in the entire apparatus method (mat, reformer, cadillac, chair, barrels) through programs like STOTT Pilates (Merrithew), BASI, or classical Pilates lineages. In a world where many Pilates-branded workouts are taught by instructors with weekend certifications, this matters: it means you get precise cueing, real progression, and a class designed around how your body actually moves.',
+  },
+  {
+    q: 'Do you teach classical Pilates?',
+    a: 'Our instructors are trained in comprehensive Pilates methods including STOTT (Merrithew), BASI, and classical Pilates lineages. The classes you take at our studio reflect the original Joseph Pilates method — the full apparatus work, the precise sequencing, the focus on control and breath — taught by instructors with 600+ hours of training, not weekend certifications.',
+  },
 ];
 
 const faqSchema = {

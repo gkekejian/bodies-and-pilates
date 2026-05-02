@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/hero-section";
+import { TrustStrip } from "@/components/sections/trust-strip";
 import { WelcomeSection } from "@/components/sections/welcome-section";
 import { PracticeSection } from "@/components/sections/practice-section";
 import { EditorialClassGrid } from "@/components/sections/editorial-class-grid";
 import { StudioSection } from "@/components/sections/studio-section";
+import { PracticeCredibility } from "@/components/sections/practice-credibility";
 import { TestimonialsCarousel } from "@/components/sections/testimonials-carousel";
 import { FinalCta } from "@/components/sections/final-cta";
 
@@ -39,10 +41,12 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <TrustStrip />
       <WelcomeSection />
       <PracticeSection />
       <EditorialClassGrid />
       <StudioSection />
+      <PracticeCredibility />
       <TestimonialsCarousel testimonials={testimonials} />
       <FinalCta />
     </>

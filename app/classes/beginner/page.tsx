@@ -56,6 +56,7 @@ export default function BeginnerPage() {
         description="Our beginner class is curated with the fundamental pilates exercises. A more slow paced, full body workout that focuses on the basics. Great for those new to the Pilates practice, individuals who may have restrictions, or those who wish to deepen their existing practice."
         imageSrc={IMAGES.classBeginner}
         imageAlt="Beginner Pilates class at Bodies and Pilates in North Hollywood"
+        methodNote="Beginners get the same instruction quality as advanced clients — every class at Bodies and Pilates is taught by a comprehensively certified instructor who knows how to meet you exactly where you are. No throwing you on a reformer and hoping for the best."
         whatToExpect={[
           "A welcoming, judgment-free environment for all fitness levels",
           "Introduction to core Pilates equipment and apparatus",

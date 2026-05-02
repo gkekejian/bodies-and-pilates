@@ -64,7 +64,7 @@ export function HeroSection() {
             variants={item}
             className="font-sans text-lg sm:text-xl text-charcoal-800/80 leading-[1.6] max-w-lg mx-auto lg:mx-0 mb-12"
           >
-            A boutique Pilates studio where movement meets intention.
+            Reformer, mat, and private Pilates in North Hollywood. Your first class is $25.
           </motion.p>
 
           <motion.div
@@ -75,35 +75,17 @@ export function HeroSection() {
               href="/pricing"
               className="inline-block bg-sage-700 text-cream-50 font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 rounded-full hover:bg-sage-500 transition-colors duration-300 min-w-[200px] text-center"
             >
-              Book a Session
+              Book Your $25 First Class
             </Link>
             <Link
-              href="/classes"
+              href="/schedule"
               className="inline-block border border-sage-700 text-sage-700 font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 rounded-full hover:bg-sage-700 hover:text-cream-50 transition-colors duration-300 min-w-[200px] text-center"
             >
-              Explore Classes
+              View Schedule
             </Link>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
-        aria-hidden="true"
-      >
-        <span className="text-sage-700 font-sans text-[10px] tracking-[0.3em] uppercase">
-          Scroll
-        </span>
-        <motion.div
-          className="w-px h-12 bg-sage-700/60 origin-top"
-          animate={{ scaleY: [0.3, 1, 0.3] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
     </section>
   );
 }

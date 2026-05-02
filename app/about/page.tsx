@@ -245,6 +245,44 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* 3b. Our Standard */}
+      <section className="bg-cream-50 py-20 sm:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-sage-500 font-sans text-xs tracking-[0.22em] uppercase mb-4">
+            What We Hold Ourselves To
+          </p>
+          <h2 className="font-serif text-4xl sm:text-5xl text-charcoal-900 mb-6">
+            Our standard
+          </h2>
+          <div className="w-12 h-px bg-sage-500 mb-10" aria-hidden="true" />
+
+          <div className="font-sans text-base text-charcoal-800/85 leading-relaxed space-y-6">
+            <p>
+              Every instructor at Bodies and Pilates has completed a full
+              comprehensive Pilates certification &mdash; roughly 600 hours of
+              training across the entire apparatus method: mat, reformer,
+              cadillac, chair, and barrels. They studied the work, they
+              practiced the work, and they earned the right to teach it.
+            </p>
+            <p>
+              That standard exists because Pilates has been diluted in a lot of
+              places. A weekend course and a branded playlist don&apos;t make
+              someone a Pilates teacher &mdash; they make a fitness instructor
+              borrowing the name. We chose a different lane. Our team trained
+              through programs like STOTT Pilates (Merrithew), BASI, and
+              classical lineages, and they keep training.
+            </p>
+            <p>
+              The method works because it&apos;s specific. Every cue has a
+              reason, every progression has a foundation, every spring setting
+              is a choice. When you take a class here, you&apos;re inheriting a
+              hundred years of refinement &mdash; not a workout that happens to
+              use a reformer.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 4. Instructors */}
       <section className="bg-cream-200 py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

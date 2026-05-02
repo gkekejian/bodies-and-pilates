@@ -92,37 +92,23 @@ export function EditorialClassGrid() {
           </motion.div>
         </motion.div>
 
-        {/* Staggered asymmetric grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-12 lg:gap-y-24">
-          {CLASSES.map((c, i) => {
-            // Asymmetric placement: alternate columns + vertical offsets
-            const colSpan =
-              i === 0
-                ? "lg:col-span-5 lg:col-start-1"
-                : i === 1
-                ? "lg:col-span-6 lg:col-start-7 lg:mt-24"
-                : i === 2
-                ? "lg:col-span-6 lg:col-start-1"
-                : i === 3
-                ? "lg:col-span-5 lg:col-start-8 lg:-mt-24"
-                : "lg:col-span-6 lg:col-start-3 lg:mt-12";
-            return (
-              <motion.div
-                key={c.slug}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  duration: 1,
-                  ease: "easeOut",
-                  delay: (i % 2) * 0.1,
-                }}
-                className={colSpan}
-              >
-                <ClassCardEditorial klass={c} />
-              </motion.div>
-            );
-          })}
+        {/* 5-up grid: stacked on mobile, 2-up on tablet, 5-up on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-12">
+          {CLASSES.map((c, i) => (
+            <motion.div
+              key={c.slug}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.9,
+                ease: "easeOut",
+                delay: (i % 2) * 0.08,
+              }}
+            >
+              <ClassCardEditorial klass={c} />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

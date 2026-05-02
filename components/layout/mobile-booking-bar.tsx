@@ -38,7 +38,7 @@ export function MobileBookingBar() {
               href="/pricing"
               className="flex w-full items-center justify-center rounded-lg bg-cream-50 py-3.5 font-sans text-sm font-semibold text-sage-700 transition-colors hover:bg-cream-100 active:bg-cream-200"
             >
-              Book a Class
+              $25 First Class &rarr;
             </Link>
           </div>
         </motion.div>

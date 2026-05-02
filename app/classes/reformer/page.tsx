@@ -56,6 +56,7 @@ export default function ReformerPage() {
         description="Reformer Pilates uses a sliding carriage and spring resistance to deliver a low-impact, full-body workout that builds long, strong muscle and improves posture. Our small group sessions in North Hollywood are taught on premium reformers with personalized cues throughout — so you move with intention, not autopilot. Whether you're new to the reformer or have years of practice, our instructors meet you where you are and adjust spring tension, tempo, and modifications to match. Your first reformer class is $25 — book online and we'll see you on the carriage."
         imageSrc={IMAGES.classReformer}
         imageAlt="Reformer Pilates class at Bodies and Pilates in North Hollywood"
+        methodNote="Reformer Pilates at Bodies and Pilates is taught by comprehensively certified instructors — full apparatus training, hundreds of hours of study, and a focus on the method as designed. Springs, straps, and carriage work the way Joseph Pilates intended, not as a high-intensity spin on the equipment."
         whatToExpect={[
           "A 50-minute small-group session on premium reformers",
           "Spring-loaded resistance scaled to your level and goals",
