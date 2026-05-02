@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { trackBeginCheckout } from "@/lib/analytics";
 
 // ─── Shared animation variants ───────────────────────────────────────────────
 const fadeUp = {
@@ -122,6 +123,8 @@ interface DetailCTA {
   href: string;
   variant?: "primary" | "outline";
   external?: boolean;
+  /** When set, fires a GA4 begin_checkout event before the link follows. */
+  tracking?: { itemName: string; price: number };
 }
 
 interface BenefitItem {
@@ -214,6 +217,15 @@ export function ClassDetailClient({
                       href={cta.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={
+                        cta.tracking
+                          ? () =>
+                              trackBeginCheckout(
+                                cta.tracking!.itemName,
+                                cta.tracking!.price,
+                              )
+                          : undefined
+                      }
                       className={
                         cta.variant === "outline"
                           ? "inline-flex items-center justify-center rounded-lg border border-sage-500 text-sage-700 font-sans text-sm font-medium px-6 py-3 transition-colors hover:bg-sage-500 hover:text-cream-50"
@@ -394,6 +406,15 @@ export function ClassDetailClient({
                   href={cta.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={
+                    cta.tracking
+                      ? () =>
+                          trackBeginCheckout(
+                            cta.tracking!.itemName,
+                            cta.tracking!.price,
+                          )
+                      : undefined
+                  }
                   className={
                     cta.variant === "outline"
                       ? "inline-flex items-center justify-center rounded-lg border border-cream-50 text-cream-50 font-sans text-sm font-medium px-6 py-3 transition-colors hover:bg-cream-50/10"

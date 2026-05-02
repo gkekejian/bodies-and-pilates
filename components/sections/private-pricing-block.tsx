@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackBeginCheckout } from "@/lib/analytics";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -16,6 +17,7 @@ const pricingTiers = [
     label: "Private Session",
     duration: "55 minutes",
     price: "$100",
+    priceValue: 100,
     perLabel: "per session",
     description:
       "One-on-one with your instructor. Every exercise curated entirely around your body and goals.",
@@ -27,6 +29,7 @@ const pricingTiers = [
     label: "Duet Session",
     duration: "55 minutes",
     price: "$140",
+    priceValue: 140,
     perLabel: "per session (2 people)",
     description:
       "Bring a friend or partner and share the cost. Semi-private instruction with personalized cues for both participants.",
@@ -113,6 +116,7 @@ export function PrivatePricingBlock() {
               href={tier.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackBeginCheckout(tier.label, tier.priceValue)}
               className={[
                 "inline-flex items-center justify-center rounded-lg font-sans text-sm font-semibold px-6 py-3 transition-colors",
                 tier.highlight
