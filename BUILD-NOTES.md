@@ -194,3 +194,51 @@ Go to the Vercel dashboard → Project → **Settings → Environment Variables*
 - **`/blog/[slug]` draft check** — posts marked `draft: true` show a "Coming Soon" message instead of MDX content. Set `draft: false` and add body content to publish.
 - **Images** — `next/image` is used throughout with explicit `width`/`height` where known, and `fill` with a sized parent for cards, to prevent CLS.
 - **No backend** — the contact form is UI-only (shows success after 600ms timeout). Wire up a real endpoint (Resend, EmailJS, Formspree) to receive submissions.
+
+---
+
+## Changelog — May 2026 SEO + Conversion Pass (PRs 1–4)
+
+A four-PR pass to capture the SEO and conversion wins surfaced by 90 days of Search Console data, plus credibility content and trigger-email docs. **Zero new npm dependencies across all four PRs.** Homepage First Load JS held flat at 148 kB.
+
+### PR 1 — `feature/seo-foundations`
+- Rewrote per-page metadata across all 13 existing pages with NoHo-anchored primary keywords; updated H1s on private/beginner/fullbody so each contains the primary keyword exactly once.
+- Merged `HealthClub` + `LocalBusiness` onto a single `@graph` node (`#localbusiness`) with Hollywood added to `areaServed`; kept a thin `Organization` stub at `#organization` so existing `worksFor`/`provider` schema references still resolve.
+- Added `Offer` JSON-LD on `/pricing` for the $25 first class.
+- Added new `/classes/reformer` page with Service schema and Mindbody CTA, and surfaced it on the homepage class grid.
+- Added new `/locations/{toluca-lake,studio-city,burbank,hollywood}` pages built from a shared `LocationPage` component. Honest geo-targeting only.
+- Added `/category/all-products → /pricing` 308 redirect.
+- Added 3 FAQ entries (cost, no-experience, near-X-cities); all flow into the existing `FAQPage` JSON-LD.
+- Added an editorial H2 ("Pilates Studio in North Hollywood") below the homepage hero.
+- Updated `app/sitemap.ts` with the 5 new routes.
+
+### PR 2 — `feature/conversion-copy-and-credibility`
+- Class grid layout fix: switched homepage 5-tile grid to `lg:grid-cols-5` (clean 5-up row on desktop, 2-up on tablet, stacked on mobile); removed the asymmetric col-span ternary.
+- Hero CTAs: "Book Your $25 First Class" + "View Schedule"; subhead anchored on reformer/mat/private + $25; scroll indicator removed.
+- FinalCta button changed to "Book Now — $25"; eyebrow renumbered to `08 — Begin`.
+- Mobile booking bar copy updated to `$25 First Class →`.
+- New `TrustStrip` (server component) between Hero and Welcome: live Google Places rating with graceful fallback to "★★★★★ Loved by clients" when env vars are missing or the request fails.
+- New `PracticeCredibility` section (`07 — The Practice`) on the homepage: 600-hour comprehensive cert messaging, STOTT/BASI/classical lineages.
+- New "Our standard" section on `/about` after Mission with three paragraphs on what comprehensive certification means.
+- `/instructors` index: added intro paragraph; added per-instructor credential lines (Naira: STOTT Pilates Certified · Comprehensive; Theresia: BASI Pilates Certified · Comprehensive; Hannah: Classically Trained · Comprehensive).
+- `/instructors/naira`: expanded bio with 600-hour STOTT certification language; enriched `Person` JSON-LD with `knowsAbout` and `hasCredential` (recognizedBy STOTT Pilates / Merrithew).
+- `ClassDetailClient` gained an optional `methodNote` prop; reformer/private/beginner pages now include a credibility paragraph before the bottom CTA banner.
+- 2 new FAQ entries (instructor certs, classical Pilates) — auto-flow into FAQPage JSON-LD.
+- `/pricing`: pinned $25 first-class hero card above the existing tabs with one Buy Now button.
+- `/schedule`: 3-step "What to expect on your first visit" strip below the Healcode widget. Pure HTML/CSS, no animation.
+
+### PR 3 — `feature/tracking-and-og`
+- New `lib/analytics.ts` with typed `trackBeginCheckout(itemName, price)` helper. SSR-safe; no-op when `window.gtag` is unavailable (env vars missing, ad-blocker, etc.).
+- GA4 `begin_checkout` events fire on every Mindbody Buy Now click — 14 distinct CTAs across `/pricing` (4 tabs + $25 hero card), `/classes/private` (PrivatePricingBlock + 2 hero/banner CTAs), and the 4 first-class CTAs on beginner/fullbody/flexibility/reformer.
+- $25 first-class events are namespaced per source page (e.g. `First Class (Reformer)`) so GA4 funnel attribution shows which class page drove the click. Same Mindbody product, just labeled at the funnel entry point.
+- `ClassDetailClient.DetailCTA` gained an optional `tracking` field.
+- New `TrackedBuyLink` client component for the `/pricing` $25 hero card so the page can stay a Server Component while still firing the event.
+- New `app/opengraph-image.tsx` (edge runtime): dynamic 1200×630 OG image — cream background, sage hairlines, "Bodies and Pilates" + "Pilates Studio in North Hollywood" + "$25 First Class" pill + address strip. Type and color only, no photo.
+- Removed the static `/images/og-image.jpg` reference from `metadata.openGraph.images` and `twitter.images` (was a 1×1 placeholder). Dynamic OG route is now canonical.
+- Explicitly **not added:** scroll-depth tracking, exit-intent modals.
+
+### PR 4 — `feature/owner-docs`
+- Added [OWNER-GUIDE.md](./OWNER-GUIDE.md) — two-page plain-language guide: what the site does, what runs itself (including the dynamic OG note), what to check once a quarter (including GA4 `begin_checkout` count), what to do if something breaks.
+- Added [MINDBODY-SETUP.md](./MINDBODY-SETUP.md) — one-time setup for the $99 first-month-unlimited contract and three trigger emails (post-first-class, post-second-class reminder, post-class review request). Two-tier offer only ($25 public + $99 private email); intentionally no $59 bridge tier.
+- Added a "For the Studio Owner" section to README.md pointing to both docs.
+- This changelog.
