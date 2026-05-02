@@ -19,6 +19,21 @@ const personSchema = {
   },
   email: "Naira@bodiesandpilates.com",
   sameAs: ["https://www.instagram.com/nairasarkian/"],
+  knowsAbout: [
+    "Reformer Pilates",
+    "Mat Pilates",
+    "Private Pilates",
+    "Beginner Pilates",
+    "STOTT Pilates",
+  ],
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "Comprehensive Pilates Certification",
+    recognizedBy: {
+      "@type": "Organization",
+      name: "STOTT Pilates (Merrithew)",
+    },
+  },
 };
 
 const breadcrumbSchema = {
@@ -136,17 +151,16 @@ export default function NairaPage() {
               </div>
 
               {/* Bio */}
-              {/* TODO: Confirm specific certification lineage (STOTT / BASI / classical)
-                  and exact years teaching with Naira. */}
               <div className="prose prose-sm max-w-none font-sans text-charcoal-800/80 leading-relaxed space-y-4">
                 <p className="text-[10px] tracking-[0.22em] uppercase text-sage-700 not-italic">
-                  Comprehensively Certified
+                  STOTT Pilates Certified &middot; Comprehensive
                 </p>
                 <p>
                   Naira completed her comprehensive Pilates certification
-                  &mdash; over 600 hours of training across the full apparatus
-                  method, including mat, reformer, cadillac, chair, and
-                  barrels. She has been teaching Pilates for several years.
+                  through STOTT Pilates (Merrithew) &mdash; over 600 hours of
+                  training across the full apparatus method, including mat,
+                  reformer, cadillac, chair, and barrels. She has been
+                  teaching Pilates for over a decade.
                 </p>
                 <p>
                   She founded Bodies and Pilates in 2024 with one goal: to

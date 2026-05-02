@@ -33,8 +33,6 @@ interface Instructor {
   slug: string;
   imageSrc: string;
   title: string;
-  // TODO: replace placeholder with specific cert (e.g. "STOTT Pilates Certified",
-  // "BASI Pilates Certified", "Classically Trained") once confirmed with each instructor.
   credential: string;
   bio: string[]; // array of paragraphs
   detailHref: string | null;
@@ -46,7 +44,7 @@ const instructors: Instructor[] = [
     slug: "naira",
     imageSrc: IMAGES.instructorNaira,
     title: "Owner & Lead Instructor",
-    credential: "Comprehensively Certified",
+    credential: "STOTT Pilates Certified · Comprehensive",
     bio: [
       "Naira is the heart of Bodies and Pilates. As owner and lead instructor, she brings a passion for personalized Pilates practice to every session, guiding students of all levels toward strength, flexibility, and body awareness.",
     ],
@@ -57,7 +55,7 @@ const instructors: Instructor[] = [
     slug: "theresia",
     imageSrc: IMAGES.instructorTheresia,
     title: "Instructor",
-    credential: "Comprehensively Certified",
+    credential: "BASI Pilates Certified · Comprehensive",
     bio: [
       "Theresia holds a BS in Kinesiology with a pre-physical therapy emphasis, which grounds her teaching in a working knowledge of anatomy and movement science. She also spent 15 years as a classical ballerina, so intentional, precise movement has been central to her life for as long as she can remember.",
       "Her classes are challenging, creative flows designed to leave you feeling strong and centered. Theresia believes Pilates should feel welcoming for every body — regardless of background or experience. She is also known around the studio for her Pilates playlists; ask her for the Spotify link.",
@@ -69,7 +67,7 @@ const instructors: Instructor[] = [
     slug: "hannah",
     imageSrc: IMAGES.instructorHannah,
     title: "Instructor",
-    credential: "Comprehensively Certified",
+    credential: "Classically Trained · Comprehensive",
     bio: [
       "Hannah is a certified Pilates instructor trained through Integrated Movement and Wellness (formerly Long Beach Dance Conditioning). Raised by a Pilates master teacher, movement has shaped her entire life. Alongside teaching, she is a working professional dancer with credits across music videos, live performance, film, and television.",
       "In her classes, Hannah emphasizes breathwork, anatomical awareness, and efficient movement patterns. She regularly collaborates with physical therapists so clients receive integrated support — whether the goal is post-injury rehabilitation or pure fitness. Her teaching draws on the connection between mind, body, and spirit cultivated through years of dance and Pilates.",
