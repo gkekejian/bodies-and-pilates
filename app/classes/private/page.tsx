@@ -99,12 +99,14 @@ export default function PrivatePage() {
             href: "https://clients.mindbodyonline.com/classic/ws?studioid=5739427&stype=43&prodid=100011",
             variant: "primary",
             external: true,
+            tracking: { itemName: "55-min Private Session", price: 100 },
           },
           {
             label: "Book Duet Session — $140",
             href: "https://clients.mindbodyonline.com/classic/ws?studioid=5739427&stype=43&prodid=100016",
             variant: "outline",
             external: true,
+            tracking: { itemName: "Duet Session", price: 140 },
           },
         ]}
       />

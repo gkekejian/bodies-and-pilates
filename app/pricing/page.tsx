@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { breadcrumbSchema } from "@/lib/breadcrumb";
 import { PricingTabs } from "@/components/sections/pricing-tabs";
+import { TrackedBuyLink } from "@/components/sections/tracked-buy-link";
 
 export const metadata: Metadata = {
   title: {
@@ -73,14 +74,14 @@ export default function PricingPage() {
               </p>
             </div>
             <div className="flex flex-col items-stretch sm:items-start md:items-end gap-2 md:min-w-[16rem]">
-              <a
+              <TrackedBuyLink
                 href="https://clients.mindbodyonline.com/classic/ws?studioid=5739427&stype=43&prodid=100010"
-                target="_blank"
-                rel="noopener noreferrer"
+                itemName="First Class"
+                price={25}
                 className="inline-flex items-center justify-center bg-sage-700 hover:bg-sage-500 text-cream-50 font-sans font-semibold text-base px-7 py-4 rounded-lg transition-colors duration-200"
               >
                 Buy Now &mdash; $25
-              </a>
+              </TrackedBuyLink>
               <p className="font-sans text-xs text-charcoal-800/60 text-center md:text-right">
                 Secure checkout via Mindbody.
               </p>

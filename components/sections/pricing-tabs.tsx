@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackBeginCheckout } from "@/lib/analytics";
 
 const STUDIO_ID = "5739427";
 
@@ -13,15 +14,20 @@ function mbUrl(stype: number, prodid: number): string {
 function BuyButton({
   href,
   label = "Buy Now",
+  itemName,
+  price,
 }: {
   href: string;
   label?: string;
+  itemName: string;
+  price: number;
 }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackBeginCheckout(itemName, price)}
       className="block w-full text-center bg-sage-700 hover:bg-sage-500 active:bg-sage-700 text-cream-50 font-sans font-medium text-sm py-3 px-4 rounded-lg transition-colors duration-200"
     >
       {label}
@@ -58,6 +64,7 @@ function IntroOffers() {
         {
           name: "First Class",
           price: "$25",
+          priceValue: 25,
           note: null,
           desc: "The perfect introduction to our studio, equipment, and teaching style.",
           prodid: 100010,
@@ -66,6 +73,7 @@ function IntroOffers() {
         {
           name: "1 Week Unlimited",
           price: "$105",
+          priceValue: 105,
           note: null,
           desc: "Seven days of unlimited classes to explore everything we offer.",
           prodid: 100014,
@@ -86,7 +94,11 @@ function IntroOffers() {
           <p className="font-sans text-sm text-charcoal-800/70 flex-1">
             {o.desc}
           </p>
-          <BuyButton href={mbUrl(43, o.prodid)} />
+          <BuyButton
+            href={mbUrl(43, o.prodid)}
+            itemName={o.name}
+            price={o.priceValue}
+          />
         </div>
       ))}
     </div>
@@ -100,6 +112,7 @@ function ClassPacks() {
         {
           name: "Single Class",
           price: "$36",
+          priceValue: 36,
           per: null,
           desc: "Drop in whenever you like.",
           prodid: 100003,
@@ -107,6 +120,7 @@ function ClassPacks() {
         {
           name: "5 Class Pack",
           price: "$160",
+          priceValue: 160,
           per: "$32 / class",
           desc: "Great for building a consistent weekly practice.",
           prodid: 100004,
@@ -114,6 +128,7 @@ function ClassPacks() {
         {
           name: "10 Class Pack",
           price: "$300",
+          priceValue: 300,
           per: "$30 / class",
           desc: "Best per-class value in our pack options.",
           prodid: 100005,
@@ -135,7 +150,11 @@ function ClassPacks() {
           <p className="font-sans text-sm text-charcoal-800/70 flex-1">
             {p.desc}
           </p>
-          <BuyButton href={mbUrl(43, p.prodid)} />
+          <BuyButton
+            href={mbUrl(43, p.prodid)}
+            itemName={p.name}
+            price={p.priceValue}
+          />
         </div>
       ))}
     </div>
@@ -147,6 +166,7 @@ function Memberships() {
     {
       name: "5 / Month",
       price: "$130",
+      priceValue: 130,
       per: "$26 / class",
       prodid: 100,
       popular: false,
@@ -155,6 +175,7 @@ function Memberships() {
     {
       name: "8 / Month",
       price: "$170",
+      priceValue: 170,
       per: "$21.25 / class",
       prodid: 102,
       popular: false,
@@ -163,6 +184,7 @@ function Memberships() {
     {
       name: "12 / Month",
       price: "$220",
+      priceValue: 220,
       per: "$18.33 / class",
       prodid: 103,
       popular: false,
@@ -171,6 +193,7 @@ function Memberships() {
     {
       name: "Unlimited",
       price: "$280",
+      priceValue: 280,
       per: "Best rate per visit",
       prodid: 101,
       popular: true,
@@ -210,7 +233,12 @@ function Memberships() {
               </li>
             ))}
           </ul>
-          <BuyButton href={mbUrl(40, m.prodid)} label="Get Membership" />
+          <BuyButton
+            href={mbUrl(40, m.prodid)}
+            label="Get Membership"
+            itemName={`Membership: ${m.name}`}
+            price={m.priceValue}
+          />
         </div>
       ))}
     </div>
@@ -224,12 +252,14 @@ function Specialty() {
         {
           name: "55-min Private Session",
           price: "$100",
+          priceValue: 100,
           desc: "One-on-one session tailored entirely to your goals, technique, and pace.",
           prodid: 100011,
         },
         {
           name: "Duet Session",
           price: "$140",
+          priceValue: 140,
           desc: "Share a semi-private session with a friend or partner. Personalized attention at a shared cost.",
           prodid: 100016,
         },
@@ -247,7 +277,12 @@ function Specialty() {
           <p className="font-sans text-sm text-charcoal-800/70 flex-1">
             {s.desc}
           </p>
-          <BuyButton href={mbUrl(43, s.prodid)} label="Book Session" />
+          <BuyButton
+            href={mbUrl(43, s.prodid)}
+            label="Book Session"
+            itemName={s.name}
+            price={s.priceValue}
+          />
         </div>
       ))}
     </div>

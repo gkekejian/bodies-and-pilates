@@ -97,6 +97,7 @@ export default function BeginnerPage() {
             href: "https://clients.mindbodyonline.com/classic/ws?studioid=5739427&stype=43&prodid=100010",
             variant: "primary",
             external: true,
+            tracking: { itemName: "First Class (Beginner)", price: 25 },
           },
           {
             label: "View Class Packages",
