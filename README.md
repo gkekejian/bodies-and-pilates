@@ -87,6 +87,13 @@ types/                  # TypeScript ambient declarations
 - `/sitemap.xml` and `/robots.txt` auto-generated
 - 308 redirects: `/bookings → /schedule`, `/faqs → /faq`, `/post/:slug → /blog/:slug`
 
+## For the Studio Owner
+
+Two short docs explain how the site works and what (if anything) you need to do to keep it running:
+
+- **[OWNER-GUIDE.md](./OWNER-GUIDE.md)** — what runs itself, what to check once a quarter, and what to do if something breaks. Two pages, plain language.
+- **[MINDBODY-SETUP.md](./MINDBODY-SETUP.md)** — one-time setup for the post-first-class trigger emails (the $99 first-month-unlimited offer and the review request). After this is set up once, it runs forever.
+
 ## Owner Setup Checklist
 
 See **[BUILD-NOTES.md](./BUILD-NOTES.md)** for the complete owner checklist — env vars, widget IDs, real images, blog content, instructor bios, and deployment instructions.
