@@ -57,7 +57,7 @@ export function HeroSection() {
           >
             Empower
             <br />
-            Your Essence
+            Your <em className="italic text-sage-700">Essence</em>
           </motion.h1>
 
           <motion.p

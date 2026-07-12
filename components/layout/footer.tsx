@@ -26,7 +26,9 @@ const internalLinks = [
   { label: "Classes", href: "/classes" },
   { label: "Schedule", href: "/schedule" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Instructors", href: "/instructors" },
   { label: "About", href: "/about" },
+  { label: "Locations", href: "/locations" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
@@ -170,7 +172,8 @@ export function Footer() {
         {/* Divider + copyright */}
         <div className="mt-12 border-t border-cream-100/10 pt-6">
           <p className="text-center font-sans text-xs text-cream-100/40">
-            &copy; 2024 Bodies and Pilates. All rights reserved.
+            &copy; {new Date().getFullYear()} Bodies and Pilates. All rights
+            reserved.
           </p>
         </div>
       </div>

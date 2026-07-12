@@ -33,7 +33,7 @@ const serviceSchema = {
   serviceType: "Pilates Class",
   offers: {
     "@type": "Offer",
-    price: "35",
+    price: "36",
     priceCurrency: "USD",
     url: "https://clients.mindbodyonline.com/classic/ws?studioid=5739427&stype=43&prodid=100003",
   },

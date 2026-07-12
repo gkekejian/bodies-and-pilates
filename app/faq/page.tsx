@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: 'How much does Pilates cost in North Hollywood?',
-    a: 'Your first class is $25. After that, single classes start at $35, with savings on 5-packs, 10-packs, and unlimited monthly memberships. See full pricing on our pricing page.',
+    a: 'Your first class is $25. After that, a single class is $36, with savings on 5-packs, 10-packs, and unlimited monthly memberships. See full pricing on our pricing page.',
   },
   {
     q: 'Do I need experience to take a Pilates class?',
@@ -67,6 +67,10 @@ const faqs = [
   {
     q: 'Is the studio near Toluca Lake, Studio City, or Burbank?',
     a: "Yes. We're located at 5251 Vineland Ave Suite 6 in North Hollywood, about 5 minutes from Toluca Lake, 7 minutes from Studio City, and 10 minutes from Burbank.",
+  },
+  {
+    q: 'How far is the studio from Glendale?',
+    a: "About 12–17 minutes from most of Glendale — one straight run west on the SR-134. Free street parking on Weddington St and metered parking on Vineland Ave make it an easy trip. Many of our regulars commute from Glendale, Kenneth Village, and Adams Hill.",
   },
 ];
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/hero-section";
+import { KeyFactsStrip } from "@/components/sections/key-facts-strip";
 import { WelcomeSection } from "@/components/sections/welcome-section";
 import { PracticeSection } from "@/components/sections/practice-section";
 import { EditorialClassGrid } from "@/components/sections/editorial-class-grid";
@@ -39,6 +40,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <KeyFactsStrip />
       <WelcomeSection />
       <PracticeSection />
       <EditorialClassGrid />

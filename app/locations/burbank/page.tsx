@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const breadcrumb = breadcrumbSchema([
   { name: "Home", url: "https://www.bodiesandpilates.com/" },
-  { name: "Locations", url: "https://www.bodiesandpilates.com/locations/burbank" },
+  { name: "Locations", url: "https://www.bodiesandpilates.com/locations" },
   { name: "Burbank", url: "https://www.bodiesandpilates.com/locations/burbank" },
 ]);
 

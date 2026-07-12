@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const breadcrumb = breadcrumbSchema([
   { name: "Home", url: "https://www.bodiesandpilates.com/" },
-  { name: "Locations", url: "https://www.bodiesandpilates.com/locations/toluca-lake" },
+  { name: "Locations", url: "https://www.bodiesandpilates.com/locations" },
   { name: "Toluca Lake", url: "https://www.bodiesandpilates.com/locations/toluca-lake" },
 ]);
 
