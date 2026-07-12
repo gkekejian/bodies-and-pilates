@@ -15,6 +15,7 @@ type FormValues = z.infer<typeof schema>;
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
 
   const {
     register,
@@ -25,15 +26,22 @@ export default function ContactForm() {
     resolver: zodResolver(schema),
   });
 
-  function onSubmit(_: FormValues) {
-    // Simulate async submission
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        setSubmitted(true);
-        reset();
-        resolve();
-      }, 600);
-    });
+  async function onSubmit(values: FormValues) {
+    setSendError(null);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      setSubmitted(true);
+      reset();
+    } catch {
+      setSendError(
+        "We couldn't send your message right now. Please call us at (818) 653-3883 or email Naira@bodiesandpilates.com."
+      );
+    }
   }
 
   if (submitted) {
@@ -121,6 +129,17 @@ export default function ContactForm() {
           <p className="mt-1 font-sans text-xs text-red-600">{errors.message.message}</p>
         )}
       </div>
+
+      {/* Send failure */}
+      {sendError && (
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="font-sans text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3"
+        >
+          {sendError}
+        </p>
+      )}
 
       {/* Submit */}
       <button

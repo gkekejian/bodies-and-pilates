@@ -32,19 +32,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Bodies and Pilates",
     url: "https://www.bodiesandpilates.com",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Bodies and Pilates — boutique Pilates studio in North Hollywood",
-      },
-    ],
+    // og:image comes from app/opengraph-image.tsx (file convention)
   },
   robots: { index: true, follow: true },
   twitter: {
     card: "summary_large_image",
-    images: ["/images/og-image.jpg"],
   },
 };
 
@@ -54,14 +46,14 @@ const healthClubSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["HealthClub", "LocalBusiness"],
+      "@type": ["HealthClub", "ExerciseGym", "LocalBusiness"],
       "@id": "https://www.bodiesandpilates.com/#localbusiness",
       name: "Bodies and Pilates",
       alternateName: "Bodies & Pilates",
       description:
         "Located in North Hollywood, Bodies and Pilates provides high quality, personalized Pilates classes with state-of-the-art equipment.",
       url: "https://www.bodiesandpilates.com/",
-      image: "https://www.bodiesandpilates.com/images/hero.jpg",
+      image: "https://www.bodiesandpilates.com/opengraph-image",
       telephone: STUDIO_PHONE,
       email: "Naira@bodiesandpilates.com",
       address: {
@@ -74,9 +66,11 @@ const healthClubSchema = {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 34.169,
-        longitude: -118.373,
+        latitude: 34.16893,
+        longitude: -118.37313,
       },
+      hasMap:
+        "https://www.google.com/maps/search/?api=1&query=Bodies%20and%20Pilates%205251%20Vineland%20Ave%20Suite%206%20North%20Hollywood%20CA%2091601",
       openingHoursSpecification: [
         { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "07:00", closes: "20:00" },
         { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "08:30", closes: "20:30" },
@@ -86,7 +80,65 @@ const healthClubSchema = {
         { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "12:00" },
         { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "12:00" },
       ],
-      priceRange: "$$",
+      priceRange: "$25-$300",
+      makesOffer: [
+        {
+          "@type": "Offer",
+          name: "First Class (New Clients)",
+          price: "25",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/pricing",
+        },
+        {
+          "@type": "Offer",
+          name: "1 Week Unlimited (Intro)",
+          price: "105",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/pricing",
+        },
+        {
+          "@type": "Offer",
+          name: "Single Class",
+          price: "36",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/pricing",
+        },
+        {
+          "@type": "Offer",
+          name: "5-Class Pack",
+          price: "160",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/pricing",
+        },
+        {
+          "@type": "Offer",
+          name: "10-Class Pack",
+          price: "300",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/pricing",
+        },
+        {
+          "@type": "Offer",
+          name: "Unlimited Monthly Membership",
+          price: "280",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/pricing",
+        },
+        {
+          "@type": "Offer",
+          name: "Private Session (55 min)",
+          price: "100",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/classes/private",
+        },
+        {
+          "@type": "Offer",
+          name: "Duet Session",
+          price: "140",
+          priceCurrency: "USD",
+          url: "https://www.bodiesandpilates.com/classes/private",
+        },
+      ],
       sameAs: [
         "https://www.instagram.com/bodiesandpilates/",
         "https://www.facebook.com/people/Bodies-and-Pilates/61567392958788/",
@@ -97,7 +149,9 @@ const healthClubSchema = {
         { "@type": "Place", name: "Toluca Lake" },
         { "@type": "Place", name: "Studio City" },
         { "@type": "City", name: "Burbank" },
+        { "@type": "City", name: "Glendale" },
         { "@type": "Place", name: "Valley Village" },
+        { "@type": "Place", name: "Valley Glen" },
         { "@type": "City", name: "Hollywood" },
       ],
     },

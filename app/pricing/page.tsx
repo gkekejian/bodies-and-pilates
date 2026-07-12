@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "Pilates Class Pricing in North Hollywood | $25 First Class",
   },
   description:
-    "Pilates class pricing in North Hollywood. $25 first class. Single classes from $35, 5-packs, 10-packs, and unlimited memberships. Buy online.",
+    "Pilates class pricing in North Hollywood. $25 first class. Single classes $36, 5-packs, 10-packs, and unlimited memberships. Buy online.",
 };
 
 const breadcrumb = breadcrumbSchema([
