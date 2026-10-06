@@ -1,321 +1,189 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { breadcrumbSchema } from "@/lib/breadcrumb";
-import { IMAGES } from "@/lib/images";
+import { PhotoSlot } from "@/components/ui/photo-slot";
+import { OwnerPlaceholder } from "@/components/ui/placeholder";
+import { PageHero, SectionHeading, eyebrowClass } from "@/components/sections/section-heading";
+import { FinalCta } from "@/components/sections/final-cta";
+import { pageMetadata } from "@/lib/metadata";
+import { breadcrumbSchema } from "@/lib/schema";
+import { PHOTOS } from "@/lib/photos";
+import { SHOW_TEAM, TEAM, type Instructor } from "@/lib/team";
+import { ADDRESS } from "@/lib/site";
 
-// ─── Metadata ────────────────────────────────────────────────────────────────
-
-export const metadata: Metadata = {
-  title: { absolute: "About Bodies and Pilates | North Hollywood Pilates Studio" },
+export const metadata = pageMetadata({
+  title: "About Bodies and Pilates | North Hollywood Pilates Studio",
   description:
-    "About Bodies and Pilates — a boutique Pilates studio in North Hollywood. Our story, our mission, and our instructors.",
-};
+    "An independent reformer Pilates studio in North Hollywood, near Toluca Lake, Studio City, and Burbank. Meet the team, then book your $25 first class.",
+  path: "/about",
+});
 
-// ─── Structured data ─────────────────────────────────────────────────────────
-
-const schema = breadcrumbSchema([
-  { name: "Home", url: "https://www.bodiesandpilates.com/" },
-  { name: "About", url: "https://www.bodiesandpilates.com/about" },
+const breadcrumb = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
 ]);
 
-// ─── Instructor data ─────────────────────────────────────────────────────────
-
-const instructors = [
+// TODO(owner): verify each route and landmark below reads right to a local.
+// Drive times are approximate and owner-supplied.
+const neighborhoods = [
   {
-    name: "Naira Sarkian",
-    role: "Owner & Lead Instructor",
-    image: IMAGES.instructorNaira,
-    href: "/instructors/naira",
-    bio: "Owner and lead instructor — the heart of Bodies and Pilates.",
+    name: "North Hollywood",
+    time: "Home",
+    body: `We are at ${ADDRESS.street}, a short drive from the NoHo Arts District. Park on Weddington St or at the metered spots in front of the studio on Vineland Ave.`,
   },
   {
-    name: "Theresia Bunch",
-    role: "Instructor",
-    image: IMAGES.instructorTheresia,
-    href: "/instructors",
-    bio: "BS in Kinesiology and 15 years as a classical ballerina. Creative flows rooted in movement science.",
+    name: "Toluca Lake",
+    time: "About 5 min",
+    body: "Head west along Riverside Dr, then north on Vineland Ave. Street parking on Weddington St is right by the studio.",
   },
   {
-    name: "Hannah Pink",
-    role: "Instructor",
-    image: IMAGES.instructorHannah,
-    href: "/instructors",
-    bio: "Certified through Integrated Movement and Wellness. Professional dancer with a focus on breathwork and rehab.",
+    name: "Valley Village",
+    time: "About 8 min",
+    body: "Magnolia Blvd brings you east toward Vineland Ave. Street parking on Weddington St is a short walk from the door.",
   },
   {
-    name: "Marlyn Ortiz",
-    role: "Instructor",
-    image: IMAGES.instructorMarlyn,
-    href: "/instructors",
-    bio: "20+ years as a dancer, choreographer, and aerialist. SUNY Purchase trained with Broadway and tour credits.",
+    name: "Studio City",
+    time: "About 10 min",
+    body: "Vineland Ave runs north from Ventura Blvd straight to the studio, so it is one road most of the way.",
   },
   {
-    name: "Enrika Navikaite",
-    role: "Instructor",
-    image: IMAGES.instructorEnrika,
-    href: "/instructors",
-    bio: "Lithuanian-born and LA-based. Certified through Karen Lord Pilates Movement — high-energy, mindful sessions.",
-  },
-  {
-    name: "Sita Acevedo",
-    role: "Instructor",
-    image: IMAGES.instructorSita,
-    href: "/instructors",
-    bio: "Aerialist and movement instructor specializing in Pilates and GYROTONIC. Creative reformer work with props.",
+    name: "Burbank",
+    time: "About 10 min",
+    body: "Magnolia Blvd runs west from Burbank's Magnolia Park into North Hollywood. Arrive 10 minutes early for your first class to park and settle in.",
   },
 ];
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+const label = "font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-sage-700";
+
+function Field({ title, value, pending }: { title: string; value: string | null; pending: string }) {
+  return (
+    <div>
+      <dt className={label}>{title}</dt>
+      <dd className="mt-1.5">
+        {value ? (
+          <span className="font-sans text-sm leading-relaxed text-charcoal-800/85">{value}</span>
+        ) : (
+          <OwnerPlaceholder label={pending} />
+        )}
+      </dd>
+    </div>
+  );
+}
+
+function InstructorCard({ person }: { person: Instructor }) {
+  return (
+    <article className="flex flex-col border border-taupe-300/70 bg-cream-50">
+      <PhotoSlot photo={person.photo} aspectClassName="aspect-[4/5]" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+      <div className="flex flex-1 flex-col gap-5 p-6">
+        <div>
+          <h3 className="font-serif text-2xl text-charcoal-900">{person.name}</h3>
+          <p className="mt-1 font-sans text-sm text-sage-700">{person.role}</p>
+        </div>
+        <dl className="space-y-4">
+          <Field title="Credentials" value={person.credentials} pending="credentials" />
+          <Field title="Specialties" value={person.specialties} pending="specialties" />
+        </dl>
+        {person.philosophy ? (
+          <p className="mt-auto border-t border-taupe-300/60 pt-4 font-serif text-lg italic leading-snug text-charcoal-800">
+            &ldquo;{person.philosophy}&rdquo;
+          </p>
+        ) : (
+          <OwnerPlaceholder label="one-line philosophy" className="mt-auto" />
+        )}
+      </div>
+    </article>
+  );
+}
+
+const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
 
 export default function AboutPage() {
   return (
     <>
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+
+      <PageHero
+        eyebrow="Our Story"
+        title="About Bodies and Pilates"
+        intro={<p>An independent reformer Pilates studio on Vineland Ave in North Hollywood, open since 2024.</p>}
       />
 
-      {/* 1. Page Header */}
-      <section className="bg-cream-200 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center gap-2 font-sans text-sm text-taupe-500">
-              <li>
-                <Link href="/" className="hover:text-sage-700 transition-colors duration-200">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true" className="text-taupe-300">
-                /
-              </li>
-              <li className="text-charcoal-800 font-medium" aria-current="page">
-                About
-              </li>
-            </ol>
-          </nav>
-
-          <p className="text-sage-500 font-sans text-xs tracking-[0.22em] uppercase mb-4">
-            Our Story
-          </p>
-          <h1 className="font-serif text-5xl sm:text-6xl text-charcoal-900 mb-4">
-            About Us
-          </h1>
-          <div className="w-12 h-px bg-sage-500" aria-hidden="true" />
-        </div>
-      </section>
-
-      {/* 2. Studio Story — The Space */}
-      <section className="bg-cream-50 py-20 sm:py-28">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
-              <p className="text-sage-500 font-sans text-xs tracking-[0.22em] uppercase mb-4">
-                Our Environment
+      {/* Story */}
+      {/* TODO(owner): review the story copy below and adjust it to your own words. */}
+      <section aria-labelledby="story-heading" className="bg-cream-50 py-20 sm:py-28">
+        <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
+          <div className="lg:col-span-7">
+            <SectionHeading id="story-heading" eyebrow="The Studio" title="A calm room, a small class, a coach who knows you" />
+            <div className="space-y-5 font-sans text-base leading-[1.8] text-charcoal-800/85 sm:text-lg">
+              <p>
+                Bodies and Pilates opened in North Hollywood in 2024, led by owner and lead instructor Naira Sarkian.
+                It is a boutique reformer studio with a simple promise: small classes, a consistent coaching team, and
+                real attention to how you move.
               </p>
-              <h2 className="font-serif text-4xl sm:text-5xl text-charcoal-900 mb-6">
-                About Bodies and Pilates
-              </h2>
-              <div className="w-12 h-px bg-sage-500 mb-8" aria-hidden="true" />
-              <p className="font-sans text-charcoal-800 text-base leading-relaxed mb-8">
-                At Bodies and Pilates, we pride ourselves in providing a luxurious,
-                tranquil environment combined with cutting-edge fitness. Our boutique
-                studio is equipped with state-of-the-art equipment, while our small
-                class sizes allow for personalized attention and guidance throughout
-                your workout.
-              </p>
-              <p className="font-sans text-charcoal-800 text-base leading-relaxed">
-                Pilates is a versatile exercise system that strengthens muscles,
-                improves flexibility, and enhances overall body alignment. We combine
-                the best of low-impact movements with high-intensity focus to isolate
-                and fatigue each muscle group for maximum effectiveness. Our aim is
-                not just for physical strength but also for a harmonious balance
-                between mind and body, leaving you rejuvenated and strong.
+              <p>
+                The space is calm and unhurried. Classes stay small so your instructor can see you, adjust your
+                springs, and coach your form on the reformer through every exercise. Whether it is your first class
+                or your hundredth, you are seen, coached, and challenged at the right level.
               </p>
             </div>
+          </div>
+          <div className="lg:col-span-5">
+            <PhotoSlot photo={PHOTOS.postClass} aspectClassName="aspect-[4/5]" sizes="(max-width: 1024px) 100vw, 40vw" />
+          </div>
+        </div>
+      </section>
 
-            <div className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-lg">
-              <Image
-                src={IMAGES.studio}
-                alt="Bodies and Pilates studio interior"
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
+      {/* Team */}
+      {SHOW_TEAM && (
+        <section id="team" aria-labelledby="team-heading" className="scroll-mt-24 bg-cream-200 py-20 sm:py-28">
+          <div className={container}>
+            <SectionHeading
+              id="team-heading"
+              eyebrow="Meet the Team"
+              title="Your instructors"
+              intro={<p>One consistent coaching team. You get to know your instructor, and they get to know your body.</p>}
+            />
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {TEAM.map((person) => (
+                <InstructorCard key={person.name} person={person} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Neighborhoods */}
+      <section id="neighborhoods" aria-labelledby="neighborhoods-heading" className="scroll-mt-24 bg-cream-50 py-20 sm:py-28">
+        <div className={container}>
+          <SectionHeading
+            id="neighborhoods-heading"
+            eyebrow="Getting Here"
+            title="Neighborhoods we serve"
+            intro={
+              <p>
+                Most clients come from North Hollywood and the neighborhoods around it. Here is how long the drive
+                usually takes, and where to park.
+              </p>
+            }
+          />
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <dl className="divide-y divide-taupe-300/60 border-y border-taupe-300/60 lg:col-span-7">
+              {neighborhoods.map((n) => (
+                <div key={n.name} className="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                  <dt>
+                    <span className="block font-serif text-xl text-charcoal-900">{n.name}</span>
+                    <span className={`${eyebrowClass} mt-1 block text-[11px]`}>{n.time}</span>
+                  </dt>
+                  <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{n.body}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+              <PhotoSlot photo={PHOTOS.entrance} sizes="(max-width: 1024px) 50vw, 40vw" />
+              <PhotoSlot photo={PHOTOS.parking} sizes="(max-width: 1024px) 50vw, 40vw" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Mission */}
-      <section className="bg-cream-100 py-20 sm:py-28">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-sage-500 font-sans text-xs tracking-[0.22em] uppercase mb-4">
-              Why We Exist
-            </p>
-            <h2 className="font-serif text-4xl sm:text-5xl text-charcoal-900 mb-6">
-              Our Mission
-            </h2>
-            <div className="w-12 h-px bg-sage-500 mx-auto mb-10" aria-hidden="true" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Wellness",
-                icon: (
-                  <svg
-                    className="w-6 h-6 text-sage-700"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 21.593c-5.63-5.539-11-10.297-11-14.402C1 3.518 3.52 1 6.5 1c1.924 0 3.623 1.004 4.5 2.484C11.877 2.004 13.576 1 15.5 1 18.48 1 21 3.518 21 7.191c0 4.105-5.37 8.863-9 12.402z"
-                    />
-                  </svg>
-                ),
-                description:
-                  "We believe movement is medicine. Every class is designed to nourish your body and mind, leaving you stronger and more at ease.",
-              },
-              {
-                title: "Community",
-                icon: (
-                  <svg
-                    className="w-6 h-6 text-sage-700"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
-                    />
-                  </svg>
-                ),
-                description:
-                  "Bodies and Pilates is more than a studio — it is a community. We foster genuine connections and celebrate every milestone together.",
-              },
-              {
-                title: "Personalized Attention",
-                icon: (
-                  <svg
-                    className="w-6 h-6 text-sage-700"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
-                    />
-                  </svg>
-                ),
-                description:
-                  "Our intentionally small class sizes mean your instructor knows your name, your goals, and your body — guiding every session with care.",
-              },
-            ].map(({ title, icon, description }) => (
-              <div
-                key={title}
-                className="bg-cream-50 border border-taupe-300/50 rounded-sm p-8 text-center"
-              >
-                <div className="w-12 h-12 rounded-full bg-sage-700/10 flex items-center justify-center mx-auto mb-5">
-                  {icon}
-                </div>
-                <h3 className="font-serif text-xl text-charcoal-900 mb-3">{title}</h3>
-                <p className="font-sans text-charcoal-800 text-sm leading-relaxed">
-                  {description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Instructors */}
-      <section className="bg-cream-200 py-20 sm:py-28">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sage-500 font-sans text-xs tracking-[0.22em] uppercase mb-4">
-              Meet the Team
-            </p>
-            <h2 className="font-serif text-4xl sm:text-5xl text-charcoal-900 mb-4">
-              Our Instructors
-            </h2>
-            <div className="w-12 h-px bg-sage-500 mx-auto" aria-hidden="true" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {instructors.map((instructor) => (
-              <Link
-                key={instructor.name}
-                href={instructor.href}
-                className="group bg-cream-50 rounded-sm border border-taupe-300/50 overflow-hidden block hover:shadow-lg transition-shadow duration-300"
-              >
-                {/* Photo */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-cream-200">
-                  <Image
-                    src={instructor.image}
-                    alt={`${instructor.name}, ${instructor.role}`}
-                    fill
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-
-                {/* Info */}
-                <div className="p-6">
-                  <h3 className="font-serif text-xl text-charcoal-900 mb-1">
-                    {instructor.name}
-                  </h3>
-                  <p className="font-sans text-sage-700 text-sm font-medium mb-3">
-                    {instructor.role}
-                  </p>
-                  <p className="font-sans text-charcoal-800 text-sm leading-relaxed">
-                    {instructor.bio}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CTA */}
-      <section className="bg-sage-700 py-20 sm:py-28">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sage-300 font-sans text-xs tracking-[0.22em] uppercase mb-4">
-            Your Journey Starts Here
-          </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-cream-50 mb-6">
-            Begin Your Journey
-          </h2>
-          <div className="w-12 h-px bg-sage-300 mx-auto mb-8" aria-hidden="true" />
-          <p className="font-sans text-cream-100 text-lg mb-10 max-w-lg mx-auto">
-            Ready to discover the transformative power of Pilates? Join our community
-            and take the first step toward a stronger, more balanced you.
-          </p>
-          <Link
-            href="/pricing"
-            className="inline-block bg-cream-50 text-sage-700 font-sans font-semibold text-sm tracking-widest uppercase px-10 py-4 rounded-sm hover:bg-cream-200 transition-colors duration-200"
-          >
-            View Pricing
-          </Link>
-        </div>
-      </section>
+      <FinalCta />
     </>
   );
 }
