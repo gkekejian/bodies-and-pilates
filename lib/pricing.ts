@@ -5,10 +5,14 @@
  * intentionally absent. Existing members keep them; this is display only.
  *
  * Booking links: every legacy clients.mindbodyonline.com link was removed.
- * TODO(owner): for each offer, paste the MindBody branded-web deep link into
- * `bookingUrl`. While it is null, the button sends people to /schedule, which
- * shows the live widget (or the call/text fallback).
+ * TODO(owner): for each offer, paste its own MindBody deep link (from
+ * MindBody Marketing Links) into `bookingUrl`, so each button goes straight to
+ * its pricing option. While it is null:
+ *  - packs, memberships, and privates go to the general MindBody pricing page
+ *  - the intro offers ($25 first class, $105 week) go to /schedule, so they
+ *    never land on the general pricing page
  */
+import { MINDBODY } from "@/lib/site";
 
 export interface Offer {
   id: string;
@@ -20,9 +24,12 @@ export interface Offer {
   badge?: string;
   cta: string;
   bookingUrl: string | null;
+  /** First-timer intro offer. Never falls back to the general pricing page. */
+  intro?: boolean;
 }
 
-export const offerHref = (offer: Offer) => offer.bookingUrl ?? "/schedule";
+export const offerHref = (offer: Offer) =>
+  offer.bookingUrl ?? (offer.intro ? "/schedule" : MINDBODY.pricingUrl);
 
 export const TRY: Offer[] = [
   {
@@ -32,6 +39,7 @@ export const TRY: Offer[] = [
     detail: "One small-group reformer class to meet the studio, the reformer, and your instructor.",
     cta: "Book Your $25 First Class",
     bookingUrl: null,
+    intro: true,
   },
   {
     id: "intro-week",
@@ -40,6 +48,7 @@ export const TRY: Offer[] = [
     detail: "Unlimited classes for seven days. First-timers only. Your week starts on your first class.",
     cta: "Book the $105 Intro Week",
     bookingUrl: null,
+    intro: true,
   },
 ];
 

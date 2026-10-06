@@ -30,8 +30,6 @@ export const exerciseGymSchema = {
     opens: h.opens,
     closes: h.closes,
   })),
-  // TODO(owner): append the Google Business Profile URL once provided
-  // (see GOOGLE_REVIEWS.profileUrl in lib/site.ts).
   sameAs: [INSTAGRAM.url],
 };
 

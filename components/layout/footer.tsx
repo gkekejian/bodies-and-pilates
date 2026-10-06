@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { OwnerPlaceholder } from "@/components/ui/placeholder";
+import { MindbodyAccountLink } from "@/components/mindbody/account-link";
 import {
   ADDRESS,
   CLASSPASS_URL,
@@ -9,7 +9,7 @@ import {
   HOURS,
   INSTAGRAM,
   MAPS_URL,
-  MINDBODY_BUSINESS_URL,
+  MINDBODY,
   PHONE,
   SITE_NAME,
   googleReviewsHref,
@@ -50,21 +50,7 @@ const quickLinks = [
 const heading = "mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-taupe-300";
 const muted = "text-cream-100/75 transition-colors hover:text-cream-50";
 
-// Footer links to outside profiles. All open in a new tab.
-function ExternalLink({ href, label, pending }: { href: string | null; label: string; pending: string }) {
-  if (!href) {
-    return (
-      <OwnerPlaceholder label={pending} tone="dark">
-        Owner to provide the link for &ldquo;{label}&rdquo;.
-      </OwnerPlaceholder>
-    );
-  }
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={muted}>
-      {label}
-    </a>
-  );
-}
+const newTab = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export function Footer() {
   return (
@@ -117,31 +103,38 @@ export function Footer() {
           <div>
             <h2 className={heading}>Find Us Online</h2>
             <ul className="flex flex-col gap-3 font-sans text-sm">
+              <li className="text-cream-100/75">
+                Rated {GOOGLE_REVIEWS.rating} on Google ({GOOGLE_REVIEWS.count} reviews)
+              </li>
               <li>
-                <a href={googleReviewsHref()} target="_blank" rel="noopener noreferrer" className={muted}>
-                  Rated {GOOGLE_REVIEWS.rating} on Google ({GOOGLE_REVIEWS.count} reviews)
+                <a href={googleReviewsHref()} {...newTab} className={muted}>
+                  Review us on Google
                 </a>
               </li>
               <li>
-                <a
-                  href={INSTAGRAM.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${muted} inline-flex items-center gap-2`}
-                >
+                <a href={INSTAGRAM.url} {...newTab} className={`${muted} inline-flex items-center gap-2`}>
                   <InstagramIcon className="size-4" />
                   {INSTAGRAM.handle}
                 </a>
               </li>
+              {/* MindBody booking stays in the same tab; the app smart link opens a new one. */}
               <li>
-                <ExternalLink href={CLASSPASS_URL} label="Bodies and Pilates on ClassPass" pending="ClassPass studio page URL" />
+                <a href={MINDBODY.classesUrl} className={muted}>
+                  Book on MindBody
+                </a>
               </li>
               <li>
-                <ExternalLink
-                  href={MINDBODY_BUSINESS_URL}
-                  label="Bodies and Pilates on MindBody"
-                  pending="MindBody business page URL"
-                />
+                <a href={MINDBODY.appUrl} {...newTab} className={muted}>
+                  Get the Mindbody app
+                </a>
+              </li>
+              <li>
+                <a href={CLASSPASS_URL} {...newTab} className={muted}>
+                  Book on ClassPass
+                </a>
+              </li>
+              <li>
+                <MindbodyAccountLink className="[&_a]:text-cream-100/75 [&_a]:transition-colors [&_a:hover]:text-cream-50" />
               </li>
             </ul>
           </div>

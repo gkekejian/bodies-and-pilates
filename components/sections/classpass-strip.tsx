@@ -1,5 +1,4 @@
 import { CtaLink } from "@/components/ui/cta-link";
-import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import { offerHref, TRY } from "@/lib/pricing";
 import { CLASSPASS_URL } from "@/lib/site";
 
@@ -24,16 +23,11 @@ export function ClassPassStrip({ showClassPassBooking = false }: { showClassPass
           <CtaLink href={offerHref(introWeek)} variant="light">
             Start the $105 Intro Week
           </CtaLink>
-          {showClassPassBooking &&
-            (CLASSPASS_URL ? (
-              <CtaLink href={CLASSPASS_URL} variant="ghost-light">
-                Book on ClassPass
-              </CtaLink>
-            ) : (
-              <OwnerPlaceholder label="Book on ClassPass button" tone="dark">
-                Owner to provide the ClassPass studio page URL.
-              </OwnerPlaceholder>
-            ))}
+          {showClassPassBooking && (
+            <CtaLink href={CLASSPASS_URL} variant="ghost-light" newTab>
+              Book on ClassPass
+            </CtaLink>
+          )}
         </div>
       </div>
     </section>

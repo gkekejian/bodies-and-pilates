@@ -35,11 +35,23 @@ grep -rn "TODO(owner)" app components lib content
 ## Owner TODO list
 
 ### Booking
-- [ ] MindBody branded-web deep link for the $25 intro offer: `INTRO_OFFER_DEEP_LINK` in `lib/site.ts`. Until set, every "Book Your $25 First Class" button goes to `/intro-offer`.
-- [ ] Deep link for each price option: `bookingUrl` per offer in `lib/pricing.ts`. Until set, those buttons go to `/schedule`.
-- [ ] ClassPass studio page URL: `CLASSPASS_URL` in `lib/site.ts`. Used by the "Book on ClassPass" button in the ClassPass strip on `/pricing` and `/intro-offer`, and by the footer.
-- [ ] MindBody business page URL: `MINDBODY_BUSINESS_URL` in `lib/site.ts`. Used by the footer.
-- [ ] HealCode schedule widget ID, configured to show class name, time, and instructor: set `NEXT_PUBLIC_HEALCODE_WIDGET_ID` in Vercel. Until set, `/schedule` shows hours plus "Call or text 818-813-4446 to book".
+- [ ] MindBody deep link for the $25 intro pricing option specifically (from MindBody Marketing Links, not the general pricing page): `INTRO_OFFER_DEEP_LINK` in `lib/site.ts`. Until set, every "Book Your $25 First Class" button goes to `/intro-offer`.
+- [ ] One MindBody deep link per pricing option (from Marketing Links): `bookingUrl` per offer in `lib/pricing.ts`. Until set, pack, membership, and private buttons go to the general MindBody pricing page; the intro offers go to `/schedule`.
+
+### Booking map (live)
+
+| CTA / location | Destination | Tab |
+|---|---|---|
+| Header + sticky mobile bar "Book Your $25 First Class" | `INTRO_OFFER_DEEP_LINK` (TODO), `/intro-offer` until set | same |
+| `/schedule` | MindBody Schedules widget `8550823b9a6`, with "Book on MindBody" and call/text as secondary lines | same |
+| "Book on MindBody" (schedule page, footer) | https://go.mindbodyonline.com/book/app/classes/5739427 | same |
+| Pricing tier buttons (packs, memberships, privates) | https://go.mindbodyonline.com/book/app/pricing/bus_11kS9of8y3RDLJFBGg until each option has its own deep link | same |
+| "Book on ClassPass" (strip on `/pricing` and `/intro-offer`, footer) | https://classpass.com/studios/bodies-and-pilates-los-angeles | new |
+| Footer "Review us on Google" | https://share.google/iiwq2gBssUKulvsol | new |
+| Footer "Get the Mindbody app" | https://get.mndbdy.ly/GiC0CPO08Mb | new |
+| Footer "Login \| Register" | MindBody HealCode account-link widget (site 121411 / MindBody 5739427), loaded when the footer scrolls into view | widget |
+
+All MindBody values live in `MINDBODY` in `lib/site.ts`. Spare HealCode registrations widgets `85150676b9a6` and `85151183b9a6` are recorded there but not used; the owner has not said which is which.
 
 ### Policies and terms
 - [ ] Late-cancel and no-show policy text (`lib/faqs.ts`, id `cancellation`).
@@ -48,7 +60,6 @@ grep -rn "TODO(owner)" app components lib content
 
 ### Facts to confirm
 - [ ] Public contact email (`EMAIL` in `lib/site.ts`, taken from the current live site).
-- [ ] Google Business Profile review URL (`GOOGLE_REVIEWS.profileUrl` in `lib/site.ts`). It also goes into schema `sameAs`.
 - [ ] Geo coordinates for schema (`lib/schema.ts`).
 - [ ] Difficulty level, "who it is for", and 50-minute length per class (`lib/classes.ts`).
 - [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx`).
@@ -161,7 +172,7 @@ npm run build && npm run start
 
 - **Doorway pages removed.** The four `/locations/*` pages are consolidated into one "Neighborhoods we serve" section on `/about`, per the brief. `/instructors` merged into the About team section.
 - **Reformer only.** Copy that mentioned mat classes is gone; every group class is described as small-group reformer Pilates. The Full Body page title changed from "Mat Pilates Classes" for the same reason.
-- **Booking map.** "Book Your $25 First Class" (header, mobile bar) goes to the MindBody intro-offer deep link; `/schedule` uses the MindBody widget; each pricing tier button uses its own MindBody deep link. The ClassPass strip on `/pricing` and `/intro-offer` adds a "Book on ClassPass" button. The footer links to Instagram, Google reviews, ClassPass, and MindBody, all in a new tab. Facebook is not linked.
+- **Booking map.** See the table under Owner TODO list. MindBody links open in the same tab; ClassPass, Google, Instagram, and the Mindbody app link open in a new tab. Facebook is not linked.
 - **FAQ uses native `<details>`.** No JavaScript, and every answer is in the HTML so it matches the FAQPage schema.
 - **framer-motion removed.** Animations were delaying the hero text (LCP). The site now ships no animation library.
 - **Hours.** Owner-confirmed hours only. Friday is 7am to 8pm (the old site said 7:30 to 11:30).

@@ -22,15 +22,18 @@ interface CtaLinkProps {
   children: React.ReactNode;
   variant?: Variant;
   className?: string;
+  /** Open in a new tab (external links only). */
+  newTab?: boolean;
   "aria-label"?: string;
 }
 
 /** Link styled as a CTA. Uses next/link internally, a plain anchor otherwise. */
-export function CtaLink({ href, children, variant = "primary", className, ...rest }: CtaLinkProps) {
+export function CtaLink({ href, children, variant = "primary", className, newTab, ...rest }: CtaLinkProps) {
   const classes = cn(base, variants[variant], className);
   if (isExternal(href)) {
+    const tab = newTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
     return (
-      <a href={href} className={classes} {...rest}>
+      <a href={href} className={classes} {...tab} {...rest}>
         {children}
       </a>
     );

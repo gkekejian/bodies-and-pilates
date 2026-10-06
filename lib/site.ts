@@ -67,32 +67,43 @@ export const INSTAGRAM = {
 export const GOOGLE_REVIEWS = {
   rating: "5.0",
   count: 14,
-  // TODO(owner): paste the direct Google Business Profile review URL here
-  // (Google Business Profile > Ask for reviews > copy link). Until then the
-  // footer links to a Maps search for the studio, which shows the reviews.
-  profileUrl: null as string | null,
+  // Owner-supplied Google review link.
+  profileUrl: "https://share.google/iiwq2gBssUKulvsol" as string | null,
 };
 
 export const googleReviewsHref = () => GOOGLE_REVIEWS.profileUrl ?? MAPS_URL;
 
-// TODO(owner): paste the ClassPass studio page URL
-// (https://classpass.com/studios/...). Used by the "Book on ClassPass" button
-// on /pricing and /intro-offer and by the footer. For reference only, the old
-// site linked https://classpass.com/studios/bodies-and-pilates-los-angeles;
-// confirm it is current before using it. Until set, both spots show a
-// labeled placeholder.
-export const CLASSPASS_URL: string | null = null;
+export const CLASSPASS_URL = "https://classpass.com/studios/bodies-and-pilates-los-angeles";
 
-// TODO(owner): paste the MindBody business page URL (the studio's public
-// profile on mindbodyonline.com). Used by the footer. Until set, the footer
-// shows a labeled placeholder.
-export const MINDBODY_BUSINESS_URL: string | null = null;
+/**
+ * MindBody (site ID 5739427). Owner-supplied links and widgets.
+ * Same-tab links: classes and pricing. New tab: the app smart link.
+ */
+export const MINDBODY = {
+  siteId: "5739427",
+  /** "Book a class" destination: the MindBody class booking page. */
+  classesUrl: "https://go.mindbodyonline.com/book/app/classes/5739427",
+  /** General pricing page. Interim target for pack, membership, and private buttons. */
+  pricingUrl: "https://go.mindbodyonline.com/book/app/pricing/bus_11kS9of8y3RDLJFBGg",
+  /** "Get the Mindbody app" smart link. */
+  appUrl: "https://get.mndbdy.ly/GiC0CPO08Mb",
+  /** Branded-web Schedules widget embedded on /schedule. */
+  scheduleWidgetId: "8550823b9a6",
+  /**
+   * Spare HealCode registrations widgets supplied by the owner, unlabeled and
+   * not used yet. Ask the owner which is which before wiring either one.
+   */
+  spareRegistrationWidgetIds: ["85150676b9a6", "85151183b9a6"],
+  /** HealCode account-link widget ("Login | Register"), used in the footer. */
+  accountLinkSiteId: "121411",
+} as const;
 
 export const FIRST_CLASS_CTA = "Book Your $25 First Class";
 
-// TODO(owner): paste the MindBody branded-web deep link for the $25 intro
-// offer here. Until it exists, every "Book Your $25 First Class" button
-// (header, mobile bar, CTAs) links to the /intro-offer landing page.
+// TODO(owner): paste the MindBody deep link for the $25 intro pricing option
+// specifically (MindBody Marketing Links), not the general pricing page.
+// Until it exists, every "Book Your $25 First Class" button (header, mobile
+// bar, CTAs) links to the /intro-offer landing page.
 export const INTRO_OFFER_DEEP_LINK: string | null = null;
 
 export const introBookingHref = () => INTRO_OFFER_DEEP_LINK ?? "/intro-offer";
