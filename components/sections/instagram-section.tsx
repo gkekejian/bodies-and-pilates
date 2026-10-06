@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-// Client component loaded only on the browser — avoids SSR for the
+// Client component loaded only on the browser, which avoids SSR for the
 // custom element and the @behold/widget dynamic import inside it.
 const InstagramFeed = dynamic(() => import('@/components/instagram-feed'), {
   ssr: false,

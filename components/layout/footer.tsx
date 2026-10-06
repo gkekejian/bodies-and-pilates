@@ -1,8 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
+import { MindbodyAccountLink } from "@/components/mindbody/account-link";
+import {
+  ADDRESS,
+  CLASSPASS_URL,
+  EMAIL,
+  GOOGLE_REVIEWS,
+  HOURS,
+  INSTAGRAM,
+  MAPS_URL,
+  MINDBODY,
+  PHONE,
+  SITE_NAME,
+  googleReviewsHref,
+} from "@/lib/site";
 
-// Inline Instagram SVG — lucide-react v1.x removed brand icons
-function InstagramIcon({ className }: { className?: string }) {
+// Inline Instagram glyph (lucide-react v1 removed brand icons).
+export function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,155 +36,127 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-const internalLinks = [
+const quickLinks = [
+  { label: "Intro Offer", href: "/intro-offer" },
   { label: "Classes", href: "/classes" },
-  { label: "Schedule", href: "/schedule" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Schedule", href: "/schedule" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
 ];
 
-const hours = [
-  { days: "Mon / Wed", time: "7:00 am – 8:00 pm" },
-  { days: "Tue / Thu", time: "8:30 am – 8:30 pm" },
-  { days: "Fri", time: "7:30 am – 11:30 am" },
-  { days: "Sat / Sun", time: "9:00 am – 12:00 pm" },
-];
+const heading = "mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-taupe-300";
+const muted = "text-cream-100/75 transition-colors hover:text-cream-50";
+
+const newTab = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export function Footer() {
   return (
     <footer className="bg-charcoal-900 text-cream-100">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        {/* Main grid */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Column 1: Logo + Contact */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* NAP */}
           <div className="flex flex-col gap-5">
-            <div>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-3 transition-opacity hover:opacity-80"
-                aria-label="Bodies and Pilates — Home"
-              >
-                <Image
-                  src="/images/logo.svg"
-                  alt=""
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 brightness-0 invert opacity-90"
-                />
-                <span className="font-serif text-xl font-semibold tracking-wide text-cream-50">
-                  Bodies &amp; Pilates
-                </span>
-              </Link>
-              <p className="mt-3 font-sans text-sm italic text-taupe-300">
-                Empower Your Essence
-              </p>
-            </div>
-
+            <Link href="/" className="inline-flex items-center gap-3 transition-opacity hover:opacity-80" aria-label="Bodies and Pilates, home">
+              <Image src="/images/logo.svg" alt="" width={48} height={48} className="h-12 w-12 opacity-90 brightness-0 invert" />
+              <span className="font-serif text-xl text-cream-50">{SITE_NAME}</span>
+            </Link>
             <address className="not-italic">
-              <ul className="flex flex-col gap-2 font-sans text-sm text-cream-100/80">
+              <ul className="flex flex-col gap-2 font-sans text-sm">
                 <li>
-                  <a
-                    href="https://maps.google.com/?q=5251+Vineland+Ave+Suite+6+North+Hollywood+CA+91601"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="leading-relaxed transition-colors hover:text-cream-50"
-                  >
-                    5251 Vineland Ave Suite 6
+                  <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={muted}>
+                    {ADDRESS.street}
                     <br />
-                    North Hollywood, CA 91601
+                    {ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="tel:+18186533883"
-                    className="transition-colors hover:text-cream-50"
-                  >
-                    (818) 653-3883
+                  <a href={PHONE.tel} className={muted}>
+                    {PHONE.display}
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="mailto:Naira@bodiesandpilates.com"
-                    className="transition-colors hover:text-cream-50"
-                  >
-                    Naira@bodiesandpilates.com
+                  <a href={`mailto:${EMAIL}`} className={`${muted} break-all`}>
+                    {EMAIL}
                   </a>
                 </li>
               </ul>
             </address>
-
-            {/* Social links */}
-            <div className="flex items-center gap-4">
-              <a
-                href="https://www.instagram.com/bodiesandpilates/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Bodies and Pilates on Instagram"
-                className="text-cream-100/70 transition-colors hover:text-cream-50"
-              >
-                <InstagramIcon className="size-5" />
-              </a>
-              <a
-                href="https://www.facebook.com/people/Bodies-and-Pilates/61567392958788/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm text-cream-100/70 transition-colors hover:text-cream-50"
-              >
-                Facebook
-              </a>
-              <a
-                href="https://classpass.com/studios/bodies-and-pilates-los-angeles"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm text-cream-100/70 transition-colors hover:text-cream-50"
-              >
-                ClassPass
-              </a>
-            </div>
           </div>
 
-          {/* Column 2: Hours */}
+          {/* Hours */}
           <div>
-            <h3 className="mb-4 font-serif text-base font-semibold uppercase tracking-widest text-taupe-300">
-              Studio Hours
-            </h3>
-            <ul className="flex flex-col gap-3">
-              {hours.map(({ days, time }) => (
-                <li key={days} className="flex flex-col gap-0.5 font-sans text-sm">
-                  <span className="font-medium text-cream-50">{days}</span>
-                  <span className="text-cream-100/70">{time}</span>
+            <h2 className={heading}>Studio Hours</h2>
+            <ul className="flex flex-col gap-1.5 font-sans text-sm">
+              {HOURS.map((h) => (
+                <li key={h.day} className="flex justify-between gap-4 sm:max-w-[15rem]">
+                  <span className="text-cream-50">{h.short}</span>
+                  <span className="text-cream-100/75">{h.label}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Links */}
+          {/* Reviews + social */}
           <div>
-            <h3 className="mb-4 font-serif text-base font-semibold uppercase tracking-widest text-taupe-300">
-              Quick Links
-            </h3>
-            <ul className="flex flex-col gap-2">
-              {internalLinks.map(({ label, href }) => (
+            <h2 className={heading}>Find Us Online</h2>
+            <ul className="flex flex-col gap-3 font-sans text-sm">
+              <li className="text-cream-100/75">
+                Rated {GOOGLE_REVIEWS.rating} on Google ({GOOGLE_REVIEWS.count} reviews)
+              </li>
+              <li>
+                <a href={googleReviewsHref()} {...newTab} className={muted}>
+                  Review us on Google
+                </a>
+              </li>
+              <li>
+                <a href={INSTAGRAM.url} {...newTab} className={`${muted} inline-flex items-center gap-2`}>
+                  <InstagramIcon className="size-4" />
+                  {INSTAGRAM.handle}
+                </a>
+              </li>
+              {/* MindBody booking stays in the same tab; the app smart link opens a new one. */}
+              <li>
+                <a href={MINDBODY.classesUrl} className={muted}>
+                  Book on MindBody
+                </a>
+              </li>
+              <li>
+                <a href={MINDBODY.appUrl} {...newTab} className={muted}>
+                  Get the Mindbody app
+                </a>
+              </li>
+              <li>
+                <a href={CLASSPASS_URL} {...newTab} className={muted}>
+                  Book on ClassPass
+                </a>
+              </li>
+              <li>
+                <MindbodyAccountLink className="[&_a]:text-cream-100/75 [&_a]:transition-colors [&_a:hover]:text-cream-50" />
+              </li>
+            </ul>
+          </div>
+
+          {/* Quick nav */}
+          <nav aria-label="Footer navigation">
+            <h2 className={heading}>Explore</h2>
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2 font-sans text-sm">
+              {quickLinks.map(({ label, href }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="font-sans text-sm text-cream-100/70 transition-colors hover:text-cream-50"
-                  >
+                  <Link href={href} className={muted}>
                     {label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
-        {/* Divider + copyright */}
         <div className="mt-12 border-t border-cream-100/10 pt-6">
-          <p className="text-center font-sans text-xs text-cream-100/40">
-            &copy; 2024 Bodies and Pilates. All rights reserved.
+          <p className="text-center font-sans text-xs text-cream-100/50">
+            &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
         </div>
       </div>

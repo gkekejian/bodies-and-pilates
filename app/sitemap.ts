@@ -1,37 +1,34 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
+import { CLASSES } from "@/lib/classes";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.bodiesandpilates.com";
   const now = new Date();
+  const page = (
+    path: string,
+    priority: number,
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly"
+  ) => ({ url: `${SITE_URL}${path}`, lastModified: now, changeFrequency, priority });
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/classes`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/classes/beginner`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/classes/fullbody`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/classes/flexibility`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/classes/private`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/classes/reformer`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/locations/toluca-lake`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/locations/studio-city`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/locations/burbank`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/locations/hollywood`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/pricing`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/schedule`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
-    { url: `${baseUrl}/instructors`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/instructors/naira`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    page("/", 1, "weekly"),
+    page("/intro-offer", 0.9, "weekly"),
+    page("/pricing", 0.9, "weekly"),
+    page("/classes", 0.9),
+    ...CLASSES.map((c) => page(`/classes/${c.slug}`, 0.8)),
+    page("/schedule", 0.9, "daily"),
+    page("/about", 0.8),
+    page("/faq", 0.7),
+    page("/contact", 0.8),
+    page("/blog", 0.6, "weekly"),
   ];
 
-  // Only include published blog posts
+  // Drafts are noindexed outlines; list only published posts.
   const blogRoutes: MetadataRoute.Sitemap = getAllPosts()
     .filter((p) => !p.draft)
     .map((p) => ({
-      url: `${baseUrl}/blog/${p.slug}`,
+      url: `${SITE_URL}/blog/${p.slug}`,
       lastModified: p.publishDate ? new Date(p.publishDate) : now,
       changeFrequency: "monthly",
       priority: 0.6,

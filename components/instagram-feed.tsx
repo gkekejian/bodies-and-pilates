@@ -10,7 +10,7 @@ export default function InstagramFeed({ feedId }: { feedId?: string }) {
 
   useEffect(() => {
     if (!id) return
-    // Dynamically import to avoid SSR issues — the package registers
+    // Dynamically import to avoid SSR issues: the package registers
     // the <behold-widget> custom element on the client only.
     import('@behold/widget').catch(() => {
       // Silently ignore if the package fails to load in a given env.
@@ -30,7 +30,7 @@ export default function InstagramFeed({ feedId }: { feedId?: string }) {
 
   return (
     <div className="w-full">
-      {/* @ts-expect-error — behold-widget is a custom element, no JSX types */}
+      {/* @ts-expect-error: behold-widget is a custom element, no JSX types */}
       <behold-widget feed-id={id} />
     </div>
   )

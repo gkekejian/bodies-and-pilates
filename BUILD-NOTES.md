@@ -1,196 +1,177 @@
-# BUILD NOTES — Bodies and Pilates
+# Build Notes: Bodies and Pilates
 
-**Built:** April 2026  
-**Stack:** Next.js 14.2 · App Router · TypeScript (strict) · Tailwind CSS v3 · shadcn/ui · framer-motion  
-**Build status:** ✅ `next build` passes (36 static pages, 0 TypeScript errors, 0 lint errors)  
-**GitHub:** https://github.com/gkekejian/bodies-and-pilates  
-**Live URL:** https://bodies-and-pilates.vercel.app  
-**Vercel dashboard:** https://vercel.com/gkekejians-projects/bodies-and-pilates
+**Stack:** Next.js 14.2 App Router, TypeScript (strict), Tailwind CSS v3, shadcn/ui primitives
+**Build:** `npm run build` passes (34 static routes, 0 type errors, 0 lint errors)
+**GitHub:** https://github.com/gkekejian/bodies-and-pilates
+**Vercel:** https://vercel.com/gkekejians-projects/bodies-and-pilates
 
 ---
 
-## What's Done
+## Where things live
 
-### Pages (15+)
-| Route | Status | Notes |
-|-------|--------|-------|
-| `/` | ✅ Complete | Hero, welcome, class previews, The Space, The Practice, testimonials, pricing CTA, Instagram section |
-| `/about` | ✅ Complete | Studio story, mission, instructor preview cards, CTA |
-| `/classes` | ✅ Complete | 4-class grid with links and Book Now buttons |
-| `/classes/beginner` | ✅ Complete | Service schema, Mindbody booking CTA |
-| `/classes/fullbody` | ✅ Complete | Service schema, Mindbody booking CTA |
-| `/classes/flexibility` | ✅ Complete | Service schema, Mindbody booking CTA |
-| `/classes/private` | ✅ Complete | Private ($100) + Duet ($140) CTAs, Service schema |
-| `/pricing` | ✅ Complete | All plans with live Mindbody Buy Now links |
-| `/schedule` | ✅ Complete | Hours table + Healcode widget loader (widget ID TODO) |
-| `/instructors` | ✅ Complete | 3 instructor cards (Naira, Theresia, Hannah) |
-| `/instructors/naira` | ✅ Complete | Person schema, bio (TODO full bio), CTA |
-| `/faq` | ✅ Complete | All 10 FAQs, FAQPage schema, Accordion UI |
-| `/contact` | ✅ Complete | Address/hours/map, contact form (RHF + Zod) |
-| `/blog` | ✅ Complete | Blog index with 15 draft cards |
-| `/blog/[slug]` | ✅ Complete | Dynamic MDX page with BlogPosting schema |
+| What | File |
+|------|------|
+| Business facts (phone, address, hours, email, Instagram, Google rating, booking link) | `lib/site.ts` |
+| Price menu and per-offer MindBody links | `lib/pricing.ts` |
+| FAQ content (also generates FAQPage schema) | `lib/faqs.ts` |
+| Class formats (copy for /classes and /classes/[slug]) | `lib/classes.ts` |
+| Instructor cards | `lib/team.ts` |
+| Testimonials | `lib/testimonials.ts` |
+| Photo and video slots | `lib/photos.ts` |
+| ExerciseGym JSON-LD | `lib/schema.ts` (rendered in `app/layout.tsx`) |
+| Per-page title, description, canonical, Open Graph | `lib/metadata.ts` + each page's `metadata` |
+| Form forwarding (lead capture, contact) | `lib/forms.ts`, `app/api/lead`, `app/api/contact` |
+| Redirects | `next.config.mjs` (legacy URLs, bare domain) and `middleware.ts` (lowercase, trailing slash) |
 
-### Infrastructure
-- ✅ **Design system** — brand palette (cream/sage/taupe/blush/charcoal) as Tailwind tokens, Playfair Display + Inter via next/font
-- ✅ **Header** — sticky, backdrop-blur, mobile Sheet menu, persistent Book Now CTA
-- ✅ **Footer** — address, hours, social links, nav grid
-- ✅ **Mobile sticky bottom bar** — slides up after hero scroll on mobile only
-- ✅ **Schema markup** — HealthClub JSON-LD (root layout), FAQPage (/faq), Service (class pages), Person (/instructors/naira), BreadcrumbList (sitewide), BlogPosting (blog posts)
-- ✅ **SEO** — `metadataBase`, title template, per-page metadata, OG tags, `/sitemap.xml`, `/robots.txt`
-- ✅ **Redirects** — `/bookings → /schedule`, `/faqs → /faq`, `/post/:slug → /blog/:slug` (308)
-- ✅ **Analytics** — GA4 via @next/third-parties, Meta Pixel via next/script afterInteractive, CCPA opt-out banner
-- ✅ **Instagram** — Behold widget component (shows placeholder until feedId configured)
-- ✅ **Google Reviews API** — `/api/reviews` server route (Places API New), 24h ISR revalidation
-- ✅ **Blog MDX** — 15 draft posts with full SEO frontmatter, ready to write
-- ✅ **Healcode/Mindbody schedule** — dynamic loader pattern, ErrorBoundary, SSR-safe
-- ✅ **Image placeholders** — all 11 required images in `/public/images/` (1×1 px PNGs to prevent 404s)
-- ✅ **Contact form** — react-hook-form + Zod validation, success state (UI-only, no backend)
-
----
-
-## Owner TODO List
-
-### 1. Environment Variables (required before going live)
-
-Create a `.env.local` file in the project root with these values:
+Every open item is marked in code with `TODO(owner)`. Visible placeholders carry a
+`data-placeholder` attribute. To list everything still open:
 
 ```bash
-# Analytics
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX          # from Google Analytics 4
-NEXT_PUBLIC_GOOGLE_ADS_ID=AW-XXXXXXXXX  # from Google Ads (optional)
-NEXT_PUBLIC_FACEBOOK_PIXEL_ID=XXXXXXXXX # from Meta Business Manager
-
-# Mindbody / Healcode schedule widget
-NEXT_PUBLIC_HEALCODE_WIDGET_ID=XXXXX    # from brandedweb.mindbodyonline.com/manager/
-
-# Instagram (Behold.so)
-NEXT_PUBLIC_BEHOLD_FEED_ID=XXXXXXXXXXXX # from behold.so dashboard
-
-# Google Places API (for reviews widget)
-GOOGLE_PLACES_API_KEY=AIzaXXXXXXXXXXXX  # from Google Cloud Console
-GOOGLE_PLACE_ID=ChIJXXXXXXXXXXXXXXXX   # Google Place ID for the studio
-
-# Site URL (already set, change only if domain differs)
-NEXT_PUBLIC_SITE_URL=https://www.bodiesandpilates.com
+grep -rn "TODO(owner)" app components lib content
 ```
-
-### 2. Healcode Schedule Widget ID
-1. Log in to https://brandedweb.mindbodyonline.com/manager/
-2. Create a new "Schedules" widget
-3. Copy the widget ID
-4. Set `NEXT_PUBLIC_HEALCODE_WIDGET_ID` in `.env.local`
-
-### 3. Instagram Feed (Behold.so)
-1. Sign up at https://behold.so
-2. Connect your @bodiesandpilates Instagram account
-3. Create a feed and copy the Feed ID
-4. Set `NEXT_PUBLIC_BEHOLD_FEED_ID` in `.env.local`
-
-### 4. Google Reviews
-1. Enable the **Places API (New)** in Google Cloud Console
-2. Create an API key and restrict it to the Places API
-3. Find your Place ID: https://developers.google.com/maps/documentation/places/web-service/place-id
-4. Set `GOOGLE_PLACES_API_KEY` and `GOOGLE_PLACE_ID` in `.env.local`
-5. The reviews will auto-update every 24 hours via ISR
-
-### 5. Replace Placeholder Images
-All images in `/public/images/` are 1×1 pixel placeholders. Replace them with real photos:
-
-| File | Size | What to photograph |
-|------|------|-------------------|
-| `hero.jpg` | 1920×1080 | Studio or class in action (wide, cinematic) |
-| `studio.jpg` | 800×600 | Studio interior |
-| `about-studio.jpg` | 1200×800 | Studio / team |
-| `instructor-naira.jpg` | 400×500 | Naira portrait |
-| `instructor-theresia.jpg` | 400×500 | Theresia portrait |
-| `instructor-hannah.jpg` | 400×500 | Hannah portrait |
-| `class-beginner.jpg` | 600×480 | Beginner class |
-| `class-fullbody.jpg` | 600×480 | Full body class |
-| `class-flexibility.jpg` | 600×480 | Flexibility/stretch class |
-| `class-private.jpg` | 600×480 | Private session |
-| `og-image.jpg` | 1200×630 | Social share image (studio + tagline) |
-
-### 6. Write Blog Post Bodies
-All 15 blog posts in `/content/blog/` have frontmatter but no body (`{/* TODO: Write post body */}`). Add content to each MDX file. When you're ready to publish, change `draft: false`.
-
-### 7. Instructor Bios
-- `/app/instructors/naira/page.tsx` — add Naira's full biography
-- `/app/instructors/page.tsx` — add Theresia and Hannah bios and their own detail pages at `/app/instructors/theresia/` and `/app/instructors/hannah/`
-
-### 8. OG Image
-Add a real Open Graph image at `/public/images/og-image.jpg` (1200×630). Also update the OG metadata in `/app/layout.tsx` to point to it:
-```ts
-openGraph: {
-  images: [{ url: '/images/og-image.jpg', width: 1200, height: 630 }],
-  ...
-}
-```
-
-### 9. Google Maps
-The contact page has a placeholder "View on Google Maps" link. Consider adding a real Google Maps embed iframe for better UX. Requires a Maps Embed API key.
 
 ---
 
-## How to Run Locally
+## Owner TODO list
+
+### Booking map (live)
+
+| CTA / location | Destination | Tab |
+|---|---|---|
+| Every "Book Your $25 First Class" button (header, mobile bar, CTAs, $25 card) | $25 First Class: `...classic/ws?studioid=5739427&stype=43&prodid=100010` | same |
+| $105 One-Week Unlimited | `...stype=43&prodid=100014` | same |
+| Single Class $36 / 5-Pack $160 / 10-Pack $300 | `...stype=43&prodid=100003` / `100004` / `100005` | same |
+| 8 Classes/Month $170 / Unlimited $280 | `...stype=40&prodid=102` / `101` | same |
+| Private $100 / Duet $70 per person | `...stype=43&prodid=100011` / `100016` | same |
+| `/schedule` | MindBody Schedules widget `8550823b9a6`, with "Book on MindBody" and call/text as secondary lines | same |
+| "Book on MindBody" (schedule page, footer) | https://go.mindbodyonline.com/book/app/classes/5739427 | same |
+| "Book on ClassPass" (strip on `/pricing` and `/intro-offer`, footer) | https://classpass.com/studios/bodies-and-pilates-los-angeles | new |
+| Footer "Review us on Google" | https://share.google/iiwq2gBssUKulvsol | new |
+| Footer "Get the Mindbody app" | https://get.mndbdy.ly/GiC0CPO08Mb | new |
+| Footer "Login \| Register" | MindBody HealCode account-link widget (site 121411 / MindBody 5739427), loaded when the footer scrolls into view | widget |
+
+Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/classic/ws?studioid=5739427&...`) taken from the live site's "Book Now" buttons; they are set in `lib/pricing.ts`. If the owner later provides go.mindbodyonline.com Marketing Links equivalents, swap them in there. The general pricing page (`MINDBODY.pricingUrl`) is now only a fallback. All other MindBody values live in `MINDBODY` in `lib/site.ts`. Spare HealCode registrations widgets `85150676b9a6` and `85151183b9a6` are recorded there but not used; the owner has not said which is which.
+
+### Policies and terms
+- [ ] Late-cancel and no-show policy text (`lib/faqs.ts`, id `cancellation`).
+- [ ] Membership pause and cancel terms (`lib/faqs.ts`, id `pause-cancel`, and the placeholder on `/pricing`).
+- [ ] Class pack expiry (placeholder on `/pricing`).
+
+### Facts to confirm
+- [ ] Geo coordinates for schema (`lib/schema.ts`).
+- [ ] Difficulty level, "who it is for", and 50-minute length per class (`lib/classes.ts`).
+- [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx`).
+- [ ] Studio story copy in your own words (`app/about/page.tsx`).
+- [ ] Optional: maximum class size, the strongest proof point (`app/page.tsx`).
+
+### Team (`lib/team.ts`)
+- [ ] Confirm every name, credential, and specialty is current.
+- [ ] Naira: credentials, specialties, one-line philosophy.
+- [ ] Hannah, Marlyn, Enrika, Sita: one-line philosophy each.
+- [ ] If this cannot be complete before launch, set `SHOW_TEAM = false`. Never launch it half-empty.
+
+### Testimonials (`lib/testimonials.ts`)
+- [ ] First name and neighborhood for each quote, with the client's permission. Optional portrait (slot 10).
+
+### Photography (`lib/photos.ts`)
+All stock photography has been removed. Drop files into `public/photos/` and set `src` on each slot.
+
+| Slot | Shot |
+|------|------|
+| 1 | Wide hero of the reformer room in daylight, no people |
+| 2 | Real class in motion, instructor cueing |
+| 3 | Instructor headshots, same backdrop |
+| 4 | Close-up of hands and feet on reformer straps and footbar |
+| 5 | Entrance and signage from the Vineland Ave sidewalk |
+| 6 | Parking on Weddington St and metered spots |
+| 7 | Props flat-lay: grip socks, bands, rings, balls |
+| 8 | Warm post-class lifestyle shot |
+| 9 | Vertical 15 to 30s clips, one per class format (`CLIPS`, files in `public/video/`) |
+| 10 | Testimonial portraits |
+
+- [ ] Share image: replace the generated card with a real 1200x630 photo (see `lib/og.tsx`).
+
+### Forms
+- [ ] `LEAD_CAPTURE_WEBHOOK_URL`: where first-timer's guide sign-ups go (MindBody or email platform). Write the guide email itself there.
+- [ ] `CONTACT_FORM_WEBHOOK_URL`: where contact messages go.
+Until set, both forms return an honest "could not send" message with the phone number. Nothing is faked.
+
+### Blog (`content/blog/`)
+- [ ] Ten scaffolded posts, each with a title, description, and outline. Write the copy under the frontmatter, set `draft: false` and a `publishDate`. Drafts are noindexed and kept out of the sitemap.
+
+### Domain
+- [ ] Add both `www.bodiesandpilates.com` (primary) and `bodiesandpilates.com` to the Vercel project. The bare domain 301s to www via `next.config.mjs`.
+
+---
+
+## Launch checklist
+
+- [ ] MindBody widget live with the real timetable (class names, times, instructors)
+- [ ] Full pricing visible, retired $130 and $220 tiers absent
+- [ ] No stock photos anywhere (all slots filled, or explicitly deferred by the owner)
+- [ ] Team section complete, or hidden with `SHOW_TEAM = false`
+- [ ] All `TODO(owner)` items resolved or explicitly deferred by the owner
+- [ ] Meta descriptions unique per page
+- [ ] OG tags render in a link debugger (Facebook Sharing Debugger, LinkedIn Post Inspector)
+- [ ] Schema validates (https://validator.schema.org and Google Rich Results Test on `/` and `/faq`)
+- [ ] Branded 404 renders (`/any-missing-page`)
+- [ ] PageSpeed 90+ mobile on Home, Pricing, Classes (re-test after real photos land)
+- [ ] Tap-to-call and text links work on a real phone
+- [ ] Both forms submit to a real destination
+- [ ] No em dashes in copy
+- [ ] No invented facts
+- [ ] QA on real iOS and Android devices
+
+### Last measured (local production build, Lighthouse 12 mobile, placeholders in place)
+
+| Page | Performance | Accessibility | Best practices | SEO | CLS |
+|------|-------------|---------------|----------------|-----|-----|
+| Home | 97 | 100 | 100 | 100 | 0 |
+| Pricing | 98 | 100 | 100 | 100 | 0 |
+| Classes | 97 | 100 | 100 | 100 | 0 |
+
+Real device QA has not been done yet.
+
+---
+
+## Redirects
+
+| From | To |
+|------|----|
+| bodiesandpilates.com/* | www.bodiesandpilates.com/* |
+| /bookings, /book-online | /schedule |
+| /faqs | /faq |
+| /post/:slug | /blog/:slug |
+| /plans-pricing, /pricing-plans/*, /category/all-products | /pricing |
+| Uppercase paths (e.g. /Pricing) | lowercase |
+| Trailing slash (e.g. /pricing/) | no trailing slash |
+| /classes/reformer | /classes |
+| /instructors, /instructors/* | /about#team |
+| /locations, /locations/* | /about#neighborhoods |
+
+All are 301.
+
+---
+
+## Run locally
 
 ```bash
-# Install dependencies (first time only)
 npm install
-
-# Create env file
-cp .env.example .env.local
-# Edit .env.local with your values
-
-# Start development server
-npm run dev
-# → Open http://localhost:3000
-
-# Type-check
-npx tsc --noEmit
-
-# Lint
+cp .env.example .env.local   # fill in what you have
+npm run dev                  # http://localhost:3000
+npx tsc --noEmit             # type-check
 npm run lint
-
-# Production build
-npm run build
-npm run start
+npm run build && npm run start
 ```
 
 ---
 
-## Deploying to Vercel
+## Decisions
 
-The site is already deployed and live:
-
-- **Production URL:** https://bodies-and-pilates.vercel.app
-- **Vercel dashboard:** https://vercel.com/gkekejians-projects/bodies-and-pilates
-- **GitHub repo:** https://github.com/gkekejian/bodies-and-pilates
-
-Every `git push` to `master` will automatically trigger a new Vercel deployment (GitHub integration is connected).
-
-### Re-deploying manually (CLI)
-
-```bash
-vercel --prod --yes --scope gkekejians-projects
-```
-
-### Adding environment variables
-
-Go to the Vercel dashboard → Project → **Settings → Environment Variables** and add all variables from `.env.example`. Then redeploy.
-
-### Domain Setup
-- Point `www.bodiesandpilates.com` to Vercel via CNAME
-- Enable "Force HTTPS" in Vercel domain settings
-- Update `metadataBase` in `app/layout.tsx` if the domain changes
-
----
-
-## Decisions & Notes
-
-- **Tailwind v3** was used (not v4) because the current shadcn/ui ecosystem targets Tailwind v3. Migrating to v4 later is straightforward.
-- **MDX rendering** uses `next-mdx-remote/rsc` on the blog post page for RSC-compatible streaming.
-- **Analytics gating** — the CCPA banner writes a `bp_analytics_consent` cookie. The Analytics component currently loads scripts if env vars are set; a stricter implementation would gate script loading on the cookie value client-side. The current approach is suitable for opt-out (CCPA) but not opt-in (GDPR). If you serve EU customers, use an opt-in model.
-- **Healcode widget** — the `healcode.js` script breaks on SPA route changes; the dynamic loader pattern in `lib/mindbody-loader.ts` ensures it only loads once per page lifecycle. The component is wrapped in an ErrorBoundary that reloads on crash.
-- **`/blog/[slug]` draft check** — posts marked `draft: true` show a "Coming Soon" message instead of MDX content. Set `draft: false` and add body content to publish.
-- **Images** — `next/image` is used throughout with explicit `width`/`height` where known, and `fill` with a sized parent for cards, to prevent CLS.
-- **No backend** — the contact form is UI-only (shows success after 600ms timeout). Wire up a real endpoint (Resend, EmailJS, Formspree) to receive submissions.
+- **Doorway pages removed.** The four `/locations/*` pages are consolidated into one "Neighborhoods we serve" section on `/about`, per the brief. `/instructors` merged into the About team section.
+- **Reformer only.** Copy that mentioned mat classes is gone; every group class is described as small-group reformer Pilates. The Full Body page title changed from "Mat Pilates Classes" for the same reason.
+- **Booking map.** See the table under Owner TODO list. MindBody links open in the same tab; ClassPass, Google, Instagram, and the Mindbody app link open in a new tab. Facebook is not linked.
+- **FAQ uses native `<details>`.** No JavaScript, and every answer is in the HTML so it matches the FAQPage schema.
+- **framer-motion removed.** Animations were delaying the hero text (LCP). The site now ships no animation library.
+- **Hours.** Owner-confirmed hours only. Friday is 7am to 8pm (the old site said 7:30 to 11:30).
+- **Phone.** 818-813-4446 everywhere. The owner's mobile does not appear on the site or in schema.

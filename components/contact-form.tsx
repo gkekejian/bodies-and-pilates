@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { EMAIL, PHONE } from '@/lib/site';
 
 const schema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -15,6 +16,7 @@ type FormValues = z.infer<typeof schema>;
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
   const {
     register,
@@ -25,21 +27,28 @@ export default function ContactForm() {
     resolver: zodResolver(schema),
   });
 
-  function onSubmit(_: FormValues) {
-    // Simulate async submission
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        setSubmitted(true);
-        reset();
-        resolve();
-      }, 600);
-    });
+  // Posts to /api/contact, which forwards to the owner's destination
+  // (see lib/forms.ts). Success is shown only after a real 2xx response.
+  async function onSubmit(values: FormValues) {
+    setSendError(false);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setSubmitted(true);
+      reset();
+    } catch {
+      setSendError(true);
+    }
   }
 
   if (submitted) {
     return (
       <div className="bg-sage-500/10 border border-sage-500/30 rounded-xl px-6 py-8 text-center space-y-2">
-        <p className="font-serif text-xl text-charcoal-800">Message sent!</p>
+        <p className="font-serif text-xl text-charcoal-800">Message sent.</p>
         <p className="font-sans text-sm text-charcoal-800/70">
           Thank you for reaching out. We&apos;ll get back to you as soon as possible.
         </p>
@@ -128,8 +137,22 @@ export default function ContactForm() {
         disabled={isSubmitting}
         className="w-full bg-sage-700 hover:bg-sage-500 disabled:opacity-60 text-cream-50 font-sans font-medium py-3 px-6 rounded-lg transition-colors duration-200"
       >
-        {isSubmitting ? 'Sending…' : 'Send Message'}
+        {isSubmitting ? 'Sending' : 'Send Message'}
       </button>
+
+      {sendError && (
+        <p role="alert" className="font-sans text-sm text-red-700">
+          Sorry, your message could not be sent just now. Call or text{' '}
+          <a href={PHONE.tel} className="underline underline-offset-2">
+            {PHONE.display}
+          </a>
+          , or email{' '}
+          <a href={`mailto:${EMAIL}`} className="underline underline-offset-2">
+            {EMAIL}
+          </a>
+          .
+        </p>
+      )}
     </form>
   );
 }

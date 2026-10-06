@@ -25,6 +25,7 @@ const config: Config = {
         taupe: {
           300: "#D4C5B5",
           500: "#A3927E",
+          700: "#6F604F", // text-safe taupe (4.5:1+ on cream)
         },
         blush: {
           500: "#D4A69A",
