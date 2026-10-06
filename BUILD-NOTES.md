@@ -34,24 +34,23 @@ grep -rn "TODO(owner)" app components lib content
 
 ## Owner TODO list
 
-### Booking
-- [ ] MindBody deep link for the $25 intro pricing option specifically (from MindBody Marketing Links, not the general pricing page): `INTRO_OFFER_DEEP_LINK` in `lib/site.ts`. Until set, every "Book Your $25 First Class" button goes to `/intro-offer`.
-- [ ] One MindBody deep link per pricing option (from Marketing Links): `bookingUrl` per offer in `lib/pricing.ts`. Until set, pack, membership, and private buttons go to the general MindBody pricing page; the intro offers go to `/schedule`.
-
 ### Booking map (live)
 
 | CTA / location | Destination | Tab |
 |---|---|---|
-| Header + sticky mobile bar "Book Your $25 First Class" | `INTRO_OFFER_DEEP_LINK` (TODO), `/intro-offer` until set | same |
+| Every "Book Your $25 First Class" button (header, mobile bar, CTAs, $25 card) | $25 First Class: `...classic/ws?studioid=5739427&stype=43&prodid=100010` | same |
+| $105 One-Week Unlimited | `...stype=43&prodid=100014` | same |
+| Single Class $36 / 5-Pack $160 / 10-Pack $300 | `...stype=43&prodid=100003` / `100004` / `100005` | same |
+| 8 Classes/Month $170 / Unlimited $280 | `...stype=40&prodid=102` / `101` | same |
+| Private $100 / Duet $70 per person | `...stype=43&prodid=100011` / `100016` | same |
 | `/schedule` | MindBody Schedules widget `8550823b9a6`, with "Book on MindBody" and call/text as secondary lines | same |
 | "Book on MindBody" (schedule page, footer) | https://go.mindbodyonline.com/book/app/classes/5739427 | same |
-| Pricing tier buttons (packs, memberships, privates) | https://go.mindbodyonline.com/book/app/pricing/bus_11kS9of8y3RDLJFBGg until each option has its own deep link | same |
 | "Book on ClassPass" (strip on `/pricing` and `/intro-offer`, footer) | https://classpass.com/studios/bodies-and-pilates-los-angeles | new |
 | Footer "Review us on Google" | https://share.google/iiwq2gBssUKulvsol | new |
 | Footer "Get the Mindbody app" | https://get.mndbdy.ly/GiC0CPO08Mb | new |
 | Footer "Login \| Register" | MindBody HealCode account-link widget (site 121411 / MindBody 5739427), loaded when the footer scrolls into view | widget |
 
-All MindBody values live in `MINDBODY` in `lib/site.ts`. Spare HealCode registrations widgets `85150676b9a6` and `85151183b9a6` are recorded there but not used; the owner has not said which is which.
+Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/classic/ws?studioid=5739427&...`) taken from the live site's "Book Now" buttons; they are set in `lib/pricing.ts`. If the owner later provides go.mindbodyonline.com Marketing Links equivalents, swap them in there. The general pricing page (`MINDBODY.pricingUrl`) is now only a fallback. All other MindBody values live in `MINDBODY` in `lib/site.ts`. Spare HealCode registrations widgets `85150676b9a6` and `85151183b9a6` are recorded there but not used; the owner has not said which is which.
 
 ### Policies and terms
 - [ ] Late-cancel and no-show policy text (`lib/faqs.ts`, id `cancellation`).
@@ -59,7 +58,6 @@ All MindBody values live in `MINDBODY` in `lib/site.ts`. Spare HealCode registra
 - [ ] Class pack expiry (placeholder on `/pricing`).
 
 ### Facts to confirm
-- [ ] Public contact email (`EMAIL` in `lib/site.ts`, taken from the current live site).
 - [ ] Geo coordinates for schema (`lib/schema.ts`).
 - [ ] Difficulty level, "who it is for", and 50-minute length per class (`lib/classes.ts`).
 - [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx`).

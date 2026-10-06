@@ -4,15 +4,17 @@
  * Retired tiers ($130 for 5 classes/month, $220 for 12 classes/month) are
  * intentionally absent. Existing members keep them; this is display only.
  *
- * Booking links: every legacy clients.mindbodyonline.com link was removed.
- * TODO(owner): for each offer, paste its own MindBody deep link (from
- * MindBody Marketing Links) into `bookingUrl`, so each button goes straight to
- * its pricing option. While it is null:
- *  - packs, memberships, and privates go to the general MindBody pricing page
- *  - the intro offers ($25 first class, $105 week) go to /schedule, so they
- *    never land on the general pricing page
+ * Booking links: each offer has its own MindBody deep link, extracted from
+ * the live site's "Book Now" buttons (classic MindBody URLs, same tab). If the
+ * owner later provides go.mindbodyonline.com Marketing Links equivalents,
+ * swap them in here. Retired tiers keep their MindBody products
+ * ($130/5 classes: stype=40 prodid=100, $220/12 classes: stype=40 prodid=103)
+ * but are not shown.
  */
-import { MINDBODY } from "@/lib/site";
+import { INTRO_OFFER_DEEP_LINK, MINDBODY } from "@/lib/site";
+
+const mb = (stype: 40 | 43, prodid: number) =>
+  `https://clients.mindbodyonline.com/classic/ws?studioid=${MINDBODY.siteId}&stype=${stype}&prodid=${prodid}`;
 
 export interface Offer {
   id: string;
@@ -38,7 +40,7 @@ export const TRY: Offer[] = [
     price: "$25",
     detail: "One small-group reformer class to meet the studio, the reformer, and your instructor.",
     cta: "Book Your $25 First Class",
-    bookingUrl: null,
+    bookingUrl: INTRO_OFFER_DEEP_LINK,
     intro: true,
   },
   {
@@ -47,7 +49,7 @@ export const TRY: Offer[] = [
     price: "$105",
     detail: "Unlimited classes for seven days. First-timers only. Your week starts on your first class.",
     cta: "Book the $105 Intro Week",
-    bookingUrl: null,
+    bookingUrl: mb(43, 100014),
     intro: true,
   },
 ];
@@ -62,7 +64,7 @@ export const COMMIT: Offer[] = [
     detail: "Twice a week, the rhythm most clients see results with.",
     badge: "Most Popular",
     cta: "Start the 8-Class Membership",
-    bookingUrl: null,
+    bookingUrl: mb(40, 102),
   },
   {
     id: "membership-unlimited",
@@ -71,7 +73,7 @@ export const COMMIT: Offer[] = [
     unit: "/month",
     detail: "As many classes as you like, every month.",
     cta: "Start Unlimited",
-    bookingUrl: null,
+    bookingUrl: mb(40, 101),
   },
 ];
 
@@ -82,7 +84,7 @@ export const FLEX: Offer[] = [
     price: "$36",
     detail: "One class, whenever it suits you.",
     cta: "Buy a Single Class",
-    bookingUrl: null,
+    bookingUrl: mb(43, 100003),
   },
   {
     id: "pack-5",
@@ -91,7 +93,7 @@ export const FLEX: Offer[] = [
     perClass: "$32 per class",
     detail: "A steady start without a monthly commitment.",
     cta: "Buy the 5-Pack",
-    bookingUrl: null,
+    bookingUrl: mb(43, 100004),
   },
   {
     id: "pack-10",
@@ -100,7 +102,7 @@ export const FLEX: Offer[] = [
     perClass: "$30 per class",
     detail: "The best per-class rate without a membership.",
     cta: "Buy the 10-Pack",
-    bookingUrl: null,
+    bookingUrl: mb(43, 100005),
   },
 ];
 
@@ -112,7 +114,7 @@ export const PRIVATE: Offer[] = [
     unit: "per 55-min session",
     detail: "Your instructor, your reformer, your goals. Ideal for beginners, injuries, or prenatal with clearance.",
     cta: "Book a Private Session",
-    bookingUrl: null,
+    bookingUrl: mb(43, 100011),
   },
   {
     id: "duet",
@@ -121,6 +123,6 @@ export const PRIVATE: Offer[] = [
     unit: "per person",
     detail: "Train alongside a friend or partner with coaching tailored to you both.",
     cta: "Book a Duet",
-    bookingUrl: null,
+    bookingUrl: mb(43, 100016),
   },
 ];

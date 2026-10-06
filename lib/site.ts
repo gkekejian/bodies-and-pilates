@@ -19,8 +19,7 @@ export const PHONE = {
   schema: "+1-818-813-4446",
 } as const;
 
-// TODO(owner): confirm this is the contact email you want public. Taken from
-// the current live site.
+// Confirmed from the live site footer.
 export const EMAIL = "Naira@bodiesandpilates.com";
 
 export const ADDRESS = {
@@ -100,11 +99,11 @@ export const MINDBODY = {
 
 export const FIRST_CLASS_CTA = "Book Your $25 First Class";
 
-// TODO(owner): paste the MindBody deep link for the $25 intro pricing option
-// specifically (MindBody Marketing Links), not the general pricing page.
-// Until it exists, every "Book Your $25 First Class" button (header, mobile
-// bar, CTAs) links to the /intro-offer landing page.
-export const INTRO_OFFER_DEEP_LINK: string | null = null;
+// MindBody deep link for the $25 First Class pricing option (from the live
+// site). Used by every "Book Your $25 First Class" button, header and mobile
+// bar included. Same link as the first-class offer in lib/pricing.ts.
+export const INTRO_OFFER_DEEP_LINK: string | null =
+  "https://clients.mindbodyonline.com/classic/ws?studioid=5739427&stype=43&prodid=100010";
 
 export const introBookingHref = () => INTRO_OFFER_DEEP_LINK ?? "/intro-offer";
 
