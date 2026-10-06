@@ -1,9 +1,12 @@
 import { CtaLink } from "@/components/ui/cta-link";
+import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import { offerHref, TRY } from "@/lib/pricing";
+import { CLASSPASS_URL } from "@/lib/site";
 
 const introWeek = TRY.find((o) => o.id === "intro-week")!;
 
-export function ClassPassStrip() {
+/** `showClassPassBooking` adds the "Book on ClassPass" button (/pricing and /intro-offer). */
+export function ClassPassStrip({ showClassPassBooking = false }: { showClassPassBooking?: boolean }) {
   return (
     <section aria-labelledby="classpass-heading" className="bg-sage-700 py-16 text-cream-50 sm:py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
@@ -17,10 +20,20 @@ export function ClassPassStrip() {
             progress tracking, and priority booking. ClassPass cannot give you any of that.
           </p>
         </div>
-        <div className="lg:col-span-4 lg:text-right">
+        <div className="flex flex-col items-start gap-4 lg:col-span-4 lg:items-end">
           <CtaLink href={offerHref(introWeek)} variant="light">
             Start the $105 Intro Week
           </CtaLink>
+          {showClassPassBooking &&
+            (CLASSPASS_URL ? (
+              <CtaLink href={CLASSPASS_URL} variant="ghost-light">
+                Book on ClassPass
+              </CtaLink>
+            ) : (
+              <OwnerPlaceholder label="Book on ClassPass button" tone="dark">
+                Owner to provide the ClassPass studio page URL.
+              </OwnerPlaceholder>
+            ))}
         </div>
       </div>
     </section>

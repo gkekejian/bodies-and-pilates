@@ -59,7 +59,7 @@ export default function IntroOfferPage() {
         </div>
       </section>
 
-      <ClassPassStrip />
+      <ClassPassStrip showClassPassBooking />
       <Testimonials />
       <FaqTeaser />
       <FinalCta href={offerHref(TRY[0])} cta={FIRST_CLASS_CTA} />

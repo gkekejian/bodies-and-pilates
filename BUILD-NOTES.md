@@ -37,6 +37,8 @@ grep -rn "TODO(owner)" app components lib content
 ### Booking
 - [ ] MindBody branded-web deep link for the $25 intro offer: `INTRO_OFFER_DEEP_LINK` in `lib/site.ts`. Until set, every "Book Your $25 First Class" button goes to `/intro-offer`.
 - [ ] Deep link for each price option: `bookingUrl` per offer in `lib/pricing.ts`. Until set, those buttons go to `/schedule`.
+- [ ] ClassPass studio page URL: `CLASSPASS_URL` in `lib/site.ts`. Used by the "Book on ClassPass" button in the ClassPass strip on `/pricing` and `/intro-offer`, and by the footer.
+- [ ] MindBody business page URL: `MINDBODY_BUSINESS_URL` in `lib/site.ts`. Used by the footer.
 - [ ] HealCode schedule widget ID, configured to show class name, time, and instructor: set `NEXT_PUBLIC_HEALCODE_WIDGET_ID` in Vercel. Until set, `/schedule` shows hours plus "Call or text 818-813-4446 to book".
 
 ### Policies and terms
@@ -159,7 +161,7 @@ npm run build && npm run start
 
 - **Doorway pages removed.** The four `/locations/*` pages are consolidated into one "Neighborhoods we serve" section on `/about`, per the brief. `/instructors` merged into the About team section.
 - **Reformer only.** Copy that mentioned mat classes is gone; every group class is described as small-group reformer Pilates. The Full Body page title changed from "Mat Pilates Classes" for the same reason.
-- **Facebook and ClassPass links removed from the footer.** The footer now carries only the items the brief lists, and the site steers ClassPass users to book direct.
+- **Booking map.** "Book Your $25 First Class" (header, mobile bar) goes to the MindBody intro-offer deep link; `/schedule` uses the MindBody widget; each pricing tier button uses its own MindBody deep link. The ClassPass strip on `/pricing` and `/intro-offer` adds a "Book on ClassPass" button. The footer links to Instagram, Google reviews, ClassPass, and MindBody, all in a new tab. Facebook is not linked.
 - **FAQ uses native `<details>`.** No JavaScript, and every answer is in the HTML so it matches the FAQPage schema.
 - **framer-motion removed.** Animations were delaying the hero text (LCP). The site now ships no animation library.
 - **Hours.** Owner-confirmed hours only. Friday is 7am to 8pm (the old site said 7:30 to 11:30).

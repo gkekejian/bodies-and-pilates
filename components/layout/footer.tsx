@@ -1,12 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import {
   ADDRESS,
+  CLASSPASS_URL,
   EMAIL,
   GOOGLE_REVIEWS,
   HOURS,
   INSTAGRAM,
   MAPS_URL,
+  MINDBODY_BUSINESS_URL,
   PHONE,
   SITE_NAME,
   googleReviewsHref,
@@ -46,6 +49,22 @@ const quickLinks = [
 
 const heading = "mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-taupe-300";
 const muted = "text-cream-100/75 transition-colors hover:text-cream-50";
+
+// Footer links to outside profiles. All open in a new tab.
+function ExternalLink({ href, label, pending }: { href: string | null; label: string; pending: string }) {
+  if (!href) {
+    return (
+      <OwnerPlaceholder label={pending} tone="dark">
+        Owner to provide the link for &ldquo;{label}&rdquo;.
+      </OwnerPlaceholder>
+    );
+  }
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={muted}>
+      {label}
+    </a>
+  );
+}
 
 export function Footer() {
   return (
@@ -96,7 +115,7 @@ export function Footer() {
 
           {/* Reviews + social */}
           <div>
-            <h2 className={heading}>Follow and Review</h2>
+            <h2 className={heading}>Find Us Online</h2>
             <ul className="flex flex-col gap-3 font-sans text-sm">
               <li>
                 <a href={googleReviewsHref()} target="_blank" rel="noopener noreferrer" className={muted}>
@@ -113,6 +132,16 @@ export function Footer() {
                   <InstagramIcon className="size-4" />
                   {INSTAGRAM.handle}
                 </a>
+              </li>
+              <li>
+                <ExternalLink href={CLASSPASS_URL} label="Bodies and Pilates on ClassPass" pending="ClassPass studio page URL" />
+              </li>
+              <li>
+                <ExternalLink
+                  href={MINDBODY_BUSINESS_URL}
+                  label="Bodies and Pilates on MindBody"
+                  pending="MindBody business page URL"
+                />
               </li>
             </ul>
           </div>

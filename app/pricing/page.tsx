@@ -75,7 +75,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <ClassPassStrip />
+      <ClassPassStrip showClassPassBooking />
 
       {/* COMMIT */}
       <section aria-labelledby="commit-heading" className="bg-cream-100 py-20 sm:py-24">

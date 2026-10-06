@@ -75,6 +75,19 @@ export const GOOGLE_REVIEWS = {
 
 export const googleReviewsHref = () => GOOGLE_REVIEWS.profileUrl ?? MAPS_URL;
 
+// TODO(owner): paste the ClassPass studio page URL
+// (https://classpass.com/studios/...). Used by the "Book on ClassPass" button
+// on /pricing and /intro-offer and by the footer. For reference only, the old
+// site linked https://classpass.com/studios/bodies-and-pilates-los-angeles;
+// confirm it is current before using it. Until set, both spots show a
+// labeled placeholder.
+export const CLASSPASS_URL: string | null = null;
+
+// TODO(owner): paste the MindBody business page URL (the studio's public
+// profile on mindbodyonline.com). Used by the footer. Until set, the footer
+// shows a labeled placeholder.
+export const MINDBODY_BUSINESS_URL: string | null = null;
+
 export const FIRST_CLASS_CTA = "Book Your $25 First Class";
 
 // TODO(owner): paste the MindBody branded-web deep link for the $25 intro
