@@ -154,6 +154,48 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* All prices in one semantic table: easy for people to scan and for search and AI engines to extract. */}
+      <section aria-labelledby="price-table-heading" className="bg-cream-50 py-20 sm:py-24">
+        <div className={container}>
+          <SectionHeading id="price-table-heading" eyebrow="At a Glance" title="All reformer Pilates prices" />
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[520px] border-collapse text-left font-sans text-sm">
+              <caption className="sr-only">Bodies and Pilates prices in North Hollywood</caption>
+              <thead>
+                <tr className="border-b border-taupe-300 text-xs uppercase tracking-[0.15em] text-charcoal-800/70">
+                  <th scope="col" className="py-3 pr-4 font-medium">Option</th>
+                  <th scope="col" className="py-3 pr-4 font-medium">Type</th>
+                  <th scope="col" className="py-3 pr-4 font-medium">Price</th>
+                  <th scope="col" className="py-3 font-medium">Per class</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { type: "Intro (first-timers)", offers: TRY },
+                  { type: "Membership", offers: COMMIT },
+                  { type: "Class pack", offers: FLEX },
+                  { type: "Private training", offers: PRIVATE },
+                ].flatMap(({ type, offers }) =>
+                  offers.map((o) => (
+                    <tr key={o.id} className="border-b border-taupe-300/60">
+                      <th scope="row" className="py-3 pr-4 font-medium text-charcoal-900">
+                        {o.name}
+                      </th>
+                      <td className="py-3 pr-4 text-charcoal-800/80">{type}</td>
+                      <td className="py-3 pr-4 text-charcoal-900">
+                        {o.price}
+                        {o.unit ? ` ${o.unit}` : ""}
+                      </td>
+                      <td className="py-3 text-charcoal-800/80">{o.perClass ?? ""}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <LeadCapture source="pricing" />
 
       <FinalCta

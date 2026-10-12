@@ -25,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/faq", 0.7),
     page("/contact", 0.8),
     page("/blog", 0.6, "weekly"),
+    page("/privacy", 0.2, "yearly"),
+    page("/terms", 0.2, "yearly"),
   ];
 
   // Published posts only: outline drafts and future-dated posts stay out.

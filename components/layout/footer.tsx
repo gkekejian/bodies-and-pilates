@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MindbodyAccountLink } from "@/components/mindbody/account-link";
+import { CookieSettingsButton } from "@/components/analytics/cookie-banner";
 import {
   ADDRESS,
   CLASSPASS_URL,
@@ -154,10 +155,19 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 border-t border-cream-100/10 pt-6">
-          <p className="text-center font-sans text-xs text-cream-100/50">
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-cream-100/10 pt-6 font-sans text-xs text-cream-100/60 sm:flex-row sm:justify-between">
+          <p>
             &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
+          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link href="/privacy" className={muted}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className={muted}>
+              Terms of Use
+            </Link>
+            <CookieSettingsButton className={`${muted} underline-offset-2 hover:underline`} />
+          </nav>
         </div>
       </div>
     </footer>

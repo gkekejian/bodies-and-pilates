@@ -1,79 +1,81 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { OPEN_CONSENT_EVENT, hasGlobalPrivacyControl, readConsent, writeConsent } from "@/lib/consent";
 
-const COOKIE_NAME = "bp_analytics_consent";
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year in seconds
-
-function getCookie(name: string): string | undefined {
-  if (typeof document === "undefined") return undefined;
-  const match = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${name}=`));
-  return match ? match.split("=")[1] : undefined;
-}
-
-function setCookie(name: string, value: string, maxAge: number) {
-  document.cookie = `${name}=${value}; max-age=${maxAge}; path=/; SameSite=Lax`;
-}
-
+/**
+ * Opt-in consent banner. Analytics stay off until Accept. Shown on first
+ * visit unless the browser sends Global Privacy Control (treated as a
+ * decline). Reopened from the footer's "Cookie settings" link.
+ */
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = getCookie(COOKIE_NAME);
-    if (!consent) {
-      setVisible(true);
+    if (!readConsent()) {
+      if (hasGlobalPrivacyControl()) writeConsent("no");
+      else setVisible(true);
     }
+    const open = () => setVisible(true);
+    window.addEventListener(OPEN_CONSENT_EVENT, open);
+    return () => window.removeEventListener(OPEN_CONSENT_EVENT, open);
   }, []);
 
-  function handleAccept() {
-    setCookie(COOKIE_NAME, "yes", COOKIE_MAX_AGE);
-    setVisible(false);
-  }
-
-  function handleDecline() {
-    setCookie(COOKIE_NAME, "no", COOKIE_MAX_AGE);
+  function choose(value: "yes" | "no") {
+    writeConsent(value);
     setVisible(false);
   }
 
   if (!visible) return null;
 
   return (
-    // Sits above the mobile booking bar on small screens.
+    // Sits above the mobile booking bar on small screens. Non-modal, so it
+    // never traps focus or steals keyboard input.
     <div
-      className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-50 border-t border-cream-200 bg-cream-100 shadow-lg md:bottom-0"
       role="region"
       aria-label="Cookie consent"
+      className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-50 border-t border-cream-200 bg-cream-100 shadow-lg md:bottom-0"
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <p className="max-w-2xl text-xs leading-relaxed text-charcoal-800">
-          We use cookies to improve your experience and for analytics.
-          California residents may opt out of the sale of personal
-          information.{" "}
-          <button
-            onClick={handleDecline}
-            className="underline underline-offset-2 transition-colors hover:text-sage-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800"
-          >
-            Do Not Sell or Share My Personal Information
-          </button>
+          With your permission we use analytics cookies to understand how the site is used. Nothing is loaded
+          until you accept, and you can change your choice anytime under Cookie settings.{" "}
+          <Link href="/privacy" className="underline underline-offset-2 hover:text-sage-700">
+            Privacy policy
+          </Link>
         </p>
 
         <div className="flex shrink-0 items-center gap-3">
           <button
-            onClick={handleDecline}
-            className="whitespace-nowrap text-xs text-charcoal-800 underline underline-offset-2 transition-colors hover:text-sage-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800"
+            type="button"
+            onClick={() => choose("no")}
+            className="min-h-[40px] whitespace-nowrap rounded border border-charcoal-800 px-4 py-2 text-xs text-charcoal-800 transition-colors hover:bg-cream-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800 focus-visible:ring-offset-2"
           >
             Decline
           </button>
           <button
-            onClick={handleAccept}
-            className="whitespace-nowrap rounded bg-charcoal-800 px-4 py-2 text-xs text-cream-100 transition-colors hover:bg-charcoal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800 focus-visible:ring-offset-2"
+            type="button"
+            onClick={() => choose("yes")}
+            className="min-h-[40px] whitespace-nowrap rounded bg-charcoal-800 px-4 py-2 text-xs text-cream-100 transition-colors hover:bg-charcoal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800 focus-visible:ring-offset-2"
           >
             Accept
           </button>
         </div>
       </div>
     </div>
+  );
+}
+
+/** Footer link that reopens the banner so visitors can change their choice. */
+export function CookieSettingsButton({ className }: { className?: string }) {
+  return (
+    <button
+      type="button"
+      className={className}
+      onClick={() => window.dispatchEvent(new CustomEvent(OPEN_CONSENT_EVENT))}
+    >
+      Cookie settings
+    </button>
   );
 }

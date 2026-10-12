@@ -109,6 +109,13 @@ How the blog works (see the header comment in `lib/blog.ts` for the frontmatter 
 - The 8 question-format posts (`QUESTION_POSTS` in `lib/blog-plan.ts`) carry a `faqs` list in frontmatter, rendered before the CTA with FAQPage JSON-LD.
 - `/blog` paginates at 12 per page (`/blog/page/2`, ...).
 
+### Compliance, security, and AI search
+- [ ] Have a lawyer review `/privacy` and `/terms` (drafted only from what the site actually does). Name the form and email providers in the privacy policy once the webhooks are connected.
+- [ ] Content Security Policy: the full policy runs in report-only mode (`next.config.mjs`). Open the preview with DevTools, book through the MindBody widget and log in, then check the console for CSP reports. Add any blocked MindBody hosts and switch the header to enforcing.
+- [ ] AI crawlers: `app/robots.ts` allows AI search and training crawlers by name. To stay in AI answers but opt out of training, set GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, and CCBot to disallow.
+- Analytics are opt-in: GA4 and the Meta Pixel load only after Accept, Global Privacy Control counts as a decline, and "Cookie settings" in the footer reopens the choice.
+- `/llms.txt` and `/llms-full.txt` are generated from the same data as the pages (`lib/llms.ts`), so they stay in sync.
+
 ### Domain
 - [ ] Add both `www.bodiesandpilates.com` (primary) and `bodiesandpilates.com` to the Vercel project. The bare domain 301s to www via `next.config.mjs`.
 

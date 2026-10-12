@@ -82,11 +82,13 @@ export default function ContactForm() {
           type="text"
           autoComplete="name"
           placeholder="Your name"
+          aria-invalid={errors.name ? true : undefined}
+          aria-describedby={errors.name ? 'contact-name-error' : undefined}
           {...register('name')}
           className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-sm text-charcoal-800 placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition"
         />
         {errors.name && (
-          <p className="mt-1 font-sans text-xs text-red-600">{errors.name.message}</p>
+          <p id="contact-name-error" className="mt-1 font-sans text-xs text-red-700">{errors.name.message}</p>
         )}
       </div>
 
@@ -103,11 +105,13 @@ export default function ContactForm() {
           type="email"
           autoComplete="email"
           placeholder="you@example.com"
+          aria-invalid={errors.email ? true : undefined}
+          aria-describedby={errors.email ? 'contact-email-error' : undefined}
           {...register('email')}
           className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-sm text-charcoal-800 placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition"
         />
         {errors.email && (
-          <p className="mt-1 font-sans text-xs text-red-600">{errors.email.message}</p>
+          <p id="contact-email-error" className="mt-1 font-sans text-xs text-red-700">{errors.email.message}</p>
         )}
       </div>
 
@@ -123,11 +127,13 @@ export default function ContactForm() {
           id="contact-message"
           rows={5}
           placeholder="How can we help you?"
+          aria-invalid={errors.message ? true : undefined}
+          aria-describedby={errors.message ? 'contact-message-error' : undefined}
           {...register('message')}
           className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-sm text-charcoal-800 placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition resize-none"
         />
         {errors.message && (
-          <p className="mt-1 font-sans text-xs text-red-600">{errors.message.message}</p>
+          <p id="contact-message-error" className="mt-1 font-sans text-xs text-red-700">{errors.message.message}</p>
         )}
       </div>
 
@@ -135,7 +141,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-sage-700 hover:bg-sage-500 disabled:opacity-60 text-cream-50 font-sans font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+        className="w-full bg-sage-700 hover:bg-sage-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 disabled:opacity-60 text-cream-50 font-sans font-medium py-3 px-6 rounded-lg transition-colors duration-200"
       >
         {isSubmitting ? 'Sending' : 'Send Message'}
       </button>
