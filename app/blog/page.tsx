@@ -1,5 +1,5 @@
 import { pageMetadata } from '@/lib/metadata'
-import { breadcrumbSchema } from '@/lib/schema'
+import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import { BlogIndex } from '@/components/sections/blog-index'
 
 // Regenerate hourly so scheduled posts appear on their publish date.
@@ -20,7 +20,7 @@ const breadcrumb = breadcrumbSchema([
 export default function BlogIndexPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
       <BlogIndex page={1} />
     </>
   )

@@ -49,7 +49,7 @@ const quickLinks = [
 ];
 
 const heading = "mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-taupe-300";
-const muted = "text-cream-100/75 transition-colors hover:text-cream-50";
+const muted = "inline-block py-1 text-cream-100/75 transition-colors hover:text-cream-50";
 
 const newTab = { target: "_blank", rel: "noopener noreferrer" } as const;
 

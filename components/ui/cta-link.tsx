@@ -14,7 +14,7 @@ const variants: Record<Variant, string> = {
   outline: cn(button, "border border-sage-700 text-sage-700 hover:bg-sage-700 hover:text-cream-50"),
   light: cn(button, "border border-cream-50 bg-cream-50 text-sage-700 hover:bg-cream-200"),
   "ghost-light": cn(button, "border border-cream-50/70 text-cream-50 hover:bg-cream-50/10"),
-  text: "border-b border-sage-700 pb-1 text-xs tracking-[0.2em] text-sage-700 hover:border-sage-500 hover:text-sage-500",
+  text: "border-b border-sage-700 pb-1 pt-1.5 text-xs tracking-[0.2em] text-sage-700 hover:border-sage-500 hover:text-sage-500",
 };
 
 interface CtaLinkProps {

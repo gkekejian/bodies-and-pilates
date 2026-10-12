@@ -2,7 +2,7 @@ import { PageHero } from "@/components/sections/section-heading";
 import { HoursList } from "@/components/sections/hours-list";
 import { MindbodyScheduleWidget } from "@/components/mindbody/schedule-widget";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { MINDBODY, PHONE } from "@/lib/site";
 
 export const metadata = pageMetadata({
@@ -22,7 +22,7 @@ const link = "text-sage-700 underline underline-offset-4 hover:text-sage-500";
 export default function SchedulePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
       <PageHero
         eyebrow="Book a Class"

@@ -1,5 +1,3 @@
-import createMDX from "@next/mdx";
-
 // All redirects are 301 (statusCode) rather than Next's default 308.
 const moved = (source, destination) => ({ source, destination, statusCode: 301 });
 
@@ -20,20 +18,19 @@ const CSP_REPORT_ONLY = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  // Do not advertise the framework in an X-Powered-By header.
+  poweredByHeader: false,
   // Trailing slashes are stripped with a 301 in middleware.ts instead of
   // Next's default 308.
   skipTrailingSlashRedirect: true,
   // Blog pages read content/blog at runtime when they regenerate (ISR), so the
   // MDX files must ship with those serverless functions.
-  experimental: {
-    outputFileTracingIncludes: {
-      "/blog": ["./content/blog/**/*"],
-      "/blog/[slug]": ["./content/blog/**/*"],
-      "/blog/page/[page]": ["./content/blog/**/*"],
-      "/sitemap.xml": ["./content/blog/**/*"],
-      "/llms-full.txt": ["./content/blog/**/*"],
-    },
+  outputFileTracingIncludes: {
+    "/blog": ["./content/blog/**/*"],
+    "/blog/[slug]": ["./content/blog/**/*"],
+    "/blog/page/[page]": ["./content/blog/**/*"],
+    "/sitemap.xml": ["./content/blog/**/*"],
+    "/llms-full.txt": ["./content/blog/**/*"],
   },
   // No remote image hosts: all stock photography was removed. Real studio
   // photos live in /public/photos (see lib/photos.ts).
@@ -99,11 +96,4 @@ const nextConfig = {
   },
 };
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-});
-
-export default withMDX(nextConfig);
+export default nextConfig;

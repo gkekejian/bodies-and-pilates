@@ -4,7 +4,7 @@ import { PageHero } from "@/components/sections/section-heading";
 import { HoursList } from "@/components/sections/hours-list";
 import { InstagramIcon } from "@/components/layout/footer";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { PHOTOS } from "@/lib/photos";
 import { ADDRESS, EMAIL, INSTAGRAM, MAPS_EMBED_URL, MAPS_URL, PHONE } from "@/lib/site";
 
@@ -26,7 +26,7 @@ const link = "text-sage-700 underline-offset-4 hover:text-sage-500 hover:underli
 export default function ContactPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
       <PageHero
         eyebrow="Contact"
@@ -111,8 +111,8 @@ export default function ContactPage() {
                 minutes early for your first class.
               </p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <PhotoSlot photo={PHOTOS.entrance} sizes="(max-width: 640px) 100vw, 25vw" />
-                <PhotoSlot photo={PHOTOS.parking} sizes="(max-width: 640px) 100vw, 25vw" />
+                <PhotoSlot photo={PHOTOS.entrance} sizes="(max-width: 640px) 100vw, 25vw" compact />
+                <PhotoSlot photo={PHOTOS.parking} sizes="(max-width: 640px) 100vw, 25vw" compact />
               </div>
             </section>
           </div>
@@ -138,7 +138,7 @@ export default function ContactPage() {
               />
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-taupe-300/70 px-4 py-3">
                 <p className="font-sans text-xs text-charcoal-800/70">{ADDRESS.oneLine}</p>
-                <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={`${link} font-sans text-xs`}>
+                <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={`${link} inline-block py-1 font-sans text-xs`}>
                   Get directions
                 </a>
               </div>

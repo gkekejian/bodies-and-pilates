@@ -3,7 +3,7 @@ import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import { PageHero, SectionHeading, eyebrowClass } from "@/components/sections/section-heading";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { PHOTOS } from "@/lib/photos";
 import { ACTIVE_TEAM, SHOW_TEAM, type Instructor } from "@/lib/team";
 import { ADDRESS } from "@/lib/site";
@@ -105,7 +105,7 @@ const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
 export default function AboutPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
       <PageHero
         eyebrow="Our Story"

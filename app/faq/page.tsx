@@ -2,7 +2,7 @@ import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import { PageHero } from "@/components/sections/section-heading";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { FAQS, faqPageSchema } from "@/lib/faqs";
 
 export const metadata = pageMetadata({
@@ -20,8 +20,8 @@ const breadcrumb = breadcrumbSchema([
 export default function FaqPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema()) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
       <PageHero
         eyebrow="FAQ"

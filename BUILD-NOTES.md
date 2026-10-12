@@ -1,7 +1,7 @@
 # Build Notes: Bodies and Pilates
 
-**Stack:** Next.js 14.2 App Router, TypeScript (strict), Tailwind CSS v3, shadcn/ui primitives
-**Build:** `npm run build` passes (34 static routes, 0 type errors, 0 lint errors)
+**Stack:** Next.js 15.5 App Router, React 19, TypeScript (strict), Tailwind CSS v3, Base UI primitives
+**Build:** `npm run build` passes (41 static pages, 0 type errors, 0 lint errors)
 **GitHub:** https://github.com/gkekejian/bodies-and-pilates
 **Vercel:** https://vercel.com/gkekejians-projects/bodies-and-pilates
 
@@ -125,6 +125,8 @@ How the blog works (see the header comment in `lib/blog.ts` for the frontmatter 
 - [ ] Have a lawyer review `/privacy` and `/terms` (drafted only from what the site actually does). Name the form and email providers in the privacy policy once the webhooks are connected.
 - [ ] Content Security Policy: the full policy runs in report-only mode (`next.config.mjs`). Open the preview with DevTools, book through the MindBody widget and log in, then check the console for CSP reports. Add any blocked MindBody hosts and switch the header to enforcing.
 - [ ] AI crawlers: `app/robots.ts` allows AI search and training crawlers by name. To stay in AI answers but opt out of training, set GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, and CCBot to disallow.
+- Forms (`/api/lead`, `/api/contact`) accept same-origin JSON only, cap the body at 16 KB, drop honeypot submissions, and rate-limit per IP (`lib/request-guard.ts`). The rate limit is per serverless instance; for a hard cap add a Vercel Firewall rate-limit rule on `/api/*`.
+- [ ] Dependencies: `npm audit --omit=dev` leaves 4 moderate advisories, all in gray-matter's YAML parser (js-yaml 3, argparse, sprintf-js). It only parses the blog's own frontmatter from this repo, never visitor input. Next.js is on the patched 15.5 line; PostCSS is pinned to a patched version through `overrides` in `package.json`.
 - Analytics are opt-in: GA4 and the Meta Pixel load only after Accept, Global Privacy Control counts as a decline, and "Cookie settings" in the footer reopens the choice.
 - `/llms.txt` and `/llms-full.txt` are generated from the same data as the pages (`lib/llms.ts`), so they stay in sync.
 
@@ -180,8 +182,11 @@ Google Business Profile:
 | Page | Performance | Accessibility | Best practices | SEO | CLS |
 |------|-------------|---------------|----------------|-----|-----|
 | Home | 96 | 100 | 100 | 100 | 0 |
-| Pricing | 97 | 100 | 100 | 100 | 0 |
+| Pricing | 96 | 100 | 100 | 100 | 0 |
 | Classes | 97 | 100 | 100 | 100 | 0 |
+| Contact | 96 | 100 | 100 | 100 | 0 |
+
+axe-core (WCAG 2.1 AA plus best practices) reports 0 violations on all 18 routes at 375px and 1280px.
 
 Real device QA has not been done yet.
 
@@ -227,6 +232,7 @@ npm run build && npm run start
 - **Reformer only.** Copy that mentioned mat classes is gone; every group class is described as small-group reformer Pilates. The Full Body page title changed from "Mat Pilates Classes" for the same reason.
 - **Booking map.** See the table under Owner TODO list. MindBody links open in the same tab; ClassPass, Google, Instagram, and the Mindbody app link open in a new tab. Facebook is not linked.
 - **FAQ uses native `<details>`.** No JavaScript, and every answer is in the HTML so it matches the FAQPage schema.
+- **Next.js 14.2 to 15.5 (2026-10-12 audit).** 14.2.35 is the last 14.x release and carries unpatched advisories, including remote code execution in the image optimizer. Dynamic route `params` are now awaited. Unused packages removed: the shadcn CLI, Embla carousel, Behold (Instagram), and the MDX loader (blog posts render through next-mdx-remote). The unused Google Places `/api/reviews` route was deleted.
 - **framer-motion removed.** Animations were delaying the hero text (LCP). The site now ships no animation library.
 - **Hours.** Owner-confirmed hours only. Friday is 7am to 8pm (the old site said 7:30 to 11:30).
 - **Phone.** 818-813-4446 everywhere. The owner's mobile does not appear on the site or in schema.

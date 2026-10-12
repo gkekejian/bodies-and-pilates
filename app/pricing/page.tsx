@@ -6,7 +6,7 @@ import { ClassPassStrip } from "@/components/sections/classpass-strip";
 import { LeadCapture } from "@/components/sections/lead-capture";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { COMMIT, FLEX, POLICY, PRIVATE, TRY, offerHref } from "@/lib/pricing";
 import { SITE_URL } from "@/lib/site";
 
@@ -52,8 +52,8 @@ function PolicyNotes({ lines }: { lines: string[] }) {
 export default function PricingPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(firstClassOffer) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(firstClassOffer) }} />
 
       <PageHero
         eyebrow="Pricing · North Hollywood"
@@ -164,7 +164,7 @@ export default function PricingPage() {
       <section aria-labelledby="price-table-heading" className="bg-cream-50 py-20 sm:py-24">
         <div className={container}>
           <SectionHeading id="price-table-heading" eyebrow="At a Glance" title="All reformer Pilates prices" />
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Price table. Scroll sideways on small screens.">
             <table className="w-full min-w-[520px] border-collapse text-left font-sans text-sm">
               <caption className="sr-only">Bodies and Pilates prices in North Hollywood</caption>
               <thead>

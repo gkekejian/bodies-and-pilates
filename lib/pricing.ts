@@ -147,5 +147,5 @@ export const PRIVATE: Offer[] = [
 /** Owner-confirmed policy lines shown on /pricing (FAQ carries the longer versions). */
 export const POLICY = {
   cancellation: "Cancel 12+ hours ahead: no charge. Late cancel: credit forfeited. No-show: $15.",
-  membership: "Pause anytime. Cancel with 7 days notice. No fees.",
+  membership: "Pause anytime. Cancel with 7 days' notice. No fees.",
 } as const;

@@ -5,7 +5,7 @@ import { ClassFormatBlock } from "@/components/sections/class-format";
 import { OfferCard } from "@/components/sections/offer-card";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { CLASSES, type ClassSlug } from "@/lib/classes";
 import { PRIVATE } from "@/lib/pricing";
 import { SITE_URL } from "@/lib/site";
@@ -18,7 +18,8 @@ export function generateStaticParams() {
 
 const find = (slug: string) => CLASSES.find((c) => c.slug === (slug as ClassSlug));
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const c = find(params.slug);
   if (!c) return {};
   return pageMetadata({
@@ -28,7 +29,8 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   });
 }
 
-export default function ClassDetailPage({ params }: { params: { slug: string } }) {
+export default async function ClassDetailPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const c = find(params.slug);
   if (!c) notFound();
 
@@ -56,8 +58,8 @@ export default function ClassDetailPage({ params }: { params: { slug: string } }
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(serviceSchema) }} />
 
       <PageHero
         eyebrow={isPrivate ? "Private Reformer Pilates" : "Small-Group Reformer Pilates"}

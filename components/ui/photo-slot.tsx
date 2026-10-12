@@ -11,6 +11,8 @@ interface PhotoSlotProps {
   /** Tailwind aspect class. Defaults to the slot's own width/height ratio. */
   aspectClassName?: string;
   className?: string;
+  /** Small slots: shorter placeholder text so the label never clips. */
+  compact?: boolean;
 }
 
 /**
@@ -18,7 +20,7 @@ interface PhotoSlotProps {
  * the owner delivers the shot (see lib/photos.ts). Reserving the box up front
  * keeps layout shift at zero either way.
  */
-export function PhotoSlot({ photo, sizes, priority, aspectClassName, className }: PhotoSlotProps) {
+export function PhotoSlot({ photo, sizes, priority, aspectClassName, className, compact }: PhotoSlotProps) {
   const style = aspectClassName ? undefined : { aspectRatio: `${photo.width} / ${photo.height}` };
 
   if (photo.src) {
@@ -60,8 +62,15 @@ export function PhotoSlot({ photo, sizes, priority, aspectClassName, className }
         <p className="font-sans text-[10px] font-medium uppercase tracking-[0.25em] text-taupe-700">
           Photo slot {photo.slot}
         </p>
-        <p className="mt-2 font-serif text-base leading-snug text-charcoal-800/70 sm:text-lg">{photo.brief}</p>
-        <p className="mt-2 font-sans text-[11px] text-charcoal-800/70">Real studio photography coming soon</p>
+        <p
+          className={cn(
+            "mt-2 font-serif leading-snug text-charcoal-800/70",
+            compact ? "text-sm" : "text-base sm:text-lg"
+          )}
+        >
+          {photo.brief}
+        </p>
+        {!compact && <p className="mt-2 font-sans text-[11px] text-charcoal-800/70">Real studio photography coming soon</p>}
       </div>
     </div>
   );

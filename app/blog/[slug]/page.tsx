@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllPosts, getPost, getRelatedPosts, postStatus, formatPostDate } from '@/lib/blog'
 import { pageMetadata } from '@/lib/metadata'
-import { breadcrumbSchema } from '@/lib/schema'
+import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import { blogHero } from '@/lib/photos'
 import { BLOG_AUTHOR, SITE_URL } from '@/lib/site'
 import { eyebrowClass } from '@/components/sections/section-heading'
@@ -30,7 +30,8 @@ function loadVisible(slug: string) {
   return post
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params
   const post = loadVisible(params.slug)
   if (!post) return {}
   const { meta } = post
@@ -53,7 +54,8 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   }
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params
   const post = loadVisible(params.slug)
   if (!post) notFound()
   const { meta } = post
@@ -96,17 +98,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <>
       {!meta.draft && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(postingSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(postingSchema) }} />
       )}
       {!meta.draft && meta.faqs.length > 0 && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }} />
       )}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
         <header className="mb-10">
-          <Link href="/blog" className={`${eyebrowClass} hover:text-sage-500`}>
-            Journal
+          <Link href="/blog" className={`${eyebrowClass} inline-block py-1 hover:text-sage-500`}>
+            Blog
           </Link>
           <h1 className="mt-5 font-serif text-4xl leading-[1.1] text-charcoal-900 sm:text-5xl">{meta.title}</h1>
           <p className="mt-6 font-sans text-lg leading-[1.7] text-charcoal-800/85">{meta.description}</p>

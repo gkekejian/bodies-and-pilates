@@ -70,7 +70,7 @@ export const FAQS: Faq[] = [
   {
     id: "pause-cancel",
     question: "Can I pause or cancel my membership?",
-    answer: "Yes. Pause anytime, and turn off your renewal anytime with 7 days notice. No fees.",
+    answer: "Yes. Pause anytime, and turn off your renewal anytime with 7 days' notice. No fees.",
   },
   {
     id: "private",

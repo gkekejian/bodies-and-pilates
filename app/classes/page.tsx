@@ -5,7 +5,7 @@ import { PageHero, SectionHeading } from "@/components/sections/section-heading"
 import { ClassFormatBlock } from "@/components/sections/class-format";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { CLASSES } from "@/lib/classes";
 import { PHOTOS } from "@/lib/photos";
 import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
@@ -27,7 +27,7 @@ const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
 export default function ClassesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
       <PageHero
         eyebrow="Small-Group Reformer Pilates"
@@ -45,7 +45,7 @@ export default function ClassesPage() {
             <a
               key={c.slug}
               href={`#${c.slug}`}
-              className="font-sans text-xs uppercase tracking-[0.2em] text-sage-700 underline-offset-4 hover:underline"
+              className="inline-block py-1 font-sans text-xs uppercase tracking-[0.2em] text-sage-700 underline-offset-4 hover:underline"
             >
               {c.name}
             </a>

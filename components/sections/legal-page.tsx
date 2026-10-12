@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/sections/section-heading";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 
 /** Shared layout for /privacy and /terms. */
 export function LegalPage({
@@ -20,7 +20,7 @@ export function LegalPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema([{ name: "Home", path: "/" }, { name: title, path }])),
+          __html: jsonLd(breadcrumbSchema([{ name: "Home", path: "/" }, { name: title, path }])),
         }}
       />
       <PageHero eyebrow="Legal" title={title} intro={<>{intro}<p className="mt-4 text-sm">Last updated {updated}</p></>} />

@@ -137,10 +137,11 @@ export default function HomePage() {
             {CLASSES.map((c) => (
               <li key={c.slug} className="bg-cream-50">
                 <Link href={`/classes/${c.slug}`} className="group flex h-full flex-col gap-3 p-7 transition-colors hover:bg-cream-100">
-                  <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-sage-700">
-                    {c.level} &middot; {c.duration}
-                  </span>
+                  <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-sage-700">{c.duration}</span>
                   <h3 className="font-serif text-2xl text-charcoal-900">{c.name}</h3>
+                  <span className="font-sans text-sm leading-relaxed text-charcoal-800/80">
+                    {c.level === c.name ? "Built for first-timers" : c.level}
+                  </span>
                   <span className="mt-auto pt-4 font-sans text-xs uppercase tracking-[0.2em] text-sage-700 group-hover:text-sage-500">
                     Learn more <span aria-hidden="true">&rarr;</span>
                   </span>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { forwardSubmission } from "@/lib/forms";
+import { guardFormRequest } from "@/lib/request-guard";
 
 const schema = z.object({
   name: z.string().trim().min(1).max(120),
@@ -10,8 +11,9 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
-  const body = await request.json().catch(() => null);
-  const parsed = schema.safeParse(body);
+  const guard = await guardFormRequest(request);
+  if (!guard.ok) return guard.response;
+  const parsed = schema.safeParse(guard.body);
   if (!parsed.success) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }

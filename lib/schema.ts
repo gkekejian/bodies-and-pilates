@@ -105,3 +105,9 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
     })),
   };
 }
+
+/**
+ * Serialize JSON-LD for a <script> tag. Escaping "<" keeps any string that
+ * contains "</script>" (e.g. from blog frontmatter) from closing the tag.
+ */
+export const jsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, "\\u003c");

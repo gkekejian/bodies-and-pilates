@@ -6,7 +6,7 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { FaqTeaser } from "@/components/sections/faq-teaser";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { PHOTOS } from "@/lib/photos";
 import { TRY, offerHref } from "@/lib/pricing";
 import { FIRST_CLASS_CTA } from "@/lib/site";
@@ -31,7 +31,7 @@ const breadcrumb = breadcrumbSchema([
 export default function IntroOfferPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
       <section className="bg-cream-100 py-14 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

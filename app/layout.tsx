@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { MobileBookingBar } from "@/components/layout/mobile-booking-bar";
 import CookieBanner from "@/components/analytics/cookie-banner";
 import Analytics from "@/components/analytics/analytics";
-import { exerciseGymSchema, websiteSchema } from "@/lib/schema";
+import { exerciseGymSchema, websiteSchema, jsonLd } from "@/lib/schema";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const playfair = Playfair_Display({
@@ -49,9 +49,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(exerciseGymSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(exerciseGymSchema) }}
         />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(websiteSchema) }} />
       </head>
       <body className="flex min-h-screen flex-col pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
         <a
