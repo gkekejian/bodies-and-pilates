@@ -108,3 +108,9 @@ export const INTRO_OFFER_DEEP_LINK: string | null =
 export const introBookingHref = () => INTRO_OFFER_DEEP_LINK ?? "/intro-offer";
 
 export const isExternal = (href: string) => /^(https?:|tel:|sms:|mailto:)/.test(href);
+
+/** Byline and author schema for every blog post. */
+export const BLOG_AUTHOR = {
+  name: "Naira Sarkian",
+  role: "owner of Bodies and Pilates",
+} as const;

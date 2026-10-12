@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
+import { getPublishedPosts, publishInstant } from "@/lib/blog";
 import { CLASSES } from "@/lib/classes";
 import { SITE_URL } from "@/lib/site";
+
+// Regenerate hourly so posts enter the sitemap on their publish date.
+export const revalidate = 3600;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -24,15 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/blog", 0.6, "weekly"),
   ];
 
-  // Drafts are noindexed outlines; list only published posts.
-  const blogRoutes: MetadataRoute.Sitemap = getAllPosts()
-    .filter((p) => !p.draft)
-    .map((p) => ({
-      url: `${SITE_URL}/blog/${p.slug}`,
-      lastModified: p.publishDate ? new Date(p.publishDate) : now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    }));
+  // Published posts only: outline drafts and future-dated posts stay out.
+  const blogRoutes: MetadataRoute.Sitemap = getPublishedPosts().map((p) => ({
+    url: `${SITE_URL}/blog/${p.slug}`,
+    lastModified: publishInstant(p.updatedDate || p.publishDate),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
 
   return [...staticRoutes, ...blogRoutes];
 }

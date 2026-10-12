@@ -11,7 +11,8 @@
  */
 
 export interface PhotoSpec {
-  slot: number;
+  /** Slot number from the shot list, or a label such as "blog hero". */
+  slot: number | string;
   /** Short brief shown on the placeholder: exactly what to shoot. */
   brief: string;
   alt: string;
@@ -146,3 +147,13 @@ export const CLIPS: Record<"beginner" | "fullbody" | "flexibility" | "private", 
     poster: null,
   },
 };
+
+/** One hero slot per blog post. TODO(owner): real photography per post topic. */
+export const blogHero = (title: string, alt: string): PhotoSpec => ({
+  slot: "blog hero",
+  brief: `Hero image for "${title}"`,
+  alt,
+  src: null,
+  width: 1600,
+  height: 900,
+});

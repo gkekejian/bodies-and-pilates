@@ -9,6 +9,16 @@ const nextConfig = {
   // Trailing slashes are stripped with a 301 in middleware.ts instead of
   // Next's default 308.
   skipTrailingSlashRedirect: true,
+  // Blog pages read content/blog at runtime when they regenerate (ISR), so the
+  // MDX files must ship with those serverless functions.
+  experimental: {
+    outputFileTracingIncludes: {
+      "/blog": ["./content/blog/**/*"],
+      "/blog/[slug]": ["./content/blog/**/*"],
+      "/blog/page/[page]": ["./content/blog/**/*"],
+      "/sitemap.xml": ["./content/blog/**/*"],
+    },
+  },
   // No remote image hosts: all stock photography was removed. Real studio
   // photos live in /public/photos (see lib/photos.ts).
   async redirects() {
@@ -27,6 +37,7 @@ const nextConfig = {
       moved("/book-online", "/schedule"),
       moved("/faqs", "/faq"),
       moved("/post/:slug", "/blog/:slug"),
+      moved("/blog/what-is-reformer-pilates-beginners-guide", "/blog/what-is-reformer-pilates"),
 
       // Pricing normalization (old Wix pricing slugs). Uppercase and trailing
       // slash variants (/Pricing, /pricing/) are handled by middleware.ts.

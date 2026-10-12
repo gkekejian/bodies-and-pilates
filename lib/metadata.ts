@@ -14,19 +14,28 @@ interface PageMeta {
   /** Path beginning with "/". */
   path: string;
   noIndex?: boolean;
+  /** Blog posts: og:type=article plus published/modified times and author. */
+  article?: { publishedTime?: string; modifiedTime?: string; author: string };
 }
 
 /**
  * Per-page metadata with canonical URL and Open Graph/Twitter tags.
  */
-export function pageMetadata({ title, description, path, noIndex }: PageMeta): Metadata {
+export function pageMetadata({ title, description, path, noIndex, article }: PageMeta): Metadata {
   const url = `${SITE_URL}${path === "/" ? "/" : path}`;
   return {
     title: { absolute: title },
     description,
     alternates: { canonical: url },
     openGraph: {
-      type: "website",
+      ...(article
+        ? {
+            type: "article" as const,
+            publishedTime: article.publishedTime,
+            modifiedTime: article.modifiedTime,
+            authors: [article.author],
+          }
+        : { type: "website" as const }),
       locale: "en_US",
       siteName: SITE_NAME,
       title,

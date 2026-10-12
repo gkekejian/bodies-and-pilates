@@ -98,7 +98,16 @@ All stock photography has been removed. Drop files into `public/photos/` and set
 Until set, both forms return an honest "could not send" message with the phone number. Nothing is faked.
 
 ### Blog (`content/blog/`)
-- [ ] Eleven scaffolded posts (including "Lagree vs Reformer Pilates"), each with a title, description, and outline. Write the copy under the frontmatter, set `draft: false` and a `publishDate`. Drafts are noindexed and kept out of the sitemap.
+- [ ] The 20 full drafts (`blog-drafts-batch-1.md` to `-4.md`) have not reached the build yet. When they arrive they replace the 11 outline scaffolds, one MDX file per post, using the slugs in `lib/blog-plan.ts`.
+- [ ] Publishing start date. Posts go out 2 per week in the order in `lib/blog-plan.ts` (question-format posts first). Each post's `publishDate` is set in its frontmatter.
+
+How the blog works (see the header comment in `lib/blog.ts` for the frontmatter fields):
+- A post is **published** once `draft: false` and its `publishDate` has arrived (midnight Pacific). Published posts are indexed, listed on `/blog` newest first, and included in `sitemap.xml` with lastmod.
+- A post with a future `publishDate` returns 404 and stays out of the index and sitemap until its date. Blog pages and the sitemap regenerate hourly, so posts go live on schedule without a redeploy.
+- Outline scaffolds (`draft: true`) show as "Coming soon" and are noindexed.
+- Every published post has: one H1, a byline crediting Naira Sarkian, BlogPosting schema with Person author, `og:type=article`, a hero image slot (labeled placeholder until photos land), the intro-offer CTA, and up to 3 related posts by topic group.
+- The 8 question-format posts (`QUESTION_POSTS` in `lib/blog-plan.ts`) carry a `faqs` list in frontmatter, rendered before the CTA with FAQPage JSON-LD.
+- `/blog` paginates at 12 per page (`/blog/page/2`, ...).
 
 ### Domain
 - [ ] Add both `www.bodiesandpilates.com` (primary) and `bodiesandpilates.com` to the Vercel project. The bare domain 301s to www via `next.config.mjs`.
