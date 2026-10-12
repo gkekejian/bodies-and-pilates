@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 type Status = "idle" | "sending" | "sent" | "error";
 
 const input =
-  "w-full rounded-full border border-taupe-300 bg-cream-50 px-5 py-3 font-sans text-sm text-charcoal-800 placeholder:text-charcoal-800/45 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-500/40";
+  "w-full rounded-full border border-taupe-300 bg-cream-50 px-5 py-3 font-sans text-base text-charcoal-800 sm:text-sm placeholder:text-charcoal-800/45 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-500/40";
 
 /**
  * First-timer's guide sign-up. Posts to /api/lead, which forwards to the

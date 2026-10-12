@@ -96,7 +96,7 @@ export default function ContactForm() {
           aria-describedby={errors.name ? 'contact-name-error' : undefined}
           maxLength={120}
           {...register('name')}
-          className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-sm text-charcoal-800 placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition"
+          className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-base text-charcoal-800 sm:text-sm placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition"
         />
         {errors.name && (
           <p id="contact-name-error" className="mt-1 font-sans text-xs text-red-700">{errors.name.message}</p>
@@ -119,7 +119,7 @@ export default function ContactForm() {
           aria-invalid={errors.email ? true : undefined}
           aria-describedby={errors.email ? 'contact-email-error' : undefined}
           {...register('email')}
-          className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-sm text-charcoal-800 placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition"
+          className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-base text-charcoal-800 sm:text-sm placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition"
         />
         {errors.email && (
           <p id="contact-email-error" className="mt-1 font-sans text-xs text-red-700">{errors.email.message}</p>
@@ -144,7 +144,7 @@ export default function ContactForm() {
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
           maxLength={5000}
           {...register('message')}
-          className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-sm text-charcoal-800 placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition resize-none"
+          className="w-full bg-cream-50 border border-taupe-300 rounded-lg px-4 py-2.5 font-sans text-base text-charcoal-800 sm:text-sm placeholder-charcoal-800/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 focus:border-sage-500 transition resize-none"
         />
         {errors.message && (
           <p id="contact-message-error" className="mt-1 font-sans text-xs text-red-700">{errors.message.message}</p>
