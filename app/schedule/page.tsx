@@ -3,7 +3,7 @@ import { HoursList } from "@/components/sections/hours-list";
 import { MindbodyScheduleWidget } from "@/components/mindbody/schedule-widget";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { MINDBODY, PHONE } from "@/lib/site";
+import { MINDBODY, PHONE, GRIP_SOCKS_LINE } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Class Schedule | Bodies and Pilates North Hollywood",
@@ -46,7 +46,7 @@ export default function SchedulePage() {
               <span className="font-medium text-charcoal-900">New here?</span> Arrive 10 minutes early to meet your
               instructor and get set up on the reformer.
             </p>
-            <p>Grip socks are required and sold at the front desk.</p>
+            <p>{GRIP_SOCKS_LINE}</p>
             <p>Wear form-fitting clothes you can move in.</p>
           </aside>
 

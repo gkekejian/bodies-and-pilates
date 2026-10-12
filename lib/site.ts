@@ -115,3 +115,9 @@ export const BLOG_AUTHOR = {
   name: "Naira Sarkian",
   role: "owner of Bodies and Pilates",
 } as const;
+
+/**
+ * Owner-confirmed (2026-10-12). One sentence, used word for word in the
+ * "What should I wear?" FAQ and the first-timer strip on /schedule.
+ */
+export const GRIP_SOCKS_LINE = "Grip socks are required for class. Bring your own or buy a pair at the front desk.";

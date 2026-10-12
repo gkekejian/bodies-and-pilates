@@ -1,3 +1,5 @@
+import { GRIP_SOCKS_LINE } from "@/lib/site";
+
 /**
  * FAQ content. Rendered on /faq and used to generate FAQPage JSON-LD.
  * Entries with `answer: null` render a labeled placeholder and are left out
@@ -35,7 +37,7 @@ export const FAQS: Faq[] = [
     id: "wear",
     question: "What should I wear?",
     answer:
-      "Form-fitting workout clothes you can move in, plus grip socks, which are required on the reformer and available at the front desk. Skip loose clothing and jewelry.",
+      `Form-fitting workout clothes you can move in. Skip loose clothing and jewelry. ${GRIP_SOCKS_LINE}`,
   },
   {
     id: "how-often",
