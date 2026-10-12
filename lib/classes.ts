@@ -1,8 +1,12 @@
 /**
  * Class formats. Every format is small-group reformer Pilates except Private.
  *
+ * Group classes are 50 minutes (confirmed from the MindBody schedule).
  * TODO(owner): confirm the difficulty level and the "who it is for" line for
- * each format, and the 50-minute class length for group classes.
+ * each format.
+ * TODO(owner): the schedule also runs "Abs and Assets" (Sun 12:00 PM, week of
+ * Oct 12, 2026). It is not on the site yet. Send a 1 to 2 sentence description,
+ * level, and who it is for, and it gets its own block on /classes.
  */
 
 export type ClassSlug = "beginner" | "fullbody" | "flexibility" | "private";

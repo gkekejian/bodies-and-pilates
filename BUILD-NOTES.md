@@ -65,11 +65,13 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 - [ ] Optional: maximum class size, the strongest proof point (`app/page.tsx`).
 
 ### Team (`lib/team.ts`)
-- [ ] Confirm every name, credential, and specialty is current.
-- [ ] Naira: credentials, specialties, one-line philosophy, and a 2 to 3 sentence origin story (how she found Pilates, why she founded the studio).
-- [ ] Hannah, Marlyn, Enrika, Sita: one-line philosophy each.
-- [ ] Confirm each carried-over origin story and fill the gaps marked in `lib/team.ts` (how they found Pilates, why they teach).
-- [ ] If this cannot be complete before launch, set `SHOW_TEAM = false`. Never launch it half-empty.
+Active instructors and the classes they teach come from the MindBody schedule (week of Oct 12 to 18, 2026). Shown on /about: Naira Sarkian (Founder and Owner), Marlyn Ortiz, Sita Acevedo, Hannah Pink, Theresia Bunch, McKinsey Shea, Altara Michelle.
+- [ ] For each instructor: 2 to 3 sentence bio (background, how they found Pilates), certifications and specialties, one-line teaching philosophy, headshot. McKinsey and Altara have nothing yet; the others have carried-over details to confirm.
+- [ ] Confirm the regular schedule for McKinsey, Theresia, and Altara (one slot each that week).
+- [ ] Registered in MindBody but no classes that week, so hidden: Enrika Navikaite, Ashley Aldred, Bella Massey, Deanna Garzillo. Confirm whether each is current, a sub, or inactive.
+- [ ] In MindBody, assign an instructor to every class: 26 of 38 sessions that week showed none (Mon/Wed/Sat/Sun Beginner, most Full Body slots, Fri Flexibility 5:00 PM, Sun Abs and Assets 12:00 PM). Clients choose by instructor.
+- [ ] "Abs and Assets" runs on the schedule but is not on the site. Send a short description, level, and who it is for.
+- If the section cannot be complete before launch, set `SHOW_TEAM = false`.
 
 ### Testimonials (`lib/testimonials.ts`)
 - [ ] The owner's real-review testimonial block (Sasha, Penny, Jason) has not reached the build yet. Paste it in and it replaces the three placeholder-attributed quotes. Neighborhood for each is still needed. Optional portrait (slot 10).

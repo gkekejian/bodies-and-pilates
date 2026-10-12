@@ -5,7 +5,7 @@ import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/schema";
 import { PHOTOS } from "@/lib/photos";
-import { SHOW_TEAM, TEAM, type Instructor } from "@/lib/team";
+import { ACTIVE_TEAM, SHOW_TEAM, type Instructor } from "@/lib/team";
 import { ADDRESS } from "@/lib/site";
 
 export const metadata = pageMetadata({
@@ -82,6 +82,9 @@ function InstructorCard({ person }: { person: Instructor }) {
           <OwnerPlaceholder label="origin story (2 to 3 sentences)" />
         )}
         <dl className="space-y-4">
+          {person.teaches.length > 0 && (
+            <Field title="Teaches" value={person.teaches.join(", ")} pending="classes taught" />
+          )}
           <Field title="Credentials" value={person.credentials} pending="credentials" />
           <Field title="Specialties" value={person.specialties} pending="specialties" />
         </dl>
@@ -118,7 +121,7 @@ export default function AboutPage() {
             <SectionHeading id="story-heading" eyebrow="The Studio" title="A calm room, a small class, a coach who knows you" />
             <div className="space-y-5 font-sans text-base leading-[1.8] text-charcoal-800/85 sm:text-lg">
               <p>
-                Bodies and Pilates opened in North Hollywood in 2024, led by owner and lead instructor Naira Sarkian.
+                Naira Sarkian founded Bodies and Pilates in North Hollywood in 2024.
                 It is a boutique reformer studio with a simple promise: small classes, a consistent coaching team, and
                 real attention to how you move.
               </p>
@@ -146,7 +149,7 @@ export default function AboutPage() {
               intro={<p>One consistent coaching team. You get to know your instructor, and they get to know your body.</p>}
             />
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {TEAM.map((person) => (
+              {ACTIVE_TEAM.map((person) => (
                 <InstructorCard key={person.name} person={person} />
               ))}
             </div>
