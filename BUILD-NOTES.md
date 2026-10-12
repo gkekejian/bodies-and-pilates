@@ -73,6 +73,13 @@ Active instructors and the classes they teach come from the MindBody schedule (w
 - [ ] Registered in MindBody but no classes that week, so hidden: Enrika Navikaite, Ashley Aldred, Bella Massey, Deanna Garzillo. Confirm whether each is current, a sub, or inactive.
 - [ ] In MindBody, assign an instructor to every class: 26 of 38 sessions that week showed none (Mon/Wed/Sat/Sun Beginner, most Full Body slots, Fri Flexibility 5:00 PM, Sun Abs and Assets 12:00 PM). Clients choose by instructor.
 - [ ] "Abs and Assets" runs on the schedule but is not on the site. Send a short description, level, and who it is for.
+- [ ] Public-source research (Oct 12, 2026) added only confirmed facts: Marlyn (movement coach, 20+ years, BFA in Dance, mat Pilates background) and Altara (former competitive gymnast, NCA All-American cheerleader, 7+ years of Pilates). It also widened "Teaches" from the Aug to Sep ClassPass schedules (Naira: Flexibility; Sita: Beginner; Theresia: Flexibility). Ask each instructor to approve their card.
+- [ ] Held until the instructor says yes:
+  - Marlyn: 9+ years as Madonna's personal trainer (from her public bio). Strong, but it names a celebrity in studio marketing, so get her approval and exact wording.
+  - Altara: her reformer certification was "in progress" in a past interview. List it only once she confirms it is complete.
+  - Sita (Diavolo Dance Theater credit), McKinsey (dance film credit, @mckinseyshea), Hannah (VoyageLA dancer profile, @hannah.pinky): likely the same people, not confirmed.
+  - Outside studios (Marlyn: Yloh Studio City; Altara: Natural Pilates; Ashley: Pilates Platinum) and Instagram handles. Not used on the site.
+- [ ] Ashley Aldred and Deanna Garzillo appear on the Aug to Sep ClassPass schedules but not Oct 12 to 18. Enrika has one ClassPass review calling her class "tough but great"; usable only as a client quote with the reviewer's permission. No record found for Bella Massey; confirm the spelling and status.
 - If the section cannot be complete before launch, set `SHOW_TEAM = false`.
 
 ### Testimonials (`lib/testimonials.ts`)

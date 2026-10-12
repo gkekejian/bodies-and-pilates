@@ -6,10 +6,16 @@ import { headshot, type PhotoSpec } from "@/lib/photos";
  * story (how they found Pilates, why they teach). Naira first, as founder.
  *
  * Names, backgrounds, and origin stories are carried over from the existing
- * site's bios. Who is active and which classes they teach come from the public
- * MindBody schedule for the week of Oct 12 to 18, 2026. Weekly times are not
- * listed here (they change); the schedule widget on /schedule shows them.
- * Never invent instructor details.
+ * site's bios, plus a public-source research pass (Oct 12, 2026) that only
+ * added facts it marked as confirmed (Marlyn, Altara). Who is active comes
+ * from the public MindBody schedule for the week of Oct 12 to 18, 2026;
+ * "teaches" also includes formats on the Aug to Sep 2026 ClassPass schedules.
+ * Weekly times are not listed here (they change); the schedule widget on
+ * /schedule shows them. Never invent instructor details.
+ *
+ * Held back on purpose until the instructor approves (see BUILD-NOTES):
+ * outside-studio affiliations, social handles, likely-but-unconfirmed dance
+ * credits (Sita, McKinsey, Hannah), and Marlyn's celebrity-client credit.
  * TODO(owner): confirm every name, credential, and specialty below is current
  * and accurate, deliver a headshot for each (photo slot 3, same backdrop), and
  * fill each null field. Any null renders a labeled placeholder.
@@ -45,7 +51,7 @@ export const TEAM: Instructor[] = [
     name: "Naira Sarkian",
     role: "Founder and Owner",
     status: "active",
-    teaches: ["Full Body"],
+    teaches: ["Full Body", "Flexibility"],
     // TODO(owner): Naira's certification(s) and training.
     credentials: null,
     // TODO(owner): Naira's specialties.
@@ -62,20 +68,25 @@ export const TEAM: Instructor[] = [
     role: "Instructor",
     status: "active",
     teaches: ["Full Body"],
-    credentials: "Trained at the SUNY Purchase Dance Conservatory. 20+ years as a dancer, choreographer, and aerialist.",
+    // BFA and mat Pilates: Marlyn's published resume. Movement coach and 20+
+    // years: her published event bio.
+    credentials: "BFA in Dance. Trained at the SUNY Purchase Dance Conservatory. Mat Pilates background.",
     specialties: "Precise, dance-informed technique with a collaborative teaching style",
     // TODO(owner): Marlyn's one-line philosophy, in her words.
     philosophy: null,
-    // TODO(owner): confirm, and add how Marlyn found Pilates.
+    // TODO(owner): confirm with Marlyn, and add how she found Pilates. Her
+    // public bio also cites 9+ years as Madonna's personal trainer. It is the
+    // strongest line available, but it names a celebrity in the studio's
+    // marketing, so it stays off the site until Marlyn approves the wording.
     origin:
-      "Marlyn brings more than two decades as a dancer, choreographer, and aerialist, with work spanning Broadway, film, television, and tours. That range, from classical to contemporary, shapes every session she leads.",
+      "Marlyn is a movement coach, fitness instructor, and entertainer with more than 20 years in the industry. Her work as a dancer, choreographer, and aerialist spans Broadway, film, television, and tours, and that range, from classical to contemporary, shapes every session she leads.",
     photo: headshot("Marlyn Ortiz"),
   },
   {
     name: "Sita Acevedo",
     role: "Instructor",
     status: "active",
-    teaches: ["Full Body", "Flexibility"],
+    teaches: ["Full Body", "Beginner", "Flexibility"],
     credentials: "Certified movement instructor in Pilates and GYROTONIC. Aerialist and aerial choreographer.",
     specialties: "Core stability, creative sequencing, and prop work",
     // TODO(owner): Sita's one-line philosophy, in her words.
@@ -103,7 +114,7 @@ export const TEAM: Instructor[] = [
     name: "Theresia Bunch",
     role: "Instructor",
     status: "active",
-    teaches: ["Full Body"],
+    teaches: ["Full Body", "Flexibility"],
     credentials: "BS in Kinesiology, pre-physical therapy emphasis. 15 years as a classical ballerina.",
     specialties: "Challenging, creative flows grounded in movement science",
     philosophy: "Pilates should feel welcoming for every body, whatever your background.",
@@ -131,13 +142,16 @@ export const TEAM: Instructor[] = [
     role: "Instructor",
     status: "active",
     teaches: ["Full Body"],
-    // TODO(owner): Altara's credentials, specialties, philosophy, origin
-    // story, and headshot. One slot on the Oct 12 to 18 schedule; confirm
-    // regular schedule.
+    // Background from Altara's published interviews (VoyageLA, BoldJourney).
+    // The interview said her reformer teaching certification was in progress:
+    // do not list a certification until she confirms it is complete.
+    // TODO(owner): Altara's certification, specialties, philosophy, and
+    // headshot. One slot on the Oct 12 to 18 schedule; confirm regular schedule.
     credentials: null,
     specialties: null,
     philosophy: null,
-    origin: null,
+    origin:
+      "Altara is a former competitive gymnast and NCA All-American cheerleader. She has practiced Pilates for more than seven years and now teaches reformer classes in Los Angeles.",
     photo: headshot("Altara Michelle"),
   },
   {
@@ -165,5 +179,9 @@ export const ACTIVE_TEAM = TEAM.filter((t) => t.status === "active");
  * TODO(owner): also listed in MindBody's instructor filter with no classes
  * Oct 12 to 18, 2026. Confirm whether each is a current team member, a sub,
  * or inactive. Not shown on the site.
+ * Research (Oct 12, 2026): Ashley Aldred and Deanna Garzillo appear on the
+ * Aug to Sep 2026 ClassPass schedules (Ashley: Full Body; Deanna: Full Body,
+ * Beginner, Flexibility). No public record of Bella Massey as a Los Angeles
+ * Pilates instructor was found; confirm the spelling before adding her.
  */
 export const UNCONFIRMED_INSTRUCTORS = ["Ashley Aldred", "Bella Massey", "Deanna Garzillo"];
