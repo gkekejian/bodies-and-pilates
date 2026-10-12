@@ -159,7 +159,7 @@ Google Business Profile:
 
 ## Launch checklist
 
-- [ ] MindBody widget live with the real timetable (class names, times, instructors)
+- [x] MindBody widget live with the real timetable (class names, times, instructors). Verified on the preview 2026-10-12, along with the footer Login | Register modal.
 - [ ] Full pricing visible: all 11 options, exactly as on the old live pricing page
 - [ ] No stock photos anywhere (all slots filled, or explicitly deferred by the owner)
 - [ ] Team section complete, or hidden with `SHOW_TEAM = false`
