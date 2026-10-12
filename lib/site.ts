@@ -64,8 +64,9 @@ export const INSTAGRAM = {
 } as const;
 
 export const GOOGLE_REVIEWS = {
-  rating: "5.0",
-  count: 14,
+  // Observed on Google 2026-10-12. Update when the count moves.
+  rating: "4.7",
+  count: 27,
   // Owner-supplied Google review link.
   profileUrl: "https://share.google/iiwq2gBssUKulvsol" as string | null,
 };

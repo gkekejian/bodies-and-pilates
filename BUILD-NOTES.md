@@ -19,6 +19,7 @@
 | Testimonials | `lib/testimonials.ts` |
 | Photo and video slots | `lib/photos.ts` |
 | ExerciseGym JSON-LD | `lib/schema.ts` (rendered in `app/layout.tsx`) |
+| Neighborhoods served (home "Areas We Serve", schema `areaServed`, llms.txt) | `lib/areas.ts` |
 | Per-page title, description, canonical, Open Graph | `lib/metadata.ts` + each page's `metadata` |
 | Form forwarding (lead capture, contact) | `lib/forms.ts`, `app/api/lead`, `app/api/contact` |
 | Redirects | `next.config.mjs` (legacy URLs, bare domain) and `middleware.ts` (lowercase, trailing slash) |
@@ -60,7 +61,8 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 ### Facts to confirm
 - [ ] Geo coordinates for schema (`lib/schema.ts`).
 - [ ] Difficulty level, "who it is for", and 50-minute length per class (`lib/classes.ts`).
-- [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx`).
+- [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx` and the 8 lines in `lib/areas.ts`).
+- [ ] Abs and Assets: 1 to 2 sentence description, level, and who it is for (placeholder on `/classes`).
 - [ ] Studio story copy in your own words (`app/about/page.tsx`).
 - [ ] Optional: maximum class size, the strongest proof point (`app/page.tsx`).
 
@@ -100,13 +102,14 @@ All stock photography has been removed. Drop files into `public/photos/` and set
 Until set, both forms return an honest "could not send" message with the phone number. Nothing is faked.
 
 ### Blog (`content/blog/`)
-- [ ] The 20 full drafts (`blog-drafts-batch-1.md` to `-4.md`) have not reached the build yet. When they arrive they replace the 11 outline scaffolds, one MDX file per post, using the slugs in `lib/blog-plan.ts`.
+- [ ] The 20 full drafts (`blog-drafts-batch-1.md` to `-4.md`) have not reached the build yet. When they arrive they replace the outline scaffolds, one MDX file per post, using the slugs in `lib/blog-plan.ts`.
+- [ ] Posts #21 (parking guide) and #22 (ClassPass vs membership) from the keyword research are scaffolded and queued as week 11. #21 needs the nearest Metro stop and walk confirmed; #22 needs ClassPass credit prices checked on the day it is written.
 - [ ] Publishing start date. Posts go out 2 per week in the order in `lib/blog-plan.ts` (question-format posts first). Each post's `publishDate` is set in its frontmatter.
 
 How the blog works (see the header comment in `lib/blog.ts` for the frontmatter fields):
 - A post is **published** once `draft: false` and its `publishDate` has arrived (midnight Pacific). Published posts are indexed, listed on `/blog` newest first, and included in `sitemap.xml` with lastmod.
 - A post with a future `publishDate` returns 404 and stays out of the index and sitemap until its date. Blog pages and the sitemap regenerate hourly, so posts go live on schedule without a redeploy.
-- Outline scaffolds (`draft: true`) show as "Coming soon" and are noindexed.
+- Outline scaffolds (`draft: true`) show as "Coming soon" and are noindexed. The keyword research asked to remove this, but these pages hold only a title and an outline: indexing them would put thin pages in Google under the studio's name. Each post becomes indexable automatically the moment it has real copy, `draft: false`, and a publish date.
 - Every published post has: one H1, a byline crediting Naira Sarkian, BlogPosting schema with Person author, `og:type=article`, a hero image slot (labeled placeholder until photos land), the intro-offer CTA, and up to 3 related posts by topic group.
 - The 8 question-format posts (`QUESTION_POSTS` in `lib/blog-plan.ts`) carry a `faqs` list in frontmatter, rendered before the CTA with FAQPage JSON-LD.
 - `/blog` paginates at 12 per page (`/blog/page/2`, ...).
@@ -117,6 +120,30 @@ How the blog works (see the header comment in `lib/blog.ts` for the frontmatter 
 - [ ] AI crawlers: `app/robots.ts` allows AI search and training crawlers by name. To stay in AI answers but opt out of training, set GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, and CCBot to disallow.
 - Analytics are opt-in: GA4 and the Meta Pixel load only after Accept, Global Privacy Control counts as a decline, and "Cookie settings" in the footer reopens the choice.
 - `/llms.txt` and `/llms-full.txt` are generated from the same data as the pages (`lib/llms.ts`), so they stay in sync.
+
+### Local SEO: owner actions (from the 2026-10-12 keyword research)
+
+Reviews (the biggest lever: the studio is #4 in the NoHo local pack at 4.7 from 27 reviews; the leaders have 166 to 200):
+- [ ] Goal: 100+ Google reviews. Ask in person after class when a client is happy.
+- [ ] Put a QR code at the front desk linking to https://share.google/iiwq2gBssUKulvsol (any free QR generator works; print it at least 2 inches wide).
+- [ ] Reply to every review within a few days. Thank positive reviewers by name; answer critical ones calmly and factually.
+- Never buy reviews and never review-gate (asking happy clients is fine; filtering who gets the link is not).
+- Update `GOOGLE_REVIEWS` in `lib/site.ts` as the count grows; the footer, the home testimonials section, and llms.txt read it.
+
+Citations (keep NAP identical everywhere: Bodies and Pilates, 5251 Vineland Ave, Suite 6, North Hollywood, CA 91601, 818-813-4446):
+- [ ] Tier 1: Google Business Profile, Yelp, Facebook, Apple Business Connect.
+- [ ] Tier 2 (fitness): Vagaro, WellnessLiving, FitReserve. ClassPass and Mindbody are done; keep the ClassPass profile current.
+- [ ] Tier 3: Bing Places, Foursquare, Yellow Pages, BBB, MapQuest, Nextdoor, Thumbtack.
+- [ ] Tier 4 (LA): Discover LA, Time Out LA, LA Weekly, the local chamber of commerce.
+
+Google Business Profile:
+- [ ] Primary category Pilates Studio; secondary Gym and Fitness Center.
+- [ ] Services: Group reformer classes, Private sessions, Duet sessions, Beginner classes.
+- [ ] Photos of the real studio, reformers, instructors, and classes in session. Weekly at first.
+- [ ] Weekly Google Posts: class highlights, the intro offer, instructor intros.
+- [ ] Seed Q&A with real questions (parking, grip socks, first-timer info) and answer them.
+- [ ] Turn on Reserve with Google in the Mindbody account so the profile shows a "Schedule" button.
+- [ ] Keep the real business name. Do not append keywords to the GBP name; it risks a suspension.
 
 ### Domain
 - [ ] Add both `www.bodiesandpilates.com` (primary) and `bodiesandpilates.com` to the Vercel project. The bare domain 301s to www via `next.config.mjs`.
@@ -141,12 +168,12 @@ How the blog works (see the header comment in `lib/blog.ts` for the frontmatter 
 - [ ] No invented facts
 - [ ] QA on real iOS and Android devices
 
-### Last measured (local production build, Lighthouse 12 mobile, placeholders in place)
+### Last measured (2026-10-12, local production build, Lighthouse 12 mobile, placeholders in place)
 
 | Page | Performance | Accessibility | Best practices | SEO | CLS |
 |------|-------------|---------------|----------------|-----|-----|
-| Home | 97 | 100 | 100 | 100 | 0 |
-| Pricing | 98 | 100 | 100 | 100 | 0 |
+| Home | 96 | 100 | 100 | 100 | 0 |
+| Pricing | 97 | 100 | 100 | 100 | 0 |
 | Classes | 97 | 100 | 100 | 100 | 0 |
 
 Real device QA has not been done yet.
@@ -187,6 +214,7 @@ npm run build && npm run start
 
 ## Decisions
 
+- **On-page SEO (2026-10-12 keyword research).** Titles, H1s, and meta descriptions follow the research doc, with three deliberate changes: `/classes` uses "Reformer Pilates Classes | Bodies and Pilates NoHo" (the doc's version is 61 characters, over its own 60 limit); the `/schedule` description says "mornings on weekends" instead of "sessions daily" because weekend hours are 9am to 12pm; the `/faq` description drops "class size" because the FAQ does not answer it yet. Areas We Serve lines give direction and main roads only, no drive times.
 - **Doorway pages removed.** The four `/locations/*` pages are consolidated into one "Neighborhoods we serve" section on `/about`, per the brief. `/instructors` merged into the About team section.
 - **Pricing is published in full.** Owner decision: every tier from the old live pricing page, including the $130 and $220 memberships. Transparent pricing with per-option booking links is a deliberate differentiator against competitors that publish none (e.g. KV Lagree).
 - **Reformer only.** Copy that mentioned mat classes is gone; every group class is described as small-group reformer Pilates. The Full Body page title changed from "Mat Pilates Classes" for the same reason.

@@ -1,4 +1,5 @@
 import { ADDRESS, BLOG_AUTHOR, CLASSPASS_URL, EMAIL, HOURS, INSTAGRAM, MAPS_URL, PHONE, SITE_NAME, SITE_URL } from "@/lib/site";
+import { AREA_SERVED_NAMES } from "@/lib/areas";
 import { COMMIT, FLEX, PRIVATE, TRY, offerHref, type Offer } from "@/lib/pricing";
 
 const offer = (o: Offer) => ({
@@ -53,7 +54,7 @@ export const exerciseGymSchema = {
   hasMap: MAPS_URL,
   priceRange: "$$",
   currenciesAccepted: "USD",
-  areaServed: ["North Hollywood", "Toluca Lake", "Valley Village", "Studio City", "Burbank"].map((name) => ({
+  areaServed: AREA_SERVED_NAMES.map((name) => ({
     "@type": "Place",
     name,
   })),

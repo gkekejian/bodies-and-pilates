@@ -13,12 +13,13 @@ import { pageMetadata } from "@/lib/metadata";
 import { PHOTOS } from "@/lib/photos";
 import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
 import { TRY } from "@/lib/pricing";
+import { SERVICE_AREAS } from "@/lib/areas";
 import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Pilates Studio in North Hollywood | Bodies and Pilates",
+  title: "Reformer Pilates in North Hollywood | Bodies and Pilates",
   description:
-    "Boutique reformer Pilates studio in North Hollywood. Small-group classes with real coaching on form. Your first class is $25. Book today.",
+    "Small-group reformer Pilates in North Hollywood. First class $25. Real coaching, beginner-friendly classes, transparent pricing. Call 818-813-4446.",
   path: "/",
 });
 
@@ -50,7 +51,7 @@ export default function HomePage() {
           <div className="lg:col-span-7">
             <p className={`${eyebrowClass} mb-6`}>North Hollywood &middot; Est. 2024</p>
             <h1 className="font-serif text-4xl leading-[1.08] text-charcoal-900 sm:text-5xl lg:text-6xl">
-              Boutique Reformer Pilates Studio in North Hollywood
+              Reformer Pilates in North Hollywood
             </h1>
             <p className="mt-7 max-w-xl font-sans text-lg leading-[1.65] text-charcoal-800/85 sm:text-xl">
               Small-group reformer classes, real coaching, and a calm space to get stronger. Your first class is $25.
@@ -88,6 +89,11 @@ export default function HomePage() {
               <OfferCard key={offer.id} offer={offer} highlight={i === 0} />
             ))}
           </div>
+          <div className="mt-8">
+            <CtaLink href="/intro-offer" variant="text">
+              What to expect at your first class
+            </CtaLink>
+          </div>
         </div>
       </section>
 
@@ -101,7 +107,7 @@ export default function HomePage() {
             <SectionHeading
               id="reformer-heading"
               eyebrow="The Method"
-              title="Reformer Pilates in North Hollywood"
+              title="Why reformer Pilates works here"
               intro={
                 <p>
                   Reformer Pilates is strength and mobility training on a spring-loaded machine called the reformer. The
@@ -142,9 +148,12 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-6">
             <CtaLink href="/classes" variant="outline">
               View all classes
+            </CtaLink>
+            <CtaLink href="/schedule" variant="text">
+              See this week&apos;s schedule
             </CtaLink>
           </div>
         </div>
@@ -220,10 +229,43 @@ export default function HomePage() {
       {/* 9. FAQ teaser */}
       <FaqTeaser />
 
-      {/* 10. Final CTA */}
+      {/* 10. Areas we serve */}
+      <section aria-labelledby="areas-heading" className="bg-cream-100 py-20 sm:py-28">
+        <div className={container}>
+          <SectionHeading
+            id="areas-heading"
+            eyebrow="Areas We Serve"
+            title="Reformer Pilates near you"
+            intro={
+              <p>
+                Our studio is on Vineland Ave in North Hollywood. Most clients come from North Hollywood and the
+                neighborhoods around it.
+              </p>
+            }
+          />
+          <ul className="grid gap-px border border-taupe-300/70 bg-taupe-300/70 sm:grid-cols-2 lg:grid-cols-4">
+            {SERVICE_AREAS.map((a) => (
+              <li key={a.name} className="bg-cream-100 p-6">
+                <h3 className="font-serif text-xl text-charcoal-900">{a.name}</h3>
+                <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-800/80">{a.line}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 flex flex-wrap items-center gap-6">
+            <CtaLink href="/contact" variant="outline">
+              Directions and parking
+            </CtaLink>
+            <CtaLink href="/about#neighborhoods" variant="text">
+              Routes from nearby neighborhoods
+            </CtaLink>
+          </div>
+        </div>
+      </section>
+
+      {/* 11. Final CTA */}
       <FinalCta />
 
-      {/* 11. Lead capture */}
+      {/* 12. Lead capture */}
       <LeadCapture source="home" />
     </>
   );

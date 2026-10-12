@@ -8,7 +8,7 @@ import { MINDBODY, PHONE } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Class Schedule | Bodies and Pilates North Hollywood",
   description:
-    "This week's reformer Pilates schedule in North Hollywood: class times and instructors. New here? Book your $25 first class online.",
+    "Book reformer Pilates classes in North Hollywood: morning and evening sessions on weekdays, mornings on weekends. Book right here, no app download needed.",
   path: "/schedule",
 });
 

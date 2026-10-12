@@ -1,5 +1,6 @@
 import { PhotoSlot } from "@/components/ui/photo-slot";
 import { CtaLink } from "@/components/ui/cta-link";
+import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { ClassFormatBlock } from "@/components/sections/class-format";
 import { FinalCta } from "@/components/sections/final-cta";
@@ -10,9 +11,9 @@ import { PHOTOS } from "@/lib/photos";
 import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Pilates Classes in North Hollywood | Bodies and Pilates",
+  title: "Reformer Pilates Classes | Bodies and Pilates NoHo",
   description:
-    "Small-group reformer Pilates classes in North Hollywood: Beginner, Full Body, Flexibility, and Private. See who each is for, then book your $25 first class.",
+    "Reformer Pilates classes in North Hollywood: Beginner, Full Body, Flexibility, Abs and Assets, plus privates and duets. Small groups, real coaching.",
   path: "/classes",
 });
 
@@ -30,7 +31,7 @@ export default function ClassesPage() {
 
       <PageHero
         eyebrow="Small-Group Reformer Pilates"
-        title="Pilates Classes in North Hollywood"
+        title="Reformer Pilates Classes"
         intro={
           <p>
             Every group class at Bodies and Pilates is small-group reformer Pilates, coached by an instructor who
@@ -89,6 +90,28 @@ export default function ClassesPage() {
           </div>
         </section>
       ))}
+
+      {/* Abs and Assets: on the live schedule, no owner description yet. */}
+      <section
+        aria-labelledby="abs-and-assets-heading"
+        className={CLASSES.length % 2 === 0 ? "bg-cream-100 py-20 sm:py-24" : "bg-cream-50 py-20 sm:py-24"}
+      >
+        <div className={container}>
+          <SectionHeading
+            id="abs-and-assets-heading"
+            eyebrow="Also on the schedule"
+            title="Abs and Assets"
+            intro={<p>A 50-minute small-group reformer class, now on the weekly schedule.</p>}
+          />
+          {/* TODO(owner): replace with a 1 to 2 sentence description, level, and who it is for. */}
+          <OwnerPlaceholder label="Abs and Assets description, level, and who it is for" />
+          <div className="mt-8">
+            <CtaLink href="/schedule" variant="text">
+              See Abs and Assets class times
+            </CtaLink>
+          </div>
+        </div>
+      </section>
 
       <FinalCta />
     </>

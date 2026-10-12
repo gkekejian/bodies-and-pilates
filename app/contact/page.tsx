@@ -9,7 +9,7 @@ import { PHOTOS } from "@/lib/photos";
 import { ADDRESS, EMAIL, INSTAGRAM, MAPS_EMBED_URL, MAPS_URL, PHONE } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Contact Bodies and Pilates | North Hollywood Pilates Studio",
+  title: "Contact | Bodies and Pilates North Hollywood",
   description:
     "Contact Bodies and Pilates at 5251 Vineland Ave, Suite 6, North Hollywood. Call or text 818-813-4446, or message us. First class $25.",
   path: "/contact",
@@ -30,7 +30,7 @@ export default function ContactPage() {
 
       <PageHero
         eyebrow="Contact"
-        title="Contact Us"
+        title="Visit Us in North Hollywood"
         intro={<p>Questions about classes, pricing, or your first visit? Call, text, or send a message.</p>}
       />
 

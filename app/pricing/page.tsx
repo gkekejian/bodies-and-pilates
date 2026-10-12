@@ -11,9 +11,9 @@ import { COMMIT, FLEX, POLICY, PRIVATE, TRY, offerHref } from "@/lib/pricing";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Pilates Class Pricing in North Hollywood | $25 First Class",
+  title: "Pilates Pricing & Memberships | Bodies and Pilates NoHo",
   description:
-    "Reformer Pilates pricing in North Hollywood: $25 first class, $105 intro week, packs from $36, memberships from $130/month. Start with the $25 first class.",
+    "Pilates pricing in North Hollywood: $25 first class, $36 single, packs from $160, memberships from $130/month. No hidden fees. See every option.",
   path: "/pricing",
 });
 
@@ -57,7 +57,7 @@ export default function PricingPage() {
 
       <PageHero
         eyebrow="Pricing · North Hollywood"
-        title="Reformer Pilates Pricing"
+        title="Pilates Pricing in North Hollywood"
         intro={
           <p>
             Three simple paths: try the studio, commit with a membership, or stay flexible with a class pack. Private
@@ -82,6 +82,12 @@ export default function PricingPage() {
               <OfferCard key={offer.id} offer={offer} highlight={i === 0} />
             ))}
           </div>
+          <p className="mt-8 font-sans text-sm leading-relaxed text-charcoal-800/80">
+            New to reformer Pilates?{" "}
+            <CtaLink href="/intro-offer" variant="text" className="ml-1">
+              See how the $25 first class works
+            </CtaLink>
+          </p>
         </div>
       </section>
 

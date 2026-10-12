@@ -19,6 +19,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
+      path="/privacy"
       updated={UPDATED}
       intro={
         <p>

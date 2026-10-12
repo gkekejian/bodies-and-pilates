@@ -6,9 +6,9 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { FAQS, faqPageSchema } from "@/lib/faqs";
 
 export const metadata = pageMetadata({
-  title: "Pilates FAQ | Bodies and Pilates North Hollywood",
+  title: "Pilates FAQs | Bodies and Pilates North Hollywood",
   description:
-    "Reformer Pilates questions answered: pricing, what to wear, parking in North Hollywood, ClassPass, and your first class. Your first class is $25.",
+    "New to reformer Pilates? Answers on pricing, what to wear, grip socks, parking, cancellations, and your first visit to our North Hollywood studio.",
   path: "/faq",
 });
 
@@ -25,7 +25,7 @@ export default function FaqPage() {
 
       <PageHero
         eyebrow="FAQ"
-        title="Frequently Asked Questions"
+        title="Pilates Questions, Answered"
         intro={
           <p>
             Everything to know before your first reformer Pilates class in North Hollywood, from pricing and parking

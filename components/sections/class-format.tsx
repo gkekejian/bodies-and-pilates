@@ -75,6 +75,11 @@ export function ClassFormatBlock({
 
         <div className="mt-9 flex flex-wrap items-center gap-6">
           <CtaLink href={cta.href}>{cta.label}</CtaLink>
+          {format.slug !== "private" && (
+            <CtaLink href="/schedule" variant="text">
+              See {format.name} class times
+            </CtaLink>
+          )}
           {detailLink && (
             <CtaLink href={`/classes/${format.slug}`} variant="text">
               More about {format.name}

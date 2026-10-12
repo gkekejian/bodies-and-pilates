@@ -1,5 +1,6 @@
 import { notFound, redirect } from 'next/navigation'
 import { pageMetadata } from '@/lib/metadata'
+import { breadcrumbSchema } from '@/lib/schema'
 import { BlogIndex, blogPageCount } from '@/components/sections/blog-index'
 
 export const revalidate = 3600
@@ -20,5 +21,15 @@ export default function BlogPaginatedPage({ params }: { params: { page: string }
   const page = Number(params.page)
   if (page === 1) redirect('/blog')
   if (!Number.isInteger(page) || page < 2 || page > blogPageCount()) notFound()
-  return <BlogIndex page={page} />
+  const breadcrumb = breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: `Page ${page}`, path: `/blog/page/${page}` },
+  ])
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <BlogIndex page={page} />
+    </>
+  )
 }

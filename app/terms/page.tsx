@@ -19,6 +19,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of Use"
+      path="/terms"
       updated={UPDATED}
       intro={<p>By using this website you agree to these terms. If you do not agree, please do not use the site.</p>}
     >
