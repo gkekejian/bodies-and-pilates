@@ -7,13 +7,13 @@ import { LeadCapture } from "@/components/sections/lead-capture";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/schema";
-import { COMMIT, FLEX, PRIVATE, TRY, offerHref } from "@/lib/pricing";
+import { COMMIT, FLEX, POLICY, PRIVATE, TRY, offerHref } from "@/lib/pricing";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Pilates Class Pricing in North Hollywood | $25 First Class",
   description:
-    "Reformer Pilates pricing in North Hollywood: $25 first class, $105 intro week, packs from $36, memberships from $170/month. Start with the $25 first class.",
+    "Reformer Pilates pricing in North Hollywood: $25 first class, $105 intro week, packs from $36, memberships from $130/month. Start with the $25 first class.",
   path: "/pricing",
 });
 
@@ -38,6 +38,16 @@ const firstClassOffer = {
 };
 
 const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
+
+function PolicyNotes({ lines }: { lines: string[] }) {
+  return (
+    <ul className="mt-8 space-y-1.5 font-sans text-sm text-charcoal-800/80">
+      {lines.map((line) => (
+        <li key={line}>{line}</li>
+      ))}
+    </ul>
+  );
+}
 
 export default function PricingPage() {
   return (
@@ -86,32 +96,18 @@ export default function PricingPage() {
             title="Memberships"
             intro={<p>Monthly auto-renew. The best value if Pilates is part of your week.</p>}
           />
-          <div className="grid gap-8 lg:grid-cols-12">
-            <div className="grid gap-8 pt-3 md:grid-cols-2 lg:col-span-8">
-              {COMMIT.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} />
-              ))}
-            </div>
-            <aside className="flex flex-col gap-5 lg:col-span-4 lg:pt-3">
-              <div className="rounded-sm border border-taupe-300/70 bg-cream-50 p-7">
-                <h3 className="font-serif text-xl text-charcoal-900">Pausing or canceling</h3>
-                {/*
-                  TODO(owner): confirm the exact membership pause and cancel
-                  terms (notice period, how to request, any fees) and replace
-                  this placeholder with plain-language text.
-                */}
-                <OwnerPlaceholder label="membership pause and cancel terms" className="mt-4">
-                  Owner to confirm the exact terms, written in plain language.
-                </OwnerPlaceholder>
-              </div>
-              <p className="font-sans text-sm leading-relaxed text-charcoal-800/80">
-                Not sure yet?{" "}
-                <CtaLink href={offerHref(firstClass)} variant="text" className="ml-1">
-                  {START_CTA}
-                </CtaLink>
-              </p>
-            </aside>
+          <div className="grid gap-8 pt-3 sm:grid-cols-2">
+            {COMMIT.map((offer) => (
+              <OfferCard key={offer.id} offer={offer} />
+            ))}
           </div>
+          <PolicyNotes lines={[POLICY.membership, POLICY.cancellation]} />
+          <p className="mt-6 font-sans text-sm leading-relaxed text-charcoal-800/80">
+            Not sure yet?{" "}
+            <CtaLink href={offerHref(firstClass)} variant="text" className="ml-1">
+              {START_CTA}
+            </CtaLink>
+          </p>
         </div>
       </section>
 
@@ -129,12 +125,13 @@ export default function PricingPage() {
               <OfferCard key={offer.id} offer={offer} />
             ))}
           </div>
+          <PolicyNotes lines={[POLICY.cancellation]} />
           {/*
             TODO(owner): confirm how long packs last after purchase and replace
             this placeholder with one plain sentence (e.g. "Packs expire N
             months after purchase.").
           */}
-          <OwnerPlaceholder label="class pack expiry" className="mt-8 max-w-xl">
+          <OwnerPlaceholder label="class pack expiry" className="mt-6 max-w-xl">
             Owner to confirm how long each pack is valid after purchase.
           </OwnerPlaceholder>
         </div>

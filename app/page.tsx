@@ -198,7 +198,7 @@ export default function HomePage() {
           <div className="grid gap-px border border-taupe-300/70 bg-taupe-300/70 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { label: "Try", price: "$25", note: "First class. Or $105 for a week unlimited." },
-              { label: "Commit", price: "$170/mo", note: "8 classes a month, our most popular plan. Unlimited $280." },
+              { label: "Commit", price: "$130/mo", note: "5, 8, or 12 classes a month, or unlimited for $280. 8 classes is our most popular plan." },
               { label: "Flex", price: "$36", note: "Single class. Packs of 5 for $160 or 10 for $300." },
               { label: "Private", price: "$100", note: "55-minute 1:1 session. Duets $70 per person." },
             ].map((tier) => (

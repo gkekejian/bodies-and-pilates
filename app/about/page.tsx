@@ -76,6 +76,11 @@ function InstructorCard({ person }: { person: Instructor }) {
           <h3 className="font-serif text-2xl text-charcoal-900">{person.name}</h3>
           <p className="mt-1 font-sans text-sm text-sage-700">{person.role}</p>
         </div>
+        {person.origin ? (
+          <p className="font-sans text-sm leading-relaxed text-charcoal-800/85">{person.origin}</p>
+        ) : (
+          <OwnerPlaceholder label="origin story (2 to 3 sentences)" />
+        )}
         <dl className="space-y-4">
           <Field title="Credentials" value={person.credentials} pending="credentials" />
           <Field title="Specialties" value={person.specialties} pending="specialties" />

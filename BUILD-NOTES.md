@@ -41,7 +41,7 @@ grep -rn "TODO(owner)" app components lib content
 | Every "Book Your $25 First Class" button (header, mobile bar, CTAs, $25 card) | $25 First Class: `...classic/ws?studioid=5739427&stype=43&prodid=100010` | same |
 | $105 One-Week Unlimited | `...stype=43&prodid=100014` | same |
 | Single Class $36 / 5-Pack $160 / 10-Pack $300 | `...stype=43&prodid=100003` / `100004` / `100005` | same |
-| 8 Classes/Month $170 / Unlimited $280 | `...stype=40&prodid=102` / `101` | same |
+| 5 / 8 / 12 Classes per Month ($130 / $170 / $220), Unlimited $280 | `...stype=40&prodid=100` / `102` / `103` / `101` | same |
 | Private $100 / Duet $70 per person | `...stype=43&prodid=100011` / `100016` | same |
 | `/schedule` | MindBody Schedules widget `8550823b9a6`, with "Book on MindBody" and call/text as secondary lines | same |
 | "Book on MindBody" (schedule page, footer) | https://go.mindbodyonline.com/book/app/classes/5739427 | same |
@@ -53,8 +53,8 @@ grep -rn "TODO(owner)" app components lib content
 Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/classic/ws?studioid=5739427&...`) taken from the live site's "Book Now" buttons; they are set in `lib/pricing.ts`. If the owner later provides go.mindbodyonline.com Marketing Links equivalents, swap them in there. The general pricing page (`MINDBODY.pricingUrl`) is now only a fallback. All other MindBody values live in `MINDBODY` in `lib/site.ts`. Spare HealCode registrations widgets `85150676b9a6` and `85151183b9a6` are recorded there but not used; the owner has not said which is which.
 
 ### Policies and terms
-- [ ] Late-cancel and no-show policy text (`lib/faqs.ts`, id `cancellation`).
-- [ ] Membership pause and cancel terms (`lib/faqs.ts`, id `pause-cancel`, and the placeholder on `/pricing`).
+- [x] Late-cancel and no-show policy (owner-confirmed): FAQ `cancellation` and the line under memberships and packs on `/pricing`.
+- [x] Membership pause and cancel terms (owner-confirmed): FAQ `pause-cancel` and the line under memberships on `/pricing`.
 - [ ] Class pack expiry (placeholder on `/pricing`).
 
 ### Facts to confirm
@@ -66,12 +66,13 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 
 ### Team (`lib/team.ts`)
 - [ ] Confirm every name, credential, and specialty is current.
-- [ ] Naira: credentials, specialties, one-line philosophy.
+- [ ] Naira: credentials, specialties, one-line philosophy, and a 2 to 3 sentence origin story (how she found Pilates, why she founded the studio).
 - [ ] Hannah, Marlyn, Enrika, Sita: one-line philosophy each.
+- [ ] Confirm each carried-over origin story and fill the gaps marked in `lib/team.ts` (how they found Pilates, why they teach).
 - [ ] If this cannot be complete before launch, set `SHOW_TEAM = false`. Never launch it half-empty.
 
 ### Testimonials (`lib/testimonials.ts`)
-- [ ] First name and neighborhood for each quote, with the client's permission. Optional portrait (slot 10).
+- [ ] The owner's real-review testimonial block (Sasha, Penny, Jason) has not reached the build yet. Paste it in and it replaces the three placeholder-attributed quotes. Neighborhood for each is still needed. Optional portrait (slot 10).
 
 ### Photography (`lib/photos.ts`)
 All stock photography has been removed. Drop files into `public/photos/` and set `src` on each slot.
@@ -97,7 +98,7 @@ All stock photography has been removed. Drop files into `public/photos/` and set
 Until set, both forms return an honest "could not send" message with the phone number. Nothing is faked.
 
 ### Blog (`content/blog/`)
-- [ ] Ten scaffolded posts, each with a title, description, and outline. Write the copy under the frontmatter, set `draft: false` and a `publishDate`. Drafts are noindexed and kept out of the sitemap.
+- [ ] Eleven scaffolded posts (including "Lagree vs Reformer Pilates"), each with a title, description, and outline. Write the copy under the frontmatter, set `draft: false` and a `publishDate`. Drafts are noindexed and kept out of the sitemap.
 
 ### Domain
 - [ ] Add both `www.bodiesandpilates.com` (primary) and `bodiesandpilates.com` to the Vercel project. The bare domain 301s to www via `next.config.mjs`.
@@ -107,7 +108,7 @@ Until set, both forms return an honest "could not send" message with the phone n
 ## Launch checklist
 
 - [ ] MindBody widget live with the real timetable (class names, times, instructors)
-- [ ] Full pricing visible, retired $130 and $220 tiers absent
+- [ ] Full pricing visible: all 11 options, exactly as on the old live pricing page
 - [ ] No stock photos anywhere (all slots filled, or explicitly deferred by the owner)
 - [ ] Team section complete, or hidden with `SHOW_TEAM = false`
 - [ ] All `TODO(owner)` items resolved or explicitly deferred by the owner
@@ -169,6 +170,7 @@ npm run build && npm run start
 ## Decisions
 
 - **Doorway pages removed.** The four `/locations/*` pages are consolidated into one "Neighborhoods we serve" section on `/about`, per the brief. `/instructors` merged into the About team section.
+- **Pricing is published in full.** Owner decision: every tier from the old live pricing page, including the $130 and $220 memberships. Transparent pricing with per-option booking links is a deliberate differentiator against competitors that publish none (e.g. KV Lagree).
 - **Reformer only.** Copy that mentioned mat classes is gone; every group class is described as small-group reformer Pilates. The Full Body page title changed from "Mat Pilates Classes" for the same reason.
 - **Booking map.** See the table under Owner TODO list. MindBody links open in the same tab; ClassPass, Google, Instagram, and the Mindbody app link open in a new tab. Facebook is not linked.
 - **FAQ uses native `<details>`.** No JavaScript, and every answer is in the HTML so it matches the FAQPage schema.

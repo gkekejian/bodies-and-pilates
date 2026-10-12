@@ -37,7 +37,23 @@ export default function SchedulePage() {
 
       <section className="bg-cream-50 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          {/* First-timer strip, directly above the widget. */}
+          <aside
+            aria-label="New here?"
+            className="mb-8 border-l-2 border-sage-500 bg-cream-100 px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
+          >
+            <p>
+              <span className="font-medium text-charcoal-900">New here?</span> Arrive 10 minutes early to meet your
+              instructor and get set up on the reformer.
+            </p>
+            <p>Grip socks are required and sold at the front desk.</p>
+            <p>Wear form-fitting clothes you can move in.</p>
+          </aside>
+
           {/* Primary path: the live MindBody timetable. */}
+          <p className="mb-4 font-sans text-xs uppercase tracking-[0.2em] text-sage-700">
+            Book right here, no app download needed.
+          </p>
           <MindbodyScheduleWidget widgetId={MINDBODY.scheduleWidgetId} />
 
           {/* Secondary: direct MindBody link, phone, hours. */}

@@ -17,7 +17,7 @@ export const FAQS: Faq[] = [
     id: "cost",
     question: "How much does Pilates cost in North Hollywood?",
     answer:
-      "Your first class is $25 and a one-week unlimited intro is $105. After that: single class $36, 5-pack $160, 10-pack $300. Memberships are $170/month for 8 classes or $280/month unlimited. Private sessions are $100.",
+      "Your first class is $25 and a one-week unlimited intro is $105. After that: single class $36, 5-pack $160, 10-pack $300. Memberships run from $130/month for 5 classes to $280/month unlimited. Private sessions are $100.",
   },
   {
     id: "what-is-reformer",
@@ -58,12 +58,8 @@ export const FAQS: Faq[] = [
   {
     id: "cancellation",
     question: "What is your cancellation policy?",
-    // TODO(owner): confirm the exact late-cancel and no-show terms and paste
-    // the final text here. For reference only (do not publish unconfirmed),
-    // the old site said: 12-hour cancellation window, late cancels forfeit the
-    // class, no-shows are charged a $35 fee.
-    answer: null,
-    pending: "Owner to provide the confirmed late-cancel and no-show policy text.",
+    answer:
+      "Cancel 12 or more hours before class for no charge. Cancel within 12 hours and the class credit is forfeited. No-shows are charged $15.",
   },
   {
     id: "parking",
@@ -74,10 +70,7 @@ export const FAQS: Faq[] = [
   {
     id: "pause-cancel",
     question: "Can I pause or cancel my membership?",
-    // TODO(owner): confirm the exact membership pause and cancellation terms
-    // (notice period, how to request, any fees) and paste the text here.
-    answer: null,
-    pending: "Owner to provide the confirmed membership pause and cancellation terms.",
+    answer: "Yes. Pause anytime, and turn off your renewal anytime with 7 days notice. No fees.",
   },
   {
     id: "private",
@@ -96,6 +89,12 @@ export const FAQS: Faq[] = [
     question: "How is Bodies and Pilates different from Club Pilates?",
     answer:
       "We are an independent boutique studio: small classes, one consistent coaching team, no franchise script. You get to know your instructor, and they get to know your body.",
+  },
+  {
+    id: "lagree",
+    question: "What is the difference between Lagree and reformer Pilates?",
+    answer:
+      "Lagree is a 45-minute high-intensity muscular-endurance workout on the Megaformer. Reformer Pilates is controlled strength, mobility, and flexibility work on the reformer, with more emphasis on form, posture, and back-friendly movement. Both are low-impact. Pilates is the better starting point if you are new, returning from injury, or want flexibility alongside strength.",
   },
   {
     id: "men",
