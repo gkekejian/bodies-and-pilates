@@ -73,6 +73,14 @@ export const FAQS: Faq[] = [
     answer: "Yes. Pause anytime, and turn off your renewal anytime with 7 days' notice. No fees.",
   },
   {
+    // Old-site Search Console showed "mat pilates near me" impressions. Answer
+    // honestly rather than chase mat terms the studio does not offer.
+    id: "mat",
+    question: "Do you offer mat Pilates?",
+    answer:
+      "Every group class at Bodies and Pilates is taught on the reformer. Mat Pilates uses your body weight on the floor; the reformer adds springs, so each exercise can be made more supportive or more challenging. New to the reformer? Start with a Beginner class or the $25 first class.",
+  },
+  {
     id: "private",
     question: "Do you offer private sessions?",
     answer:

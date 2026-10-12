@@ -19,6 +19,7 @@
 | Testimonials | `lib/testimonials.ts` |
 | Photo and video slots | `lib/photos.ts` |
 | ExerciseGym JSON-LD | `lib/schema.ts` (rendered in `app/layout.tsx`) |
+| Search Console baseline (old site, pre-launch) and post-launch targets | `docs/search-console-baseline-2026-10-12.md` |
 | Neighborhoods served (home "Areas We Serve", schema `areaServed`, llms.txt) | `lib/areas.ts` |
 | Per-page title, description, canonical, Open Graph | `lib/metadata.ts` + each page's `metadata` |
 | Form forwarding (lead capture, contact) | `lib/forms.ts`, `app/api/lead`, `app/api/contact` |
@@ -62,6 +63,7 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 - [ ] Geo coordinates for schema (`lib/schema.ts`).
 - [ ] Difficulty level, "who it is for", and 50-minute length per class (`lib/classes.ts`).
 - [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx` and the 8 lines in `lib/areas.ts`).
+- [ ] Do you sell grip socks at the studio? Search Console shows grip-sock searches; if yes, add a line to the "What should I wear?" FAQ.
 - [ ] Abs and Assets: 1 to 2 sentence description, level, and who it is for (placeholder on `/classes`).
 - [ ] Studio story copy in your own words (`app/about/page.tsx`).
 - [ ] Optional: maximum class size, the strongest proof point (`app/page.tsx`).
@@ -176,6 +178,7 @@ Google Business Profile:
 - [ ] No em dashes in copy
 - [ ] No invented facts
 - [ ] QA on real iOS and Android devices
+- [ ] After launch: follow `docs/search-console-baseline-2026-10-12.md` (submit the sitemap, request indexing, update the Google Business Profile website link, compare 28 days against the baseline)
 
 ### Last measured (2026-10-12, local production build, Lighthouse 12 mobile, placeholders in place)
 
