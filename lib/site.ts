@@ -76,6 +76,18 @@ export const googleReviewsHref = () => GOOGLE_REVIEWS.profileUrl ?? MAPS_URL;
 export const CLASSPASS_URL = "https://classpass.com/studios/bodies-and-pilates-los-angeles";
 
 /**
+ * ClassPass rating, verified on the studio's ClassPass page October 12, 2026.
+ * Shown as visible text only. Never emit it as aggregateRating schema: these
+ * are third-party ratings, not reviews collected on this site.
+ */
+export const CLASSPASS_RATING = {
+  rating: "4.9",
+  ratings: "7,500+",
+  reviews: 422,
+  verified: "2026-10-12",
+} as const;
+
+/**
  * MindBody (site ID 5739427). Owner-supplied links and widgets.
  * Same-tab links: classes and pricing. New tab: the app smart link.
  */

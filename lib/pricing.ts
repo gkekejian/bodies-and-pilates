@@ -149,3 +149,65 @@ export const POLICY = {
   cancellation: "Cancel 12+ hours ahead: no charge. Late cancel: credit forfeited. No-show: $15.",
   membership: "Pause anytime. Cancel with 7 days' notice. No fees.",
 } as const;
+
+/**
+ * Every price surface (cards, the /pricing table, the Home teaser) reads from
+ * the arrays above. The table walks these groups in order.
+ */
+export const PRICE_GROUPS: { type: string; offers: Offer[] }[] = [
+  { type: "Intro (first-timers)", offers: TRY },
+  { type: "Membership", offers: COMMIT },
+  { type: "Class pack", offers: FLEX },
+  { type: "Private training", offers: PRIVATE },
+];
+
+const ALL_OFFERS = PRICE_GROUPS.flatMap((g) => g.offers);
+
+/** Price string for an offer id, e.g. priceOf("pack-5") === "$160". */
+export const priceOf = (id: string) => {
+  const offer = ALL_OFFERS.find((o) => o.id === id);
+  if (!offer) throw new Error(`Unknown offer id: ${id}`);
+  return offer.price;
+};
+
+/**
+ * The owner's locked menu (October 12, 2026). The build fails if the arrays
+ * above drift from it: a changed price, an extra or missing offer (private
+ * packs are not sold), or "/month" on anything other than a membership.
+ * To change a price, the owner confirms it and both places are updated.
+ */
+const LOCKED_MENU: Record<string, string> = {
+  "first-class": "$25",
+  "intro-week": "$105",
+  single: "$36",
+  "pack-5": "$160",
+  "pack-10": "$300",
+  "membership-5": "$130",
+  "membership-8": "$170",
+  "membership-12": "$220",
+  "membership-unlimited": "$280",
+  duet: "$70",
+  private: "$100",
+};
+
+function assertLockedMenu() {
+  const ids = ALL_OFFERS.map((o) => o.id);
+  const expected = Object.keys(LOCKED_MENU);
+  const extra = ids.filter((id) => !(id in LOCKED_MENU));
+  const missing = expected.filter((id) => !ids.includes(id));
+  if (extra.length || missing.length) {
+    throw new Error(`Pricing drift. Not on the menu: [${extra.join(", ")}]. Missing: [${missing.join(", ")}].`);
+  }
+  for (const o of ALL_OFFERS) {
+    if (o.price !== LOCKED_MENU[o.id]) throw new Error(`Pricing drift: ${o.id} is ${o.price}, menu says ${LOCKED_MENU[o.id]}.`);
+    const isMembership = COMMIT.includes(o);
+    if (isMembership !== (o.unit === "/month")) {
+      throw new Error(`"/month" belongs on the four memberships only (check ${o.id}).`);
+    }
+  }
+  if (COMMIT.filter((o) => o.badge).map((o) => o.id).join() !== "membership-8") {
+    throw new Error("Most Popular badge belongs on the 8-class membership only.");
+  }
+}
+
+assertLockedMenu();

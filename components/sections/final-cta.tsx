@@ -12,8 +12,10 @@ export function FinalCta({
   cta?: string;
   href?: string;
 }) {
+  // Top padding is 8px shy of the bottom to offset the headline's half-leading,
+  // so the visible content (cap height to button edge) sits optically centered.
   return (
-    <section aria-labelledby="final-cta-heading" className="bg-cream-200 py-24 sm:py-32">
+    <section aria-labelledby="final-cta-heading" className="bg-cream-200 pb-24 pt-[5.5rem] sm:pb-32 sm:pt-[7.5rem]">
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <h2 id="final-cta-heading" className="font-serif text-4xl leading-[1.1] text-charcoal-900 sm:text-5xl lg:text-6xl">
           {title}

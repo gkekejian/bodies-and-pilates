@@ -7,7 +7,7 @@ import { LeadCapture } from "@/components/sections/lead-capture";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { COMMIT, FLEX, POLICY, PRIVATE, TRY, offerHref } from "@/lib/pricing";
+import { COMMIT, FLEX, POLICY, PRICE_GROUPS, PRIVATE, TRY, offerHref } from "@/lib/pricing";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = pageMetadata({
@@ -173,12 +173,7 @@ export default function PricingPage() {
                 </tr>
               </thead>
               <tbody>
-                {[
-                  { type: "Intro (first-timers)", offers: TRY },
-                  { type: "Membership", offers: COMMIT },
-                  { type: "Class pack", offers: FLEX },
-                  { type: "Private training", offers: PRIVATE },
-                ].flatMap(({ type, offers }) =>
+                {PRICE_GROUPS.flatMap(({ type, offers }) =>
                   offers.map((o) => (
                     <tr key={o.id} className="border-b border-taupe-300/60">
                       <th scope="row" className="py-3 pr-4 font-medium text-charcoal-900">

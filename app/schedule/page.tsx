@@ -57,7 +57,7 @@ export default function SchedulePage() {
           <MindbodyScheduleWidget widgetId={MINDBODY.scheduleWidgetId} />
 
           {/* Secondary: direct MindBody link, phone, hours. */}
-          <div className="mt-12 grid gap-10 border-t border-taupe-300/70 pt-10 lg:grid-cols-2">
+          <div className="mt-8 grid gap-10 border-t border-taupe-300/70 pt-8 sm:mt-10 sm:pt-10 lg:grid-cols-2">
             <div className="space-y-3 font-sans text-base text-charcoal-800/85">
               <p>
                 <a href={MINDBODY.classesUrl} className={link}>

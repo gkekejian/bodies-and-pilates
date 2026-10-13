@@ -1,35 +1,59 @@
-
 /**
- * Client testimonials. Quotes are real reviews from the existing site.
+ * Client testimonials, owner-supplied October 12, 2026.
  *
- * TODO(owner): for each quote, provide the client's first name and
- * neighborhood (with their permission).
- * No anonymous "Studio Guest" attributions. Until both fields are set the
- * quote shows without an attribution line.
+ * Excerpts are verbatim and attributions are exactly as provided. The
+ * ClassPass reviews are public reviews on the studio's ClassPass page. Do not
+ * edit a quote; replace it with another real review instead.
+ *
+ * Visible content only: no aggregateRating or Review schema is built from
+ * these or from the ClassPass rating.
  */
 
 export interface Testimonial {
+  id: string;
   quote: string;
-  firstName: string | null;
-  neighborhood: string | null;
+  attribution: string;
 }
 
-export const TESTIMONIALS: Testimonial[] = [
+const CLIENT_REVIEW: Testimonial = {
+  id: "client-naira",
+  quote:
+    "Naira is a 10 out of 10. She is a genuine instructor. She is friendly and really cares about everyone in the class. I felt like I got my money's worth.",
+  attribution: "Client review",
+};
+
+const CLASSPASS_REVIEWS: Testimonial[] = [
   {
+    id: "sasha",
     quote:
-      "Naira is a 10 out of 10. She is a genuine instructor. She is friendly and really cares about everyone in the class. She has a lovely presence. I felt like I got my money's worth. I was very impressed and I look forward to taking another class there.",
-    firstName: null,
-    neighborhood: null,
+      "Such a great workout! Definitely a hard class but totally worth it. The instructor was so kind and came around helping to fix form. Since it's a small studio, you get personalized attention.",
+    attribution: "Sasha, via ClassPass",
   },
   {
+    id: "penny",
     quote:
-      "Naira is very charming and kind but works us to a sweat, while being accommodating to our particular circumstances. I really enjoy her sessions.",
-    firstName: null,
-    neighborhood: null,
+      "Absolutely phenomenal class. I have never felt more worked in a flexibility class, and I loved it. She brings something new every time.",
+    attribution: "Penny, via ClassPass",
   },
   {
-    quote: "I LOVE her classes! She has the best energy, it's calm and yet the sessions are very challenging.",
-    firstName: null,
-    neighborhood: null,
+    id: "lori",
+    quote: "This class is very challenging but the teacher is great. She's patient and knowledgeable and really instructive.",
+    attribution: "Lori, via ClassPass",
+  },
+  {
+    id: "jason",
+    quote: "The best ever. She helps with men learning and really pushes you to your limits.",
+    attribution: "Jason, via ClassPass",
+  },
+  {
+    id: "taylor",
+    quote: "Best instructor. The flow is sooo good. I love this studio!!",
+    attribution: "Taylor, via ClassPass",
   },
 ];
+
+/** Home: three cards. */
+export const HOME_TESTIMONIALS: Testimonial[] = CLASSPASS_REVIEWS.slice(0, 3);
+
+/** About: all six, the client review first. */
+export const ABOUT_TESTIMONIALS: Testimonial[] = [CLIENT_REVIEW, ...CLASSPASS_REVIEWS];

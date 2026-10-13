@@ -25,8 +25,10 @@ export function MindbodyScheduleWidget({ widgetId }: { widgetId: string }) {
   }, []);
 
   return (
-    // min-height reserves space while the widget loads, to limit layout shift.
-    <div className="min-h-[480px]">
+    // min-height reserves space while the widget loads, to limit layout shift,
+    // and is released once the widget has rendered so its card ends where the
+    // timetable ends instead of leaving dead space below it.
+    <div className="min-h-[480px] has-[.mindbody-widget>*]:min-h-0">
       <div className="mindbody-widget" data-widget-type="Schedules" data-widget-id={widgetId} />
     </div>
   );

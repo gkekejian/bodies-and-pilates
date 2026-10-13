@@ -12,11 +12,13 @@
 | What | File |
 |------|------|
 | Business facts (phone, address, hours, email, Instagram, Google rating, booking link) | `lib/site.ts` |
-| Price menu and per-offer MindBody links | `lib/pricing.ts` |
+| Price menu and per-offer MindBody links (single source for cards, table, Home teaser; build fails on drift from the locked menu) | `lib/pricing.ts` |
 | FAQ content (also generates FAQPage schema) | `lib/faqs.ts` |
 | Class formats (copy for /classes and /classes/[slug]) | `lib/classes.ts` |
 | Instructor cards (four at launch) | `lib/team.ts` |
-| Testimonials | `lib/testimonials.ts` |
+| Testimonials (verbatim, Home shows 3, About shows 6) | `lib/testimonials.ts` |
+| ClassPass rating band (Home, About) | `CLASSPASS_RATING` in `lib/site.ts`, `components/sections/classpass-rating.tsx` |
+| Logo files and icons | `public/images/bodies-and-pilates-logo-round.png` (sage), `-round-light.png` (cream, footer), `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png` (`scripts/make_icons.py`) |
 | Photos and video (alt text, placement keys) | `lib/media.ts`, `lib/media-manifest.json`, `scripts/import_media.py`, `scripts/media-sources.json` |
 | ExerciseGym JSON-LD | `lib/schema.ts` (rendered in `app/layout.tsx`) |
 | Search Console baseline (old site, pre-launch) and post-launch targets | `docs/search-console-baseline-2026-10-12.md` |
@@ -82,8 +84,10 @@ Owner-confirmed October 12, 2026: four instructors at launch, each with an owner
 - [ ] Abs and Assets: a 1 to 2 sentence description, level, and who it is for (its block on /classes shows the class and its photos without one).
 - If the section cannot be complete before launch, set `SHOW_TEAM = false`.
 
-### Testimonials (`lib/testimonials.ts`)
-- [ ] The owner's real-review testimonial block (Sasha, Penny, Jason) has not reached the build yet. Paste it in to replace the three current quotes, which show without attribution until a first name and neighborhood (with permission) are set.
+### Testimonials and ClassPass rating
+- [x] Six owner-supplied reviews (2026-10-13), verbatim, attribution exactly as given: Sasha, Penny, Lori, Jason, Taylor "via ClassPass", plus one "Client review". Home shows Sasha, Penny, Lori. About shows all six, the client review first, right after the founder block.
+- [x] ClassPass band on Home (under the studio strip) and About: "Rated 4.9 on ClassPass", "7,500+ ratings · 422 reviews", link to the ClassPass page. Verified October 12, 2026. Update `CLASSPASS_RATING` in `lib/site.ts` when the numbers move.
+- No aggregateRating or Review schema is built from ClassPass data or these quotes. Visible text only (and a plain text line in llms.txt).
 
 ### Photography and video (`lib/media.ts`)
 The owner selected 47 files (46 selects plus Naira's third photo) on October 12, 2026. Real studio photography only: no stock, no AI imagery, no placeholders. A slot whose file is not imported renders nothing.
@@ -255,4 +259,6 @@ npm run build && npm run start
 - **Next.js 14.2 to 15.5 (2026-10-12 audit).** 14.2.35 is the last 14.x release and carries unpatched advisories, including remote code execution in the image optimizer. Dynamic route `params` are now awaited. Unused packages removed: the shadcn CLI, Embla carousel, Behold (Instagram), and the MDX loader (blog posts render through next-mdx-remote). The unused Google Places `/api/reviews` route was deleted.
 - **framer-motion removed.** Animations were delaying the hero text (LCP). The site now ships no animation library.
 - **Hours.** Owner-confirmed hours only. Friday is 7am to 8pm (the old site said 7:30 to 11:30).
+- **Logo (2026-10-13).** The owner's official round logo files are used exactly as supplied: sage artwork (`bodies-and-pilates-logo-round.png`) in the header and mobile menu, cream artwork (`-round-light.png`) on the charcoal footer. Rendered at a fixed height with width auto, so the circle is never stretched or cropped, and with no "Bodies and Pilates" wordmark beside it. The favicon (16 to 64 px), `icon.png` (512), and `apple-icon.png` (180) are the same file scaled uniformly onto a cream tile by `scripts/make_icons.py`; rerun it if the logo file changes. The old SVG recreation and the generated "B&P" apple icon are deleted. The supplied files are transparent PNGs; neither has a solid background square.
+- **Pricing guard.** `lib/pricing.ts` checks itself at build time against the owner's locked menu ($25, $105, $36, $160, $300, $130/$170/$220/$280 per month, duet $70 per person, private $100 per 55 minutes). A changed price, an extra offer (private packs are not sold), "/month" on a non-membership, or a second Most Popular badge fails the build.
 - **Phone.** 818-813-4446 everywhere. The owner's mobile does not appear on the site or in schema.

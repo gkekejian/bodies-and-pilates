@@ -45,7 +45,7 @@ export const exerciseGymSchema = {
   telephone: PHONE.schema,
   email: EMAIL,
   url: `${SITE_URL}/`,
-  logo: `${SITE_URL}/images/logo.svg`,
+  logo: `${SITE_URL}/images/bodies-and-pilates-logo-round.png`,
   image: `${SITE_URL}/opengraph-image`,
   description:
     "Independent boutique reformer Pilates studio in North Hollywood. Small-group reformer classes with coaching on form, plus private sessions. First class $25.",

@@ -19,20 +19,25 @@ export const CLASS_MEDIA: Record<string, (Media | null)[]> = {
 
 export const hasClassMedia = (key: string) => present(CLASS_MEDIA[key] ?? []).length > 0;
 
-/** One full-height item, or two side by side. Renders nothing when empty. */
+/**
+ * One item, or two side by side. On large screens the column stretches to the
+ * height of the text beside it and the media fills it (object-cover), so no
+ * class block is left with an empty band under its photo. Renders nothing
+ * when empty.
+ */
 export function ClassMedia({ mediaKey, className }: { mediaKey: string; className?: string }) {
   const items = present(CLASS_MEDIA[mediaKey] ?? []);
   if (items.length === 0) return null;
   // Only the first clip in a group plays on its own; any second clip waits for a tap.
   const firstClip = items.findIndex((m) => m.kind === "video");
   return (
-    <div className={cn("grid gap-4", items.length > 1 && "grid-cols-2", className)}>
+    <div className={cn("grid gap-4 lg:h-full", items.length > 1 && "grid-cols-2", className)}>
       {items.map((m, i) => (
         <MediaItem
           key={m.file}
           media={m}
           autoPlay={i === firstClip}
-          aspectClassName={items.length > 1 ? "aspect-[3/4]" : "aspect-[4/5]"}
+          aspectClassName={cn(items.length > 1 ? "aspect-[3/4]" : "aspect-[4/5]", "lg:aspect-auto lg:h-full lg:min-h-[28rem]")}
           sizes={items.length > 1 ? "(max-width: 1024px) 50vw, 20vw" : "(max-width: 1024px) 100vw, 40vw"}
         />
       ))}

@@ -60,9 +60,16 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* NAP */}
           <div className="flex flex-col gap-5">
-            <Link href="/" className="inline-flex items-center gap-3 transition-opacity hover:opacity-80" aria-label="Bodies and Pilates, home">
-              <Image src="/images/logo.svg" alt="" width={48} height={48} className="h-12 w-12 opacity-90 brightness-0 invert" />
-              <span className="font-serif text-xl text-cream-50">{SITE_NAME}</span>
+            <Link href="/" className="inline-flex w-fit transition-opacity hover:opacity-80" aria-label="Bodies and Pilates, home">
+              {/* Official round logo, light version for the charcoal footer. */}
+              <Image
+                src="/images/bodies-and-pilates-logo-round-light.png"
+                alt="Bodies and Pilates logo"
+                width={1342}
+                height={1376}
+                sizes="88px"
+                className="h-20 w-auto object-contain"
+              />
             </Link>
             <address className="not-italic">
               <ul className="flex flex-col gap-2 font-sans text-sm">

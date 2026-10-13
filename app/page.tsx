@@ -5,6 +5,7 @@ import { SectionHeading, eyebrowClass } from "@/components/sections/section-head
 import { OfferCard } from "@/components/sections/offer-card";
 import { ClassPassStrip } from "@/components/sections/classpass-strip";
 import { Testimonials } from "@/components/sections/testimonials";
+import { ClassPassRating } from "@/components/sections/classpass-rating";
 import { FaqTeaser } from "@/components/sections/faq-teaser";
 import { FinalCta } from "@/components/sections/final-cta";
 import { LeadCapture, GUIDE_TITLE } from "@/components/sections/lead-capture";
@@ -12,7 +13,7 @@ import { LeadCaptureForm } from "@/components/sections/lead-capture-form";
 import { pageMetadata } from "@/lib/metadata";
 import { MEDIA, present } from "@/lib/media";
 import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
-import { TRY } from "@/lib/pricing";
+import { TRY, priceOf } from "@/lib/pricing";
 import { SERVICE_AREAS } from "@/lib/areas";
 import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 
@@ -91,6 +92,9 @@ export default function HomePage() {
           </ul>
         </section>
       )}
+
+      {/* 1c. ClassPass rating */}
+      <ClassPassRating className="bg-cream-100" />
 
       {/* 2. Intro offers */}
       <section aria-labelledby="intro-offers-heading" className="bg-cream-50 py-20 sm:py-28">
@@ -245,10 +249,14 @@ export default function HomePage() {
           />
           <div className="grid gap-px border border-taupe-300/70 bg-taupe-300/70 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { label: "Try", price: "$25", note: "First class. Or $105 for a week unlimited." },
-              { label: "Commit", price: "$130/mo", note: "5, 8, or 12 classes a month, or unlimited for $280. 8 classes is our most popular plan." },
-              { label: "Flex", price: "$36", note: "Single class. Packs of 5 for $160 or 10 for $300." },
-              { label: "Private", price: "$100", note: "55-minute 1:1 session. Duets $70 per person." },
+              { label: "Try", price: priceOf("first-class"), note: `First class. Or ${priceOf("intro-week")} for a week unlimited.` },
+              {
+                label: "Commit",
+                price: `${priceOf("membership-5")}/mo`,
+                note: `5, 8, or 12 classes a month, or unlimited for ${priceOf("membership-unlimited")}. 8 classes is our most popular plan.`,
+              },
+              { label: "Flex", price: priceOf("single"), note: `Single class. Packs of 5 for ${priceOf("pack-5")} or 10 for ${priceOf("pack-10")}.` },
+              { label: "Private", price: priceOf("private"), note: `55-minute 1:1 session. Duets ${priceOf("duet")} per person.` },
             ].map((tier) => (
               <div key={tier.label} className="bg-cream-50 p-7">
                 <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-sage-700">{tier.label}</p>

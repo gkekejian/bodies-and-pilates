@@ -2,6 +2,9 @@ import { MediaItem, MediaPhoto } from "@/components/ui/media";
 import { CtaLink } from "@/components/ui/cta-link";
 import { PageHero, SectionHeading, eyebrowClass } from "@/components/sections/section-heading";
 import { FinalCta } from "@/components/sections/final-cta";
+import { ClassPassRating } from "@/components/sections/classpass-rating";
+import { Testimonials } from "@/components/sections/testimonials";
+import { ABOUT_TESTIMONIALS } from "@/lib/testimonials";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { MEDIA, present } from "@/lib/media";
@@ -53,7 +56,11 @@ const neighborhoods = [
 const label = "font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-sage-700";
 
 function InstructorCard({ person }: { person: Instructor }) {
-  const bio = bioEntries(person.bio);
+  // Only fields with real content render; an empty label never shows.
+  const fields = [
+    ...(person.teaches.length > 0 ? [{ label: "Teaches", value: person.teaches.join(", ") }] : []),
+    ...bioEntries(person.bio),
+  ];
   return (
     <article className="flex flex-col border border-taupe-300/70 bg-cream-50">
       <MediaPhoto
@@ -66,18 +73,16 @@ function InstructorCard({ person }: { person: Instructor }) {
           <h3 className="font-serif text-2xl text-charcoal-900">{person.name}</h3>
           {person.role && <p className="mt-1 font-sans text-sm text-sage-700">{person.role}</p>}
         </div>
-        <dl className="space-y-4">
-          <div>
-            <dt className={label}>Teaches</dt>
-            <dd className="mt-1.5 font-sans text-sm leading-relaxed text-charcoal-800/85">{person.teaches.join(", ")}</dd>
-          </div>
-          {bio.map((b) => (
-            <div key={b.label}>
-              <dt className={label}>{b.label}</dt>
-              <dd className="mt-1.5 font-sans text-sm leading-relaxed text-charcoal-800/85">{b.value}</dd>
-            </div>
-          ))}
-        </dl>
+        {fields.length > 0 && (
+          <dl className="space-y-4">
+            {fields.map((f) => (
+              <div key={f.label}>
+                <dt className={label}>{f.label}</dt>
+                <dd className="mt-1.5 font-sans text-sm leading-relaxed text-charcoal-800/85">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
         <div className="mt-auto pt-2">
           <CtaLink href="/schedule" variant="text">
             Book with {person.firstName}
@@ -142,6 +147,11 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Social proof, next to the founder: ClassPass rating, then all six
+          reviews with the client review on Naira first. */}
+      <ClassPassRating className="bg-cream-50 pt-0 sm:pt-0" />
+      <Testimonials items={ABOUT_TESTIMONIALS} />
 
       {/* Studio */}
       {/* TODO(owner): review the studio copy below and adjust it to your own words. */}

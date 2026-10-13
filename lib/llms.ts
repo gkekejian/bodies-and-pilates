@@ -6,6 +6,7 @@ import { SERVICE_AREAS } from '@/lib/areas'
 import { getPublishedPosts } from '@/lib/blog'
 import {
   ADDRESS,
+  CLASSPASS_RATING,
   CLASSPASS_URL,
   EMAIL,
   GOOGLE_REVIEWS,
@@ -37,6 +38,7 @@ const facts = [
   `- Hours: ${HOURS.map((h) => `${h.short} ${h.label}`).join('; ')}`,
   `- Parking: street parking on Weddington St and metered spots in front of the studio on Vineland Ave`,
   `- Google rating: ${GOOGLE_REVIEWS.rating} (${GOOGLE_REVIEWS.count} reviews)`,
+  `- ClassPass rating: ${CLASSPASS_RATING.rating} (${CLASSPASS_RATING.ratings} ratings, ${CLASSPASS_RATING.reviews} written reviews)`,
   `- Booking: MindBody (site ID ${MINDBODY.siteId}), ${MINDBODY.classesUrl}`,
   `- Instagram: ${INSTAGRAM.url}`,
   `- ClassPass: ${CLASSPASS_URL}`,
@@ -124,5 +126,6 @@ ${team}
 
 ## Reviews
 - Google: ${GOOGLE_REVIEWS.rating} stars from ${GOOGLE_REVIEWS.count} reviews (${googleReviewsHref()})
+- ClassPass: ${CLASSPASS_RATING.rating} from ${CLASSPASS_RATING.ratings} ratings and ${CLASSPASS_RATING.reviews} written reviews (${CLASSPASS_URL})
 ${posts.length ? `\n## Blog posts\n${posts.map((p) => `- [${p.title}](${url(`/blog/${p.slug}`)}): ${p.description}`).join('\n')}\n` : ''}`
 }

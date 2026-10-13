@@ -10,8 +10,10 @@ import { CtaLink } from "@/components/ui/cta-link";
 import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-// Logo source. To use a different file, save it in public/images/ and update this path.
-const LOGO_SRC = "/images/logo.svg";
+// Official round logo, used exactly as supplied (1342x1376). Rendered at a
+// fixed height with width auto so it is never stretched or cropped.
+const LOGO = { src: "/images/bodies-and-pilates-logo-round.png", width: 1342, height: 1376 };
+const LOGO_ALT = "Bodies and Pilates logo";
 
 export const NAV_LINKS = [
   { label: "Classes", href: "/classes" },
@@ -33,10 +35,18 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-20 sm:px-6 lg:px-10">
         <Link
           href="/"
-          className="flex shrink-0 items-center transition-opacity hover:opacity-80"
+          className="flex shrink-0 items-center py-1 transition-opacity hover:opacity-80"
           aria-label="Bodies and Pilates, home"
         >
-          <Image src={LOGO_SRC} alt="Bodies and Pilates logo" width={48} height={48} className="h-10 w-10 sm:h-11 sm:w-11" priority />
+          <Image
+            src={LOGO.src}
+            alt={LOGO_ALT}
+            width={LOGO.width}
+            height={LOGO.height}
+            sizes="56px"
+            className="h-12 w-auto object-contain sm:h-14"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
@@ -72,8 +82,16 @@ export function Header() {
                 <Menu className="size-5" />
               </SheetTrigger>
 
-              <SheetContent side="right" className="w-72 bg-cream-50 px-0 pt-14" showCloseButton>
+              <SheetContent side="right" className="w-72 bg-cream-50 px-0 pt-20" showCloseButton>
                 <SheetTitle className="sr-only">Menu</SheetTitle>
+                <Link
+                  href="/"
+                  onClick={() => setOpen(false)}
+                  className="absolute left-6 top-4 transition-opacity hover:opacity-80"
+                  aria-label="Bodies and Pilates, home"
+                >
+                  <Image src={LOGO.src} alt={LOGO_ALT} width={LOGO.width} height={LOGO.height} sizes="48px" className="h-12 w-auto object-contain" />
+                </Link>
                 <nav className="flex flex-col px-6" aria-label="Mobile navigation">
                   {NAV_LINKS.map((link) => (
                     <Link

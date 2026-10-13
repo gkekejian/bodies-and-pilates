@@ -37,7 +37,7 @@ export function ClassFormatBlock({
   const withMedia = hasClassMedia(format.slug);
 
   return (
-    <article id={format.slug} className="grid scroll-mt-28 items-start gap-10 lg:grid-cols-12 lg:gap-16">
+    <article id={format.slug} className="grid scroll-mt-28 items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-16">
       <div className={cn(withMedia ? "lg:col-span-7" : "lg:col-span-12 lg:max-w-4xl", reverse && withMedia && "lg:order-2")}>
         <p className={`${eyebrowClass} mb-4`}>
           {format.level} &middot; {format.duration}
