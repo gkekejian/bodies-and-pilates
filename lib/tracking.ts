@@ -6,9 +6,9 @@
  * the build sandbox could not reach the Wix site, so confirm it there (page
  * source, search "fbq('init'" or "facebook.com/tr?id=") before DNS cutover.
  *
- * Google: no ID is set until the owner confirms what the Wix site uses. Set
- * NEXT_PUBLIC_GA_ID (G-...) and/or NEXT_PUBLIC_GOOGLE_ADS_ID (AW-...) in
- * Vercel and redeploy; nothing else changes.
+ * Google: GA4 G-DH2CT2VPC1 is the tag live on the Wix site (owner-supplied
+ * snippet, 2026-10-13). A Google Ads ID (AW-...) can be added later with
+ * NEXT_PUBLIC_GOOGLE_ADS_ID in Vercel; NEXT_PUBLIC_GA_ID overrides the GA4 ID.
  *
  * Events fired by this site (see components/analytics/analytics.tsx):
  *   PageView           Meta, every page and every client-side navigation
@@ -21,7 +21,7 @@
  * integration. Firing them here would double count.
  */
 export const META_PIXEL_ID = "1074774813955135";
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DH2CT2VPC1";
 export const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "";
 
 /** Pages that get a Meta ViewContent event. */
