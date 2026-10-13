@@ -4,11 +4,9 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllPosts, getPost, getRelatedPosts, postStatus, formatPostDate } from '@/lib/blog'
 import { pageMetadata } from '@/lib/metadata'
 import { breadcrumbSchema, jsonLd } from '@/lib/schema'
-import { blogHero } from '@/lib/photos'
 import { BLOG_AUTHOR, SITE_URL } from '@/lib/site'
 import { eyebrowClass } from '@/components/sections/section-heading'
 import { BlogCta } from '@/components/sections/blog-cta'
-import { PhotoSlot } from '@/components/ui/photo-slot'
 
 // Scheduled posts go live on their publishDate without a redeploy: pages are
 // regenerated at most hourly, and posts not built ahead of time render on
@@ -121,12 +119,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
           )}
         </header>
 
-        <PhotoSlot
-          photo={blogHero(meta.title, meta.heroAlt)}
-          aspectClassName="aspect-[16/9]"
-          sizes="(max-width: 768px) 100vw, 768px"
-          className="mb-12"
-        />
+        {/* TODO(owner): per-post hero photography. heroAlt in frontmatter is ready for it. */}
 
         {meta.draft ? (
           <section aria-labelledby="outline-heading" data-placeholder="content">

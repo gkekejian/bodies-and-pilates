@@ -15,9 +15,9 @@
 | Price menu and per-offer MindBody links | `lib/pricing.ts` |
 | FAQ content (also generates FAQPage schema) | `lib/faqs.ts` |
 | Class formats (copy for /classes and /classes/[slug]) | `lib/classes.ts` |
-| Instructor cards | `lib/team.ts` |
+| Instructor cards (four at launch) | `lib/team.ts` |
 | Testimonials | `lib/testimonials.ts` |
-| Photo and video slots | `lib/photos.ts` |
+| Photos and video (alt text, placement keys) | `lib/media.ts`, `lib/media-manifest.json`, `scripts/import_media.py`, `scripts/media-sources.json` |
 | ExerciseGym JSON-LD | `lib/schema.ts` (rendered in `app/layout.tsx`) |
 | Search Console baseline (old site, pre-launch) and post-launch targets | `docs/search-console-baseline-2026-10-12.md` |
 | Neighborhoods served (home "Areas We Serve", schema `areaServed`, llms.txt) | `lib/areas.ts` |
@@ -69,41 +69,61 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 - [ ] Optional: maximum class size, the strongest proof point (`app/page.tsx`).
 
 ### Team (`lib/team.ts`)
-Active instructors and the classes they teach come from the MindBody schedule (week of Oct 12 to 18, 2026). Shown on /about: Naira Sarkian (Founder and Owner), Marlyn Ortiz, Sita Acevedo, Hannah Pink, Theresia Bunch, McKinsey Shea, Altara Michelle.
-- [ ] For each instructor: 2 to 3 sentence bio (background, how they found Pilates), certifications and specialties, one-line teaching philosophy, headshot. McKinsey and Altara have nothing yet; the others have carried-over details to confirm.
-- [ ] Confirm the regular schedule for McKinsey, Theresia, and Altara (one slot each that week).
-- [ ] Registered in MindBody but no classes that week, so hidden: Enrika Navikaite, Ashley Aldred, Bella Massey, Deanna Garzillo. Confirm whether each is current, a sub, or inactive.
-- [ ] In MindBody, assign an instructor to every class: 26 of 38 sessions that week showed none (Mon/Wed/Sat/Sun Beginner, most Full Body slots, Fri Flexibility 5:00 PM, Sun Abs and Assets 12:00 PM). Clients choose by instructor.
-- [ ] "Abs and Assets" runs on the schedule but is not on the site. Send a short description, level, and who it is for.
-- [ ] Public-source research (Oct 12, 2026) added only confirmed facts: Marlyn (movement coach, 20+ years, BFA in Dance, mat Pilates background) and Altara (former competitive gymnast, NCA All-American cheerleader, 7+ years of Pilates). It also widened "Teaches" from the Aug to Sep ClassPass schedules (Naira: Flexibility; Sita: Beginner; Theresia: Flexibility). Ask each instructor to approve their card.
-- [ ] Held until the instructor says yes:
-  - Marlyn: 9+ years as Madonna's personal trainer (from her public bio). Strong, but it names a celebrity in studio marketing, so get her approval and exact wording.
-  - Altara: her reformer certification was "in progress" in a past interview. List it only once she confirms it is complete.
-  - Sita (Diavolo Dance Theater credit), McKinsey (dance film credit, @mckinseyshea), Hannah (VoyageLA dancer profile, @hannah.pinky): likely the same people, not confirmed.
-  - Outside studios (Marlyn: Yloh Studio City; Altara: Natural Pilates; Ashley: Pilates Platinum) and Instagram handles. Not used on the site.
-- [ ] Ashley Aldred and Deanna Garzillo appear on the Aug to Sep ClassPass schedules but not Oct 12 to 18. Enrika has one ClassPass review calling her class "tough but great"; usable only as a client quote with the reviewer's permission. No record found for Bella Massey; confirm the spelling and status.
+Owner-confirmed October 12, 2026: four instructors at launch, each with an owner-identified photo. Naira Sarkian (Founder and Owner), Sita Acevedo, Theresia Bunch, Hannah Pink. Cards show photo, name, role (Naira only), classes taught (Naira, Theresia, Hannah: Full Body; Sita: Full Body and Flexibility), and a "Book with [First Name]" link to /schedule.
+- [ ] Five bullets per instructor: specialty, years teaching, certifications, teaching style, what to expect. Requested from the instructors. Each bullet renders only once it has real text in `lib/team.ts` (`bio`); nothing is shown or invented until then.
+- [ ] Naira's founder story, in her own words. The founder block on /about shows her two photos, name, and title until it arrives.
+- Draft details from the old site, for the instructors to confirm or replace when they send their bullets (not shown on the site):
+  - Sita: certified movement instructor in Pilates and GYROTONIC; aerialist and aerial choreographer; specialties core stability, creative sequencing, prop work.
+  - Theresia: BS in Kinesiology (pre-physical therapy); 15 years as a classical ballerina; challenging, creative flows grounded in movement science.
+  - Hannah: certified through Integrated Movement and Wellness; professional dancer; breathwork, anatomical awareness, post-injury support alongside physical therapists.
+- [ ] Not on the site until the owner identifies their photos: Marlyn Ortiz, Altara Michelle, McKinsey Shea, Ashley Aldred, Deanna Garzillo, Enrika Navikaite. Their earlier research notes (Marlyn's movement-coach background and celebrity-client credit, Altara's gymnastics and cheer background) are in git history and need each instructor's approval before use. No record was found for Bella Massey.
+- A former instructor appears in the photo set. She gets no profile, name mention, or solo feature anywhere on the site.
+- [ ] In MindBody, assign an instructor to every class: 26 of 38 sessions in the week of Oct 12 showed none. Clients choose by instructor.
+- [ ] Abs and Assets: a 1 to 2 sentence description, level, and who it is for (its block on /classes shows the class and its photos without one).
 - If the section cannot be complete before launch, set `SHOW_TEAM = false`.
 
 ### Testimonials (`lib/testimonials.ts`)
-- [ ] The owner's real-review testimonial block (Sasha, Penny, Jason) has not reached the build yet. Paste it in and it replaces the three placeholder-attributed quotes. Neighborhood for each is still needed. Optional portrait (slot 10).
+- [ ] The owner's real-review testimonial block (Sasha, Penny, Jason) has not reached the build yet. Paste it in to replace the three current quotes, which show without attribution until a first name and neighborhood (with permission) are set.
 
-### Photography (`lib/photos.ts`)
-All stock photography has been removed. Drop files into `public/photos/` and set `src` on each slot.
+### Photography and video (`lib/media.ts`)
+The owner selected 47 files (46 selects plus Naira's third photo) on October 12, 2026. Real studio photography only: no stock, no AI imagery, no placeholders. A slot whose file is not imported renders nothing.
 
-| Slot | Shot |
-|------|------|
-| 1 | Wide hero of the reformer room in daylight, no people |
-| 2 | Real class in motion, instructor cueing |
-| 3 | Instructor headshots, same backdrop |
-| 4 | Close-up of hands and feet on reformer straps and footbar |
-| 5 | Entrance and signage from the Vineland Ave sidewalk |
-| 6 | Parking on Weddington St and metered spots |
-| 7 | Props flat-lay: grip socks, bands, rings, balls |
-| 8 | Warm post-class lifestyle shot |
-| 9 | Vertical 15 to 30s clips, one per class format (`CLIPS`, files in `public/video/`) |
-| 10 | Testimonial portraits |
+- [ ] **Get the files into the build.** The Drive connector cannot transfer binary files into the build sandbox, so the library has to arrive one of two ways:
+  1. Upload the selects to the repo in a `pilates-media-library/` folder (GitHub web upload works; any subfolders; Drive names or final names both match), or
+  2. Download "Pilates content" from Drive as zips and attach them in the Claude session.
+  Then run `python3 scripts/import_media.py` (default source `pilates-media-library/`; the folder itself is git-ignored). It matches each file by its final name or by the original camera filename at the end of its Drive name, then:
+  - photos: EXIF orientation applied, all metadata stripped (no GPS), longest side 2048 px, progressive JPEG to `public/media/photos/`
+  - video: H.264, no audio, longest side 1280 px, about 1 Mbps, first 15 seconds, fast start, to `public/media/video/`, plus a poster frame in `public/media/posters/`
+  - share image: 1200x630 crop of `group-class-plank-wide.jpg` to `public/media/og/share.jpg`, used as the default Open Graph and Twitter image
+  - writes `lib/media-manifest.json` and prints any missing file
+- Placement (owner mapping; class names translated to the studio's real classes):
 
-- [ ] Share image: replace the generated card with a real 1200x630 photo (see `lib/og.tsx`).
+| Page | Slot | File |
+|---|---|---|
+| Home | Hero (eager, high priority) | group-class-plank-wide.jpg |
+| Home | Studio strip under the hero | studio-wide-bright-reformer-rows.jpg, reception-good-day-wall.jpg, logo-medallion-close-up.mp4 (poster studio-wide-logo-wall.jpg) |
+| Home | First-timer: "Two easy ways to start" | clients-arriving-studio-entrance.mp4 |
+| Home | First-timer: free guide band | flat-lay-grip-socks-and-essentials.jpg |
+| Home | "Why reformer Pilates works here" | group-class-kneeling-leg-press.jpg (unplaced group shot, clients only) |
+| Home | "Small-Group Pilates Classes" | group-class-standing-work-video.mp4 (unplaced group clip, clients only) |
+| Classes | Page hero clip | group-class-moody-backlit.mp4 (poster group-class-plank-row.jpg) |
+| Classes | Beginner ("Reformer Foundations") | first-person-legs-in-straps.mp4, reformer-springs-close-up.mp4 |
+| Classes | Full Body ("Signature Flow") | group-class-plank-row.jpg |
+| Classes | Flexibility ("Stretch and Restore") | mermaid-stretch-on-reformer.jpg, partner-side-stretch-window-light.mp4 |
+| Classes | Abs and Assets | supine-bridge-with-band.jpg, reformer-box-abs-close-up.mp4 |
+| Classes | "What is reformer Pilates?" ("Athletic Reformer" has no matching class) | standing-split-reformer-logo-wall.jpg, group-class-lunge-in-sync.mp4 |
+| Classes, Pricing | Private and duet | private-coaching-with-ring-landscape.mp4 (poster studio-wide-logo-wall.jpg), private-hands-on-assist-kneeling.mp4, private-assisting-client-on-chair.mp4, private-hands-on-shoulder-assist.mp4, duet-two-clients-on-chair.jpg |
+| Intro offer | Hero (desktop) | group-class-kneeling-leg-press.jpg |
+| About | Founder block | instructor-portrait-with-ball-taupe-set.jpg (main), instructor-portrait-standing-on-chair.jpg (secondary) |
+| About | Team cards | Naira: naira-sarkian-standing-chair-back.jpg (so her main photo is not repeated); Sita: instructor-headshot-black-tee.jpg; Theresia: instructor-headshot-black-cami.jpg; Hannah: instructor-headshot-one-shoulder-top.jpg |
+| About | Studio gallery | studio-wide-empty-room.jpg, studio-wide-logo-wall.jpg, studio-tour-logo-wall-video.mp4, studio-wide-reformers-and-boxes.jpg, studio-logo-wall-chair-interior.jpg, entry-bench-patent-drawings.jpg |
+| About | Community (Instagram) | branded-matcha-cup-logo.jpg, social-sunglasses-pose-on-reformer.jpg |
+| Blog | Index header | artistic-black-and-white-reformer-pose.jpg |
+
+- Not published by the import script (`HOLD` in `scripts/import_media.py`): the six hold-list portraits, plus three unplaced shots that show unidentified instructors rather than clients (instructors-group-photo-three.jpg, instructor-leading-class-wide.mp4, side-lying-leg-work-photo.jpg). Remove a name from `HOLD` once the owner confirms who is in it.
+- Video behavior: the poster is a responsive next/image; the clip itself loads only within 300px of the viewport, plays only while 40% visible, pauses when scrolled away, never autoplays with reduced motion, and has a pause/play button. Second clips in a group and the supporting private clips play on tap. At most one clip plays when any page loads.
+- Contact page parking photos and per-post blog hero photos have no files in the selects, so those spots show text only.
+- [ ] After import, re-run Lighthouse mobile. With same-size stand-in files the pages measured 90 to 98.
 
 ### Forms
 - [ ] `LEAD_CAPTURE_WEBHOOK_URL`: where first-timer's guide sign-ups go (MindBody or email platform). Write the guide email itself there.

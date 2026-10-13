@@ -1,7 +1,6 @@
 import { CtaLink } from "@/components/ui/cta-link";
-import { VideoSlot } from "@/components/ui/video-slot";
+import { ClassMedia, hasClassMedia } from "@/components/sections/class-media";
 import { eyebrowClass } from "@/components/sections/section-heading";
-import { CLIPS } from "@/lib/photos";
 import { PRIVATE, offerHref } from "@/lib/pricing";
 import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 import type { ClassFormat } from "@/lib/classes";
@@ -16,7 +15,7 @@ export function classCta(c: ClassFormat) {
 }
 
 /**
- * One class format: who it is for, level, what to expect, vertical clip.
+ * One class format: who it is for, level, what to expect, and its studio photos or clips.
  * Used on /classes (headingLevel h2) and on each detail page.
  */
 export function ClassFormatBlock({
@@ -35,10 +34,11 @@ export function ClassFormatBlock({
   const Heading = headingLevel;
   const cta = classCta(format);
   const expectHeading = `What to expect in ${format.duration}`;
+  const withMedia = hasClassMedia(format.slug);
 
   return (
     <article id={format.slug} className="grid scroll-mt-28 items-start gap-10 lg:grid-cols-12 lg:gap-16">
-      <div className={cn("lg:col-span-8", reverse && "lg:order-2")}>
+      <div className={cn(withMedia ? "lg:col-span-7" : "lg:col-span-12 lg:max-w-4xl", reverse && withMedia && "lg:order-2")}>
         <p className={`${eyebrowClass} mb-4`}>
           {format.level} &middot; {format.duration}
         </p>
@@ -87,9 +87,9 @@ export function ClassFormatBlock({
           )}
         </div>
       </div>
-      <div className={cn("mx-auto w-full max-w-[260px] lg:col-span-4 lg:max-w-none", reverse && "lg:order-1")}>
-        <VideoSlot clip={CLIPS[format.slug]} />
-      </div>
+      {withMedia && (
+        <ClassMedia mediaKey={format.slug} className={cn("lg:col-span-5", reverse && "lg:order-1")} />
+      )}
     </article>
   );
 }

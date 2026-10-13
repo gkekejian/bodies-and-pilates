@@ -1,33 +1,16 @@
-import Image from "next/image";
-import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import { GOOGLE_REVIEWS, googleReviewsHref } from "@/lib/site";
 import { TESTIMONIALS, type Testimonial } from "@/lib/testimonials";
 import { SectionHeading } from "@/components/sections/section-heading";
 
+/**
+ * TODO(owner): first name and neighborhood for each quote (with permission).
+ * Until then the quote shows without an attribution line.
+ */
 function Attribution({ t }: { t: Testimonial }) {
-  if (t.firstName && t.neighborhood) {
-    return (
-      <figcaption className="flex items-center gap-3">
-        {t.portrait.src && (
-          <Image
-            src={t.portrait.src}
-            alt={`${t.firstName}, Bodies and Pilates client from ${t.neighborhood}`}
-            width={48}
-            height={48}
-            className="h-12 w-12 rounded-full object-cover"
-          />
-        )}
-        <span className="font-sans text-xs uppercase tracking-[0.2em] text-sage-300">
-          {t.firstName}, {t.neighborhood}
-        </span>
-      </figcaption>
-    );
-  }
+  if (!t.firstName || !t.neighborhood) return null;
   return (
-    <figcaption>
-      <OwnerPlaceholder label="client first name and neighborhood" tone="dark">
-        Owner to provide (with permission), plus an optional portrait for photo slot 10.
-      </OwnerPlaceholder>
+    <figcaption className="font-sans text-xs uppercase tracking-[0.2em] text-sage-300">
+      {t.firstName}, {t.neighborhood}
     </figcaption>
   );
 }

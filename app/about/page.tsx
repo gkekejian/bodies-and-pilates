@@ -1,12 +1,12 @@
-import { PhotoSlot } from "@/components/ui/photo-slot";
-import { OwnerPlaceholder } from "@/components/ui/placeholder";
+import { MediaItem, MediaPhoto } from "@/components/ui/media";
+import { CtaLink } from "@/components/ui/cta-link";
 import { PageHero, SectionHeading, eyebrowClass } from "@/components/sections/section-heading";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { PHOTOS } from "@/lib/photos";
-import { ACTIVE_TEAM, SHOW_TEAM, type Instructor } from "@/lib/team";
-import { ADDRESS } from "@/lib/site";
+import { MEDIA, present } from "@/lib/media";
+import { TEAM, SHOW_TEAM, bioEntries, type Instructor } from "@/lib/team";
+import { ADDRESS, INSTAGRAM } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "About Bodies and Pilates | North Hollywood Pilates Studio",
@@ -52,55 +52,54 @@ const neighborhoods = [
 
 const label = "font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-sage-700";
 
-function Field({ title, value, pending }: { title: string; value: string | null; pending: string }) {
-  return (
-    <div>
-      <dt className={label}>{title}</dt>
-      <dd className="mt-1.5">
-        {value ? (
-          <span className="font-sans text-sm leading-relaxed text-charcoal-800/85">{value}</span>
-        ) : (
-          <OwnerPlaceholder label={pending} />
-        )}
-      </dd>
-    </div>
-  );
-}
-
 function InstructorCard({ person }: { person: Instructor }) {
+  const bio = bioEntries(person.bio);
   return (
     <article className="flex flex-col border border-taupe-300/70 bg-cream-50">
-      <PhotoSlot photo={person.photo} aspectClassName="aspect-[4/5]" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+      <MediaPhoto
+        media={person.photo}
+        aspectClassName="aspect-[4/5]"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      />
       <div className="flex flex-1 flex-col gap-5 p-6">
         <div>
           <h3 className="font-serif text-2xl text-charcoal-900">{person.name}</h3>
-          <p className="mt-1 font-sans text-sm text-sage-700">{person.role}</p>
+          {person.role && <p className="mt-1 font-sans text-sm text-sage-700">{person.role}</p>}
         </div>
-        {person.origin ? (
-          <p className="font-sans text-sm leading-relaxed text-charcoal-800/85">{person.origin}</p>
-        ) : (
-          <OwnerPlaceholder label="origin story (2 to 3 sentences)" />
-        )}
         <dl className="space-y-4">
-          {person.teaches.length > 0 && (
-            <Field title="Teaches" value={person.teaches.join(", ")} pending="classes taught" />
-          )}
-          <Field title="Credentials" value={person.credentials} pending="credentials" />
-          <Field title="Specialties" value={person.specialties} pending="specialties" />
+          <div>
+            <dt className={label}>Teaches</dt>
+            <dd className="mt-1.5 font-sans text-sm leading-relaxed text-charcoal-800/85">{person.teaches.join(", ")}</dd>
+          </div>
+          {bio.map((b) => (
+            <div key={b.label}>
+              <dt className={label}>{b.label}</dt>
+              <dd className="mt-1.5 font-sans text-sm leading-relaxed text-charcoal-800/85">{b.value}</dd>
+            </div>
+          ))}
         </dl>
-        {person.philosophy ? (
-          <p className="mt-auto border-t border-taupe-300/60 pt-4 font-serif text-lg italic leading-snug text-charcoal-800">
-            &ldquo;{person.philosophy}&rdquo;
-          </p>
-        ) : (
-          <OwnerPlaceholder label="one-line philosophy" className="mt-auto" />
-        )}
+        <div className="mt-auto pt-2">
+          <CtaLink href="/schedule" variant="text">
+            Book with {person.firstName}
+          </CtaLink>
+        </div>
       </div>
     </article>
   );
 }
 
 const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
+
+const studioGallery = present([
+  MEDIA.studioEmptyRoom,
+  MEDIA.studioLogoWall,
+  MEDIA.studioTour,
+  MEDIA.studioReformersBoxes,
+  MEDIA.studioLogoWallChair,
+  MEDIA.entryBench,
+]);
+
+const community = present([MEDIA.matchaCup, MEDIA.sunglassesPose]);
 
 export default function AboutPage() {
   return (
@@ -113,11 +112,42 @@ export default function AboutPage() {
         intro={<p>An independent reformer Pilates studio on Vineland Ave in North Hollywood, open since 2024.</p>}
       />
 
-      {/* Story */}
-      {/* TODO(owner): review the story copy below and adjust it to your own words. */}
-      <section aria-labelledby="story-heading" className="bg-cream-50 py-20 sm:py-28">
+      {/* Founder. TODO(owner): Naira's founder story in her own words. Until it
+          arrives the block shows her photos, name, and title only. */}
+      <section aria-labelledby="founder-heading" className="bg-cream-50 py-20 sm:py-28">
         <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <div className="lg:col-span-7">
+          {(MEDIA.nairaMain || MEDIA.nairaSecondary) && (
+            <div className="grid grid-cols-5 items-end gap-4 lg:col-span-7">
+              <MediaPhoto
+                media={MEDIA.nairaMain}
+                eager
+                aspectClassName="aspect-[4/5]"
+                className="col-span-3"
+                sizes="(max-width: 1024px) 60vw, 35vw"
+              />
+              <MediaPhoto
+                media={MEDIA.nairaSecondary}
+                aspectClassName="aspect-[3/4]"
+                className="col-span-2"
+                sizes="(max-width: 1024px) 40vw, 22vw"
+              />
+            </div>
+          )}
+          <div className="lg:col-span-5">
+            <p className={label}>Founder</p>
+            <h2 id="founder-heading" className="mt-4 font-serif text-4xl leading-[1.1] text-charcoal-900 sm:text-5xl">
+              Naira Sarkian
+            </h2>
+            <p className="mt-3 font-sans text-base text-charcoal-800/85">Founder and Owner</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Studio */}
+      {/* TODO(owner): review the studio copy below and adjust it to your own words. */}
+      <section aria-labelledby="story-heading" className="bg-cream-100 py-20 sm:py-28">
+        <div className={container}>
+          <div className="max-w-3xl">
             <SectionHeading id="story-heading" eyebrow="The Studio" title="A calm room, a small class, a coach who knows you" />
             <div className="space-y-5 font-sans text-base leading-[1.8] text-charcoal-800/85 sm:text-lg">
               <p>
@@ -132,9 +162,15 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="lg:col-span-5">
-            <PhotoSlot photo={PHOTOS.postClass} aspectClassName="aspect-[4/5]" sizes="(max-width: 1024px) 100vw, 40vw" />
-          </div>
+          {studioGallery.length > 0 && (
+            <ul aria-label="Inside the studio" className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-3">
+              {studioGallery.map((m) => (
+                <li key={m.file}>
+                  <MediaItem media={m} aspectClassName="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 33vw" />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
 
@@ -148,8 +184,8 @@ export default function AboutPage() {
               title="Your instructors"
               intro={<p>One consistent coaching team. You get to know your instructor, and they get to know your body.</p>}
             />
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {ACTIVE_TEAM.map((person) => (
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {TEAM.map((person) => (
                 <InstructorCard key={person.name} person={person} />
               ))}
             </div>
@@ -171,25 +207,45 @@ export default function AboutPage() {
               </p>
             }
           />
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <dl className="divide-y divide-taupe-300/60 border-y border-taupe-300/60 lg:col-span-7">
-              {neighborhoods.map((n) => (
-                <div key={n.name} className="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-6">
-                  <dt>
-                    <span className="block font-serif text-xl text-charcoal-900">{n.name}</span>
-                    <span className={`${eyebrowClass} mt-1 block text-[11px]`}>{n.time}</span>
-                  </dt>
-                  <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{n.body}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-              <PhotoSlot photo={PHOTOS.entrance} sizes="(max-width: 1024px) 50vw, 40vw" />
-              <PhotoSlot photo={PHOTOS.parking} sizes="(max-width: 1024px) 50vw, 40vw" />
-            </div>
-          </div>
+          <dl className="max-w-4xl divide-y divide-taupe-300/60 border-y border-taupe-300/60">
+            {neighborhoods.map((n) => (
+              <div key={n.name} className="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <dt>
+                  <span className="block font-serif text-xl text-charcoal-900">{n.name}</span>
+                  <span className={`${eyebrowClass} mt-1 block text-[11px]`}>{n.time}</span>
+                </dt>
+                <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{n.body}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
+
+      {/* Community */}
+      {community.length > 0 && (
+        <section aria-labelledby="community-heading" className="bg-cream-100 py-20 sm:py-28">
+          <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
+            <div className="lg:col-span-5">
+              <SectionHeading
+                id="community-heading"
+                eyebrow="Community"
+                title="Follow along on Instagram"
+                intro={<p>Studio moments, class highlights, and schedule news.</p>}
+              />
+              <CtaLink href={INSTAGRAM.url} variant="outline" newTab>
+                {INSTAGRAM.handle}
+              </CtaLink>
+            </div>
+            <ul className="grid grid-cols-2 gap-4 lg:col-span-7">
+              {community.map((m) => (
+                <li key={m.file}>
+                  <MediaPhoto media={m} aspectClassName="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 30vw" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <FinalCta />
     </>

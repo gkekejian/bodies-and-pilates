@@ -56,22 +56,31 @@ export function PageHero({
   title,
   intro,
   children,
+  media,
 }: {
   eyebrow?: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
   children?: React.ReactNode;
+  /** Optional photo or clip shown beside the heading on large screens. */
+  media?: React.ReactNode;
 }) {
   return (
     <section className="bg-cream-200 py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
+      <div
+        className={cn(
+          "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8",
+          media && "grid items-center gap-10 lg:grid-cols-12 lg:gap-14"
+        )}
+      >
+        <div className={cn("max-w-3xl", media && "lg:col-span-7")}>
           {eyebrow && <p className={cn(eyebrowClass, "mb-5")}>{eyebrow}</p>}
           <h1 className="font-serif text-4xl leading-[1.1] text-charcoal-900 sm:text-5xl lg:text-6xl">{title}</h1>
           <div aria-hidden="true" className="my-7 h-px w-12 bg-sage-500" />
           {intro && <div className="font-sans text-base leading-[1.75] text-charcoal-800/85 sm:text-lg">{intro}</div>}
           {children && <div className="mt-8">{children}</div>}
         </div>
+        {media && <div className="lg:col-span-5">{media}</div>}
       </div>
     </section>
   );

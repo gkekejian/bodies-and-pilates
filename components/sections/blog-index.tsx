@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { formatPostDate, getListedPosts } from '@/lib/blog'
 import { PageHero } from '@/components/sections/section-heading'
 import { BlogCta } from '@/components/sections/blog-cta'
+import { MediaPhoto } from '@/components/ui/media'
+import { MEDIA } from '@/lib/media'
 
 export const BLOG_PAGE_SIZE = 12
 
@@ -20,6 +22,17 @@ export function BlogIndex({ page }: { page: number }) {
         eyebrow="Journal"
         title="Pilates Blog"
         intro={<p>Practical guides to reformer Pilates from our studio in North Hollywood.</p>}
+        media={
+          MEDIA.artisticPose && (
+            <MediaPhoto
+              media={MEDIA.artisticPose}
+              eager
+              aspectClassName="aspect-[4/5]"
+              className="mx-auto max-w-xs lg:max-w-sm"
+              sizes="(max-width: 1024px) 80vw, 384px"
+            />
+          )
+        }
       />
 
       <section className="bg-cream-50 py-16 sm:py-20">

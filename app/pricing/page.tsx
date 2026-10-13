@@ -1,5 +1,5 @@
 import { CtaLink } from "@/components/ui/cta-link";
-import { OwnerPlaceholder } from "@/components/ui/placeholder";
+import { PrivateShowcase } from "@/components/sections/class-media";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { OfferCard } from "@/components/sections/offer-card";
 import { ClassPassStrip } from "@/components/sections/classpass-strip";
@@ -133,13 +133,9 @@ export default function PricingPage() {
           </div>
           <PolicyNotes lines={[POLICY.cancellation]} />
           {/*
-            TODO(owner): confirm how long packs last after purchase and replace
-            this placeholder with one plain sentence (e.g. "Packs expire N
-            months after purchase.").
+            TODO(owner): confirm how long packs last after purchase and add one
+            plain sentence here (e.g. "Packs expire N months after purchase.").
           */}
-          <OwnerPlaceholder label="class pack expiry" className="mt-6 max-w-xl">
-            Owner to confirm how long each pack is valid after purchase.
-          </OwnerPlaceholder>
         </div>
       </section>
 
@@ -157,6 +153,7 @@ export default function PricingPage() {
               <OfferCard key={offer.id} offer={offer} highlight={false} />
             ))}
           </div>
+          <PrivateShowcase />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import { CLASSES } from '@/lib/classes'
 import { FAQS } from '@/lib/faqs'
 import { COMMIT, FLEX, POLICY, PRIVATE, TRY, offerHref, type Offer } from '@/lib/pricing'
-import { ACTIVE_TEAM } from '@/lib/team'
+import { TEAM, bioEntries } from '@/lib/team'
 import { SERVICE_AREAS } from '@/lib/areas'
 import { getPublishedPosts } from '@/lib/blog'
 import {
@@ -72,9 +72,11 @@ ${pages}
 
 export function llmsFullTxt() {
   const posts = getPublishedPosts()
-  const team = ACTIVE_TEAM.map(
+  const team = TEAM.map(
     (t) =>
-      `- ${t.name}, ${t.role}. Teaches: ${t.teaches.join(', ')}.${t.credentials ? ` ${t.credentials}` : ''}${t.specialties ? ` Specialties: ${t.specialties}.` : ''}`
+      `- ${t.name}${t.role ? `, ${t.role}` : ', instructor'}. Teaches: ${t.teaches.join(', ')}.${bioEntries(t.bio)
+        .map((b) => ` ${b.label}: ${b.value}.`)
+        .join('')}`
   ).join('\n')
 
   return `# ${SITE_NAME}: full reference

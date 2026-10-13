@@ -2,7 +2,7 @@ import { GRIP_SOCKS_LINE } from "@/lib/site";
 
 /**
  * FAQ content. Rendered on /faq and used to generate FAQPage JSON-LD.
- * Entries with `answer: null` render a labeled placeholder and are left out
+ * Entries with `answer: null` are not rendered and are left out
  * of the schema until the owner supplies the text.
  */
 

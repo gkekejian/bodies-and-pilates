@@ -1,11 +1,9 @@
 import ContactForm from "@/components/contact-form";
-import { PhotoSlot } from "@/components/ui/photo-slot";
 import { PageHero } from "@/components/sections/section-heading";
 import { HoursList } from "@/components/sections/hours-list";
 import { InstagramIcon } from "@/components/layout/footer";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { PHOTOS } from "@/lib/photos";
 import { ADDRESS, EMAIL, INSTAGRAM, MAPS_EMBED_URL, MAPS_URL, PHONE } from "@/lib/site";
 
 export const metadata = pageMetadata({
@@ -110,10 +108,6 @@ export default function ContactPage() {
                 Street parking on Weddington St and metered spots in front of the studio on Vineland Ave. Arrive 10
                 minutes early for your first class.
               </p>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <PhotoSlot photo={PHOTOS.entrance} sizes="(max-width: 640px) 100vw, 25vw" compact />
-                <PhotoSlot photo={PHOTOS.parking} sizes="(max-width: 640px) 100vw, 25vw" compact />
-              </div>
             </section>
           </div>
 

@@ -1,4 +1,4 @@
-import { PhotoSlot } from "@/components/ui/photo-slot";
+import { MediaPhoto } from "@/components/ui/media";
 import { eyebrowClass } from "@/components/sections/section-heading";
 import { OfferCard } from "@/components/sections/offer-card";
 import { ClassPassStrip } from "@/components/sections/classpass-strip";
@@ -7,7 +7,7 @@ import { FaqTeaser } from "@/components/sections/faq-teaser";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { PHOTOS } from "@/lib/photos";
+import { MEDIA } from "@/lib/media";
 import { TRY, offerHref } from "@/lib/pricing";
 import { FIRST_CLASS_CTA } from "@/lib/site";
 
@@ -46,9 +46,11 @@ export default function IntroOfferPage() {
                 time. No experience needed. Choose one class, or a full week to find your rhythm.
               </p>
             </div>
-            <div className="hidden lg:col-span-5 lg:block">
-              <PhotoSlot photo={PHOTOS.classInMotion} sizes="40vw" />
-            </div>
+            {MEDIA.classKneelingLegPress && (
+              <div className="hidden lg:col-span-5 lg:block">
+                <MediaPhoto media={MEDIA.classKneelingLegPress} sizes="40vw" />
+              </div>
+            )}
           </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">

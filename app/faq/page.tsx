@@ -1,4 +1,3 @@
-import { OwnerPlaceholder } from "@/components/ui/placeholder";
 import { PageHero } from "@/components/sections/section-heading";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
@@ -38,7 +37,7 @@ export default function FaqPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* Native details/summary: zero JS and every answer is in the HTML, matching the FAQPage schema. */}
           <div className="divide-y divide-taupe-300/70 border-y border-taupe-300/70">
-            {FAQS.map((faq) => (
+            {FAQS.filter((faq) => faq.answer).map((faq) => (
               <details key={faq.id} id={faq.id} className="group scroll-mt-28 py-1">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 font-serif text-lg text-charcoal-900 sm:text-xl [&::-webkit-details-marker]:hidden">
                   <span>{faq.question}</span>
@@ -50,11 +49,7 @@ export default function FaqPage() {
                   </span>
                 </summary>
                 <div className="pb-6 pr-10">
-                  {faq.answer ? (
-                    <p className="font-sans text-base leading-[1.75] text-charcoal-800/85">{faq.answer}</p>
-                  ) : (
-                    <OwnerPlaceholder label="policy text">{faq.pending}</OwnerPlaceholder>
-                  )}
+                  <p className="font-sans text-base leading-[1.75] text-charcoal-800/85">{faq.answer}</p>
                 </div>
               </details>
             ))}

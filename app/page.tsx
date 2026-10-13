@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CtaLink } from "@/components/ui/cta-link";
-import { PhotoSlot } from "@/components/ui/photo-slot";
+import { MediaItem, MediaPhoto } from "@/components/ui/media";
 import { SectionHeading, eyebrowClass } from "@/components/sections/section-heading";
 import { OfferCard } from "@/components/sections/offer-card";
 import { ClassPassStrip } from "@/components/sections/classpass-strip";
@@ -10,7 +10,7 @@ import { FinalCta } from "@/components/sections/final-cta";
 import { LeadCapture, GUIDE_TITLE } from "@/components/sections/lead-capture";
 import { LeadCaptureForm } from "@/components/sections/lead-capture-form";
 import { pageMetadata } from "@/lib/metadata";
-import { PHOTOS } from "@/lib/photos";
+import { MEDIA, present } from "@/lib/media";
 import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
 import { TRY } from "@/lib/pricing";
 import { SERVICE_AREAS } from "@/lib/areas";
@@ -42,13 +42,16 @@ const proofPoints = [
 
 const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
 
+// Owner mapping: two studio photos and the logo medallion clip under the hero.
+const studioStrip = present([MEDIA.studioBrightRows, MEDIA.receptionWall, MEDIA.logoMedallion]);
+
 export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
       <section className="bg-cream-100">
         <div className={`${container} grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-12 lg:gap-14 lg:py-24`}>
-          <div className="lg:col-span-7">
+          <div className={MEDIA.classPlankWide ? "lg:col-span-7" : "lg:col-span-9"}>
             <p className={`${eyebrowClass} mb-6`}>North Hollywood &middot; Est. 2024</p>
             <h1 className="font-serif text-4xl leading-[1.08] text-charcoal-900 sm:text-5xl lg:text-6xl">
               Reformer Pilates in North Hollywood
@@ -64,16 +67,31 @@ export default function HomePage() {
               <LeadCaptureForm source="home-hero" />
             </div>
           </div>
-          <div className="lg:col-span-5">
-            <PhotoSlot
-              photo={PHOTOS.reformerRoom}
-              priority
-              aspectClassName="aspect-[4/5]"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
-          </div>
+          {MEDIA.classPlankWide && (
+            <div className="lg:col-span-5">
+              <MediaPhoto
+                media={MEDIA.classPlankWide}
+                eager
+                aspectClassName="aspect-[4/5]"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+          )}
         </div>
       </section>
+
+      {/* 1b. Studio strip */}
+      {studioStrip.length > 0 && (
+        <section aria-label="Inside the studio" className="bg-cream-100 pb-4 pt-2 sm:pb-8">
+          <ul className={`${container} grid grid-cols-3 gap-3 sm:gap-4`}>
+            {studioStrip.map((m) => (
+              <li key={m.file}>
+                <MediaItem media={m} aspectClassName="aspect-[3/4]" sizes="(max-width: 1024px) 33vw, 360px" />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* 2. Intro offers */}
       <section aria-labelledby="intro-offers-heading" className="bg-cream-50 py-20 sm:py-28">
@@ -84,15 +102,27 @@ export default function HomePage() {
             title="Two easy ways to start"
             intro={<p>Try a single class, or take a full week to find your rhythm. Both are for first-timers.</p>}
           />
-          <div className="grid gap-8 md:grid-cols-2">
-            {TRY.map((offer, i) => (
-              <OfferCard key={offer.id} offer={offer} highlight={i === 0} />
-            ))}
-          </div>
-          <div className="mt-8">
-            <CtaLink href="/intro-offer" variant="text">
-              What to expect at your first class
-            </CtaLink>
+          <div className={MEDIA.clientsArriving ? "grid items-start gap-8 lg:grid-cols-12" : undefined}>
+            <div className={MEDIA.clientsArriving ? "lg:col-span-8" : undefined}>
+              <div className="grid gap-8 md:grid-cols-2">
+                {TRY.map((offer, i) => (
+                  <OfferCard key={offer.id} offer={offer} highlight={i === 0} />
+                ))}
+              </div>
+              <div className="mt-8">
+                <CtaLink href="/intro-offer" variant="text">
+                  What to expect at your first class
+                </CtaLink>
+              </div>
+            </div>
+            {MEDIA.clientsArriving && (
+              <MediaItem
+                media={MEDIA.clientsArriving}
+                aspectClassName="aspect-[4/5]"
+                className="mx-auto w-full max-w-xs lg:col-span-4 lg:max-w-none"
+                sizes="(max-width: 1024px) 80vw, 30vw"
+              />
+            )}
           </div>
         </div>
       </section>
@@ -100,9 +130,11 @@ export default function HomePage() {
       {/* 3. Reformer Pilates explainer */}
       <section aria-labelledby="reformer-heading" className="bg-cream-200 py-20 sm:py-28">
         <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <div className="lg:col-span-5">
-            <PhotoSlot photo={PHOTOS.strapsCloseUp} sizes="(max-width: 1024px) 100vw, 40vw" />
-          </div>
+          {MEDIA.classKneelingLegPress && (
+            <div className="lg:col-span-5">
+              <MediaPhoto media={MEDIA.classKneelingLegPress} sizes="(max-width: 1024px) 100vw, 40vw" />
+            </div>
+          )}
           <div className="lg:col-span-7">
             <SectionHeading
               id="reformer-heading"
@@ -184,9 +216,16 @@ export default function HomePage() {
               ))}
             </dl>
           </div>
-          <div className="lg:col-span-5">
-            <PhotoSlot photo={PHOTOS.classInMotion} aspectClassName="aspect-[4/5]" sizes="(max-width: 1024px) 100vw, 40vw" />
-          </div>
+          {MEDIA.classStandingWork && (
+            <div className="lg:col-span-5">
+              <MediaItem
+                media={MEDIA.classStandingWork}
+                aspectClassName="aspect-[4/5]"
+                className="mx-auto max-w-sm lg:max-w-none"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+          )}
         </div>
       </section>
 
