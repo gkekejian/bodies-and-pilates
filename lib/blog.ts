@@ -20,7 +20,7 @@ import { RELATED_GROUPS, PUBLISHING_ORDER } from '@/lib/blog-plan'
  * Visibility:
  *   published  draft false and publishDate today or earlier: indexed, listed, in the sitemap
  *   scheduled  draft false and publishDate in the future: 404 until the date
- *   draft      outline scaffold: listed as "Coming soon", noindexed, kept out of the sitemap
+ *   draft      outline scaffold: not rendered anywhere (404) and kept out of the sitemap
  */
 
 export interface BlogFaq {
@@ -93,19 +93,38 @@ export function getAllPosts(): BlogPost[] {
   return readAll().map((r) => r.post)
 }
 
-/** Published posts, newest first. */
+/** Published posts, newest first; same-day posts follow the publishing order. */
 export function getPublishedPosts(now = new Date()): BlogPost[] {
   return getAllPosts()
     .filter((p) => postStatus(p, now) === 'published')
-    .sort((a, b) => publishInstant(b.publishDate).getTime() - publishInstant(a.publishDate).getTime())
+    .sort(
+      (a, b) =>
+        publishInstant(b.publishDate).getTime() - publishInstant(a.publishDate).getTime() ||
+        order(a.slug) - order(b.slug)
+    )
 }
 
-/** What the /blog index lists: published posts newest first, then outline drafts. */
+/** What the /blog index lists: published posts only, newest first. */
 export function getListedPosts(now = new Date()): BlogPost[] {
-  const drafts = getAllPosts()
-    .filter((p) => p.draft)
-    .sort((a, b) => order(a.slug) - order(b.slug))
-  return [...getPublishedPosts(now), ...drafts]
+  return getPublishedPosts(now)
+}
+
+/**
+ * Every non-draft post must close with the owner's $25 CTA block, word for
+ * word, and a post with FAQs must place its FAQ block. Checked at build time.
+ */
+export const POST_CTA_TEXT =
+  'Ready to try it? Your first reformer class at Bodies and Pilates in North Hollywood is $25. Small groups, real coaching, no experience needed. [Book your first class](/intro-offer).'
+
+export function assertPostContent() {
+  for (const { post, content } of readAll()) {
+    if (post.draft) continue
+    if (!content.includes(POST_CTA_TEXT)) throw new Error(`Blog post ${post.slug} is missing the exact $25 CTA block.`)
+    if (post.faqs.length > 0 && !content.includes('<PostFaq />')) {
+      throw new Error(`Blog post ${post.slug} has faqs but no <PostFaq /> block.`)
+    }
+    if (content.includes('\u2014')) throw new Error(`Blog post ${post.slug} contains an em dash.`)
+  }
 }
 
 export function getPost(slug: string): { meta: BlogPost; content: string } | null {

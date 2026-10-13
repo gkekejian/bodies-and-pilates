@@ -1,4 +1,4 @@
-import ContactForm from "@/components/contact-form";
+import { CtaLink } from "@/components/ui/cta-link";
 import { PageHero } from "@/components/sections/section-heading";
 import { HoursList } from "@/components/sections/hours-list";
 import { InstagramIcon } from "@/components/layout/footer";
@@ -9,7 +9,7 @@ import { ADDRESS, EMAIL, INSTAGRAM, MAPS_EMBED_URL, MAPS_URL, PHONE } from "@/li
 export const metadata = pageMetadata({
   title: "Contact | Bodies and Pilates North Hollywood",
   description:
-    "Contact Bodies and Pilates at 5251 Vineland Ave, Suite 6, North Hollywood. Call or text 818-813-4446, or message us. First class $25.",
+    "Contact Bodies and Pilates at 5251 Vineland Ave, Suite 6, North Hollywood. Call or text 818-813-4446, or email us. First class $25.",
   path: "/contact",
 });
 
@@ -112,11 +112,27 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-8">
-            <section className={card} aria-labelledby="message-heading">
-              <h2 id="message-heading" className="mb-6 font-serif text-2xl text-charcoal-900">
-                Send a message
+            {/* No message form at launch: no form webhook was supplied, and a form
+                that submits nowhere does not ship. Call, text, and email go
+                straight to the studio. */}
+            <section className={card} aria-labelledby="reach-heading">
+              <h2 id="reach-heading" className="font-serif text-2xl text-charcoal-900">
+                Call, text, or email
               </h2>
-              <ContactForm />
+              <p className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/80">
+                Questions about classes, pricing, or your first visit? Call, text, or email the studio.
+              </p>
+              <div className="mt-6 flex flex-col gap-3">
+                <CtaLink href={PHONE.tel} className="w-full">
+                  Call {PHONE.display}
+                </CtaLink>
+                <CtaLink href={PHONE.sms} variant="outline" className="w-full">
+                  Text {PHONE.display}
+                </CtaLink>
+                <CtaLink href={`mailto:${EMAIL}`} variant="outline" className="w-full">
+                  Email us
+                </CtaLink>
+              </div>
             </section>
 
             <div className="overflow-hidden rounded-sm border border-taupe-300/70 bg-cream-50">

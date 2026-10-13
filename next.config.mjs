@@ -32,8 +32,8 @@ const nextConfig = {
     "/sitemap.xml": ["./content/blog/**/*"],
     "/llms-full.txt": ["./content/blog/**/*"],
   },
-  // No remote image hosts: all stock photography was removed. Real studio
-  // photos live in /public/photos (see lib/photos.ts).
+  // No remote image hosts: real studio media lives in /public/media (see
+  // lib/media.ts and scripts/import_media.py).
   // Security headers on every response. The full Content-Security-Policy runs
   // in report-only mode first: MindBody's widgets load third-party scripts and
   // frames that cannot be verified from the build sandbox. Check the browser
@@ -78,6 +78,10 @@ const nextConfig = {
       moved("/faqs", "/faq"),
       moved("/post/:slug", "/blog/:slug"),
       moved("/blog/what-is-reformer-pilates-beginners-guide", "/blog/what-is-reformer-pilates"),
+      // Alternate slugs used in the owner's blog drafts; the index slugs are canonical.
+      moved("/blog/what-to-look-for-in-a-pilates-studio", "/blog/7-things-to-look-for-in-a-pilates-studio"),
+      moved("/blog/what-happens-in-your-first-pilates-class", "/blog/your-first-pilates-class-minute-by-minute"),
+      moved("/blog/how-long-until-you-see-results-from-pilates", "/blog/how-long-until-pilates-results"),
 
       // Pricing normalization (old Wix pricing slugs). Uppercase and trailing
       // slash variants (/Pricing, /pricing/) are handled by middleware.ts.

@@ -10,10 +10,10 @@ export const metadata = pageMetadata({
   path: "/privacy",
 });
 
-// TODO(owner): have this policy reviewed by a lawyer before launch, and
-// update the "Service providers" list once the form webhooks and email
-// platform are connected. It describes only what this website actually does.
-const UPDATED = "October 12, 2026";
+// TODO(owner): have this policy reviewed by a lawyer before launch. It
+// describes only what this website actually does. The site has no forms at
+// launch; if a form is added later, add what it collects back here.
+const UPDATED = "October 13, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -36,16 +36,12 @@ export default function PrivacyPage() {
 
       <h2>What we collect</h2>
       <h3>Information you give us</h3>
-      <ul>
-        <li>
-          <strong>First-timer&apos;s guide form:</strong> your email address and, if you choose, your phone number.
-        </li>
-        <li>
-          <strong>Contact form:</strong> your name, email address, and message.
-        </li>
-      </ul>
       <p>
-        Please do not send health or medical details through website forms. Tell your instructor about injuries or
+        This website has no forms. If you call, text, or email us, we receive the details you choose to share, such as
+        your name, phone number, email address, and message.
+      </p>
+      <p>
+        Please do not send health or medical details by text or email. Tell your instructor about injuries or
         conditions in person before class.
       </p>
 
@@ -73,8 +69,7 @@ export default function PrivacyPage() {
 
       <h2>How we use your information</h2>
       <ul>
-        <li>To reply to your messages and questions.</li>
-        <li>To send the first-timer&apos;s guide and studio news you asked for. You can unsubscribe at any time.</li>
+        <li>To reply to your calls, texts, emails, and questions.</li>
         <li>With your consent, to understand how the site is used and to measure our advertising.</li>
         <li>To operate, secure, and improve the website.</li>
       </ul>
@@ -82,17 +77,16 @@ export default function PrivacyPage() {
       <h2>Sharing</h2>
       <p>
         We share information only with service providers that help us run the site and respond to you, such as our
-        hosting, form delivery, and email providers, and, with your consent, our analytics providers.{" "}
+        hosting and email providers, and, with your consent, our analytics providers.{" "}
         <strong>We do not sell your personal information.</strong> If you accept cookies and the Meta Pixel is enabled,
         Meta receives information about your visit to measure our ads, which may count as &ldquo;sharing&rdquo; under
         California law. You can decline or withdraw consent at any time.
       </p>
-      <p>We do not send information you submit through this website to AI or large language model services.</p>
+      <p>We do not send information you share with us to AI or large language model services.</p>
 
       <h2>How long we keep it</h2>
       <p>
-        We keep form submissions only as long as we need them to respond to you and to send the information you asked
-        for, or until you ask us to delete them.
+        We keep your messages only as long as we need them to respond to you, or until you ask us to delete them.
       </p>
 
       <h2>Your choices and rights</h2>

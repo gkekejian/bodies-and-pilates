@@ -2,8 +2,8 @@
  * Neighborhoods served, used by the home page "Areas We Serve" block,
  * ExerciseGym areaServed schema, and llms.txt.
  *
- * Lines describe direction and main roads only. No drive times here: the only
- * owner-supplied drive times live on /about#neighborhoods.
+ * Lines describe direction and main roads only. No drive times anywhere on the
+ * site (owner rule, 2026-10-13).
  * TODO(owner): read each line and confirm it matches how locals actually
  * get to the studio. Edit freely; nothing below is a quoted fact.
  */

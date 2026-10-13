@@ -43,9 +43,8 @@ app/
   schedule/             HealCode widget, or hours + call/text fallback
   about/                Story, Meet the Team, Neighborhoods we serve
   faq/                  FAQ + FAQPage schema
-  contact/              Contact details, form, map
+  contact/              Contact details, call/text/email buttons, map
   blog/                 Blog index + [slug] MDX posts
-  api/lead, api/contact Form endpoints (forward to owner webhooks)
   opengraph-image.tsx   Generated share image
   not-found.tsx         Branded 404
 lib/                    Site facts, pricing, FAQs, classes, team, photos, schema, metadata

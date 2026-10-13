@@ -1,6 +1,6 @@
 import { MediaItem, MediaPhoto } from "@/components/ui/media";
 import { CtaLink } from "@/components/ui/cta-link";
-import { PageHero, SectionHeading, eyebrowClass } from "@/components/sections/section-heading";
+import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { FinalCta } from "@/components/sections/final-cta";
 import { ClassPassRating } from "@/components/sections/classpass-rating";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -24,31 +24,26 @@ const breadcrumb = breadcrumbSchema([
 ]);
 
 // TODO(owner): verify each route and landmark below reads right to a local.
-// Drive times are approximate and owner-supplied.
+// No drive times (owner rule, 2026-10-13): directions and parking only.
 const neighborhoods = [
   {
     name: "North Hollywood",
-    time: "Home",
-    body: `We are at ${ADDRESS.street}, a short drive from the NoHo Arts District. Park on Weddington St or at the metered spots in front of the studio on Vineland Ave.`,
+    body: `We are at ${ADDRESS.street}. Park on Weddington St or at the metered spots in front of the studio on Vineland Ave.`,
   },
   {
     name: "Toluca Lake",
-    time: "About 5 min",
     body: "Head west along Riverside Dr, then north on Vineland Ave. Street parking on Weddington St is right by the studio.",
   },
   {
     name: "Valley Village",
-    time: "About 8 min",
     body: "Magnolia Blvd brings you east toward Vineland Ave. Street parking on Weddington St is a short walk from the door.",
   },
   {
     name: "Studio City",
-    time: "About 10 min",
     body: "Vineland Ave runs north from Ventura Blvd straight to the studio, so it is one road most of the way.",
   },
   {
     name: "Burbank",
-    time: "About 10 min",
     body: "Magnolia Blvd runs west from Burbank's Magnolia Park into North Hollywood. Arrive 10 minutes early for your first class to park and settle in.",
   },
 ];
@@ -212,18 +207,15 @@ export default function AboutPage() {
             title="Neighborhoods we serve"
             intro={
               <p>
-                Most clients come from North Hollywood and the neighborhoods around it. Here is how long the drive
-                usually takes, and where to park.
+                Most clients come from North Hollywood and the neighborhoods around it. Here is the way in from each,
+                and where to park.
               </p>
             }
           />
           <dl className="max-w-4xl divide-y divide-taupe-300/60 border-y border-taupe-300/60">
             {neighborhoods.map((n) => (
               <div key={n.name} className="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-6">
-                <dt>
-                  <span className="block font-serif text-xl text-charcoal-900">{n.name}</span>
-                  <span className={`${eyebrowClass} mt-1 block text-[11px]`}>{n.time}</span>
-                </dt>
+                <dt className="font-serif text-xl text-charcoal-900">{n.name}</dt>
                 <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{n.body}</dd>
               </div>
             ))}

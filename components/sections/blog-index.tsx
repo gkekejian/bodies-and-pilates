@@ -9,7 +9,7 @@ export const BLOG_PAGE_SIZE = 12
 
 export const blogPageCount = () => Math.max(1, Math.ceil(getListedPosts().length / BLOG_PAGE_SIZE))
 
-/** /blog (page 1) and /blog/page/<n>. Published posts newest first, then outline drafts. */
+/** /blog (page 1) and /blog/page/<n>. Published posts, newest first. */
 export function BlogIndex({ page }: { page: number }) {
   const all = getListedPosts()
   const pages = Math.max(1, Math.ceil(all.length / BLOG_PAGE_SIZE))
@@ -45,14 +45,8 @@ export function BlogIndex({ page }: { page: number }) {
                   className="group flex h-full flex-col gap-3 p-7 transition-colors hover:bg-cream-100"
                 >
                   <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-sage-700">
-                    {post.draft ? (
-                      'Coming soon'
-                    ) : (
-                      <>
-                        <time dateTime={post.publishDate}>{formatPostDate(post.publishDate)}</time> &middot;{' '}
-                        {post.readingMinutes} min read
-                      </>
-                    )}
+                    <time dateTime={post.publishDate}>{formatPostDate(post.publishDate)}</time> &middot;{' '}
+                    {post.readingMinutes} min read
                   </span>
                   <h2 className="font-serif text-xl leading-snug text-charcoal-900 group-hover:text-sage-700">
                     {post.title}

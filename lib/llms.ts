@@ -17,6 +17,7 @@ import {
   SITE_NAME,
   SITE_URL,
   googleReviewsHref,
+  GRIP_SOCKS_LINE,
 } from '@/lib/site'
 
 /**
@@ -37,6 +38,9 @@ const facts = [
   `- Email: ${EMAIL}`,
   `- Hours: ${HOURS.map((h) => `${h.short} ${h.label}`).join('; ')}`,
   `- Parking: street parking on Weddington St and metered spots in front of the studio on Vineland Ave`,
+  `- Grip socks: ${GRIP_SOCKS_LINE}`,
+  `- Cancellation: ${POLICY.cancellation}`,
+  `- Memberships: ${POLICY.membership}`,
   `- Google rating: ${GOOGLE_REVIEWS.rating} (${GOOGLE_REVIEWS.count} reviews)`,
   `- ClassPass rating: ${CLASSPASS_RATING.rating} (${CLASSPASS_RATING.ratings} ratings, ${CLASSPASS_RATING.reviews} written reviews)`,
   `- Booking: MindBody (site ID ${MINDBODY.siteId}), ${MINDBODY.classesUrl}`,

@@ -8,8 +8,7 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { ClassPassRating } from "@/components/sections/classpass-rating";
 import { FaqTeaser } from "@/components/sections/faq-teaser";
 import { FinalCta } from "@/components/sections/final-cta";
-import { LeadCapture, GUIDE_TITLE } from "@/components/sections/lead-capture";
-import { LeadCaptureForm } from "@/components/sections/lead-capture-form";
+import { FirstTimerGuide } from "@/components/sections/first-timer-guide";
 import { pageMetadata } from "@/lib/metadata";
 import { MEDIA, present } from "@/lib/media";
 import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
@@ -63,15 +62,19 @@ export default function HomePage() {
             <div className="mt-9">
               <CtaLink href={introBookingHref()}>{FIRST_CLASS_CTA}</CtaLink>
             </div>
-            <div className="mt-10 max-w-xl border-t border-taupe-300/70 pt-6">
-              <p className="mb-4 font-sans text-sm font-medium text-charcoal-800">{GUIDE_TITLE}</p>
-              <LeadCaptureForm source="home-hero" />
-            </div>
+            <p className="mt-6 font-sans text-sm text-charcoal-800/80">
+              First time?{" "}
+              <a href="#first-timers-guide" className="text-sage-700 underline underline-offset-4 hover:text-sage-500">
+                What to wear, where to park, which class to take
+              </a>
+            </p>
           </div>
           {MEDIA.classPlankWide && (
             <div className="lg:col-span-5">
+              {/* Above the fold on phones now that the hero has no form: load it eagerly. */}
               <MediaPhoto
                 media={MEDIA.classPlankWide}
+                eager
                 aspectClassName="aspect-[4/5]"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
@@ -312,8 +315,8 @@ export default function HomePage() {
       {/* 11. Final CTA */}
       <FinalCta />
 
-      {/* 12. Lead capture */}
-      <LeadCapture source="home" />
+      {/* 12. First-timer's guide (on-page; replaces the email form at launch) */}
+      <FirstTimerGuide />
     </>
   );
 }

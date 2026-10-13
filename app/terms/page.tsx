@@ -13,7 +13,7 @@ export const metadata = pageMetadata({
 // TODO(owner): have these terms reviewed by a lawyer before launch. They cover
 // use of the website only; studio participation terms (waiver, studio rules)
 // are separate.
-const UPDATED = "October 12, 2026";
+const UPDATED = "October 13, 2026";
 
 export default function TermsPage() {
   return (
@@ -53,8 +53,7 @@ export default function TermsPage() {
 
       <h2>Acceptable use</h2>
       <p>
-        Do not misuse the site, including by submitting false information, attempting to disrupt or gain unauthorized
-        access to it, or sending spam through our forms.
+        Do not misuse the site, including by attempting to disrupt it or gain unauthorized access to it.
       </p>
 
       <h2>Third-party links and services</h2>

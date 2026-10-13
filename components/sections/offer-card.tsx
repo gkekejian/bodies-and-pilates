@@ -35,7 +35,7 @@ export function OfferCard({
         {offer.perClass && <p className="mt-2 font-sans text-sm text-sage-700">{offer.perClass}</p>}
       </div>
       <p className="flex-1 font-sans text-sm leading-relaxed text-charcoal-800/80">{offer.detail}</p>
-      <CtaLink href={offerHref(offer)} variant={featured ? "primary" : "outline"} className="w-full">
+      <CtaLink href={offerHref(offer)} variant={featured ? "primary" : "outline"} className="w-full max-sm:px-5 max-sm:tracking-[0.12em]">
         {offer.cta}
       </CtaLink>
     </article>

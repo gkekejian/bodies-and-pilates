@@ -24,7 +24,8 @@
 | Search Console baseline (old site, pre-launch) and post-launch targets | `docs/search-console-baseline-2026-10-12.md` |
 | Neighborhoods served (home "Areas We Serve", schema `areaServed`, llms.txt) | `lib/areas.ts` |
 | Per-page title, description, canonical, Open Graph | `lib/metadata.ts` + each page's `metadata` |
-| Form forwarding (lead capture, contact) | `lib/forms.ts`, `app/api/lead`, `app/api/contact` |
+| First-timer's guide (on-page, Home and /pricing) | `components/sections/first-timer-guide.tsx` |
+| Blog posts (20, MDX) and plan | `content/blog/`, `lib/blog-plan.ts`, `lib/blog.ts` |
 | Redirects | `next.config.mjs` (legacy URLs, bare domain) and `middleware.ts` (lowercase, trailing slash) |
 
 Every open item is marked in code with `TODO(owner)`. Visible placeholders carry a
@@ -62,7 +63,7 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 - [ ] Class pack expiry (placeholder on `/pricing`).
 
 ### Facts to confirm
-- [ ] Geo coordinates for schema (`lib/schema.ts`).
+- [ ] Geo coordinates for schema (`lib/schema.ts`). Not added: no geocoder was reachable from the build sandbox and coordinates are not a locked fact. Copy them from the Google Business Profile pin.
 - [ ] Difficulty level, "who it is for", and 50-minute length per class (`lib/classes.ts`).
 - [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx` and the 8 lines in `lib/areas.ts`).
 - [x] Grip socks (owner-confirmed 2026-10-12): required for class; bring your own or buy a pair at the front desk. One line, `GRIP_SOCKS_LINE` in `lib/site.ts`, used in the "What should I wear?" FAQ and the /schedule first-timer strip.
@@ -124,31 +125,43 @@ The owner selected 47 files (46 selects plus Naira's third photo) on October 12,
 - Not published by the import script (`HOLD` in `scripts/import_media.py`): the six hold-list portraits, plus three unplaced shots that show unidentified instructors rather than clients (instructors-group-photo-three.jpg, instructor-leading-class-wide.mp4, side-lying-leg-work-photo.jpg). Remove a name from `HOLD` once the owner confirms who is in it.
 - Video behavior: the poster is a responsive next/image; the clip itself loads only within 300px of the viewport, plays only while 40% visible, pauses when scrolled away, never autoplays with reduced motion, and has a pause/play button. Second clips in a group and the supporting private clips play on tap. At most one clip plays when any page loads.
 - Contact page parking photos and per-post blog hero photos have no files in the selects, so those spots show text only.
-- Lighthouse 12 mobile with the real media, warm runs: Home 93 to 99 (desktop 100), Classes 97, About 95, Pricing 96, Intro offer 98, Blog 95; accessibility, best practices, and SEO 100; CLS 0 everywhere. The home hero photo lazy-loads because on phones it sits below the fold; the /classes hero clip loads its cover image first.
+- Lighthouse 12 mobile, 2026-10-13 final pass (several runs each; this sandbox varies by about ±5): Home 89 to 97 (median 92), Classes 93 to 97 (median 94), About 93 to 95, Pricing 97, Intro offer 96, Contact 98, Schedule 98, FAQ 96, Blog 97, blog posts 96; accessibility and SEO 100 everywhere; CLS 0 everywhere. With the guide form gone, the home hero photo sits above the fold on phones and loads eagerly; it is now the home page's LCP element.
 
-### Forms
-- [ ] `LEAD_CAPTURE_WEBHOOK_URL`: where first-timer's guide sign-ups go (MindBody or email platform). Write the guide email itself there.
-- [ ] `CONTACT_FORM_WEBHOOK_URL`: where contact messages go.
-Until set, both forms return an honest "could not send" message with the phone number. Nothing is faked.
+### Forms (launch fallback applied 2026-10-13)
+No webhook URL was supplied, and a form that submits nowhere must not ship, so:
+- The first-timer's guide email form (Home hero, Home band, /pricing) is gone. Its key points (which class, what to wear, where to park, when to arrive) now sit on the page with the $25 first-class button (`components/sections/first-timer-guide.tsx`). Every line is an owner-confirmed fact already on the site.
+- The /contact message form is gone. The page has Call, Text, and Email buttons (818-813-4446, Naira@bodiesandpilates.com).
+- `/api/lead`, `/api/contact`, the form components, and the zod / react-hook-form packages were removed. Privacy and Terms now say the site has no forms.
+- [ ] Form webhooks: when a destination exists (Zapier/Make into MindBody or an email platform), restore the forms from git history (commit before this pass) and set `LEAD_CAPTURE_WEBHOOK_URL` / `CONTACT_FORM_WEBHOOK_URL`.
 
 ### Blog (`content/blog/`)
-- [ ] The 20 full drafts (`blog-drafts-batch-1.md` to `-4.md`) have not reached the build yet. When they arrive they replace the outline scaffolds, one MDX file per post, using the slugs in `lib/blog-plan.ts`.
-- [ ] Posts #21 (parking guide) and #22 (ClassPass vs membership) from the keyword research are scaffolded and queued as week 11. #21 needs the nearest Metro stop and walk confirmed; #22 needs ClassPass credit prices checked on the day it is written.
-- [ ] Publishing start date. Posts go out 2 per week in the order in `lib/blog-plan.ts` (question-format posts first). Each post's `publishDate` is set in its frontmatter.
+- [x] All 20 posts integrated (2026-10-13) from the owner's combined file: slugs, titles, and meta descriptions as written; H2 structure and the closing $25 CTA block word for word (the build fails if a post's CTA text drifts). Each post has 2 to 4 internal links on existing phrases, related posts, and Naira Sarkian as author. All 20 are published and in the sitemap; Blog is in the main nav.
+- Dates: no start date was supplied, so all 20 carry the launch date (2026-10-12, Pacific) and list in the index's publishing order. To drip them instead, give each a future `publishDate` 2 per week in that order; a future-dated post 404s and stays out of the sitemap until its date.
+- Slugs: four drafts used a different slug from the index (`what-is-reformer-pilates-beginners-guide`, `what-to-look-for-in-a-pilates-studio`, `what-happens-in-your-first-pilates-class`, `how-long-until-you-see-results-from-pilates`). The index slugs are live; the draft slugs 301 to them.
+- The two gap posts (parking and transit guide, ClassPass vs membership cost) are not in the file and were not created; their outline scaffolds were deleted.
+- Edits made to the drafts so they state nothing outside the locked facts (everything else is verbatim):
+  - Cost guide: added the $220 12-class membership to the membership list (the draft listed only $130, $170, $280).
+  - What to wear: removed the jumpboard/cardio mention, "studio cubbies", "we have water available", "in multiple sizes", and "Water is available".
+  - First class minute by minute: the tour line no longer lists cubbies, water, and restroom; removed "Wipe down your reformer (we will show you how)".
+  - Beginners in North Hollywood: "a gentle Full Body class" became "a Full Body class" (Full Body is moderate to challenging).
+  - 7 things to look for: removed the "eight to twelve people" class-size number.
+  - How often: "from watching hundreds of clients" became "from watching our clients".
+  - Results timeline: removed "We teach clients in their twenties through their seventies."
+- [ ] Kept as written, owner to confirm: the cost guide's "$35 to $50" North Hollywood market range; the pregnancy post (it is guidance with doctor clearance, not a prenatal class or offer, and it mentions "prenatal clients" only as a question to ask any studio); illustrative class-size arithmetic in the small-classes post ("a class of six", "six reformers") that does not describe this studio; anecdotal lines such as "a large share of clients mention their back".
 
 How the blog works (see the header comment in `lib/blog.ts` for the frontmatter fields):
 - A post is **published** once `draft: false` and its `publishDate` has arrived (midnight Pacific). Published posts are indexed, listed on `/blog` newest first, and included in `sitemap.xml` with lastmod.
 - A post with a future `publishDate` returns 404 and stays out of the index and sitemap until its date. Blog pages and the sitemap regenerate hourly, so posts go live on schedule without a redeploy.
-- Outline scaffolds (`draft: true`) show as "Coming soon" and are noindexed. The keyword research asked to remove this, but these pages hold only a title and an outline: indexing them would put thin pages in Google under the studio's name. Each post becomes indexable automatically the moment it has real copy, `draft: false`, and a publish date.
-- Every published post has: one H1, a byline crediting Naira Sarkian, BlogPosting schema with Person author, `og:type=article`, a hero image slot (labeled placeholder until photos land), the intro-offer CTA, and up to 3 related posts by topic group.
-- The 8 question-format posts (`QUESTION_POSTS` in `lib/blog-plan.ts`) carry a `faqs` list in frontmatter, rendered before the CTA with FAQPage JSON-LD.
+- A `draft: true` post is not rendered anywhere (404, not listed, not in the sitemap). No "Coming soon" pages exist.
+- Every published post has: one H1, a byline crediting Naira Sarkian, BlogPosting schema with Person author, `og:type=article`, the owner's $25 CTA block (in the MDX, `<PostCta>`), and up to 3 related posts by topic group.
+- The 8 question-format posts marked in the plan (`QUESTION_POSTS` in `lib/blog-plan.ts`) carry a `faqs` list in frontmatter whose answers are quoted from the post itself, rendered as a visible FAQ block (`<PostFaq />`) before the CTA with FAQPage JSON-LD.
 - `/blog` paginates at 12 per page (`/blog/page/2`, ...).
 
 ### Compliance, security, and AI search
 - [ ] Have a lawyer review `/privacy` and `/terms` (drafted only from what the site actually does). Name the form and email providers in the privacy policy once the webhooks are connected.
 - [ ] Content Security Policy: the full policy runs in report-only mode (`next.config.mjs`). Open the preview with DevTools, book through the MindBody widget and log in, then check the console for CSP reports. Add any blocked MindBody hosts and switch the header to enforcing.
 - [ ] AI crawlers: `app/robots.ts` allows AI search and training crawlers by name. To stay in AI answers but opt out of training, set GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, and CCBot to disallow.
-- Forms (`/api/lead`, `/api/contact`) accept same-origin JSON only, cap the body at 16 KB, drop honeypot submissions, and rate-limit per IP (`lib/request-guard.ts`). The rate limit is per serverless instance; for a hard cap add a Vercel Firewall rate-limit rule on `/api/*`.
+- No form endpoints at launch (see Forms). If they come back, restore `lib/request-guard.ts` with them: same-origin JSON only, 16 KB cap, honeypot, per-IP rate limit.
 - [ ] Dependencies: `npm audit --omit=dev` leaves 4 moderate advisories, all in gray-matter's YAML parser (js-yaml 3, argparse, sprintf-js). It only parses the blog's own frontmatter from this repo, never visitor input. Next.js is on the patched 15.5 line; PostCSS is pinned to a patched version through `overrides` in `package.json`.
 - Analytics are opt-in: GA4 and the Meta Pixel load only after Accept, Global Privacy Control counts as a decline, and "Cookie settings" in the footer reopens the choice.
 - `/llms.txt` and `/llms-full.txt` are generated from the same data as the pages (`lib/llms.ts`), so they stay in sync.
@@ -261,4 +274,5 @@ npm run build && npm run start
 - **Hours.** Owner-confirmed hours only. Friday is 7am to 8pm (the old site said 7:30 to 11:30).
 - **Logo (2026-10-13).** The owner's official round logo files are used exactly as supplied: sage artwork (`bodies-and-pilates-logo-round.png`) in the header and mobile menu, cream artwork (`-round-light.png`) on the charcoal footer. Rendered at a fixed height with width auto, so the circle is never stretched or cropped, and with no "Bodies and Pilates" wordmark beside it. The favicon (16 to 64 px), `icon.png` (512), and `apple-icon.png` (180) are the same file scaled uniformly onto a cream tile by `scripts/make_icons.py`; rerun it if the logo file changes. The old SVG recreation and the generated "B&P" apple icon are deleted. The supplied files are transparent PNGs; neither has a solid background square.
 - **Pricing guard.** `lib/pricing.ts` checks itself at build time against the owner's locked menu ($25, $105, $36, $160, $300, $130/$170/$220/$280 per month, duet $70 per person, private $100 per 55 minutes). A changed price, an extra offer (private packs are not sold), "/month" on a non-membership, or a second Most Popular badge fails the build.
+- **Final locked-facts pass (2026-10-13).** Removed every prenatal mention from the private-session copy (pricing card, class page, FAQ, schema offer text, llms-full); removed all drive times from /about and the "nearby" FAQ (routes and parking stay); removed the Unlimited "about $10 per class" line, which assumed a class count nobody supplied. Grip socks and both policies now also appear in llms.txt key facts.
 - **Phone.** 818-813-4446 everywhere. The owner's mobile does not appear on the site or in schema.

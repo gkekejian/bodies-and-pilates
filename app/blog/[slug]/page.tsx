@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { getAllPosts, getPost, getRelatedPosts, postStatus, formatPostDate } from '@/lib/blog'
+import { assertPostContent, getAllPosts, getPost, getRelatedPosts, postStatus, formatPostDate } from '@/lib/blog'
 import { pageMetadata } from '@/lib/metadata'
 import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import { BLOG_AUTHOR, SITE_URL } from '@/lib/site'
 import { eyebrowClass } from '@/components/sections/section-heading'
-import { BlogCta } from '@/components/sections/blog-cta'
+import { PostCta, PostFaq } from '@/components/blog/post-parts'
 
 // Scheduled posts go live on their publishDate without a redeploy: pages are
 // regenerated at most hourly, and posts not built ahead of time render on
@@ -16,15 +16,16 @@ export const revalidate = 3600
 const RELATED_COLS: Record<number, string> = { 1: 'sm:grid-cols-1', 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-3' }
 
 export function generateStaticParams() {
+  assertPostContent()
   return getAllPosts()
-    .filter((p) => postStatus(p) !== 'scheduled')
+    .filter((p) => postStatus(p) === 'published')
     .map((p) => ({ slug: p.slug }))
 }
 
-/** Loads a post only if it is visible today (published or outline draft). */
+/** Loads a post only if it is published today. Drafts and scheduled posts 404. */
 function loadVisible(slug: string) {
   const post = getPost(slug)
-  if (!post || postStatus(post.meta) === 'scheduled') return null
+  if (!post || postStatus(post.meta) !== 'published') return null
   return post
 }
 
@@ -121,46 +122,15 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
 
         {/* TODO(owner): per-post hero photography. heroAlt in frontmatter is ready for it. */}
 
-        {meta.draft ? (
-          <section aria-labelledby="outline-heading" data-placeholder="content">
-            <p className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-taupe-700">
-              Full article coming soon
-            </p>
-            <h2 id="outline-heading" className="mt-3 font-serif text-2xl text-charcoal-900">
-              What this guide will cover
-            </h2>
-            <ol className="mt-6 space-y-3 font-sans text-base text-charcoal-800/85">
-              {meta.outline.map((item, i) => (
-                <li key={item} className="flex gap-4 border-b border-taupe-300/60 pb-3">
-                  <span className="font-serif text-sage-700">{String(i + 1).padStart(2, '0')}</span>
-                  {item}
-                </li>
-              ))}
-            </ol>
-          </section>
-        ) : (
-          <div className="prose prose-stone max-w-none prose-headings:font-serif prose-a:text-sage-700 prose-a:underline-offset-4">
-            <MDXRemote source={post.content} />
-          </div>
-        )}
+        <div className="prose prose-stone max-w-none prose-headings:font-serif prose-a:text-sage-700 prose-a:underline-offset-4">
+          <MDXRemote
+            source={post.content}
+            components={{ PostCta, PostFaq: () => <PostFaq faqs={meta.faqs} /> }}
+          />
+        </div>
 
-        {!meta.draft && meta.faqs.length > 0 && (
-          <section aria-labelledby="post-faq-heading" className="mt-14">
-            <h2 id="post-faq-heading" className="font-serif text-3xl text-charcoal-900">
-              Frequently asked questions
-            </h2>
-            <dl className="mt-6 divide-y divide-taupe-300/60 border-y border-taupe-300/60">
-              {meta.faqs.map((f) => (
-                <div key={f.q} className="py-5">
-                  <dt className="font-serif text-xl text-charcoal-900">{f.q}</dt>
-                  <dd className="mt-2 font-sans text-base leading-[1.75] text-charcoal-800/85">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        )}
-
-        <BlogCta />
+        {/* Each post carries its own closing CTA block (and FAQ block, where it
+            has one) in its MDX. */}
 
         {related.length > 0 && (
           <section aria-labelledby="related-heading" className="mt-16">

@@ -21,6 +21,7 @@ export const NAV_LINKS = [
   { label: "Schedule", href: "/schedule" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -107,13 +108,6 @@ export function Header() {
                       {link.label}
                     </Link>
                   ))}
-                  <Link
-                    href="/blog"
-                    onClick={() => setOpen(false)}
-                    className="block border-b border-taupe-300/30 py-4 font-sans text-base text-charcoal-800 hover:text-sage-700"
-                  >
-                    Blog
-                  </Link>
                   <div className="pt-6" onClick={() => setOpen(false)}>
                     <CtaLink href={bookHref} className="w-full">
                       {FIRST_CLASS_CTA}

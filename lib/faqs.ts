@@ -86,7 +86,7 @@ export const FAQS: Faq[] = [
     id: "private",
     question: "Do you offer private sessions?",
     answer:
-      "Yes. 1:1 sessions are $100 for 55 minutes; duets are $70 per person. Ideal for beginners, injuries, or prenatal with clearance.",
+      "Yes. 1:1 sessions are $100 for 55 minutes; duets are $70 per person. Ideal for beginners or working around an injury.",
   },
   {
     id: "age",
@@ -121,7 +121,7 @@ export const FAQS: Faq[] = [
     id: "nearby",
     question: "Is the studio near Toluca Lake, Studio City, or Burbank?",
     answer:
-      "We are on Vineland Ave in North Hollywood: about 5 minutes from Toluca Lake, 8 from Valley Village, 10 from Studio City and Burbank, with street parking nearby.",
+      "Yes. We are on Vineland Ave in North Hollywood, close to Toluca Lake, Valley Village, Studio City, and Burbank, with street parking on Weddington St and metered spots in front of the studio.",
   },
 ];
 

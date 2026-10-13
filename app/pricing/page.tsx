@@ -3,7 +3,7 @@ import { PrivateShowcase } from "@/components/sections/class-media";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { OfferCard } from "@/components/sections/offer-card";
 import { ClassPassStrip } from "@/components/sections/classpass-strip";
-import { LeadCapture } from "@/components/sections/lead-capture";
+import { FirstTimerGuide } from "@/components/sections/first-timer-guide";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
@@ -194,7 +194,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <LeadCapture source="pricing" />
+      <FirstTimerGuide />
 
       <FinalCta
         title="Start with the $25 first class."

@@ -98,7 +98,7 @@ export const CLASSES: ClassFormat[] = [
     duration: "55 minutes",
     oneLiner: "One-on-one reformer Pilates built entirely around your body and goals.",
     forWho:
-      "Beginners who want a head start, clients working around injuries, prenatal clients with clearance, and anyone who prefers individual attention.",
+      "Beginners who want a head start, clients working around injuries, and anyone who prefers individual attention.",
     description:
       "A 55-minute private reformer session with your instructor. Every exercise, spring setting, and cue is chosen for you. Duets are available if you want to train with a friend or partner.",
     expect: [
