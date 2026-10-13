@@ -1,0 +1,187 @@
+{
+  "og": "/media/og/share.jpg",
+  "photos": {
+    "artistic-black-and-white-reformer-pose.jpg": {
+      "height": 2040,
+      "width": 1215
+    },
+    "branded-matcha-cup-logo.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "duet-two-clients-on-chair.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "entry-bench-patent-drawings.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "flat-lay-grip-socks-and-essentials.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "group-class-kneeling-leg-press.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "group-class-plank-row.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "group-class-plank-wide.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "instructor-headshot-black-cami.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "instructor-headshot-black-tee.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "instructor-headshot-one-shoulder-top.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "instructor-portrait-standing-on-chair.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "instructor-portrait-with-ball-taupe-set.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "mermaid-stretch-on-reformer.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "naira-sarkian-standing-chair-back.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "reception-good-day-wall.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "social-sunglasses-pose-on-reformer.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "standing-split-reformer-logo-wall.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "studio-logo-wall-chair-interior.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "studio-wide-bright-reformer-rows.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "studio-wide-empty-room.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "studio-wide-logo-wall.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "studio-wide-reformers-and-boxes.jpg": {
+      "height": 2048,
+      "width": 1536
+    },
+    "supine-bridge-with-band.jpg": {
+      "height": 2048,
+      "width": 1536
+    }
+  },
+  "videos": {
+    "clients-arriving-studio-entrance.mp4": {
+      "height": 960,
+      "poster": "/media/posters/clients-arriving-studio-entrance.jpg",
+      "seconds": 8.2,
+      "width": 540
+    },
+    "first-person-legs-in-straps.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/first-person-legs-in-straps.jpg",
+      "seconds": 4.2,
+      "width": 720
+    },
+    "group-class-lunge-in-sync.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/group-class-lunge-in-sync.jpg",
+      "seconds": 3.6,
+      "width": 960
+    },
+    "group-class-moody-backlit.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/group-class-moody-backlit.jpg",
+      "seconds": 6.2,
+      "width": 720
+    },
+    "group-class-standing-work-video.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/group-class-standing-work-video.jpg",
+      "seconds": 14.1,
+      "width": 720
+    },
+    "logo-medallion-close-up.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/logo-medallion-close-up.jpg",
+      "seconds": 2.8,
+      "width": 720
+    },
+    "partner-side-stretch-window-light.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/partner-side-stretch-window-light.jpg",
+      "seconds": 15.0,
+      "width": 720
+    },
+    "private-assisting-client-on-chair.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/private-assisting-client-on-chair.jpg",
+      "seconds": 5.4,
+      "width": 720
+    },
+    "private-coaching-with-ring-landscape.mp4": {
+      "height": 720,
+      "poster": "/media/posters/private-coaching-with-ring-landscape.jpg",
+      "seconds": 15.0,
+      "width": 1280
+    },
+    "private-hands-on-assist-kneeling.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/private-hands-on-assist-kneeling.jpg",
+      "seconds": 14.5,
+      "width": 720
+    },
+    "private-hands-on-shoulder-assist.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/private-hands-on-shoulder-assist.jpg",
+      "seconds": 14.6,
+      "width": 720
+    },
+    "reformer-box-abs-close-up.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/reformer-box-abs-close-up.jpg",
+      "seconds": 15.0,
+      "width": 720
+    },
+    "reformer-springs-close-up.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/reformer-springs-close-up.jpg",
+      "seconds": 2.1,
+      "width": 720
+    },
+    "studio-tour-logo-wall-video.mp4": {
+      "height": 1280,
+      "poster": "/media/posters/studio-tour-logo-wall-video.jpg",
+      "seconds": 3.0,
+      "width": 720
+    }
+  }
+}

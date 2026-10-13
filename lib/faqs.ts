@@ -1,0 +1,147 @@
+import { GRIP_SOCKS_LINE } from "@/lib/site";
+
+/**
+ * FAQ content. Rendered on /faq and used to generate FAQPage JSON-LD.
+ * Entries with `answer: null` are not rendered and are left out
+ * of the schema until the owner supplies the text.
+ */
+
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string | null;
+  /** What the owner must provide when `answer` is null. */
+  pending?: string;
+}
+
+export const FAQS: Faq[] = [
+  {
+    id: "cost",
+    question: "How much does Pilates cost in North Hollywood?",
+    answer:
+      "Your first class is $25 and a one-week unlimited intro is $105. After that: single class $36, 5-pack $160, 10-pack $300. Memberships run from $130/month for 5 classes to $280/month unlimited. Private sessions are $100.",
+  },
+  {
+    id: "what-is-reformer",
+    question: "What is reformer Pilates?",
+    answer:
+      "Strength and mobility training on a spring-loaded machine called the reformer. The springs add resistance to classic Pilates movements, building lean strength, flexibility, and control with low impact on your joints.",
+  },
+  {
+    id: "experience",
+    question: "Do I need experience to take a class?",
+    answer:
+      "No. Beginner classes are built for first-timers, class sizes stay small, and your instructor coaches your form throughout. Most new clients start with the $25 first class.",
+  },
+  {
+    id: "wear",
+    question: "What should I wear?",
+    answer:
+      `Form-fitting workout clothes you can move in. Skip loose clothing and jewelry. ${GRIP_SOCKS_LINE}`,
+  },
+  {
+    id: "how-often",
+    question: "How often should I do Pilates?",
+    answer:
+      "Twice a week is the sweet spot for visible results, which is why our most popular plan is 8 classes a month. Once a week maintains; three or more accelerates.",
+  },
+  {
+    id: "back-pain",
+    question: "Is Pilates good for back pain?",
+    answer:
+      "Many clients come for the core strength that supports the back. Tell your instructor about any injuries before class. For medical conditions, check with your doctor first.",
+  },
+  {
+    id: "classpass",
+    question: "Do you take ClassPass?",
+    answer:
+      "Yes. If you love it, coming direct is the better deal: the $105 one-week unlimited, then a membership with perks ClassPass cannot give you, like the same instructor each week and a saved reformer.",
+  },
+  {
+    id: "cancellation",
+    question: "What is your cancellation policy?",
+    answer:
+      "Cancel 12 or more hours before class for no charge. Cancel within 12 hours and the class credit is forfeited. No-shows are charged $15.",
+  },
+  {
+    id: "parking",
+    question: "Where do I park?",
+    answer:
+      "Street parking on Weddington St and metered spots in front of the studio on Vineland Ave. Arrive 10 minutes early for your first class.",
+  },
+  {
+    id: "pause-cancel",
+    question: "Can I pause or cancel my membership?",
+    answer: "Yes. Pause anytime, and turn off your renewal anytime with 7 days' notice. No fees.",
+  },
+  {
+    // Old-site Search Console showed "mat pilates near me" impressions. Answer
+    // honestly rather than chase mat terms the studio does not offer.
+    id: "mat",
+    question: "Do you offer mat Pilates?",
+    answer:
+      "Every group class at Bodies and Pilates is taught on the reformer. Mat Pilates uses your body weight on the floor; the reformer adds springs, so each exercise can be made more supportive or more challenging. New to the reformer? Start with a Beginner class or the $25 first class.",
+  },
+  {
+    id: "private",
+    question: "Do you offer private sessions?",
+    answer:
+      "Yes. 1:1 sessions are $100 for 55 minutes; duets are $70 per person. Ideal for beginners or working around an injury.",
+  },
+  {
+    id: "age",
+    question: "Is there an age limit?",
+    answer:
+      "Classes welcome adults of all ages. Teens 14+ may attend with a parent. Mention injuries or conditions when you book.",
+  },
+  {
+    id: "club-pilates",
+    question: "How is Bodies and Pilates different from Club Pilates?",
+    answer:
+      "We are an independent boutique studio: small classes, one consistent coaching team, no franchise script. You get to know your instructor, and they get to know your body.",
+  },
+  {
+    id: "lagree",
+    question: "What is the difference between Lagree and reformer Pilates?",
+    answer:
+      "Lagree is a 45-minute high-intensity muscular-endurance workout on the Megaformer. Reformer Pilates is controlled strength, mobility, and flexibility work on the reformer, with more emphasis on form, posture, and back-friendly movement. Both are low-impact. Pilates is the better starting point if you are new, returning from injury, or want flexibility alongside strength.",
+  },
+  {
+    id: "men",
+    question: "Do men do Pilates?",
+    answer: "Absolutely. The reformer is strength training; it does not care about gender.",
+  },
+  {
+    id: "first-class",
+    question: "What happens in my first class?",
+    answer:
+      "Arrive 10 minutes early, meet your instructor, get set up on your reformer. Fifty minutes of guided, low-impact strength work with coaching on your form the whole time.",
+  },
+  {
+    id: "nearby",
+    question: "Is the studio near Toluca Lake, Studio City, or Burbank?",
+    answer:
+      "Yes. We are on Vineland Ave in North Hollywood, close to Toluca Lake, Valley Village, Studio City, and Burbank, with street parking on Weddington St and metered spots in front of the studio.",
+  },
+];
+
+export const faqById = (id: string) => {
+  const faq = FAQS.find((f) => f.id === id);
+  if (!faq) throw new Error(`Unknown FAQ id: ${id}`);
+  return faq;
+};
+
+/** The three questions used by the FAQ teasers on Home and /intro-offer. */
+export const TEASER_FAQ_IDS = ["experience", "first-class", "parking"] as const;
+
+export function faqPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.filter((f) => f.answer).map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+}

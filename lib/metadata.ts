@@ -1,0 +1,59 @@
+import type { Metadata } from "next";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { OG_ALT, OG_SIZE } from "@/lib/og";
+import { SHARE_IMAGE } from "@/lib/media";
+
+// Default share image: a 1200x630 crop of the home hero photo
+// (group-class-plank-wide.jpg, made by scripts/import_media.py). Until that
+// file is imported, the branded card from app/opengraph-image.tsx is used.
+// Set explicitly because a page-level openGraph object replaces the
+// inherited one.
+const OG_IMAGE = SHARE_IMAGE ?? { url: "/opengraph-image", ...OG_SIZE, alt: OG_ALT };
+const TWITTER_IMAGE = SHARE_IMAGE ? SHARE_IMAGE.url : "/twitter-image";
+
+interface PageMeta {
+  /** Full title tag (rendered as-is, no template). */
+  title: string;
+  /** Unique per page: location keyword + offer + CTA. */
+  description: string;
+  /** Path beginning with "/". */
+  path: string;
+  noIndex?: boolean;
+  /** Blog posts: og:type=article plus published/modified times and author. */
+  article?: { publishedTime?: string; modifiedTime?: string; author: string };
+}
+
+/**
+ * Per-page metadata with canonical URL and Open Graph/Twitter tags.
+ */
+export function pageMetadata({ title, description, path, noIndex, article }: PageMeta): Metadata {
+  const url = `${SITE_URL}${path === "/" ? "/" : path}`;
+  return {
+    title: { absolute: title },
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      ...(article
+        ? {
+            type: "article" as const,
+            publishedTime: article.publishedTime,
+            modifiedTime: article.modifiedTime,
+            authors: [article.author],
+          }
+        : { type: "website" as const }),
+      locale: "en_US",
+      siteName: SITE_NAME,
+      title,
+      description,
+      url,
+      images: [OG_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [TWITTER_IMAGE],
+    },
+    ...(noIndex ? { robots: { index: false, follow: true } } : {}),
+  };
+}
