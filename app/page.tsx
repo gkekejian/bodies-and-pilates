@@ -71,7 +71,6 @@ export default function HomePage() {
             <div className="lg:col-span-5">
               <MediaPhoto
                 media={MEDIA.classPlankWide}
-                eager
                 aspectClassName="aspect-[4/5]"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />

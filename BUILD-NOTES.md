@@ -88,13 +88,10 @@ Owner-confirmed October 12, 2026: four instructors at launch, each with an owner
 ### Photography and video (`lib/media.ts`)
 The owner selected 47 files (46 selects plus Naira's third photo) on October 12, 2026. Real studio photography only: no stock, no AI imagery, no placeholders. A slot whose file is not imported renders nothing.
 
-- [ ] **Get the files into the build.** The Drive connector cannot transfer binary files into the build sandbox, so the library has to arrive one of two ways:
-  1. Upload the selects to the repo in a `pilates-media-library/` folder (GitHub web upload works; any subfolders; Drive names or final names both match), or
-  2. Download "Pilates content" from Drive as zips and attach them in the Claude session.
-  Then run `python3 scripts/import_media.py` (default source `pilates-media-library/`; the folder itself is git-ignored). It matches each file by its final name or by the original camera filename at the end of its Drive name, then:
+- [x] **Files imported (2026-10-13)** from the owner's four zips: all 47 found, 38 published, 9 held, none missing. Photos 8.8 MB, clips 11 MB in total (about 0.8 MB each), posters and share image under 1 MB. To re-import or add files later, put them in `pilates-media-library/` (git-ignored, any subfolders, final or Drive names) and run `python3 scripts/import_media.py`. It:
   - photos: EXIF orientation applied, all metadata stripped (no GPS), longest side 2048 px, progressive JPEG to `public/media/photos/`
-  - video: H.264, no audio, longest side 1280 px, about 1 Mbps, first 15 seconds, fast start, to `public/media/video/`, plus a poster frame in `public/media/posters/`
-  - share image: 1200x630 crop of `group-class-plank-wide.jpg` to `public/media/og/share.jpg`, used as the default Open Graph and Twitter image
+  - video: H.264, no audio, longest side 1280 px, about 1 Mbps, first 15 seconds, fast start, to `public/media/video/`, plus a cover frame from about a third of the way in, in `public/media/posters/`
+  - share image: 1200x630 crop of `group-class-plank-wide.jpg` to `public/media/og/share.jpg`, now the default Open Graph and Twitter image
   - writes `lib/media-manifest.json` and prints any missing file
 - Placement (owner mapping; class names translated to the studio's real classes):
 
@@ -123,7 +120,7 @@ The owner selected 47 files (46 selects plus Naira's third photo) on October 12,
 - Not published by the import script (`HOLD` in `scripts/import_media.py`): the six hold-list portraits, plus three unplaced shots that show unidentified instructors rather than clients (instructors-group-photo-three.jpg, instructor-leading-class-wide.mp4, side-lying-leg-work-photo.jpg). Remove a name from `HOLD` once the owner confirms who is in it.
 - Video behavior: the poster is a responsive next/image; the clip itself loads only within 300px of the viewport, plays only while 40% visible, pauses when scrolled away, never autoplays with reduced motion, and has a pause/play button. Second clips in a group and the supporting private clips play on tap. At most one clip plays when any page loads.
 - Contact page parking photos and per-post blog hero photos have no files in the selects, so those spots show text only.
-- [ ] After import, re-run Lighthouse mobile. With same-size stand-in files the pages measured 90 to 98.
+- Lighthouse 12 mobile with the real media, warm runs: Home 93 to 99 (desktop 100), Classes 97, About 95, Pricing 96, Intro offer 98, Blog 95; accessibility, best practices, and SEO 100; CLS 0 everywhere. The home hero photo lazy-loads because on phones it sits below the fold; the /classes hero clip loads its cover image first.
 
 ### Forms
 - [ ] `LEAD_CAPTURE_WEBHOOK_URL`: where first-timer's guide sign-ups go (MindBody or email platform). Write the guide email itself there.

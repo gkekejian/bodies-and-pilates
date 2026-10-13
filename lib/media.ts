@@ -101,7 +101,7 @@ export const MEDIA = {
   duetOnChair: photo("duet-two-clients-on-chair.jpg", `Two clients seated on Pilates chairs for a duet session at ${STUDIO}`),
 
   // Brand and details
-  receptionWall: photo("reception-good-day-wall.jpg", `Reception wall at ${STUDIO}`),
+  receptionWall: photo("reception-good-day-wall.jpg", `Reception wall reading "It's a good day to do Pilates" at ${STUDIO}`),
   entryBench: photo("entry-bench-patent-drawings.jpg", `Entry bench and Pilates patent drawings at ${STUDIO}`),
   gripSocksFlatLay: photo("flat-lay-grip-socks-and-essentials.jpg", `Flat lay of grip socks and class essentials on a reformer at ${STUDIO}`),
   logoMedallion: video("logo-medallion-close-up.mp4", `Close-up of the Bodies and Pilates logo medallion`, "studio-wide-logo-wall.jpg"),

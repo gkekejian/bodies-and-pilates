@@ -114,13 +114,16 @@ def import_video(path: Path, final: str):
          "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(out)],
         check=True,
     )
+    info = probe(out)
+    # Cover frame from about a third of the way in: the opening frames of
+    # phone clips are often the camera settling on an empty corner.
+    at = round(float(info["format"]["duration"]) * 0.35, 2)
     poster = OUT_POSTERS / (Path(final).stem + ".jpg")
     subprocess.run(
-        ["ffmpeg", "-y", "-v", "error", "-ss", "0.5", "-i", str(out), "-frames:v", "1",
-         "-q:v", "4", str(poster)],
+        ["ffmpeg", "-y", "-v", "error", "-ss", str(at), "-i", str(out), "-frames:v", "1",
+         "-q:v", "3", str(poster)],
         check=True,
     )
-    info = probe(out)
     stream = info["streams"][0]
     return {
         "width": stream["width"],
