@@ -45,12 +45,13 @@ export default function PrivacyPage() {
         conditions in person before class.
       </p>
 
-      <h3>Analytics, only with your consent</h3>
+      <h3>Analytics and advertising tags</h3>
       <p>
-        If you click Accept on our cookie banner, we load Google Analytics to understand how the site is used and,
-        where enabled, the Meta Pixel to measure our ads. These tools set cookies and receive information about your
-        visit, such as pages viewed, device and browser type, and approximate location. Nothing is loaded before you
-        accept. If your browser sends a Global Privacy Control signal, we treat it as a decline.
+        We use the Meta Pixel and, where enabled, Google tags to measure visits to this site and the results of our
+        ads. These tools set cookies and receive information about your visit, such as pages viewed, booking links
+        clicked, device and browser type, and approximate location. You can turn them off for your browser at any
+        time with <strong>Your privacy choices</strong> in the site footer. If your browser sends a Global Privacy
+        Control signal, we treat it as an opt-out and the tags never load.
       </p>
 
       <h3>Technical information</h3>
@@ -70,17 +71,17 @@ export default function PrivacyPage() {
       <h2>How we use your information</h2>
       <ul>
         <li>To reply to your calls, texts, emails, and questions.</li>
-        <li>With your consent, to understand how the site is used and to measure our advertising.</li>
+        <li>To understand how the site is used and to measure our advertising, unless you opt out.</li>
         <li>To operate, secure, and improve the website.</li>
       </ul>
 
       <h2>Sharing</h2>
       <p>
         We share information only with service providers that help us run the site and respond to you, such as our
-        hosting and email providers, and, with your consent, our analytics providers.{" "}
-        <strong>We do not sell your personal information.</strong> If you accept cookies and the Meta Pixel is enabled,
-        Meta receives information about your visit to measure our ads, which may count as &ldquo;sharing&rdquo; under
-        California law. You can decline or withdraw consent at any time.
+        hosting and email providers, and our analytics and advertising providers.{" "}
+        <strong>We do not sell your personal information.</strong> Meta receives information about your visit to measure our
+        ads, which may count as &ldquo;sharing&rdquo; under California law. You can opt out at any time with Your
+        privacy choices in the footer or a Global Privacy Control signal.
       </p>
       <p>We do not send information you share with us to AI or large language model services.</p>
 
@@ -91,7 +92,8 @@ export default function PrivacyPage() {
 
       <h2>Your choices and rights</h2>
       <p>
-        You can change your cookie choice at any time using <strong>Cookie settings</strong> in the site footer.
+        You can turn analytics and advertising tags off at any time using <strong>Your privacy choices</strong> in the
+        site footer.
         California residents have the right to know what personal information we hold about them, to correct it, to
         delete it, and to opt out of its sale or sharing, and we will not discriminate against you for using these
         rights. To make a request, email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or call{" "}

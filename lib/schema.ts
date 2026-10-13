@@ -68,8 +68,8 @@ export const exerciseGymSchema = {
       catalog("Private training", PRIVATE),
     ],
   },
-  // TODO(owner): add geo coordinates once confirmed from the Google Business
-  // Profile pin, e.g. geo: { "@type": "GeoCoordinates", latitude: 0, longitude: 0 }.
+  // Owner-supplied pin for 5251 Vineland Ave (2026-10-13).
+  geo: { "@type": "GeoCoordinates", latitude: 34.16653, longitude: -118.37066 },
   //
   // Opening hours come from the owner-confirmed hours in lib/site.ts.
   // TODO(owner): re-check these match the Google Business Profile exactly.

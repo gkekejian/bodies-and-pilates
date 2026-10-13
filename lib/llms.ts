@@ -1,7 +1,7 @@
 import { CLASSES } from '@/lib/classes'
 import { FAQS } from '@/lib/faqs'
 import { COMMIT, FLEX, POLICY, PRIVATE, TRY, offerHref, type Offer } from '@/lib/pricing'
-import { TEAM, bioEntries } from '@/lib/team'
+import { TEAM, SHOW_BIOS, bioEntries } from '@/lib/team'
 import { SERVICE_AREAS } from '@/lib/areas'
 import { getPublishedPosts } from '@/lib/blog'
 import {
@@ -80,7 +80,7 @@ export function llmsFullTxt() {
   const posts = getPublishedPosts()
   const team = TEAM.map(
     (t) =>
-      `- ${t.name}${t.role ? `, ${t.role}` : ', instructor'}. Teaches: ${t.teaches.join(', ')}.${bioEntries(t.bio)
+      `- ${t.name}${t.role ? `, ${t.role}` : ', instructor'}. Teaches: ${t.teaches.join(', ')}.${(SHOW_BIOS ? bioEntries(t.bio) : [])
         .map((b) => ` ${b.label}: ${b.value}.`)
         .join('')}`
   ).join('\n')

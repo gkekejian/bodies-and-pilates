@@ -63,7 +63,7 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 - [ ] Class pack expiry (placeholder on `/pricing`).
 
 ### Facts to confirm
-- [ ] Geo coordinates for schema (`lib/schema.ts`). Not added: no geocoder was reachable from the build sandbox and coordinates are not a locked fact. Copy them from the Google Business Profile pin.
+- [x] Geo coordinates in schema: 34.16653, -118.37066 (owner-supplied pin, 2026-10-13).
 - [ ] Difficulty level, "who it is for", and 50-minute length per class (`lib/classes.ts`).
 - [ ] Neighborhood routes and landmarks read right to a local (`app/about/page.tsx` and the 8 lines in `lib/areas.ts`).
 - [x] Grip socks (owner-confirmed 2026-10-12): required for class; bring your own or buy a pair at the front desk. One line, `GRIP_SOCKS_LINE` in `lib/site.ts`, used in the "What should I wear?" FAQ and the /schedule first-timer strip.
@@ -73,7 +73,7 @@ Per-price links are classic MindBody URLs (`https://clients.mindbodyonline.com/c
 
 ### Team (`lib/team.ts`)
 Owner-confirmed October 12, 2026: four instructors at launch, each with an owner-identified photo. Naira Sarkian (Founder and Owner), Sita Acevedo, Theresia Bunch, Hannah Pink. Cards show photo, name, role (Naira only), classes taught (Naira, Theresia, Hannah: Full Body; Sita: Full Body and Flexibility), and a "Book with [First Name]" link to /schedule.
-- [ ] Five bullets per instructor: specialty, years teaching, certifications, teaching style, what to expect. Requested from the instructors. Each bullet renders only once it has real text in `lib/team.ts` (`bio`); nothing is shown or invented until then.
+- [ ] Five bullets per instructor: specialty, years teaching, certifications, teaching style, what to expect. Requested from the instructors. Each bullet renders only once it has real text in `lib/team.ts` (`bio`); nothing is shown or invented until then. Bios are also gated by `SHOW_BIOS = false` (go-live decision): fill in all four, then flip it to true.
 - [ ] Naira's founder story, in her own words. The founder block on /about shows her two photos, name, and title until it arrives.
 - Draft details from the old site, for the instructors to confirm or replace when they send their bullets (not shown on the site):
   - Sita: certified movement instructor in Pilates and GYROTONIC; aerialist and aerial choreographer; specialties core stability, creative sequencing, prop work.
@@ -163,7 +163,12 @@ How the blog works (see the header comment in `lib/blog.ts` for the frontmatter 
 - [ ] AI crawlers: `app/robots.ts` allows AI search and training crawlers by name. To stay in AI answers but opt out of training, set GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, and CCBot to disallow.
 - No form endpoints at launch (see Forms). If they come back, restore `lib/request-guard.ts` with them: same-origin JSON only, 16 KB cap, honeypot, per-IP rate limit.
 - [ ] Dependencies: `npm audit --omit=dev` leaves 4 moderate advisories, all in gray-matter's YAML parser (js-yaml 3, argparse, sprintf-js). It only parses the blog's own frontmatter from this repo, never visitor input. Next.js is on the patched 15.5 line; PostCSS is pinned to a patched version through `overrides` in `package.json`.
-- Analytics are opt-in: GA4 and the Meta Pixel load only after Accept, Global Privacy Control counts as a decline, and "Cookie settings" in the footer reopens the choice.
+- Tracking (go-live pass, 2026-10-13). Config in `lib/tracking.ts`, loader and click handler in `components/analytics/analytics.tsx`, consent switch in `lib/consent.ts`.
+  - Meta Pixel `1074774813955135` ("B&P Main", owner-supplied). [ ] Confirm it matches the Wix site's live pixel before DNS cutover: the build sandbox could not reach the Wix site.
+  - Events: PageView on every page and client-side navigation; ViewContent on /intro-offer, /pricing, /classes and /classes/*; InitiateCheckout (Meta) and begin_checkout (Google) from one handler on any click to clients/go/cart.mindbodyonline.com, and on Book/Sign up/Reserve buttons the schedule widget renders into the page (not inside an iframe). Schedule and Purchase are not fired on this site: they happen on MindBody after the visitor leaves.
+  - UTMs: utm_source/medium/campaign/term/content from the landing URL are kept for the visit and appended to MindBody booking links on click (existing values win).
+  - Google: [ ] no ID set. Put the Wix site's GA4 (`NEXT_PUBLIC_GA_ID`) and/or Google Ads (`NEXT_PUBLIC_GOOGLE_ADS_ID`) IDs in Vercel env vars and redeploy; if the Wix site had none, create a GA4 property first.
+  - Consent: `CONSENT_MODE = "opt-out"`. No banner (the brief says none unless the Wix site had one); "Your privacy choices" in the footer turns tags off, and Global Privacy Control is honored. [ ] If the Wix site did show a cookie banner, set `CONSENT_MODE = "opt-in"` to restore the Accept/Decline banner.
 - `/llms.txt` and `/llms-full.txt` are generated from the same data as the pages (`lib/llms.ts`), so they stay in sync.
 
 ### Local SEO: owner actions (from the 2026-10-12 keyword research)

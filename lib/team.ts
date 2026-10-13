@@ -21,6 +21,13 @@ import { MEDIA, type PhotoMedia } from "@/lib/media";
  */
 export const SHOW_TEAM = true;
 
+/**
+ * Bio bullets stay hidden until the instructors' real bios arrive (owner
+ * decision, 2026-10-13 go-live). Cards show name, photo, classes taught, and
+ * the booking link. Flip to true once every card's bio fields are filled in.
+ */
+export const SHOW_BIOS = false;
+
 export type ClassType = "Beginner" | "Full Body" | "Flexibility" | "Abs and Assets";
 
 export interface InstructorBio {

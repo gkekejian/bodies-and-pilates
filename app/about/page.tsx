@@ -8,7 +8,7 @@ import { ABOUT_TESTIMONIALS } from "@/lib/testimonials";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { MEDIA, present } from "@/lib/media";
-import { TEAM, SHOW_TEAM, bioEntries, type Instructor } from "@/lib/team";
+import { TEAM, SHOW_TEAM, SHOW_BIOS, bioEntries, type Instructor } from "@/lib/team";
 import { ADDRESS, INSTAGRAM } from "@/lib/site";
 
 export const metadata = pageMetadata({
@@ -54,7 +54,7 @@ function InstructorCard({ person }: { person: Instructor }) {
   // Only fields with real content render; an empty label never shows.
   const fields = [
     ...(person.teaches.length > 0 ? [{ label: "Teaches", value: person.teaches.join(", ") }] : []),
-    ...bioEntries(person.bio),
+    ...(SHOW_BIOS ? bioEntries(person.bio) : []),
   ];
   return (
     <article className="flex flex-col border border-taupe-300/70 bg-cream-50">
