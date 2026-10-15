@@ -62,7 +62,7 @@ export default function PrivacyPage() {
 
       <h2>Booking, maps, and other services</h2>
       <p>
-        Class booking, purchases, and account login are handled by MindBody, including the schedule and login widgets
+        Class booking, purchases, and account login are handled by Mindbody, including the schedule and login widgets
         on this site. Bookings made through ClassPass are handled by ClassPass. The map on our contact page is provided
         by Google Maps. When you use these services they collect information under their own privacy policies, which we
         encourage you to read.

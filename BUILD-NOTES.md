@@ -200,6 +200,14 @@ Google Business Profile:
 
 ---
 
+### Copy audit (2026-10-14), applied
+- Fact-sheet facts now on the site: never more than 7 people per class, professional Merrithew reformers, woman-owned, experienced instructors (no credentials or years named). Shared constants in `lib/site.ts` (`CLASS_CAP`, `REFORMER_BRAND`, `CLASSPASS_RATING_LINE`).
+- Ratings: testimonial sections now show the ClassPass rating; Google 4.7 stays only in the footer. The ClassPass rating also appears on /intro-offer, /pricing, /classes and every class page.
+- Removed: the ClassPass "same instructor / saved reformer / progress tracking / priority booking" perks, "Est. 2024" and every founding year (schema `foundingDate` too), "Teens 14+", Lagree class length and format specs, "Monthly auto-renew", outcome and timeline promises, back-pain and injury outcome claims, the unsourced market price range and competitor claim.
+- Blog: new closing CTA on every post (build-checked). Merged how-long-until-pilates-results into how-often, folded the flexibility post into what-is-reformer-pilates, cut the pregnancy post (FAQ "Can I take a class while pregnant?" replaces it); all three 301. 17 posts remain. Titles under 60 characters now carry " | Bodies and Pilates".
+- Not done: a /classes/abs-and-assets page (needs Naira's description, level, and who it is for); per-post CTA variations; the blanket "honest" / "Here is" wording pass.
+- [ ] Confirm with Naira: founding year (shown nowhere until confirmed); parking on Weddington St and Vineland Ave; booking by phone and by text; "Arrive 10 minutes early"; who teaches Beginner and Abs and Assets; whether a first-timer can take the $25 class and then the $105 week; pack expiry. Jason, Taylor, and the client review are the owner-supplied reviews from 2026-10-12.
+
 ## Launch checklist
 
 - [x] MindBody widget live with the real timetable (class names, times, instructors). Verified on the preview 2026-10-12, along with the footer Login | Register modal.

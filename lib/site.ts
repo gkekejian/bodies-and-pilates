@@ -80,6 +80,15 @@ export const CLASSPASS_URL = "https://classpass.com/studios/bodies-and-pilates-l
  * Shown as visible text only. Never emit it as aggregateRating schema: these
  * are third-party ratings, not reviews collected on this site.
  */
+/**
+ * Studio facts from the owner's fact sheet (2026-10-14 copy audit): class
+ * size cap, equipment, ownership. Instructors are described as experienced;
+ * no credentials or years until each instructor confirms them.
+ */
+export const CLASS_CAP = 7;
+export const REFORMER_BRAND = "Merrithew";
+export const CAP_LINE = `Never more than ${CLASS_CAP} people per class`;
+
 export const CLASSPASS_RATING = {
   rating: "4.9",
   ratings: "7,500+",
@@ -87,13 +96,15 @@ export const CLASSPASS_RATING = {
   verified: "2026-10-12",
 } as const;
 
+export const CLASSPASS_RATING_LINE = `Rated ${CLASSPASS_RATING.rating} on ClassPass from ${CLASSPASS_RATING.ratings} ratings and ${CLASSPASS_RATING.reviews} reviews.`;
+
 /**
- * MindBody (site ID 5739427). Owner-supplied links and widgets.
+ * Mindbody (site ID 5739427). Owner-supplied links and widgets.
  * Same-tab links: classes and pricing. New tab: the app smart link.
  */
 export const MINDBODY = {
   siteId: "5739427",
-  /** "Book a class" destination: the MindBody class booking page. */
+  /** "Book a class" destination: the Mindbody class booking page. */
   classesUrl: "https://go.mindbodyonline.com/book/app/classes/5739427",
   /** General pricing page. Interim target for pack, membership, and private buttons. */
   pricingUrl: "https://go.mindbodyonline.com/book/app/pricing/bus_11kS9of8y3RDLJFBGg",
@@ -112,7 +123,7 @@ export const MINDBODY = {
 
 export const FIRST_CLASS_CTA = "Book Your $25 First Class";
 
-// MindBody deep link for the $25 First Class pricing option (from the live
+// Mindbody deep link for the $25 First Class pricing option (from the live
 // site). Used by every "Book Your $25 First Class" button, header and mobile
 // bar included. Same link as the first-class offer in lib/pricing.ts.
 export const INTRO_OFFER_DEEP_LINK: string | null =

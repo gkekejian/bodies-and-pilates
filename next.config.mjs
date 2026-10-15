@@ -81,7 +81,11 @@ const nextConfig = {
       // Alternate slugs used in the owner's blog drafts; the index slugs are canonical.
       moved("/blog/what-to-look-for-in-a-pilates-studio", "/blog/7-things-to-look-for-in-a-pilates-studio"),
       moved("/blog/what-happens-in-your-first-pilates-class", "/blog/your-first-pilates-class-minute-by-minute"),
-      moved("/blog/how-long-until-you-see-results-from-pilates", "/blog/how-long-until-pilates-results"),
+      moved("/blog/how-long-until-you-see-results-from-pilates", "/blog/how-often-should-you-do-pilates"),
+      // Copy audit (2026-10-14): merged, folded, or cut posts.
+      moved("/blog/how-long-until-pilates-results", "/blog/how-often-should-you-do-pilates"),
+      moved("/blog/do-you-need-to-be-flexible-to-start-pilates", "/blog/what-is-reformer-pilates"),
+      moved("/blog/can-i-do-pilates-while-pregnant", "/faq"),
 
       // Pricing normalization (old Wix pricing slugs). Uppercase and trailing
       // slash variants (/Pricing, /pricing/) are handled by middleware.ts.

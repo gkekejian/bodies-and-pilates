@@ -8,12 +8,13 @@ import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { CLASSES } from "@/lib/classes";
 import { MEDIA } from "@/lib/media";
-import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
+import { CLASSPASS_RATING_LINE, CLASSPASS_URL, FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
+import { priceOf } from "@/lib/pricing";
 
 export const metadata = pageMetadata({
-  title: "Reformer Pilates Classes | Bodies and Pilates NoHo",
+  title: "Reformer Pilates Classes in North Hollywood | Bodies and Pilates",
   description:
-    "Reformer Pilates classes in North Hollywood: Beginner, Full Body, Flexibility, Abs and Assets, plus privates and duets. Small groups, real coaching.",
+    "Reformer Pilates classes in North Hollywood: Beginner, Full Body, Flexibility, Abs and Assets, privates and duets. 50 minutes, 7 people max.",
   path: "/classes",
 });
 
@@ -45,8 +46,8 @@ export default function ClassesPage() {
         }
         intro={
           <p>
-            Every group class at Bodies and Pilates is small-group reformer Pilates, coached by an instructor who
-            watches your form from start to finish. Choose by goal and experience, or start with Beginner if the
+            Every group class is 50 minutes on a professional Merrithew reformer, with no more than 7 people, coached
+            by an experienced instructor who watches your form from start to finish. Choose by goal and experience, or start with Beginner if the
             reformer is new to you.
           </p>
         }
@@ -84,7 +85,7 @@ export default function ClassesPage() {
                   straps for your hands and feet. The springs add adjustable resistance to classic Pilates movements,
                   building lean strength, flexibility, and control with low impact on your joints. Your instructor
                   changes the springs to make each exercise harder or more supportive, so the same machine works for a
-                  first-timer and a seasoned athlete.
+                  first-timer and a seasoned athlete. Ours are professional Merrithew reformers.
                 </p>
               }
             />
@@ -94,6 +95,12 @@ export default function ClassesPage() {
         </div>
       </section>
 
+      <p className="bg-cream-100 px-4 pt-10 text-center font-sans text-sm sm:pt-12">
+        <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-500">
+          {CLASSPASS_RATING_LINE}
+        </a>
+      </p>
+
       {CLASSES.map((c, i) => (
         <section
           key={c.slug}
@@ -102,7 +109,14 @@ export default function ClassesPage() {
         >
           <div className={container}>
             <ClassFormatBlock format={c} reverse={i % 2 === 1} />
-            {c.slug === "private" && <PrivateShowcase includeDuet={false} />}
+            {c.slug === "private" && (
+              <>
+                <p className="mt-10 font-serif text-2xl text-charcoal-900">
+                  {priceOf("private")} for 55 minutes. Duets {priceOf("duet")} per person.
+                </p>
+                <PrivateShowcase includeDuet={false} />
+              </>
+            )}
           </div>
         </section>
       ))}
@@ -119,7 +133,7 @@ export default function ClassesPage() {
               id="abs-and-assets-heading"
               eyebrow="Also on the schedule"
               title="Abs and Assets"
-              intro={<p>A 50-minute small-group reformer class, now on the weekly schedule.</p>}
+              intro={<p>Abs and Assets is a 50-minute reformer class on professional Merrithew reformers, capped at 7 people.</p>}
             />
             {/* TODO(owner): add a 1 to 2 sentence description, level, and who it is for. */}
             <CtaLink href="/schedule" variant="text">

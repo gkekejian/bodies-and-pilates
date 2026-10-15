@@ -125,10 +125,10 @@ export function Footer() {
                   {INSTAGRAM.handle}
                 </a>
               </li>
-              {/* MindBody booking stays in the same tab; the app smart link opens a new one. */}
+              {/* Mindbody booking stays in the same tab; the app smart link opens a new one. */}
               <li>
                 <a href={MINDBODY.classesUrl} className={muted}>
-                  Book on MindBody
+                  Book on Mindbody
                 </a>
               </li>
               <li>

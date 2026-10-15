@@ -8,7 +8,7 @@ import { MINDBODY } from "@/lib/site";
 const HealcodeWidget = "healcode-widget" as unknown as React.FC<Record<string, string>>;
 
 /**
- * MindBody "Login | Register" account link (HealCode account-link widget).
+ * Mindbody "Login | Register" account link (HealCode account-link widget).
  * healcode.js is heavy, so it loads only when the footer scrolls near view,
  * keeping it off the critical path for PageSpeed.
  */

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const WIDGET_SCRIPT = "https://brandedweb.mindbodyonline.com/embed/widget.js";
 
 /**
- * MindBody branded-web Schedules widget. Renders the owner's embed code:
+ * Mindbody branded-web Schedules widget. Renders the owner's embed code:
  *
  *   <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="..."></div>
  *   <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>

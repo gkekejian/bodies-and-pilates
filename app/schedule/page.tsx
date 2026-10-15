@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { MINDBODY, PHONE, GRIP_SOCKS_LINE } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Class Schedule | Bodies and Pilates North Hollywood",
+  title: "Reformer Pilates Schedule, North Hollywood | Bodies and Pilates",
   description:
     "Book reformer Pilates classes in North Hollywood: morning and evening sessions on weekdays, mornings on weekends. Book right here, no app download needed.",
   path: "/schedule",
@@ -50,18 +50,18 @@ export default function SchedulePage() {
             <p>Wear form-fitting clothes you can move in.</p>
           </aside>
 
-          {/* Primary path: the live MindBody timetable. */}
+          {/* Primary path: the live Mindbody timetable. */}
           <p className="mb-4 font-sans text-xs uppercase tracking-[0.2em] text-sage-700">
             Book right here, no app download needed.
           </p>
           <MindbodyScheduleWidget widgetId={MINDBODY.scheduleWidgetId} />
 
-          {/* Secondary: direct MindBody link, phone, hours. */}
+          {/* Secondary: direct Mindbody link, phone, hours. */}
           <div className="mt-8 grid gap-10 border-t border-taupe-300/70 pt-8 sm:mt-10 sm:pt-10 lg:grid-cols-2">
             <div className="space-y-3 font-sans text-base text-charcoal-800/85">
               <p>
                 <a href={MINDBODY.classesUrl} className={link}>
-                  Book on MindBody
+                  Book on Mindbody
                 </a>
               </p>
               <p>
