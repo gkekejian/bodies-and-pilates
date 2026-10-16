@@ -1,5 +1,4 @@
-import { MediaPhoto } from "@/components/ui/media";
-import { eyebrowClass } from "@/components/sections/section-heading";
+import { PageHero } from "@/components/sections/section-heading";
 import { OfferCard } from "@/components/sections/offer-card";
 import { ClassPassStrip } from "@/components/sections/classpass-strip";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -33,29 +32,23 @@ export default function IntroOfferPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
-      <section className="bg-cream-100 py-14 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-end gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <p className={`${eyebrowClass} mb-6`}>New Client Offer &middot; North Hollywood</p>
-              <h1 className="font-serif text-4xl leading-[1.08] text-charcoal-900 sm:text-5xl lg:text-6xl">
-                Your First Reformer Class Is $25
-              </h1>
-              <p className="mt-7 max-w-xl font-sans text-lg leading-[1.65] text-charcoal-800/85">
-                Small-group reformer Pilates on Vineland Ave, coached by an instructor who watches your form the whole
-                time. No experience needed. Choose one class, or a full week to find your rhythm.
-              </p>
-            </div>
-            {MEDIA.classKneelingLegPress && (
-              <div className="hidden lg:col-span-5 lg:block">
-                <MediaPhoto media={MEDIA.classKneelingLegPress} sizes="40vw" />
-              </div>
-            )}
-          </div>
+      <PageHero
+        eyebrow="New Client Offer · North Hollywood"
+        title="Your First Reformer Class Is $25"
+        banner={MEDIA.classPlankRow}
+        tone="sage"
+      />
 
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {TRY.map((offer, i) => (
-              <OfferCard key={offer.id} offer={offer} highlight={i === 0} headingLevel="h2" />
+      <section aria-label="Intro offers" className="bg-cream-100 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <p className="mx-auto max-w-2xl text-center font-sans text-base leading-[1.8] text-charcoal-800/85 sm:text-lg">
+            Come try a full class with us. It is 50 minutes on a Merrithew reformer, in a room of no more than 7, on
+            Vineland Ave. Your instructor watches your form the whole time, so you do not need any experience. Take one
+            class, or take a week and come as often as you like.
+          </p>
+          <div className="mx-auto mt-12 grid max-w-[42rem] gap-6 sm:grid-cols-2">
+            {TRY.map((offer) => (
+              <OfferCard key={offer.id} offer={offer} accent="mauve" headingLevel="h2" />
             ))}
           </div>
         </div>

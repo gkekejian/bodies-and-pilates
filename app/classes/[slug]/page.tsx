@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { ClassFormatBlock } from "@/components/sections/class-format";
 import { OfferCard } from "@/components/sections/offer-card";
+import { CLASS_CARD_PHOTO } from "@/components/sections/class-media";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
@@ -64,10 +65,12 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
       <PageHero
         eyebrow={isPrivate ? "Private Reformer Pilates" : "Small-Group Reformer Pilates"}
         title={c.pageTitle}
+        banner={CLASS_CARD_PHOTO[c.slug]}
+        tone="sage"
         intro={<p>{c.oneLiner}</p>}
       >
         <nav aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2 font-sans text-sm text-charcoal-800/70">
+          <ol className="flex items-center gap-2 font-sans text-sm text-charcoal-800/75">
             <li>
               <Link href="/classes" className="hover:text-sage-700">
                 Classes
@@ -88,12 +91,12 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
       </section>
 
       {isPrivate && (
-        <section aria-labelledby="private-pricing" className="bg-cream-200 py-20 sm:py-24">
+        <section aria-labelledby="private-pricing" className="bg-cream-100 py-20 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <SectionHeading id="private-pricing" eyebrow="Pricing" title="Private session pricing" />
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid max-w-[42rem] gap-6 sm:grid-cols-2">
               {PRIVATE.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} highlight={false} />
+                <OfferCard key={offer.id} offer={offer} accent={offer.id === "duet" ? "tan" : "sage"} />
               ))}
             </div>
           </div>

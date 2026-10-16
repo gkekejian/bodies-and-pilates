@@ -25,7 +25,7 @@ export function LegalPage({
       />
       <PageHero eyebrow="Legal" title={title} intro={<>{intro}<p className="mt-4 text-sm">Last updated {updated}</p></>} />
       <section className="bg-cream-50 py-16 sm:py-20">
-        <div className="prose prose-stone mx-auto max-w-3xl px-4 prose-headings:font-serif prose-headings:font-normal prose-a:text-sage-700 prose-a:underline-offset-4 sm:px-6">
+        <div className="prose prose-stone mx-auto max-w-3xl px-4 prose-headings:font-serif prose-headings:font-normal prose-headings:text-sage-900 prose-a:text-sage-700 prose-a:underline-offset-4 sm:px-6">
           {children}
         </div>
       </section>

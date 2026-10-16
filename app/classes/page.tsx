@@ -1,12 +1,12 @@
 import { MediaItem } from "@/components/ui/media";
-import { ClassMedia, PrivateShowcase } from "@/components/sections/class-media";
+import { ClassCards, ClassMedia, PrivateShowcase } from "@/components/sections/class-media";
 import { CtaLink } from "@/components/ui/cta-link";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { ClassFormatBlock } from "@/components/sections/class-format";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { CLASSES } from "@/lib/classes";
+import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
 import { MEDIA } from "@/lib/media";
 import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 
@@ -32,11 +32,12 @@ export default function ClassesPage() {
       <PageHero
         eyebrow="Small-Group Reformer Pilates"
         title="Reformer Pilates Classes"
+        banner={MEDIA.studioBrightRows}
+        tone="sage"
         media={
           MEDIA.classMoodyBacklit && (
             <MediaItem
               media={MEDIA.classMoodyBacklit}
-              priority
               aspectClassName="aspect-[4/5]"
               className="mx-auto max-w-sm lg:max-w-none"
               sizes="(max-width: 1024px) 100vw, 40vw"
@@ -45,9 +46,9 @@ export default function ClassesPage() {
         }
         intro={
           <p>
-            Every group class at Bodies and Pilates is small-group reformer Pilates, coached by an instructor who
-            watches your form from start to finish. Choose by goal and experience, or start with Beginner if the
-            reformer is new to you.
+            Every group class we teach is on the reformer, with no more than 7 people in the room. Your instructor
+            watches your form from start to finish. Pick a class by how you want to feel, or start with Beginner if
+            the reformer is new to you.
           </p>
         }
       >
@@ -56,19 +57,27 @@ export default function ClassesPage() {
             <a
               key={c.slug}
               href={`#${c.slug}`}
-              className="inline-block py-1 font-sans text-xs uppercase tracking-[0.2em] text-sage-700 underline-offset-4 hover:underline"
+              className="smallcaps inline-block py-1 text-[15px] text-sage-700 underline-offset-4 hover:underline"
             >
               {c.name}
             </a>
           ))}
           <a
             href="#abs-and-assets"
-            className="inline-block py-1 font-sans text-xs uppercase tracking-[0.2em] text-sage-700 underline-offset-4 hover:underline"
+            className="smallcaps inline-block py-1 text-[15px] text-sage-700 underline-offset-4 hover:underline"
           >
             Abs and Assets
           </a>
         </nav>
       </PageHero>
+
+      <ClassCards
+        headingId="the-classes"
+        items={[
+          ...GROUP_CLASSES.map((c) => ({ key: c.slug, name: c.name, href: `#${c.slug}` })),
+          { key: "abs-and-assets", name: "Abs and Assets", href: "#abs-and-assets" },
+        ]}
+      />
 
       {/* What is reformer Pilates? */}
       <section aria-labelledby="what-is-reformer" className="bg-cream-50 py-20 sm:py-24">
@@ -79,13 +88,17 @@ export default function ClassesPage() {
               eyebrow="The Apparatus"
               title="What is reformer Pilates?"
               intro={
-                <p>
-                  The reformer is a sliding carriage on a frame, connected to a set of springs, with a footbar and
-                  straps for your hands and feet. The springs add adjustable resistance to classic Pilates movements,
-                  building lean strength, flexibility, and control with low impact on your joints. Your instructor
-                  changes the springs to make each exercise harder or more supportive, so the same machine works for a
-                  first-timer and a seasoned athlete.
-                </p>
+                <>
+                  <p>
+                    The reformer is a sliding carriage on a frame, with springs, a footbar, and straps for your hands
+                    and feet. The springs add resistance to classic Pilates movements, and they are easy on your
+                    joints.
+                  </p>
+                  <p className="mt-4">
+                    We teach on Merrithew reformers. Your instructor changes the springs to make each exercise harder or
+                    more supportive, so the same machine works on your first day and your hundredth.
+                  </p>
+                </>
               }
             />
             <CtaLink href={introBookingHref()}>{FIRST_CLASS_CTA}</CtaLink>
@@ -119,7 +132,7 @@ export default function ClassesPage() {
               id="abs-and-assets-heading"
               eyebrow="Also on the schedule"
               title="Abs and Assets"
-              intro={<p>A 50-minute small-group reformer class, now on the weekly schedule.</p>}
+              intro={<p>A 50-minute small-group reformer class on our weekly schedule.</p>}
             />
             {/* TODO(owner): add a 1 to 2 sentence description, level, and who it is for. */}
             <CtaLink href="/schedule" variant="text">

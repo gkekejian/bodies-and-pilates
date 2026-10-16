@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Fraunces, Libre_Baskerville, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -9,16 +9,40 @@ import Analytics from "@/components/analytics/analytics";
 import { exerciseGymSchema, websiteSchema, jsonLd } from "@/lib/schema";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const playfair = Playfair_Display({
+// Type system from the old site. Only the display serif (the hero headline,
+// the LCP text) is preloaded; the others swap in when first used.
+const display = Fraunces({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-display",
   display: "swap",
+  // Variable font with the optical-size axis: large sizes get the
+  // high-contrast cut that stands in for The Seasons.
+  axes: ["opsz"],
 });
 
-const inter = Inter({
+const accent = Libre_Baskerville({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-accent",
   display: "swap",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+
+const sans = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500"],
+  preload: false,
+});
+
+const light = Poppins({
+  subsets: ["latin"],
+  variable: "--font-light",
+  display: "swap",
+  weight: ["200", "300"],
+  preload: false,
 });
 
 // Defaults only. Every page sets its own title, description, canonical, and
@@ -40,12 +64,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FDFCFA",
+  themeColor: "#556450",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${accent.variable} ${sans.variable} ${light.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

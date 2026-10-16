@@ -1,5 +1,5 @@
-import { MediaItem } from "@/components/ui/media";
-import { MEDIA, present, type Media } from "@/lib/media";
+import { MediaItem, MediaPhoto } from "@/components/ui/media";
+import { MEDIA, present, type Media, type PhotoMedia } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 /**
@@ -71,5 +71,73 @@ export function PrivateShowcase({ includeDuet = true }: { includeDuet?: boolean 
         </ul>
       )}
     </div>
+  );
+}
+
+/** One studio photo per class for the old site's tall "The Classes" cards. */
+export const CLASS_CARD_PHOTO: Record<string, PhotoMedia | null> = {
+  beginner: MEDIA.classPlankWide,
+  fullbody: MEDIA.classKneelingLegPress,
+  flexibility: MEDIA.mermaidStretch,
+  "abs-and-assets": MEDIA.supineBridge,
+  private: MEDIA.duetOnChair,
+};
+
+/**
+ * The old site's "The Classes" band: tall photo cards with the class name set
+ * in white serif. Each card links to the class.
+ */
+export function ClassCards({
+  items,
+  headingId,
+  title = "The Classes",
+  intro = "We teach classes for every level, and private sessions are planned around you.",
+  headingLevel = "h2",
+}: {
+  items: { key: string; name: string; href: string }[];
+  headingId: string;
+  title?: string;
+  intro?: string;
+  headingLevel?: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
+  return (
+    <section aria-labelledby={headingId} className="bg-mauve-600 py-16 text-cream-50 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
+        <Heading id={headingId} className="font-serif text-5xl font-normal sm:text-6xl">
+          {title}
+        </Heading>
+        <p className="mx-auto mt-5 max-w-xl font-accent text-base leading-relaxed text-cream-50 sm:text-lg">{intro}</p>
+        <ul
+          className={cn(
+            "mt-12 grid gap-4 sm:gap-6",
+            items.length === 3 ? "sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4",
+            items.length > 3 && "max-sm:gap-3"
+          )}
+        >
+          {items.map((c) => {
+            const photo = CLASS_CARD_PHOTO[c.key];
+            return (
+              <li key={c.key}>
+                <a href={c.href} className="group relative block overflow-hidden bg-sage-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream-50 focus-visible:ring-offset-2 focus-visible:ring-offset-mauve-600">
+                  {photo && (
+                    <MediaPhoto
+                      media={photo}
+                      sizes={items.length === 3 ? "(max-width: 640px) 100vw, 33vw" : "(max-width: 1024px) 50vw, 25vw"}
+                      aspectClassName={items.length === 3 ? "aspect-[3/4] sm:aspect-[2/3]" : "aspect-[2/3]"}
+                      className="transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  )}
+                  <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-charcoal-900/70 via-charcoal-900/10 to-transparent" />
+                  <span className="banner-text absolute inset-x-0 bottom-0 p-5 font-serif text-3xl text-cream-50 sm:text-4xl">
+                    {c.name}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
   );
 }

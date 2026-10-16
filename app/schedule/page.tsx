@@ -4,6 +4,7 @@ import { MindbodyScheduleWidget } from "@/components/mindbody/schedule-widget";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { MINDBODY, PHONE, GRIP_SOCKS_LINE } from "@/lib/site";
+import { MEDIA } from "@/lib/media";
 
 export const metadata = pageMetadata({
   title: "Class Schedule | Bodies and Pilates North Hollywood",
@@ -24,23 +25,20 @@ export default function SchedulePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
-      <PageHero
-        eyebrow="Book a Class"
-        title="Class Schedule"
-        intro={
-          <p>
-            Small-group reformer Pilates seven days a week on Vineland Ave in North Hollywood. Pick a class, reserve
-            your reformer, and we will see you there.
-          </p>
-        }
-      />
+      <PageHero display="Book Your Session" title="Class Schedule" banner={MEDIA.classKneelingLegPress} />
 
-      <section className="bg-cream-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      {/* The old booking page: the timetable on a cream card over the sage band. */}
+      <section className="bg-sage-900 px-2 pb-16 pt-10 sm:px-0 sm:pb-20 sm:pt-14">
+        <div className="mx-auto max-w-5xl bg-cream-50 px-4 py-8 sm:rounded-xl sm:px-8 sm:py-10">
+          <p className="mx-auto mb-8 max-w-2xl text-center font-sans text-base leading-[1.8] text-charcoal-800/85">
+            We teach small-group reformer classes seven days a week on Vineland Ave. Pick a class, save your reformer,
+            and we will see you there.
+          </p>
+
           {/* First-timer strip, directly above the widget. */}
           <aside
             aria-label="New here?"
-            className="mb-8 border-l-2 border-sage-500 bg-cream-100 px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
+            className="mb-8 border-l-2 border-sage-700 bg-cream-100 px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
           >
             <p>
               <span className="font-medium text-charcoal-900">New here?</span> Arrive 10 minutes early to meet your
@@ -51,31 +49,31 @@ export default function SchedulePage() {
           </aside>
 
           {/* Primary path: the live MindBody timetable. */}
-          <p className="mb-4 font-sans text-xs uppercase tracking-[0.2em] text-sage-700">
-            Book right here, no app download needed.
-          </p>
+          <p className="smallcaps mb-4 text-[15px] text-sage-700">Book right here, no app download needed.</p>
           <MindbodyScheduleWidget widgetId={MINDBODY.scheduleWidgetId} />
+        </div>
+      </section>
 
-          {/* Secondary: direct MindBody link, phone, hours. */}
-          <div className="mt-8 grid gap-10 border-t border-taupe-300/70 pt-8 sm:mt-10 sm:pt-10 lg:grid-cols-2">
-            <div className="space-y-3 font-sans text-base text-charcoal-800/85">
-              <p>
-                <a href={MINDBODY.classesUrl} className={link}>
-                  Book on MindBody
-                </a>
-              </p>
-              <p>
-                Call or text{" "}
-                <a href={PHONE.tel} className={link}>
-                  {PHONE.display}
-                </a>{" "}
-                to book.
-              </p>
-            </div>
-            <div>
-              <h2 className="mb-4 font-serif text-2xl text-charcoal-900">Studio hours</h2>
-              <HoursList />
-            </div>
+      {/* Secondary: direct MindBody link, phone, hours. */}
+      <section className="bg-cream-50 py-14 sm:py-16">
+        <div className="mx-auto grid max-w-5xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="space-y-3 font-sans text-base text-charcoal-800/85">
+            <p>
+              <a href={MINDBODY.classesUrl} className={link}>
+                Book on MindBody
+              </a>
+            </p>
+            <p>
+              Call or text{" "}
+              <a href={PHONE.tel} className={link}>
+                {PHONE.display}
+              </a>{" "}
+              to book.
+            </p>
+          </div>
+          <div>
+            <h2 className="mb-4 font-serif text-3xl text-sage-900">Studio hours</h2>
+            <HoursList />
           </div>
         </div>
       </section>

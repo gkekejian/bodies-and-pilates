@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { MindbodyAccountLink } from "@/components/mindbody/account-link";
 import { CookieSettingsButton } from "@/components/analytics/cookie-banner";
+import { Camera, Mail, MapPin, Phone } from "lucide-react";
+import { CtaLink } from "@/components/ui/cta-link";
 import {
   ADDRESS,
   CLASSPASS_URL,
@@ -48,87 +50,118 @@ const quickLinks = [
   { label: "Blog", href: "/blog" },
 ];
 
-const heading = "mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-taupe-300";
-const muted = "inline-block py-1 text-cream-100/75 transition-colors hover:text-cream-50";
+const heading = "mb-4 smallcaps text-sm text-sage-300";
+const muted = "inline-block py-1 text-cream-100/80 transition-colors hover:text-cream-50";
+const row = "flex items-start gap-4 font-accent text-[15px] leading-snug text-cream-50";
+const icon = "mt-0.5 size-5 shrink-0 text-taupe-300";
 
 const newTab = { target: "_blank", rel: "noopener noreferrer" } as const;
 
+/** The old site's quiet "Get in Touch" footer, with the new site's links kept below it. */
 export function Footer() {
   return (
-    <footer className="bg-charcoal-900 text-cream-100">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {/* NAP */}
-          <div className="flex flex-col gap-5">
-            <Link href="/" className="inline-flex w-fit transition-opacity hover:opacity-80" aria-label="Bodies and Pilates, home">
-              {/* Official round logo, light version for the charcoal footer. */}
-              <Image
-                src="/images/bodies-and-pilates-logo-round-light.png"
-                alt="Bodies and Pilates logo"
-                width={1342}
-                height={1376}
-                sizes="88px"
-                className="h-20 w-auto object-contain"
-              />
-            </Link>
-            <address className="not-italic">
-              <ul className="flex flex-col gap-2 font-sans text-sm">
+    <footer className="bg-sage-900 text-cream-100">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-12">
+          <Link
+            href="/"
+            className="inline-flex w-fit justify-self-center transition-opacity hover:opacity-80 md:col-span-3 md:justify-self-start"
+            aria-label="Bodies and Pilates, home"
+          >
+            {/* Official round logo, light version for the sage footer. */}
+            <Image
+              src="/images/bodies-and-pilates-logo-round-light.png"
+              alt="Bodies and Pilates logo"
+              width={1342}
+              height={1376}
+              sizes="176px"
+              className="h-36 w-auto object-contain sm:h-44"
+            />
+          </Link>
+
+          {/* Get in Touch */}
+          <div className="md:col-span-5">
+            <h2 className="inline-block border-b border-taupe-300/70 pb-2 pr-10 font-serif text-3xl text-cream-50 sm:text-4xl">
+              Get in Touch
+            </h2>
+            <address className="mt-7 not-italic">
+              <ul className="flex flex-col gap-5">
                 <li>
-                  <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={muted}>
-                    {ADDRESS.street}
-                    <br />
-                    {ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}
+                  <a href={`mailto:${EMAIL}`} className={`${row} break-all hover:text-cream-100`}>
+                    <Mail aria-hidden="true" className={icon} />
+                    <span><span className="sr-only">Email: </span>{EMAIL}</span>
                   </a>
                 </li>
                 <li>
-                  <a href={PHONE.tel} className={muted}>
-                    {PHONE.display}
+                  <a href={MAPS_URL} {...newTab} className={`${row} hover:text-cream-100`}>
+                    <MapPin aria-hidden="true" className={icon} />
+                    <span>
+                      <span className="sr-only">Address: </span>
+                      {ADDRESS.street}
+                      <br />
+                      {ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}
+                    </span>
                   </a>
                 </li>
                 <li>
-                  <a href={`mailto:${EMAIL}`} className={`${muted} break-all`}>
-                    {EMAIL}
+                  <a href={INSTAGRAM.url} {...newTab} className={`${row} hover:text-cream-100`}>
+                    <Camera aria-hidden="true" className={icon} />
+                    <span><span className="sr-only">Instagram: </span>{INSTAGRAM.handle}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={PHONE.tel} className={`${row} hover:text-cream-100`}>
+                    <Phone aria-hidden="true" className={icon} />
+                    <span><span className="sr-only">Phone: </span>{PHONE.display}</span>
                   </a>
                 </li>
               </ul>
             </address>
           </div>
 
-          {/* Hours */}
-          <div>
-            <h2 className={heading}>Studio Hours</h2>
-            <ul className="flex flex-col gap-1.5 font-sans text-sm">
-              {HOURS.map((h) => (
-                <li key={h.day} className="flex justify-between gap-4 sm:max-w-[15rem]">
-                  <span className="text-cream-50">{h.short}</span>
-                  <span className="text-cream-100/75">{h.label}</span>
+          {/* Book + hours */}
+          <div className="flex flex-col gap-8 md:col-span-4">
+            {/* MindBody booking stays in the same tab. */}
+            <CtaLink href={MINDBODY.classesUrl} variant="ghost-light" className="w-full sm:w-auto">
+              Book a Session
+            </CtaLink>
+            <div>
+              <h2 className={heading}>Studio Hours</h2>
+              <ul className="flex flex-col gap-1.5 font-sans text-sm">
+                {HOURS.map((h) => (
+                  <li key={h.day} className="flex justify-between gap-4">
+                    <span className="text-cream-50">{h.short}</span>
+                    <span className="text-cream-100/80">{h.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-10 border-t border-cream-100/15 pt-10 sm:grid-cols-2">
+          <nav aria-label="Footer navigation">
+            <h2 className={heading}>Explore</h2>
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-1 font-sans text-sm">
+              {quickLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <Link href={href} className={muted}>
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Reviews + social */}
           <div>
             <h2 className={heading}>Find Us Online</h2>
-            <ul className="flex flex-col gap-3 font-sans text-sm">
-              <li className="text-cream-100/75">
+            <ul className="flex flex-col gap-1 font-sans text-sm">
+              <li className="py-1 text-cream-100/80">
                 Rated {GOOGLE_REVIEWS.rating} on Google ({GOOGLE_REVIEWS.count} reviews)
               </li>
               <li>
                 <a href={googleReviewsHref()} {...newTab} className={muted}>
                   Review us on Google
-                </a>
-              </li>
-              <li>
-                <a href={INSTAGRAM.url} {...newTab} className={`${muted} inline-flex items-center gap-2`}>
-                  <InstagramIcon className="size-4" />
-                  {INSTAGRAM.handle}
-                </a>
-              </li>
-              {/* MindBody booking stays in the same tab; the app smart link opens a new one. */}
-              <li>
-                <a href={MINDBODY.classesUrl} className={muted}>
-                  Book on MindBody
                 </a>
               </li>
               <li>
@@ -142,31 +175,17 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <MindbodyAccountLink className="[&_a]:text-cream-100/75 [&_a]:transition-colors [&_a:hover]:text-cream-50" />
+                <MindbodyAccountLink className="[&_a]:text-cream-100/80 [&_a]:transition-colors [&_a:hover]:text-cream-50" />
               </li>
             </ul>
           </div>
-
-          {/* Quick nav */}
-          <nav aria-label="Footer navigation">
-            <h2 className={heading}>Explore</h2>
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-2 font-sans text-sm">
-              {quickLinks.map(({ label, href }) => (
-                <li key={href}>
-                  <Link href={href} className={muted}>
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-3 border-t border-cream-100/10 pt-6 font-sans text-xs text-cream-100/60 sm:flex-row sm:justify-between">
-          <p>
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-cream-100/15 pt-6 text-xs text-cream-100/75 sm:flex-row sm:justify-between">
+          <p className="font-accent text-sm">
             &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
-          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-sans">
             <Link href="/privacy" className={muted}>
               Privacy Policy
             </Link>
