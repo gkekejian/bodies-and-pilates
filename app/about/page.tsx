@@ -14,7 +14,7 @@ import { ADDRESS, INSTAGRAM } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "About Bodies and Pilates | North Hollywood Pilates Studio",
   description:
-    "An independent reformer Pilates studio in North Hollywood, near Toluca Lake, Studio City, and Burbank. Meet the team, then book your $25 first class.",
+    "An independent, woman-owned reformer Pilates studio in North Hollywood, near Toluca Lake, Studio City and Burbank. Meet the team, then book your $25 first class.",
   path: "/about",
 });
 
@@ -109,7 +109,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="Our Story"
         title="About Bodies and Pilates"
-        intro={<p>An independent reformer Pilates studio on Vineland Ave in North Hollywood, open since 2024.</p>}
+        intro={<p>An independent, woman-owned reformer Pilates studio on Vineland Ave in North Hollywood.</p>}
       />
 
       {/* Founder. TODO(owner): Naira's founder story in her own words. Until it
@@ -156,12 +156,12 @@ export default function AboutPage() {
             <SectionHeading id="story-heading" eyebrow="The Studio" title="A calm room, a small class, a coach who knows you" />
             <div className="space-y-5 font-sans text-base leading-[1.8] text-charcoal-800/85 sm:text-lg">
               <p>
-                Naira Sarkian founded Bodies and Pilates in North Hollywood in 2024.
-                It is a boutique reformer studio with a simple promise: small classes, a consistent coaching team, and
-                real attention to how you move.
+                Naira Sarkian founded Bodies and Pilates, an independent, woman-owned reformer studio in North
+                Hollywood, with a simple promise: never more than 7 people per class, professional Merrithew
+                reformers, experienced instructors, and real attention to how you move.
               </p>
               <p>
-                The space is calm and unhurried. Classes stay small so your instructor can see you, adjust your
+                The space is calm and unhurried. Classes are capped at 7 so your instructor can see you, adjust your
                 springs, and coach your form on the reformer through every exercise. Whether it is your first class
                 or your hundredth, you are seen, coached, and challenged at the right level.
               </p>
@@ -187,7 +187,7 @@ export default function AboutPage() {
               id="team-heading"
               eyebrow="Meet the Team"
               title="Your instructors"
-              intro={<p>One consistent coaching team. You get to know your instructor, and they get to know your body.</p>}
+              intro={<p>Our instructors are experienced, and they coach your form for the full 50 minutes.</p>}
             />
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {TEAM.map((person) => (

@@ -6,7 +6,7 @@ import { EMAIL, PHONE, SITE_NAME } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Website Terms of Use | Bodies and Pilates North Hollywood",
   description:
-    "Terms for using the Bodies and Pilates website in North Hollywood: bookings through MindBody and ClassPass, health information, and your use of our content.",
+    "Terms for using the Bodies and Pilates website in North Hollywood: bookings through Mindbody and ClassPass, health information, and your use of our content.",
   path: "/terms",
 });
 
@@ -31,7 +31,7 @@ export default function TermsPage() {
 
       <h2>Bookings and purchases</h2>
       <p>
-        Bookings, purchases, memberships, and account management happen through MindBody, or through ClassPass if you
+        Bookings, purchases, memberships, and account management happen through Mindbody, or through ClassPass if you
         book there. Those transactions are governed by the provider&apos;s terms and by our studio policies, including
         our cancellation and membership terms on the <Link href="/pricing">pricing page</Link> and in our{" "}
         <Link href="/faq">FAQ</Link>. The price shown at checkout is the price that applies.
@@ -58,7 +58,7 @@ export default function TermsPage() {
 
       <h2>Third-party links and services</h2>
       <p>
-        The site links to and embeds services we do not control, such as MindBody, ClassPass, Google Maps, and
+        The site links to and embeds services we do not control, such as Mindbody, ClassPass, Google Maps, and
         Instagram. Your use of those services is governed by their own terms and privacy policies.
       </p>
 

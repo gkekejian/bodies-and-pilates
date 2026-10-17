@@ -27,7 +27,7 @@ export function renderOgImage() {
         }}
       >
         <div style={{ display: "flex", fontSize: 24, letterSpacing: 6, color: "#7D8A6D", textTransform: "uppercase" }}>
-          North Hollywood · Est. 2024
+          Woman-owned · North Hollywood
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 88, lineHeight: 1.05 }}>Bodies and Pilates</div>

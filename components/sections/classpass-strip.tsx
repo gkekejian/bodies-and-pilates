@@ -14,14 +14,14 @@ export function ClassPassStrip({ showClassPassBooking = false }: { showClassPass
             Coming from ClassPass?
           </h2>
           <p className="mt-5 max-w-2xl font-sans text-base leading-[1.75] text-cream-100/90 sm:text-lg">
-            Booked us on ClassPass and loved it? Coming direct is the better deal. Start with the $105 one-week
-            unlimited, then pick the plan that fits. Members get the same instructor each week, a saved reformer,
-            progress tracking, and priority booking. ClassPass cannot give you any of that.
+            Booked us on ClassPass and loved it? Coming direct is the better deal. Start with the One-Week Unlimited
+            ($105), then pick the plan that fits. Members pay less per class than a drop-in: the 8-class plan is $170 a
+            month, about $21 a class. Pause anytime. Cancel with 7 days&apos; notice. No fees.
           </p>
         </div>
         <div className="flex flex-col items-start gap-4 lg:col-span-4 lg:items-end">
           <CtaLink href={offerHref(introWeek)} variant="light">
-            Start the $105 Intro Week
+            Start the $105 One-Week Unlimited
           </CtaLink>
           {showClassPassBooking && (
             <CtaLink href={CLASSPASS_URL} variant="ghost-light" newTab>

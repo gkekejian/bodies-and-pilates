@@ -19,7 +19,7 @@ export const FAQS: Faq[] = [
     id: "cost",
     question: "How much does Pilates cost in North Hollywood?",
     answer:
-      "Your first class is $25 and a one-week unlimited intro is $105. After that: single class $36, 5-pack $160, 10-pack $300. Memberships run from $130/month for 5 classes to $280/month unlimited. Private sessions are $100.",
+      "Your first class is $25 and the One-Week Unlimited is $105. After that: single class $36, 5-pack $160, 10-pack $300. Memberships run from $130/month for 5 classes to $280/month unlimited. Private sessions are $100.",
   },
   {
     id: "what-is-reformer",
@@ -31,7 +31,7 @@ export const FAQS: Faq[] = [
     id: "experience",
     question: "Do I need experience to take a class?",
     answer:
-      "No. Beginner classes are built for first-timers, class sizes stay small, and your instructor coaches your form throughout. Most new clients start with the $25 first class.",
+      "No. Beginner classes are built for first-timers, classes are capped at 7, and your instructor coaches your form throughout. Most new clients start with the $25 first class.",
   },
   {
     id: "wear",
@@ -43,7 +43,7 @@ export const FAQS: Faq[] = [
     id: "how-often",
     question: "How often should I do Pilates?",
     answer:
-      "Twice a week is the sweet spot for visible results, which is why our most popular plan is 8 classes a month. Once a week maintains; three or more accelerates.",
+      "Twice a week fits most schedules, and our most popular plan is 8 classes a month for $170.",
   },
   {
     id: "back-pain",
@@ -55,7 +55,7 @@ export const FAQS: Faq[] = [
     id: "classpass",
     question: "Do you take ClassPass?",
     answer:
-      "Yes. If you love it, coming direct is the better deal: the $105 one-week unlimited, then a membership with perks ClassPass cannot give you, like the same instructor each week and a saved reformer.",
+      "Yes. If you love it, coming direct is the better deal: the One-Week Unlimited ($105), then a membership from $130 a month that you can pause anytime and cancel with 7 days' notice, no fees.",
   },
   {
     id: "cancellation",
@@ -72,7 +72,7 @@ export const FAQS: Faq[] = [
   {
     id: "pause-cancel",
     question: "Can I pause or cancel my membership?",
-    answer: "Yes. Pause anytime, and turn off your renewal anytime with 7 days' notice. No fees.",
+    answer: "Yes. Pause anytime. Cancel with 7 days' notice. No fees.",
   },
   {
     // Old-site Search Console showed "mat pilates near me" impressions. Answer
@@ -86,25 +86,25 @@ export const FAQS: Faq[] = [
     id: "private",
     question: "Do you offer private sessions?",
     answer:
-      "Yes. 1:1 sessions are $100 for 55 minutes; duets are $70 per person. Ideal for beginners or working around an injury.",
+      "Yes. 1:1 sessions are $100 for 55 minutes; duets are $70 per person. Good for beginners. Working around an injury? Get your doctor's OK, then tell your instructor before your session.",
   },
   {
     id: "age",
     question: "Is there an age limit?",
     answer:
-      "Classes welcome adults of all ages. Teens 14+ may attend with a parent. Mention injuries or conditions when you book.",
+      "Classes welcome adults of all ages. Tell your instructor about any injuries or conditions before class.",
   },
   {
     id: "club-pilates",
     question: "How is Bodies and Pilates different from Club Pilates?",
     answer:
-      "We are an independent boutique studio: small classes, one consistent coaching team, no franchise script. You get to know your instructor, and they get to know your body.",
+      "We are an independent, woman-owned boutique studio: classes capped at 7 people, professional Merrithew reformers, experienced instructors, and no franchise script.",
   },
   {
     id: "lagree",
     question: "What is the difference between Lagree and reformer Pilates?",
     answer:
-      "Lagree is a 45-minute high-intensity muscular-endurance workout on the Megaformer. Reformer Pilates is controlled strength, mobility, and flexibility work on the reformer, with more emphasis on form, posture, and back-friendly movement. Both are low-impact. Pilates is the better starting point if you are new, returning from injury, or want flexibility alongside strength.",
+      "Lagree is a high-intensity method taught on its own machine. Class length and format vary by studio. Reformer Pilates is controlled strength, mobility, and flexibility work on the reformer, with more emphasis on form and posture. Both are low-impact. Pilates is the better starting point if you are new or want flexibility alongside strength.",
   },
   {
     id: "men",
@@ -116,6 +116,28 @@ export const FAQS: Faq[] = [
     question: "What happens in my first class?",
     answer:
       "Arrive 10 minutes early, meet your instructor, get set up on your reformer. Fifty minutes of guided, low-impact strength work with coaching on your form the whole time.",
+  },
+  {
+    id: "class-size",
+    question: "How many people are in a class?",
+    answer: "Never more than 7 people per class, so your instructor can coach your form the whole 50 minutes.",
+  },
+  {
+    id: "equipment",
+    question: "What equipment do you use?",
+    answer: "Every class runs on professional Merrithew reformers.",
+  },
+  {
+    id: "classes",
+    question: "What classes do you offer?",
+    answer:
+      "Four 50-minute group classes, all on the reformer: Beginner, Full Body, Flexibility, and Abs and Assets. Plus private sessions ($100 for 55 minutes) and duets ($70 per person).",
+  },
+  {
+    id: "pregnant",
+    question: "Can I take a class while pregnant?",
+    answer:
+      "Talk to your doctor or midwife before taking any class, and tell your instructor before class. This is general information, not medical advice.",
   },
   {
     id: "nearby",

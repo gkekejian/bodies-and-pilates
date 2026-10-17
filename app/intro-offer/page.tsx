@@ -8,8 +8,9 @@ import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { MEDIA } from "@/lib/media";
-import { TRY, offerHref } from "@/lib/pricing";
-import { FIRST_CLASS_CTA } from "@/lib/site";
+import { POLICY, TRY, offerHref, priceOf } from "@/lib/pricing";
+import { CLASSPASS_RATING_LINE, CLASSPASS_URL, FIRST_CLASS_CTA } from "@/lib/site";
+import { CtaLink } from "@/components/ui/cta-link";
 
 /**
  * Landing page for all paid ad traffic (UTM-tagged links land here) and the
@@ -17,9 +18,9 @@ import { FIRST_CLASS_CTA } from "@/lib/site";
  * to the offer, never back to this page.
  */
 export const metadata = pageMetadata({
-  title: "First Pilates Class $25 | Bodies and Pilates",
+  title: "$25 First Reformer Class in North Hollywood | Bodies and Pilates",
   description:
-    "Try reformer Pilates in North Hollywood for $25. One full 50-minute small-group class, no experience needed. Grip socks required. Book your first class today.",
+    "Try reformer Pilates in North Hollywood for $25: one 50-minute class, 7 people max, no experience needed. Grip socks required.",
   path: "/intro-offer",
 });
 
@@ -42,8 +43,14 @@ export default function IntroOfferPage() {
                 Your First Reformer Class Is $25
               </h1>
               <p className="mt-7 max-w-xl font-sans text-lg leading-[1.65] text-charcoal-800/85">
-                Small-group reformer Pilates on Vineland Ave, coached by an instructor who watches your form the whole
-                time. No experience needed. Choose one class, or a full week to find your rhythm.
+                Reformer Pilates on Vineland Ave, never more than 7 people per class, on professional Merrithew
+                reformers, coached by an experienced instructor. No experience needed. Choose one class, or a full week
+                to find your rhythm.
+              </p>
+              <p className="mt-5 font-sans text-sm font-medium text-sage-700">
+                <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-500">
+                  {CLASSPASS_RATING_LINE}
+                </a>
               </p>
             </div>
             {MEDIA.classKneelingLegPress && (
@@ -57,6 +64,24 @@ export default function IntroOfferPage() {
             {TRY.map((offer, i) => (
               <OfferCard key={offer.id} offer={offer} highlight={i === 0} headingLevel="h2" />
             ))}
+          </div>
+          <p className="mt-6 font-sans text-sm text-charcoal-800/80">{POLICY.cancellation}</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="after-intro-heading" className="bg-cream-50 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 id="after-intro-heading" className="font-serif text-3xl text-charcoal-900 sm:text-4xl">
+            After your intro
+          </h2>
+          <p className="mt-5 max-w-2xl font-sans text-base leading-[1.75] text-charcoal-800/85 sm:text-lg">
+            Memberships start at {priceOf("membership-5")} a month for 5 classes. Our most popular is 8 classes for{" "}
+            {priceOf("membership-8")}. {POLICY.membership}
+          </p>
+          <div className="mt-8">
+            <CtaLink href="/pricing" variant="outline">
+              See every plan
+            </CtaLink>
           </div>
         </div>
       </section>

@@ -48,13 +48,16 @@ export type PostStatus = 'published' | 'scheduled' | 'draft'
 const postsDirectory = path.join(process.cwd(), 'content/blog')
 const WORDS_PER_MINUTE = 200
 
+/** Adds the brand to a post's title tag when it still fits in about 60 characters. */
+const withBrand = (title: string) => (title.length + 22 <= 60 ? `${title} | Bodies and Pilates` : title)
+
 function toPost(slug: string, data: Record<string, unknown>, content: string): BlogPost {
   const title = (data.title as string) ?? ''
   const words = content.replace(/\{\/\*[\s\S]*?\*\/\}/g, '').split(/\s+/).filter(Boolean).length
   return {
     slug,
     title,
-    seoTitle: (data.seoTitle as string) || title,
+    seoTitle: (data.seoTitle as string) || withBrand(title),
     description: (data.description as string) ?? '',
     targetKeyword: (data.targetKeyword as string) ?? '',
     publishDate: (data.publishDate as string) ?? '',
@@ -110,11 +113,11 @@ export function getListedPosts(now = new Date()): BlogPost[] {
 }
 
 /**
- * Every non-draft post must close with the owner's $25 CTA block, word for
- * word, and a post with FAQs must place its FAQ block. Checked at build time.
+ * Every non-draft post must close with the $25 CTA block (copy audit
+ * 2026-10-14 wording), word for word, and a post with FAQs must place its FAQ block. Checked at build time.
  */
 export const POST_CTA_TEXT =
-  'Ready to try it? Your first reformer class at Bodies and Pilates in North Hollywood is $25. Small groups, real coaching, no experience needed. [Book your first class](/intro-offer).'
+  'Ready to try it? Your first class is $25. That is 50 minutes on a professional Merrithew reformer, with no more than 7 people in the room. [Book your first class](/intro-offer).'
 
 export function assertPostContent() {
   for (const { post, content } of readAll()) {
@@ -139,11 +142,15 @@ const order = (slug: string) => {
   return i === -1 ? Number.MAX_SAFE_INTEGER : i
 }
 
-/** Up to 3 published related posts: topic group first, then by publishing order. */
+/** Up to 3 published related posts: topic group first, then the posts after it in publishing order. */
 export function getRelatedPosts(slug: string, now = new Date()): BlogPost[] {
   const published = new Map(getPublishedPosts(now).map((p) => [p.slug, p]))
   const group = RELATED_GROUPS.find((g) => g.includes(slug)) ?? []
-  const candidates = [...group, ...PUBLISHING_ORDER].filter((s) => s !== slug)
+  // Fill from the publishing order starting after this post, so the same early
+  // post is not the fallback on every page.
+  const at = Math.max(0, PUBLISHING_ORDER.indexOf(slug))
+  const rotated = [...PUBLISHING_ORDER.slice(at + 1), ...PUBLISHING_ORDER.slice(0, at)]
+  const candidates = [...group, ...rotated].filter((s) => s !== slug)
   const picked: BlogPost[] = []
   for (const s of candidates) {
     const post = published.get(s)

@@ -51,7 +51,7 @@ function ensureGtag() {
 /**
  * Site-wide tracking. Tags load unless the visitor opted out or sends Global
  * Privacy Control (lib/consent.ts). Campaign tags (utm_*) are carried onto
- * MindBody booking links for every visitor; they are not personal data.
+ * Mindbody booking links for every visitor; they are not personal data.
  */
 export default function Analytics() {
   const pathname = usePathname();
@@ -82,7 +82,7 @@ export default function Analytics() {
     if (isViewContentPath(pathname)) trackViewContent(pathname);
   }, [allowed, pathname]);
 
-  // One handler for every booking start: direct MindBody product links and
+  // One handler for every booking start: direct Mindbody product links and
   // any Book button the schedule widget renders into the page.
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -103,7 +103,7 @@ export default function Analytics() {
         const href = withUtm(url).toString();
         if (href !== control.href) control.href = href;
         if (!allowedRef.current) return;
-        trackBookingStart(label || "MindBody booking", href);
+        trackBookingStart(label || "Mindbody booking", href);
         // Same-tab left click: give the beacons a moment before leaving.
         const plain = e.type === "click" && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
         if (plain && control.target !== "_blank" && !e.defaultPrevented) {

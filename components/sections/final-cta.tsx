@@ -3,7 +3,7 @@ import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 
 export function FinalCta({
   title = "Your first class is $25.",
-  body = "Small-group reformer Pilates on Vineland Ave in North Hollywood. Come see the studio, meet your instructor, and feel the difference real coaching makes.",
+  body = "Fifty minutes on a Merrithew reformer, never more than 7 people, coached by an experienced instructor. Rated 4.9 on ClassPass from 7,500+ ratings.",
   cta = FIRST_CLASS_CTA,
   href,
 }: {

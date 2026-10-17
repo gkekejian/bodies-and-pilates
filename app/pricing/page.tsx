@@ -8,12 +8,12 @@ import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { COMMIT, FLEX, POLICY, PRICE_GROUPS, PRIVATE, TRY, offerHref } from "@/lib/pricing";
-import { SITE_URL } from "@/lib/site";
+import { CLASSPASS_RATING_LINE, CLASSPASS_URL, SITE_URL } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Pilates Pricing & Memberships | Bodies and Pilates NoHo",
+  title: "Reformer Pilates Prices, North Hollywood | Bodies and Pilates",
   description:
-    "Pilates pricing in North Hollywood: $25 first class, $36 single, packs from $160, memberships from $130/month. No hidden fees. See every option.",
+    "Reformer Pilates prices in North Hollywood: $25 first class, $36 single, packs from $160, memberships from $130/month. Pause anytime.",
   path: "/pricing",
 });
 
@@ -61,7 +61,8 @@ export default function PricingPage() {
         intro={
           <p>
             Three simple paths: try the studio, commit with a membership, or stay flexible with a class pack. Private
-            training is priced separately below.
+            training is priced separately below. Every group class is 50 minutes, capped at 7 people, on professional
+            Merrithew reformers.
           </p>
         }
       >
@@ -75,7 +76,16 @@ export default function PricingPage() {
             id="try-heading"
             eyebrow="Try"
             title="New to the studio"
-            intro={<p>For first-timers. Pick one.</p>}
+            intro={
+              <>
+                <p>For first-timers. Pick one.</p>
+                <p className="mt-2 text-sm font-medium text-sage-700">
+                  <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-500">
+                    {CLASSPASS_RATING_LINE}
+                  </a>
+                </p>
+              </>
+            }
           />
           <div className="grid gap-8 md:grid-cols-2">
             {TRY.map((offer, i) => (
@@ -100,7 +110,7 @@ export default function PricingPage() {
             id="commit-heading"
             eyebrow="Commit"
             title="Memberships"
-            intro={<p>Monthly auto-renew. The best value if Pilates is part of your week.</p>}
+            intro={<p>The best per-class value. {POLICY.membership}</p>}
           />
           <div className="grid gap-8 pt-3 sm:grid-cols-2">
             {COMMIT.map((offer) => (
@@ -198,7 +208,7 @@ export default function PricingPage() {
 
       <FinalCta
         title="Start with the $25 first class."
-        body="Meet the reformer, meet your instructor, and see how a small class feels. Then choose the plan that fits."
+        body="Meet the reformer, meet your instructor, and see how a class of 7 or fewer feels. Then choose the plan that fits."
         cta={START_CTA}
         href={offerHref(firstClass)}
       />
