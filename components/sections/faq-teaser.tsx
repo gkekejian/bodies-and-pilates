@@ -13,10 +13,10 @@ export function FaqTeaser() {
             Read all FAQs
           </CtaLink>
         </div>
-        <dl className="divide-y divide-taupe-300/60 border-y border-taupe-300/60 lg:col-span-8">
+        <dl className="divide-y divide-sage-700/25 border-y border-sage-700/25 lg:col-span-8">
           {faqs.map((f) => (
             <div key={f.id} className="py-6">
-              <dt className="font-serif text-xl text-charcoal-900">{f.question}</dt>
+              <dt className="font-serif text-2xl text-sage-900">{f.question}</dt>
               <dd className="mt-3 font-sans text-base leading-[1.75] text-charcoal-800/85">{f.answer}</dd>
             </div>
           ))}

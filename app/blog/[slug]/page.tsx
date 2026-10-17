@@ -109,10 +109,10 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
           <Link href="/blog" className={`${eyebrowClass} inline-block py-1 hover:text-sage-500`}>
             Blog
           </Link>
-          <h1 className="mt-5 font-serif text-4xl leading-[1.1] text-charcoal-900 sm:text-5xl">{meta.title}</h1>
+          <h1 className="mt-5 font-serif text-5xl font-light leading-[1.05] text-sage-900 sm:text-6xl">{meta.title}</h1>
           <p className="mt-6 font-sans text-lg leading-[1.7] text-charcoal-800/85">{meta.description}</p>
           {!meta.draft && (
-            <p className="mt-6 font-sans text-sm text-charcoal-800/70">
+            <p className="mt-6 font-sans text-sm text-charcoal-800/75">
               By {BLOG_AUTHOR.name}, {BLOG_AUTHOR.role} &middot;{' '}
               <time dateTime={meta.publishDate}>{formatPostDate(meta.publishDate)}</time> &middot;{' '}
               {meta.readingMinutes} min read
@@ -122,7 +122,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
 
         {/* TODO(owner): per-post hero photography. heroAlt in frontmatter is ready for it. */}
 
-        <div className="prose prose-stone max-w-none prose-headings:font-serif prose-a:text-sage-700 prose-a:underline-offset-4">
+        <div className="prose prose-stone max-w-none prose-headings:font-serif prose-headings:font-normal prose-headings:text-sage-900 prose-h2:text-3xl prose-p:leading-[1.85] prose-a:text-sage-700 prose-a:underline-offset-4">
           <MDXRemote
             source={post.content}
             components={{ PostCta, PostFaq: () => <PostFaq faqs={meta.faqs} /> }}
@@ -134,19 +134,19 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
 
         {related.length > 0 && (
           <section aria-labelledby="related-heading" className="mt-16">
-            <h2 id="related-heading" className="font-serif text-2xl text-charcoal-900">
+            <h2 id="related-heading" className="font-serif text-3xl text-sage-900">
               Related posts
             </h2>
             <ul
-              className={`mt-6 grid gap-px border border-taupe-300/70 bg-taupe-300/70 ${RELATED_COLS[related.length]}`}
+              className={`mt-6 grid gap-px border border-sage-700/25 bg-sage-700/25 ${RELATED_COLS[related.length]}`}
             >
               {related.map((r) => (
                 <li key={r.slug} className="bg-cream-50">
                   <Link href={`/blog/${r.slug}`} className="group block h-full p-5 hover:bg-cream-100">
-                    <span className="font-serif text-lg leading-snug text-charcoal-900 group-hover:text-sage-700">
+                    <span className="font-serif text-xl leading-snug text-sage-900 group-hover:text-sage-700">
                       {r.title}
                     </span>
-                    <span className="mt-2 block font-sans text-xs text-charcoal-800/70">{r.readingMinutes} min read</span>
+                    <span className="mt-2 block font-sans text-xs text-charcoal-800/75">{r.readingMinutes} min read</span>
                   </Link>
                 </li>
               ))}

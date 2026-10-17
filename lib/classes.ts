@@ -22,6 +22,8 @@ export interface ClassFormat {
   level: string;
   duration: string;
   oneLiner: string;
+  /** The old site's class description: two or three plain sentences, in the studio's voice. */
+  blurb: string;
   forWho: string;
   description: string;
   expect: string[];
@@ -37,6 +39,8 @@ export const CLASSES: ClassFormat[] = [
     level: "Beginner",
     duration: "50 minutes",
     oneLiner: "The fundamentals of reformer Pilates at a steady pace, with detailed coaching on form.",
+    blurb:
+      "New to the reformer? Our Beginner class takes it slow and teaches you the basics: the springs, the footbar, and how to find your alignment. Your instructor coaches your form the whole way through.",
     forWho:
       "First-timers, anyone returning after time off, people working around restrictions, and regulars who want to sharpen the basics.",
     description:
@@ -60,6 +64,8 @@ export const CLASSES: ClassFormat[] = [
     level: "Moderate to challenging, best after a few Beginner classes",
     duration: "50 minutes",
     oneLiner: "The classic class: resistance training for legs, arms, and core on the reformer and props.",
+    blurb:
+      "This is our classic class. We work your legs, arms, and core on the reformer, with props when you want more. If you know the basics, start here.",
     forWho:
       "Clients who know the reformer basics and want a complete strength workout. Brand new? Start with Beginner.",
     description:
@@ -80,6 +86,8 @@ export const CLASSES: ClassFormat[] = [
     level: "All levels, gentle",
     duration: "50 minutes",
     oneLiner: "Restorative reformer work and active stretching to release tightness.",
+    blurb:
+      "Feeling tight? Our Flexibility class is slower and restorative, with the springs supporting every stretch. Expect work for your hips, spine, and shoulders, and a calm finish.",
     forWho:
       "Anyone feeling tight, recovering from a hard week of training, or wanting to move more easily day to day.",
     description:
@@ -100,6 +108,8 @@ export const CLASSES: ClassFormat[] = [
     level: "All levels",
     duration: "55 minutes",
     oneLiner: "One-on-one reformer Pilates built entirely around your body and goals.",
+    blurb:
+      "One-on-one with your instructor for 55 minutes. We plan every exercise and spring setting around you. Want to bring a friend or partner? Book a duet.",
     forWho:
       "Beginners who want a head start, clients working around an injury with their doctor's OK, and anyone who prefers individual attention.",
     description:

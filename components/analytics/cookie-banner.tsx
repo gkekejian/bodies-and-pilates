@@ -64,14 +64,14 @@ export default function CookieBanner() {
           <button
             type="button"
             onClick={() => choose("no")}
-            className="min-h-[40px] whitespace-nowrap rounded border border-charcoal-800 px-4 py-2 text-xs text-charcoal-800 transition-colors hover:bg-cream-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800 focus-visible:ring-offset-2"
+            className="min-h-[40px] whitespace-nowrap rounded-none border border-charcoal-800 px-4 py-2 text-xs text-charcoal-800 transition-colors hover:bg-cream-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800 focus-visible:ring-offset-2"
           >
             {CONSENT_MODE === "opt-out" ? "Turn off" : "Decline"}
           </button>
           <button
             type="button"
             onClick={() => choose("yes")}
-            className="min-h-[40px] whitespace-nowrap rounded bg-charcoal-800 px-4 py-2 text-xs text-cream-100 transition-colors hover:bg-charcoal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800 focus-visible:ring-offset-2"
+            className="min-h-[40px] whitespace-nowrap rounded-none bg-charcoal-800 px-4 py-2 text-xs text-cream-100 transition-colors hover:bg-charcoal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-800 focus-visible:ring-offset-2"
           >
             {CONSENT_MODE === "opt-out" ? "Allow" : "Accept"}
           </button>

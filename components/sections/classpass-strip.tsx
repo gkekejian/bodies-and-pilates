@@ -7,16 +7,17 @@ const introWeek = TRY.find((o) => o.id === "intro-week")!;
 /** `showClassPassBooking` adds the "Book on ClassPass" button (/pricing and /intro-offer). */
 export function ClassPassStrip({ showClassPassBooking = false }: { showClassPassBooking?: boolean }) {
   return (
-    <section aria-labelledby="classpass-heading" className="bg-sage-700 py-16 text-cream-50 sm:py-20">
+    <section aria-labelledby="classpass-heading" className="bg-sage-700 py-16 text-cream-50 sm:py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-8">
-          <h2 id="classpass-heading" className="font-serif text-3xl leading-tight sm:text-4xl">
+          <h2 id="classpass-heading" className="font-serif text-4xl font-light leading-tight sm:text-5xl">
             Coming from ClassPass?
           </h2>
-          <p className="mt-5 max-w-2xl font-sans text-base leading-[1.75] text-cream-100/90 sm:text-lg">
-            Booked us on ClassPass and loved it? Coming direct is the better deal. Start with the One-Week Unlimited
-            ($105), then pick the plan that fits. Members pay less per class than a drop-in: the 8-class plan is $170 a
-            month, about $21 a class. Pause anytime. Cancel with 7 days&apos; notice. No fees.
+          <p className="mt-5 max-w-2xl font-sans text-base leading-[1.8] text-cream-50 sm:text-lg">
+            Found us on ClassPass and want to keep coming? Booking with us directly is the better deal. Start with the
+            One-Week Unlimited ($105), then pick the plan that fits your week. Members pay less per class than a
+            drop-in: the 8-class plan is $170 a month, about $21 a class. Pause anytime. Cancel with 7 days&apos;
+            notice. No fees.
           </p>
         </div>
         <div className="flex flex-col items-start gap-4 lg:col-span-4 lg:items-end">

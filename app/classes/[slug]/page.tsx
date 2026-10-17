@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { ClassFormatBlock } from "@/components/sections/class-format";
 import { OfferCard } from "@/components/sections/offer-card";
+import { CLASS_CARD_PHOTO } from "@/components/sections/class-media";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
@@ -81,13 +82,15 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
       <PageHero
         eyebrow={isPrivate ? "Private Reformer Pilates" : "Small-Group Reformer Pilates"}
         title={c.pageTitle}
+        banner={CLASS_CARD_PHOTO[c.slug]}
+        tone="sage"
         intro={
           isPrivate ? (
             <p>{PRIVATE_INTRO}</p>
           ) : (
             <>
               <p>{c.oneLiner}</p>
-              <p className="mt-4 font-sans text-xs font-medium uppercase tracking-[0.18em] text-sage-700">
+              <p className="smallcaps mt-4 text-[15px] text-sage-700">
                 50 minutes &middot; 7 people max &middot; Merrithew reformers &middot; First class $25
               </p>
             </>
@@ -95,7 +98,7 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
         }
       >
         <nav aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2 font-sans text-sm text-charcoal-800/70">
+          <ol className="flex items-center gap-2 font-sans text-sm text-charcoal-800/75">
             <li>
               <Link href="/classes" className="hover:text-sage-700">
                 Classes
@@ -122,15 +125,15 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
               What clients say about {c.name}
             </h2>
             <figure>
-              <blockquote className="font-serif text-2xl italic leading-[1.4] text-charcoal-900 sm:text-3xl">
+              <blockquote className="font-accent text-xl italic leading-[1.65] text-charcoal-800 sm:text-2xl">
                 &ldquo;{review.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-5 font-sans text-xs uppercase tracking-[0.2em] text-sage-700">
+              <figcaption className="smallcaps mt-6 text-[15px] text-sage-700">
                 {review.attribution}
               </figcaption>
             </figure>
             <p className="mt-6 font-sans text-sm">
-              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-500">
+              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-900">
                 {CLASSPASS_RATING_LINE}
               </a>
             </p>
@@ -143,16 +146,16 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
       )}
 
       {isPrivate && (
-        <section aria-labelledby="private-pricing" className="bg-cream-200 py-20 sm:py-24">
+        <section aria-labelledby="private-pricing" className="bg-cream-100 py-20 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <SectionHeading id="private-pricing" eyebrow="Pricing" title="Private session pricing" />
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid max-w-[42rem] gap-6 sm:grid-cols-2">
               {PRIVATE.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} highlight={false} />
+                <OfferCard key={offer.id} offer={offer} accent={offer.id === "duet" ? "tan" : "sage"} />
               ))}
             </div>
             <p className="mt-8 font-sans text-sm">
-              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-500">
+              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-900">
                 {CLASSPASS_RATING_LINE}
               </a>
             </p>

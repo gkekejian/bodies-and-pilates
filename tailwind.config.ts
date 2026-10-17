@@ -11,28 +11,40 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Design system palette
+        // Design system palette. Every value is a CSS variable defined in
+        // app/globals.css (the old Wix site's palette, restyle 2026-10-16), so
+        // the whole site re-themes from one place.
         cream: {
-          50: "#FDFCFA",
-          100: "#FAF7F2",
-          200: "#F5F0EB",
+          50: "rgb(var(--bp-cream-50) / <alpha-value>)",
+          100: "rgb(var(--bp-cream-100) / <alpha-value>)",
+          200: "rgb(var(--bp-cream-200) / <alpha-value>)",
         },
         sage: {
-          300: "#B8C9A3",
-          500: "#7D8A6D",
-          700: "#5A6B4A",
+          300: "rgb(var(--bp-sage-300) / <alpha-value>)",
+          500: "rgb(var(--bp-sage-500) / <alpha-value>)",
+          700: "rgb(var(--bp-sage-700) / <alpha-value>)",
+          900: "rgb(var(--bp-sage-900) / <alpha-value>)",
         },
         taupe: {
-          300: "#D4C5B5",
-          500: "#A3927E",
-          700: "#6F604F", // text-safe taupe (4.5:1+ on cream)
+          300: "rgb(var(--bp-taupe-300) / <alpha-value>)",
+          500: "rgb(var(--bp-taupe-500) / <alpha-value>)",
+          700: "rgb(var(--bp-taupe-700) / <alpha-value>)",
         },
         blush: {
-          500: "#D4A69A",
+          500: "rgb(var(--bp-blush-500) / <alpha-value>)",
+        },
+        olive: {
+          800: "rgb(var(--bp-olive-800) / <alpha-value>)",
+        },
+        mauve: {
+          600: "rgb(var(--bp-mauve-600) / <alpha-value>)",
+        },
+        cocoa: {
+          700: "rgb(var(--bp-cocoa-700) / <alpha-value>)",
         },
         charcoal: {
-          800: "#2C2C2C",
-          900: "#1A1A1A",
+          800: "rgb(var(--bp-charcoal-800) / <alpha-value>)",
+          900: "rgb(var(--bp-charcoal-900) / <alpha-value>)",
         },
         // shadcn compat
         background: "hsl(var(--background))",
@@ -70,8 +82,15 @@ const config: Config = {
         ring: "hsl(var(--ring))",
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        // Display serif: Fraunces, the old site's working serif (The Seasons is
+        // a commercial face with no web license on file).
+        serif: ["var(--font-display)", "Georgia", "serif"],
+        // Serif body accents: nav, reviews, footer rows, small-caps headings.
+        accent: ["var(--font-accent)", "Georgia", "serif"],
+        // Light sans for body text.
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        // Poppins ExtraLight: offer names, prices, intro lines.
+        poppins: ["var(--font-light)", "var(--font-sans)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

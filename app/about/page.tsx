@@ -48,7 +48,7 @@ const neighborhoods = [
   },
 ];
 
-const label = "font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-sage-700";
+const label = "smallcaps text-[15px] text-sage-700";
 
 function InstructorCard({ person }: { person: Instructor }) {
   // Only fields with real content render; an empty label never shows.
@@ -57,7 +57,7 @@ function InstructorCard({ person }: { person: Instructor }) {
     ...(SHOW_BIOS ? bioEntries(person.bio) : []),
   ];
   return (
-    <article className="flex flex-col border border-taupe-300/70 bg-cream-50">
+    <article className="flex flex-col bg-cream-50 shadow-[0_1px_3px_rgba(43,42,39,0.10),0_8px_24px_rgba(43,42,39,0.05)]">
       <MediaPhoto
         media={person.photo}
         aspectClassName="aspect-[4/5]"
@@ -65,7 +65,7 @@ function InstructorCard({ person }: { person: Instructor }) {
       />
       <div className="flex flex-1 flex-col gap-5 p-6">
         <div>
-          <h3 className="font-serif text-2xl text-charcoal-900">{person.name}</h3>
+          <h3 className="font-serif text-3xl text-sage-900">{person.name}</h3>
           {person.role && <p className="mt-1 font-sans text-sm text-sage-700">{person.role}</p>}
         </div>
         {fields.length > 0 && (
@@ -99,7 +99,7 @@ const studioGallery = present([
   MEDIA.entryBench,
 ]);
 
-const community = present([MEDIA.matchaCup, MEDIA.sunglassesPose]);
+const community = present([MEDIA.matchaCup, MEDIA.sunglassesPose, MEDIA.logoMedallion]);
 
 export default function AboutPage() {
   return (
@@ -109,7 +109,9 @@ export default function AboutPage() {
       <PageHero
         eyebrow="Our Story"
         title="About Bodies and Pilates"
-        intro={<p>An independent, woman-owned reformer Pilates studio on Vineland Ave in North Hollywood.</p>}
+        banner={MEDIA.studioLogoWallChair}
+        tone="sage"
+        intro={<p>We are an independent, woman-owned reformer Pilates studio on Vineland Ave in North Hollywood.</p>}
       />
 
       {/* Founder. TODO(owner): Naira's founder story in her own words. Until it
@@ -135,7 +137,7 @@ export default function AboutPage() {
           )}
           <div className="lg:col-span-5">
             <p className={label}>Founder</p>
-            <h2 id="founder-heading" className="mt-4 font-serif text-4xl leading-[1.1] text-charcoal-900 sm:text-5xl">
+            <h2 id="founder-heading" className="mt-4 font-serif text-5xl font-light leading-[1.05] text-sage-900 sm:text-6xl">
               Naira Sarkian
             </h2>
             <p className="mt-3 font-sans text-base text-charcoal-800/85">Founder and Owner</p>
@@ -153,17 +155,16 @@ export default function AboutPage() {
       <section aria-labelledby="story-heading" className="bg-cream-100 py-20 sm:py-28">
         <div className={container}>
           <div className="max-w-3xl">
-            <SectionHeading id="story-heading" eyebrow="The Studio" title="A calm room, a small class, a coach who knows you" />
-            <div className="space-y-5 font-sans text-base leading-[1.8] text-charcoal-800/85 sm:text-lg">
+            <SectionHeading id="story-heading" eyebrow="The Studio" title="A calm room and a small class" />
+            <div className="space-y-5 font-accent text-lg leading-[1.85] text-charcoal-800">
               <p>
-                Naira Sarkian founded Bodies and Pilates, an independent, woman-owned reformer studio in North
-                Hollywood, with a simple promise: never more than 7 people per class, professional Merrithew
-                reformers, experienced instructors, and real attention to how you move.
+                Naira Sarkian founded Bodies and Pilates as a small, independent, woman-owned reformer studio in North
+                Hollywood. We keep it simple: never more than 7 people in a class, professional Merrithew reformers,
+                and experienced instructors who watch how you move.
               </p>
               <p>
-                The space is calm and unhurried. Classes are capped at 7 so your instructor can see you, adjust your
-                springs, and coach your form on the reformer through every exercise. Whether it is your first class
-                or your hundredth, you are seen, coached, and challenged at the right level.
+                The room is calm and unhurried. Your instructor sets your springs and coaches your form on the reformer
+                through every exercise, on your first class and your hundredth.
               </p>
             </div>
           </div>
@@ -212,10 +213,10 @@ export default function AboutPage() {
               </p>
             }
           />
-          <dl className="max-w-4xl divide-y divide-taupe-300/60 border-y border-taupe-300/60">
+          <dl className="max-w-4xl divide-y divide-sage-700/25 border-y border-sage-700/25">
             {neighborhoods.map((n) => (
               <div key={n.name} className="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-6">
-                <dt className="font-serif text-xl text-charcoal-900">{n.name}</dt>
+                <dt className="font-serif text-2xl text-sage-900">{n.name}</dt>
                 <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{n.body}</dd>
               </div>
             ))}
@@ -231,17 +232,17 @@ export default function AboutPage() {
               <SectionHeading
                 id="community-heading"
                 eyebrow="Community"
-                title="Follow along on Instagram"
-                intro={<p>Studio moments, class highlights, and schedule news.</p>}
+                title="Let's Be Friends"
+                intro={<p>We post studio moments and schedule news on Instagram.</p>}
               />
               <CtaLink href={INSTAGRAM.url} variant="outline" newTab>
                 {INSTAGRAM.handle}
               </CtaLink>
             </div>
-            <ul className="grid grid-cols-2 gap-4 lg:col-span-7">
+            <ul className="grid grid-cols-3 gap-3 sm:gap-4 lg:col-span-7">
               {community.map((m) => (
                 <li key={m.file}>
-                  <MediaPhoto media={m} aspectClassName="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 30vw" />
+                  <MediaItem media={m} aspectClassName="aspect-[3/4]" sizes="(max-width: 1024px) 33vw, 20vw" />
                 </li>
               ))}
             </ul>

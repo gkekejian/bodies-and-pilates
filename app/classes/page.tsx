@@ -1,12 +1,12 @@
 import { MediaItem } from "@/components/ui/media";
-import { ClassMedia, PrivateShowcase } from "@/components/sections/class-media";
+import { ClassCards, ClassMedia, PrivateShowcase } from "@/components/sections/class-media";
 import { CtaLink } from "@/components/ui/cta-link";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { ClassFormatBlock } from "@/components/sections/class-format";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { CLASSES } from "@/lib/classes";
+import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
 import { MEDIA } from "@/lib/media";
 import { CLASSPASS_RATING_LINE, CLASSPASS_URL, FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 import { priceOf } from "@/lib/pricing";
@@ -33,11 +33,12 @@ export default function ClassesPage() {
       <PageHero
         eyebrow="Small-Group Reformer Pilates"
         title="Reformer Pilates Classes"
+        banner={MEDIA.studioBrightRows}
+        tone="sage"
         media={
           MEDIA.classMoodyBacklit && (
             <MediaItem
               media={MEDIA.classMoodyBacklit}
-              priority
               aspectClassName="aspect-[4/5]"
               className="mx-auto max-w-sm lg:max-w-none"
               sizes="(max-width: 1024px) 100vw, 40vw"
@@ -46,30 +47,43 @@ export default function ClassesPage() {
         }
         intro={
           <p>
-            Every group class is 50 minutes on a professional Merrithew reformer, with no more than 7 people, coached
-            by an experienced instructor who watches your form from start to finish. Choose by goal and experience, or start with Beginner if the
-            reformer is new to you.
+            Every group class we teach is 50 minutes on a professional Merrithew reformer, with no more than 7 people
+            in the room. An experienced instructor watches your form from start to finish. Pick a class by how you
+            want to feel, or start with Beginner if the reformer is new to you.
           </p>
         }
       >
-        <nav aria-label="Class formats" className="flex flex-wrap gap-x-6 gap-y-3">
+        <p className="mb-6 font-sans text-sm font-medium text-sage-700">
+          <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
+            {CLASSPASS_RATING_LINE}
+          </a>
+        </p>
+        <nav aria-label="Class formats" className="flex flex-wrap justify-center gap-x-6 gap-y-3">
           {CLASSES.map((c) => (
             <a
               key={c.slug}
               href={`#${c.slug}`}
-              className="inline-block py-1 font-sans text-xs uppercase tracking-[0.2em] text-sage-700 underline-offset-4 hover:underline"
+              className="smallcaps inline-block py-1 text-[15px] text-sage-700 underline-offset-4 hover:underline"
             >
               {c.name}
             </a>
           ))}
           <a
             href="#abs-and-assets"
-            className="inline-block py-1 font-sans text-xs uppercase tracking-[0.2em] text-sage-700 underline-offset-4 hover:underline"
+            className="smallcaps inline-block py-1 text-[15px] text-sage-700 underline-offset-4 hover:underline"
           >
             Abs and Assets
           </a>
         </nav>
       </PageHero>
+
+      <ClassCards
+        headingId="the-classes"
+        items={[
+          ...GROUP_CLASSES.map((c) => ({ key: c.slug, name: c.name, href: `#${c.slug}` })),
+          { key: "abs-and-assets", name: "Abs and Assets", href: "#abs-and-assets" },
+        ]}
+      />
 
       {/* What is reformer Pilates? */}
       <section aria-labelledby="what-is-reformer" className="bg-cream-50 py-20 sm:py-24">
@@ -80,13 +94,17 @@ export default function ClassesPage() {
               eyebrow="The Apparatus"
               title="What is reformer Pilates?"
               intro={
-                <p>
-                  The reformer is a sliding carriage on a frame, connected to a set of springs, with a footbar and
-                  straps for your hands and feet. The springs add adjustable resistance to classic Pilates movements,
-                  building lean strength, flexibility, and control with low impact on your joints. Your instructor
-                  changes the springs to make each exercise harder or more supportive, so the same machine works for a
-                  first-timer and a seasoned athlete. Ours are professional Merrithew reformers.
-                </p>
+                <>
+                  <p>
+                    The reformer is a sliding carriage on a frame, with springs, a footbar, and straps for your hands
+                    and feet. The springs add resistance to classic Pilates movements, and they are easy on your
+                    joints.
+                  </p>
+                  <p className="mt-4">
+                    We teach on Merrithew reformers. Your instructor changes the springs to make each exercise harder or
+                    more supportive, so the same machine works on your first day and your hundredth.
+                  </p>
+                </>
               }
             />
             <CtaLink href={introBookingHref()}>{FIRST_CLASS_CTA}</CtaLink>
@@ -94,12 +112,6 @@ export default function ClassesPage() {
           <ClassMedia mediaKey="what-is-reformer" className="lg:col-span-5" />
         </div>
       </section>
-
-      <p className="bg-cream-100 px-4 pt-10 text-center font-sans text-sm sm:pt-12">
-        <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-500">
-          {CLASSPASS_RATING_LINE}
-        </a>
-      </p>
 
       {CLASSES.map((c, i) => (
         <section
@@ -111,7 +123,7 @@ export default function ClassesPage() {
             <ClassFormatBlock format={c} reverse={i % 2 === 1} />
             {c.slug === "private" && (
               <>
-                <p className="mt-10 font-serif text-2xl text-charcoal-900">
+                <p className="mt-10 font-serif text-3xl font-light text-sage-900">
                   {priceOf("private")} for 55 minutes. Duets {priceOf("duet")} per person.
                 </p>
                 <PrivateShowcase includeDuet={false} />

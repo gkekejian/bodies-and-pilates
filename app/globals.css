@@ -8,18 +8,49 @@
   .text-balance {
     text-wrap: balance;
   }
+  /* Small-caps, letter-spaced serif heading (INTRO OFFERS, THE SPACE). */
+  .smallcaps {
+    font-family: var(--font-accent), Georgia, serif;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.22em;
+  }
+  /* Soft shadow behind white type set over photo banners. */
+  .banner-text {
+    text-shadow: 0 1px 24px rgb(0 0 0 / 0.25);
+  }
 }
 
 @layer base {
   :root {
-    /* Bodies & Pilates brand tokens */
+    /*
+     * Brand palette, from the old Wix site (design-reference/old-site).
+     * RGB triplets so Tailwind opacity modifiers keep working.
+     */
+    --bp-cream-50: 251 249 246;   /* #FBF9F6 page background */
+    --bp-cream-100: 244 240 234;  /* #F4F0EA pricing body */
+    --bp-cream-200: 236 229 220;  /* #ECE5DC soft band */
+    --bp-sage-300: 201 209 191;   /* #C9D1BF light sage, text on dark */
+    --bp-sage-500: 111 125 105;   /* #6F7D69 */
+    --bp-sage-700: 85 100 80;     /* #556450 header band, buttons */
+    --bp-sage-900: 74 84 72;      /* #4A5448 footer, booking band */
+    --bp-taupe-300: 217 204 189;  /* #D9CCBD The Space band */
+    --bp-taupe-500: 163 146 126;  /* #A3927E */
+    --bp-taupe-700: 111 96 79;    /* #6F604F text-safe taupe */
+    --bp-blush-500: 212 166 154;  /* #D4A69A */
+    --bp-olive-800: 67 61 51;     /* #433D33 Welcome band */
+    --bp-mauve-600: 132 104 92;   /* #84685C The Classes band (darkened for contrast) */
+    --bp-cocoa-700: 82 72 71;     /* #524847 pricing Book Now bars */
+    --bp-charcoal-800: 43 42 39;  /* #2B2A27 near-black soft text */
+    --bp-charcoal-900: 31 30 27;  /* #1F1E1B */
+
+    /* shadcn tokens */
     --background: 40 25% 99%;
     --foreground: 0 0% 17%;
     --card: 40 25% 97%;
     --card-foreground: 0 0% 17%;
     --popover: 40 25% 99%;
     --popover-foreground: 0 0% 17%;
-    --primary: 95 11% 36%;       /* sage-500 */
+    --primary: 106 11% 35%;      /* sage-700 #556450 */
     --primary-foreground: 40 33% 98%;
     --secondary: 30 22% 78%;     /* taupe-300 */
     --secondary-foreground: 0 0% 17%;
@@ -31,8 +62,8 @@
     --destructive-foreground: 0 0% 98%;
     --border: 30 15% 86%;
     --input: 30 15% 86%;
-    --ring: 95 11% 36%;
-    --radius: 0.5rem;
+    --ring: 106 11% 35%;
+    --radius: 0.125rem;
   }
 
   * {
@@ -53,6 +84,6 @@
   h4,
   h5,
   h6 {
-    @apply font-serif;
+    @apply font-serif font-light;
   }
 }
