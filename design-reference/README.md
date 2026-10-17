@@ -21,3 +21,6 @@
   license on file, and the old site's CSS already uses Fraunces as its working serif.
   Fraunces is loaded with its optical-size axis so large titles get the high-contrast cut.
 - Only the display serif is preloaded. All four families use `font-display: swap`.
+- `pr-flexibility-*.jpg` and `pr-post-*.jpg` in both sets are copies of the `/classes/flexibility`
+  and `/blog/what-is-reformer-pilates` captures under shorter names. GitHub rewrites the
+  original file names inside PR descriptions, so the PR table links these copies.
