@@ -2,8 +2,8 @@
  * Public price menu. Owner decision: every tier exactly as on the live site's
  * pricing page, including the $130 (5/month) and $220 (12/month) memberships.
  *
- * Booking links: each offer has its own MindBody deep link, extracted from
- * the live site's "Book Now" buttons (classic MindBody URLs, same tab). If the
+ * Booking links: each offer has its own Mindbody deep link, extracted from
+ * the live site's "Book Now" buttons (classic Mindbody URLs, same tab). If the
  * owner later provides go.mindbodyonline.com Marketing Links equivalents,
  * swap them in here.
  */
@@ -34,7 +34,7 @@ export const TRY: Offer[] = [
     id: "first-class",
     name: "First Class",
     price: "$25",
-    detail: "One small-group reformer class to meet the studio, the reformer, and your instructor.",
+    detail: "One 50-minute reformer class, 7 people max. Grip socks required: bring your own or buy a pair at the studio.",
     cta: "Book Your $25 First Class",
     bookingUrl: INTRO_OFFER_DEEP_LINK,
     intro: true,
@@ -43,8 +43,9 @@ export const TRY: Offer[] = [
     id: "intro-week",
     name: "One-Week Unlimited",
     price: "$105",
-    detail: "Unlimited classes for seven days. First-timers only. Your week starts on your first class.",
-    cta: "Book the $105 Intro Week",
+    detail:
+      "Unlimited classes for seven days. First-timers only. Your week starts on your first class. Take any class on the schedule: Beginner, Full Body, Flexibility, or Abs and Assets.",
+    cta: "Book the $105 One-Week Unlimited",
     bookingUrl: mb(43, 100014),
     intro: true,
   },
@@ -67,7 +68,7 @@ export const COMMIT: Offer[] = [
     price: "$170",
     unit: "/month",
     perClass: "About $21 per class",
-    detail: "Twice a week, the rhythm most clients see results with.",
+    detail: "Twice a week. Our most popular plan.",
     badge: "Most Popular",
     cta: "Start the 8-Class Membership",
     bookingUrl: mb(40, 102),
@@ -78,7 +79,7 @@ export const COMMIT: Offer[] = [
     price: "$220",
     unit: "/month",
     perClass: "About $18 per class",
-    detail: "Three classes a week for faster progress.",
+    detail: "Three classes a week, about $18 a class.",
     cta: "Start the 12-Class Membership",
     bookingUrl: mb(40, 103),
   },
@@ -128,7 +129,8 @@ export const PRIVATE: Offer[] = [
     name: "Private 1:1",
     price: "$100",
     unit: "per 55-min session",
-    detail: "Your instructor, your reformer, your goals. Ideal for beginners or working around an injury.",
+    detail:
+      "Your instructor, your reformer, your goals. Good for beginners. Working around an injury? Get your doctor's OK, then tell your instructor before your session.",
     cta: "Book a Private Session",
     bookingUrl: mb(43, 100011),
   },
@@ -145,7 +147,7 @@ export const PRIVATE: Offer[] = [
 
 /** Owner-confirmed policy lines shown on /pricing (FAQ carries the longer versions). */
 export const POLICY = {
-  cancellation: "Cancel 12+ hours ahead: no charge. Late cancel: credit forfeited. No-show: $15.",
+  cancellation: "Cancel 12+ hours ahead at no charge. Inside 12 hours, the class credit is forfeited. No-show: $15.",
   membership: "Pause anytime. Cancel with 7 days' notice. No fees.",
 } as const;
 

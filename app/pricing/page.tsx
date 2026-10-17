@@ -8,13 +8,13 @@ import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { COMMIT, FLEX, POLICY, PRICE_GROUPS, PRIVATE, TRY, offerHref } from "@/lib/pricing";
-import { SITE_URL } from "@/lib/site";
+import { CLASSPASS_RATING_LINE, CLASSPASS_URL, SITE_URL } from "@/lib/site";
 import { MEDIA } from "@/lib/media";
 
 export const metadata = pageMetadata({
-  title: "Pilates Pricing & Memberships | Bodies and Pilates NoHo",
+  title: "Reformer Pilates Prices, North Hollywood | Bodies and Pilates",
   description:
-    "Pilates pricing in North Hollywood: $25 first class, $36 single, packs from $160, memberships from $130/month. No hidden fees. See every option.",
+    "Reformer Pilates prices in North Hollywood: $25 first class, $36 single, packs from $160, memberships from $130/month. Pause anytime.",
   path: "/pricing",
 });
 
@@ -90,6 +90,11 @@ export default function PricingPage() {
         <div className={container}>
           <GroupHeading id="try-heading">Intro Offers</GroupHeading>
           <GroupNote>For your first visit. Pick one.</GroupNote>
+          <p className="mt-2 font-sans text-sm font-medium text-sage-700">
+            <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
+              {CLASSPASS_RATING_LINE}
+            </a>
+          </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:max-w-[42rem]">
             {TRY.map((offer) => (
               <OfferCard key={offer.id} offer={offer} accent="mauve" />
@@ -126,7 +131,7 @@ export default function PricingPage() {
       <section aria-labelledby="commit-heading" className="bg-cream-100 pb-16 sm:pb-24">
         <div className={container}>
           <GroupHeading id="commit-heading">Auto Renew Memberships</GroupHeading>
-          <GroupNote>Renews each month. The best value if Pilates is part of your week.</GroupNote>
+          <GroupNote>The best per-class value.</GroupNote>
           <div className="mt-10 grid gap-6 pt-3 sm:grid-cols-2 lg:grid-cols-4">
             {COMMIT.map((offer) => (
               <OfferCard key={offer.id} offer={offer} accent="cocoa" />
@@ -208,7 +213,7 @@ export default function PricingPage() {
 
       <FinalCta
         title="Start with the $25 first class."
-        body="Meet the reformer and your instructor, and see what a class of 7 feels like. Then pick the plan that fits your week."
+        body="Meet the reformer and your instructor, and see what a class of 7 or fewer feels like. Then pick the plan that fits your week."
         cta={START_CTA}
         href={offerHref(firstClass)}
       />

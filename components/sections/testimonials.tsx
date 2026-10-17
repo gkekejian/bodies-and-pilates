@@ -1,4 +1,4 @@
-import { GOOGLE_REVIEWS, googleReviewsHref } from "@/lib/site";
+import { CLASSPASS_RATING_LINE, CLASSPASS_URL } from "@/lib/site";
 import { HOME_TESTIMONIALS, type Testimonial } from "@/lib/testimonials";
 import { ReviewCarousel } from "@/components/sections/review-carousel";
 
@@ -22,12 +22,12 @@ export function Testimonials({
         </h2>
         <p className="mt-5 font-sans text-base text-charcoal-800/85">
           <a
-            href={googleReviewsHref()}
+            href={CLASSPASS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="underline decoration-sage-700/50 underline-offset-4 hover:text-sage-700"
           >
-            Rated {GOOGLE_REVIEWS.rating} on Google from {GOOGLE_REVIEWS.count} reviews
+            {CLASSPASS_RATING_LINE}
           </a>
         </p>
         <div aria-hidden="true" className="mx-auto my-10 h-px w-16 bg-sage-700/50" />

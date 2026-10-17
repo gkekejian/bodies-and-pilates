@@ -167,7 +167,7 @@ How the blog works (see the header comment in `lib/blog.ts` for the frontmatter 
   - Meta Pixel `1074774813955135` ("B&P Main", owner-supplied). [ ] Confirm it matches the Wix site's live pixel before DNS cutover: the build sandbox could not reach the Wix site.
   - Events: PageView on every page and client-side navigation; ViewContent on /intro-offer, /pricing, /classes and /classes/*; InitiateCheckout (Meta) and begin_checkout (Google) from one handler on any click to clients/go/cart.mindbodyonline.com, and on Book/Sign up/Reserve buttons the schedule widget renders into the page (not inside an iframe). Schedule and Purchase are not fired on this site: they happen on MindBody after the visitor leaves.
   - UTMs: utm_source/medium/campaign/term/content from the landing URL are kept for the visit and appended to MindBody booking links on click (existing values win).
-  - Google: [ ] no ID set. Put the Wix site's GA4 (`NEXT_PUBLIC_GA_ID`) and/or Google Ads (`NEXT_PUBLIC_GOOGLE_ADS_ID`) IDs in Vercel env vars and redeploy; if the Wix site had none, create a GA4 property first.
+  - Google: GA4 `G-DH2CT2VPC1` (the tag on the Wix site, owner-supplied) loads on every page with the same opt-out rules as the pixel, and receives `begin_checkout` on booking clicks. [ ] No Google Ads conversion tag was on the Wix snippet; if one exists elsewhere, add it as `NEXT_PUBLIC_GOOGLE_ADS_ID`. To count bookings as a conversion, mark `begin_checkout` as a key event in GA4 and import it into Google Ads.
   - Consent: `CONSENT_MODE = "opt-out"`. No banner (the brief says none unless the Wix site had one); "Your privacy choices" in the footer turns tags off, and Global Privacy Control is honored. [ ] If the Wix site did show a cookie banner, set `CONSENT_MODE = "opt-in"` to restore the Accept/Decline banner.
 - `/llms.txt` and `/llms-full.txt` are generated from the same data as the pages (`lib/llms.ts`), so they stay in sync.
 
@@ -199,6 +199,14 @@ Google Business Profile:
 - [ ] Add both `www.bodiesandpilates.com` (primary) and `bodiesandpilates.com` to the Vercel project. The bare domain 301s to www via `next.config.mjs`.
 
 ---
+
+### Copy audit (2026-10-14), applied
+- Fact-sheet facts now on the site: never more than 7 people per class, professional Merrithew reformers, woman-owned, experienced instructors (no credentials or years named). Shared constants in `lib/site.ts` (`CLASS_CAP`, `REFORMER_BRAND`, `CLASSPASS_RATING_LINE`).
+- Ratings: testimonial sections now show the ClassPass rating; Google 4.7 stays only in the footer. The ClassPass rating also appears on /intro-offer, /pricing, /classes and every class page.
+- Removed: the ClassPass "same instructor / saved reformer / progress tracking / priority booking" perks, "Est. 2024" and every founding year (schema `foundingDate` too), "Teens 14+", Lagree class length and format specs, "Monthly auto-renew", outcome and timeline promises, back-pain and injury outcome claims, the unsourced market price range and competitor claim.
+- Blog: new closing CTA on every post (build-checked). Merged how-long-until-pilates-results into how-often, folded the flexibility post into what-is-reformer-pilates, cut the pregnancy post (FAQ "Can I take a class while pregnant?" replaces it); all three 301. 17 posts remain. Titles under 60 characters now carry " | Bodies and Pilates".
+- Not done: a /classes/abs-and-assets page (needs Naira's description, level, and who it is for); per-post CTA variations; the blanket "honest" / "Here is" wording pass.
+- [ ] Confirm with Naira: founding year (shown nowhere until confirmed); parking on Weddington St and Vineland Ave; booking by phone and by text; "Arrive 10 minutes early"; who teaches Beginner and Abs and Assets; whether a first-timer can take the $25 class and then the $105 week; pack expiry. Jason, Taylor, and the client review are the owner-supplied reviews from 2026-10-12.
 
 ## Launch checklist
 

@@ -7,7 +7,7 @@ import { MINDBODY, PHONE, GRIP_SOCKS_LINE } from "@/lib/site";
 import { MEDIA } from "@/lib/media";
 
 export const metadata = pageMetadata({
-  title: "Class Schedule | Bodies and Pilates North Hollywood",
+  title: "Reformer Pilates Schedule, North Hollywood | Bodies and Pilates",
   description:
     "Book reformer Pilates classes in North Hollywood: morning and evening sessions on weekdays, mornings on weekends. Book right here, no app download needed.",
   path: "/schedule",
@@ -48,19 +48,19 @@ export default function SchedulePage() {
             <p>Wear form-fitting clothes you can move in.</p>
           </aside>
 
-          {/* Primary path: the live MindBody timetable. */}
+          {/* Primary path: the live Mindbody timetable. */}
           <p className="smallcaps mb-4 text-[15px] text-sage-700">Book right here, no app download needed.</p>
           <MindbodyScheduleWidget widgetId={MINDBODY.scheduleWidgetId} />
         </div>
       </section>
 
-      {/* Secondary: direct MindBody link, phone, hours. */}
+      {/* Secondary: direct Mindbody link, phone, hours. */}
       <section className="bg-cream-50 py-14 sm:py-16">
         <div className="mx-auto grid max-w-5xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div className="space-y-3 font-sans text-base text-charcoal-800/85">
             <p>
               <a href={MINDBODY.classesUrl} className={link}>
-                Book on MindBody
+                Book on Mindbody
               </a>
             </p>
             <p>

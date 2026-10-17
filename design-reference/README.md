@@ -6,7 +6,8 @@
   (`home-5-friends-footer`, `home-social-footer`, `pricing-3-bottom`, `booking-2-bottom`,
   `faqs-footer`). The only number the site uses is 818-813-4446.
 - `restyle-2026-10-16/before` and `/after`: full-page captures of every sitemap URL before
-  and after the restyle, at 1440px (scaled to 640px wide) and 390px (scaled to 312px wide).
+  the restyle (35 URLs, master before PR #7) and after it (32 URLs, recaptured after PR #8
+  was refreshed onto the post-PR #7 master), at 1440px (scaled to 640px wide) and 390px (scaled to 312px wide).
   The MindBody widget, maps and video are blocked in the capture sandbox, so those areas
   render empty in both sets. The fixed mobile booking bar can show mid-page in full-page
   captures; on a phone it sits at the bottom of the screen.

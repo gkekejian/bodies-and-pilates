@@ -49,7 +49,6 @@ export const exerciseGymSchema = {
   image: `${SITE_URL}/opengraph-image`,
   description:
     "Independent boutique reformer Pilates studio in North Hollywood. Small-group reformer classes with coaching on form, plus private sessions. First class $25.",
-  foundingDate: "2024",
   founder: { "@type": "Person", name: BLOG_AUTHOR.name, jobTitle: "Founder and Owner" },
   hasMap: MAPS_URL,
   priceRange: "$$",

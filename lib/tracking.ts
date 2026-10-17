@@ -6,22 +6,22 @@
  * the build sandbox could not reach the Wix site, so confirm it there (page
  * source, search "fbq('init'" or "facebook.com/tr?id=") before DNS cutover.
  *
- * Google: no ID is set until the owner confirms what the Wix site uses. Set
- * NEXT_PUBLIC_GA_ID (G-...) and/or NEXT_PUBLIC_GOOGLE_ADS_ID (AW-...) in
- * Vercel and redeploy; nothing else changes.
+ * Google: GA4 G-DH2CT2VPC1 is the tag live on the Wix site (owner-supplied
+ * snippet, 2026-10-13). A Google Ads ID (AW-...) can be added later with
+ * NEXT_PUBLIC_GOOGLE_ADS_ID in Vercel; NEXT_PUBLIC_GA_ID overrides the GA4 ID.
  *
  * Events fired by this site (see components/analytics/analytics.tsx):
  *   PageView           Meta, every page and every client-side navigation
  *   ViewContent        Meta, /intro-offer, /pricing, /classes and /classes/*
- *   InitiateCheckout   Meta, click on any MindBody booking link or a Book
+ *   InitiateCheckout   Meta, click on any Mindbody booking link or a Book
  *                      button the schedule widget renders in the page
  *   begin_checkout     Google, same clicks, same handler
  * Schedule and Purchase are NOT fired here: they happen after the visitor
- * has left for MindBody, so they can only come from MindBody's own pixel
+ * has left for Mindbody, so they can only come from Mindbody's own pixel
  * integration. Firing them here would double count.
  */
 export const META_PIXEL_ID = "1074774813955135";
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DH2CT2VPC1";
 export const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "";
 
 /** Pages that get a Meta ViewContent event. */
@@ -29,7 +29,7 @@ export const VIEW_CONTENT_PATHS = ["/intro-offer", "/pricing", "/classes"];
 export const isViewContentPath = (path: string) =>
   VIEW_CONTENT_PATHS.some((p) => path === p || path.startsWith(`${p}/`));
 
-/** Hosts where a click starts a MindBody booking or purchase. */
+/** Hosts where a click starts a Mindbody booking or purchase. */
 const BOOKING_HOSTS = ["clients.mindbodyonline.com", "go.mindbodyonline.com", "cart.mindbodyonline.com"];
 export const isBookingUrl = (url: URL) => BOOKING_HOSTS.includes(url.hostname);
 
@@ -47,7 +47,7 @@ export function captureUtm(search: string) {
   }
 }
 
-/** Adds the stored campaign tags to a MindBody URL (existing values win). */
+/** Adds the stored campaign tags to a Mindbody URL (existing values win). */
 export function withUtm(url: URL): URL {
   try {
     const stored = JSON.parse(sessionStorage.getItem(UTM_STORE) || "{}") as Record<string, string>;
@@ -65,7 +65,7 @@ const w = () => window as Window & { fbq?: Fbq; gtag?: Gtag };
 /** Fires InitiateCheckout (Meta) and begin_checkout (Google) for one booking start. */
 export function trackBookingStart(label: string, href: string) {
   const { fbq, gtag } = w();
-  fbq?.("track", "InitiateCheckout", { content_name: label, content_category: "MindBody booking" });
+  fbq?.("track", "InitiateCheckout", { content_name: label, content_category: "Mindbody booking" });
   gtag?.("event", "begin_checkout", { items: [{ item_name: label }], link_url: href, transport_type: "beacon" });
 }
 

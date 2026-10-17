@@ -1,7 +1,7 @@
 /**
  * Class formats. Every format is small-group reformer Pilates except Private.
  *
- * Group classes are 50 minutes (confirmed from the MindBody schedule).
+ * Group classes are 50 minutes (confirmed from the Mindbody schedule).
  * TODO(owner): confirm the difficulty level and the "who it is for" line for
  * each format.
  * TODO(owner): the schedule also runs "Abs and Assets" (Sun 12:00 PM, week of
@@ -16,6 +16,8 @@ export interface ClassFormat {
   name: string;
   /** Kept from the existing site for SEO. Used as the detail page title tag + H1. */
   pageTitle: string;
+  /** Optional title tag when "pageTitle | Bodies and Pilates" runs past about 60 characters. */
+  seoTitle?: string;
   metaDescription: string;
   level: string;
   duration: string;
@@ -56,9 +58,10 @@ export const CLASSES: ClassFormat[] = [
     // Previously "Mat Pilates Classes in North Hollywood". Changed because the
     // studio does not run mat classes; every group class is on the reformer.
     pageTitle: "Full Body Reformer Pilates Classes in North Hollywood",
+    seoTitle: "Full Body Reformer Pilates, North Hollywood | Bodies and Pilates",
     metaDescription:
       "Full Body reformer Pilates in North Hollywood: lower body, upper body, and core in one small-group class. Start with a $25 first class.",
-    level: "All levels, moderate to challenging",
+    level: "Moderate to challenging, best after a few Beginner classes",
     duration: "50 minutes",
     oneLiner: "The classic class: resistance training for legs, arms, and core on the reformer and props.",
     blurb:
@@ -108,7 +111,7 @@ export const CLASSES: ClassFormat[] = [
     blurb:
       "One-on-one with your instructor for 55 minutes. We plan every exercise and spring setting around you. Want to bring a friend or partner? Book a duet.",
     forWho:
-      "Beginners who want a head start, clients working around injuries, and anyone who prefers individual attention.",
+      "Beginners who want a head start, clients working around an injury with their doctor's OK, and anyone who prefers individual attention.",
     description:
       "A 55-minute private reformer session with your instructor. Every exercise, spring setting, and cue is chosen for you. Duets are available if you want to train with a friend or partner.",
     expect: [

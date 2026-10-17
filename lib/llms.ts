@@ -30,7 +30,7 @@ const url = (path: string) => `${SITE_URL}${path}`
 const offerLine = (o: Offer) =>
   `- ${o.name}: ${o.price}${o.unit ? ` ${o.unit}` : ''}${o.perClass ? ` (${o.perClass.toLowerCase()})` : ''}. ${o.detail} Book: ${offerHref(o)}`
 
-const summary = `${SITE_NAME} is an independent boutique reformer Pilates studio in North Hollywood, Los Angeles, CA, open since 2024. Every group class is small-group reformer Pilates with coaching on form. A first class costs $25.`
+const summary = `${SITE_NAME} is an independent boutique reformer Pilates studio in North Hollywood, Los Angeles, CA. It is independent and woman-owned. Every group class is 50 minutes on a professional Merrithew reformer, with never more than 7 people, coached by an experienced instructor. A first class costs $25.`
 
 const facts = [
   `- Address: ${ADDRESS.oneLine}`,
@@ -43,14 +43,14 @@ const facts = [
   `- Memberships: ${POLICY.membership}`,
   `- Google rating: ${GOOGLE_REVIEWS.rating} (${GOOGLE_REVIEWS.count} reviews)`,
   `- ClassPass rating: ${CLASSPASS_RATING.rating} (${CLASSPASS_RATING.ratings} ratings, ${CLASSPASS_RATING.reviews} written reviews)`,
-  `- Booking: MindBody (site ID ${MINDBODY.siteId}), ${MINDBODY.classesUrl}`,
+  `- Booking: Mindbody (site ID ${MINDBODY.siteId}), ${MINDBODY.classesUrl}`,
   `- Instagram: ${INSTAGRAM.url}`,
   `- ClassPass: ${CLASSPASS_URL}`,
   `- Neighborhoods served: North Hollywood, ${SERVICE_AREAS.map((a) => a.name).join(', ')}`,
 ].join('\n')
 
 const pages = [
-  `- [Intro offer](${url('/intro-offer')}): $25 first class or $105 one-week unlimited for first-timers`,
+  `- [Intro offer](${url('/intro-offer')}): $25 first class or the $105 One-Week Unlimited for first-timers`,
   `- [Pricing](${url('/pricing')}): every class pack, membership, and private session price with booking links`,
   `- [Classes](${url('/classes')}): Beginner, Full Body, Flexibility, Abs and Assets, and Private formats`,
   `- [Schedule](${url('/schedule')}): live class timetable`,
@@ -99,7 +99,7 @@ ${facts}
 ### Intro offers (first-timers only)
 ${TRY.map(offerLine).join('\n')}
 
-### Memberships (monthly auto-renew)
+### Memberships (monthly)
 ${COMMIT.map(offerLine).join('\n')}
 
 ### Class packs

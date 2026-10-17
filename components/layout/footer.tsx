@@ -121,7 +121,7 @@ export function Footer() {
 
           {/* Book + hours */}
           <div className="flex flex-col gap-8 md:col-span-4">
-            {/* MindBody booking stays in the same tab. */}
+            {/* Mindbody booking stays in the same tab. */}
             <CtaLink href={MINDBODY.classesUrl} variant="ghost-light" className="w-full sm:w-auto">
               Book a Session
             </CtaLink>

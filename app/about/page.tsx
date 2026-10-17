@@ -14,7 +14,7 @@ import { ADDRESS, INSTAGRAM } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "About Bodies and Pilates | North Hollywood Pilates Studio",
   description:
-    "An independent reformer Pilates studio in North Hollywood, near Toluca Lake, Studio City, and Burbank. Meet the team, then book your $25 first class.",
+    "An independent, woman-owned reformer Pilates studio in North Hollywood, near Toluca Lake, Studio City and Burbank. Meet the team, then book your $25 first class.",
   path: "/about",
 });
 
@@ -111,7 +111,7 @@ export default function AboutPage() {
         title="About Bodies and Pilates"
         banner={MEDIA.studioLogoWallChair}
         tone="sage"
-        intro={<p>We are an independent reformer Pilates studio on Vineland Ave in North Hollywood.</p>}
+        intro={<p>We are an independent, woman-owned reformer Pilates studio on Vineland Ave in North Hollywood.</p>}
       />
 
       {/* Founder. TODO(owner): Naira's founder story in her own words. Until it
@@ -158,9 +158,9 @@ export default function AboutPage() {
             <SectionHeading id="story-heading" eyebrow="The Studio" title="A calm room and a small class" />
             <div className="space-y-5 font-accent text-lg leading-[1.85] text-charcoal-800">
               <p>
-                Naira Sarkian founded Bodies and Pilates as a small reformer studio in North Hollywood. We keep it
-                simple: no more than 7 people in a class, professional Merrithew reformers, and an instructor who
-                watches how you move.
+                Naira Sarkian founded Bodies and Pilates as a small, independent, woman-owned reformer studio in North
+                Hollywood. We keep it simple: never more than 7 people in a class, professional Merrithew reformers,
+                and experienced instructors who watch how you move.
               </p>
               <p>
                 The room is calm and unhurried. Your instructor sets your springs and coaches your form on the reformer
@@ -188,7 +188,7 @@ export default function AboutPage() {
               id="team-heading"
               eyebrow="Meet the Team"
               title="Your instructors"
-              intro={<p>These are the people who teach our classes. Come say hello before your first one.</p>}
+              intro={<p>Our instructors are experienced, and they coach your form for the full 50 minutes.</p>}
             />
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {TEAM.map((person) => (

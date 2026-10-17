@@ -8,12 +8,13 @@ import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
 import { MEDIA } from "@/lib/media";
-import { FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
+import { CLASSPASS_RATING_LINE, CLASSPASS_URL, FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
+import { priceOf } from "@/lib/pricing";
 
 export const metadata = pageMetadata({
-  title: "Reformer Pilates Classes | Bodies and Pilates NoHo",
+  title: "Reformer Pilates Classes in North Hollywood | Bodies and Pilates",
   description:
-    "Reformer Pilates classes in North Hollywood: Beginner, Full Body, Flexibility, Abs and Assets, plus privates and duets. Small groups, real coaching.",
+    "Reformer Pilates classes in North Hollywood: Beginner, Full Body, Flexibility, Abs and Assets, privates and duets. 50 minutes, 7 people max.",
   path: "/classes",
 });
 
@@ -46,13 +47,18 @@ export default function ClassesPage() {
         }
         intro={
           <p>
-            Every group class we teach is on the reformer, with no more than 7 people in the room. Your instructor
-            watches your form from start to finish. Pick a class by how you want to feel, or start with Beginner if
-            the reformer is new to you.
+            Every group class we teach is 50 minutes on a professional Merrithew reformer, with no more than 7 people
+            in the room. An experienced instructor watches your form from start to finish. Pick a class by how you
+            want to feel, or start with Beginner if the reformer is new to you.
           </p>
         }
       >
-        <nav aria-label="Class formats" className="flex flex-wrap gap-x-6 gap-y-3">
+        <p className="mb-6 font-sans text-sm font-medium text-sage-700">
+          <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
+            {CLASSPASS_RATING_LINE}
+          </a>
+        </p>
+        <nav aria-label="Class formats" className="flex flex-wrap justify-center gap-x-6 gap-y-3">
           {CLASSES.map((c) => (
             <a
               key={c.slug}
@@ -115,7 +121,14 @@ export default function ClassesPage() {
         >
           <div className={container}>
             <ClassFormatBlock format={c} reverse={i % 2 === 1} />
-            {c.slug === "private" && <PrivateShowcase includeDuet={false} />}
+            {c.slug === "private" && (
+              <>
+                <p className="mt-10 font-serif text-3xl font-light text-sage-900">
+                  {priceOf("private")} for 55 minutes. Duets {priceOf("duet")} per person.
+                </p>
+                <PrivateShowcase includeDuet={false} />
+              </>
+            )}
           </div>
         </section>
       ))}
@@ -132,7 +145,7 @@ export default function ClassesPage() {
               id="abs-and-assets-heading"
               eyebrow="Also on the schedule"
               title="Abs and Assets"
-              intro={<p>A 50-minute small-group reformer class on our weekly schedule.</p>}
+              intro={<p>Abs and Assets is a 50-minute reformer class on professional Merrithew reformers, capped at 7 people.</p>}
             />
             {/* TODO(owner): add a 1 to 2 sentence description, level, and who it is for. */}
             <CtaLink href="/schedule" variant="text">

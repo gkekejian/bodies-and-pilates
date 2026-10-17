@@ -21,22 +21,23 @@ import { FIRST_CLASS_CTA, INSTAGRAM, introBookingHref } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Reformer Pilates in North Hollywood | Bodies and Pilates",
   description:
-    "Small-group reformer Pilates in North Hollywood. First class $25. Real coaching, beginner-friendly classes, transparent pricing. Call 818-813-4446.",
+    "Reformer Pilates in North Hollywood, 7 people max on Merrithew reformers. Rated 4.9 on ClassPass. First class $25. Call 818-813-4446.",
   path: "/",
 });
 
+// Fact sheet (2026-10-14): 7-person cap, Merrithew reformers, experienced instructors.
 const proofPoints = [
   {
     title: "Small classes",
-    body: "No more than 7 people in a class, so your instructor can see every person on every rep.",
+    body: "Never more than 7 people in a class, so your instructor can see every person on every rep.",
+  },
+  {
+    title: "Experienced instructors",
+    body: "Experienced instructors coach your form for the full 50 minutes, with clear cues, spring changes and modifications.",
   },
   {
     title: "Merrithew reformers",
-    body: "We teach on professional Merrithew reformers. Your instructor sets the springs to fit you.",
-  },
-  {
-    title: "Coaching on form",
-    body: "Clear cues, spring changes, and modifications for the full 50 minutes.",
+    body: "We teach every class on professional Merrithew reformers.",
   },
 ];
 
@@ -94,8 +95,8 @@ export default function HomePage() {
             Empower Your Essense
           </p>
           <p className="mt-7 max-w-xl font-sans text-base leading-[1.7] text-cream-50 sm:text-lg">
-            Small-group reformer classes on Vineland Ave, with no more than 7 people in the room. Your first class is
-            $25.
+            Reformer Pilates with never more than 7 people per class, on professional Merrithew reformers. An
+            independent, woman-owned studio on Vineland Ave. Your first class is $25.
           </p>
           <div className="mt-9">
             <CtaLink href={introBookingHref()} variant="ghost-light">
@@ -200,6 +201,7 @@ export default function HomePage() {
           { key: "beginner", name: "Beginner", href: "/classes/beginner" },
           { key: "flexibility", name: "Flexibility", href: "/classes/flexibility" },
           { key: "fullbody", name: "Full Body", href: "/classes/fullbody" },
+          { key: "abs-and-assets", name: "Abs and Assets", href: "/classes#abs-and-assets" },
         ]}
       />
 
@@ -210,11 +212,11 @@ export default function HomePage() {
             <SectionHeading
               id="small-group-heading"
               eyebrow="The Format"
-              title="Small-Group Pilates Classes"
+              title="Classes of 7 or Fewer"
               intro={
                 <p>
-                  Every group class runs on the reformer, with no more than 7 people. You get the energy of a class and
-                  the attention of a private session. Pick the one that fits your week.
+                  Every group class runs on a Merrithew reformer with no more than 7 people. You get the energy of a
+                  class and the attention of a private session. Pick the one that fits your week.
                 </p>
               }
             />
@@ -229,6 +231,16 @@ export default function HomePage() {
                   <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{c.oneLiner}</dd>
                 </div>
               ))}
+              <div className="grid gap-1 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
+                <dt className="font-serif text-2xl text-sage-900">
+                  <Link href="/classes#abs-and-assets" className="hover:text-sage-700">
+                    Abs and Assets
+                  </Link>
+                </dt>
+                <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">
+                  A 50-minute reformer class on professional Merrithew reformers, capped at 7 people.
+                </dd>
+              </div>
             </dl>
             <div className="mt-10 flex flex-wrap items-center gap-6">
               <CtaLink href="/classes" variant="outline">
@@ -270,11 +282,11 @@ export default function HomePage() {
           />
           <div className="grid gap-px border border-sage-700/25 bg-sage-700/25 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { label: "Try", price: priceOf("first-class"), note: `First class. Or ${priceOf("intro-week")} for a week unlimited.` },
+              { label: "Try", price: priceOf("first-class"), note: `First class. Or ${priceOf("intro-week")} for the One-Week Unlimited.` },
               {
                 label: "Commit",
                 price: `${priceOf("membership-5")}/mo`,
-                note: `5, 8, or 12 classes a month, or unlimited for ${priceOf("membership-unlimited")}. 8 classes is our most popular plan.`,
+                note: `5, 8, or 12 classes a month, or unlimited for ${priceOf("membership-unlimited")}. 8 classes is our most popular plan. Pause anytime. Cancel with 7 days' notice. No fees.`,
               },
               { label: "Flex", price: priceOf("single"), note: `Single class. Packs of 5 for ${priceOf("pack-5")} or 10 for ${priceOf("pack-10")}.` },
               { label: "Private", price: priceOf("private"), note: `55-minute 1:1 session. Duets ${priceOf("duet")} per person.` },
