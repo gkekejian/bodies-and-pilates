@@ -89,7 +89,10 @@ export default function PricingPage() {
       <section aria-labelledby="try-heading" className="bg-cream-100 py-16 sm:py-20">
         <div className={container}>
           <GroupHeading id="try-heading">Intro Offers</GroupHeading>
-          <GroupNote>For your first visit. Pick one.</GroupNote>
+          <GroupNote>
+            For your first visit. Start with the $25 first class if you like. You can still take the $105 intro week after
+            it.
+          </GroupNote>
           <p className="mt-2 font-sans text-sm font-medium text-sage-700">
             <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
               {CLASSPASS_RATING_LINE}
@@ -119,11 +122,7 @@ export default function PricingPage() {
               <OfferCard key={offer.id} offer={offer} accent="sage" />
             ))}
           </div>
-          <PolicyNotes lines={[POLICY.cancellation]} />
-          {/*
-            TODO(owner): confirm how long packs last after purchase and add one
-            plain sentence here (e.g. "Packs expire N months after purchase.").
-          */}
+          <PolicyNotes lines={[POLICY.cancellation, "Class packs expire 3 months after purchase."]} />
         </div>
       </section>
 

@@ -131,7 +131,7 @@ export default function HomePage() {
             eyebrow="New Here"
             title="Intro Offers"
             align="center"
-            intro={<p>Try one class, or take a full week to find your rhythm. Both are for first-timers.</p>}
+            intro={<p>Try one class, take a full week to find your rhythm, or do the class first and the week after it. Both are for first-timers.</p>}
           />
           <div className="mx-auto grid max-w-[42rem] gap-6 text-left sm:grid-cols-2">
             {TRY.map((offer) => (

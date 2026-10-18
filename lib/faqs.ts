@@ -67,12 +67,17 @@ export const FAQS: Faq[] = [
     id: "parking",
     question: "Where do I park?",
     answer:
-      "Street parking on Weddington St and metered spots in front of the studio on Vineland Ave. Arrive 10 minutes early for your first class.",
+      "Metered street parking is available on Weddington St and Vineland Ave. Arrive at least 10 minutes early for your first class.",
   },
   {
     id: "pause-cancel",
     question: "Can I pause or cancel my membership?",
     answer: "Yes. Pause anytime. Cancel with 7 days' notice. No fees.",
+  },
+  {
+    id: "pack-expiry",
+    question: "Do class packs expire?",
+    answer: "Yes. Class packs expire 3 months after purchase.",
   },
   {
     // Old-site Search Console showed "mat pilates near me" impressions. Answer
@@ -115,7 +120,7 @@ export const FAQS: Faq[] = [
     id: "first-class",
     question: "What happens in my first class?",
     answer:
-      "Arrive 10 minutes early, meet your instructor, get set up on your reformer. Fifty minutes of guided, low-impact strength work with coaching on your form the whole time.",
+      "Arrive at least 10 minutes early, meet your instructor, get set up on your reformer. Fifty minutes of guided, low-impact strength work with coaching on your form the whole time.",
   },
   {
     id: "class-size",
@@ -143,7 +148,7 @@ export const FAQS: Faq[] = [
     id: "nearby",
     question: "Is the studio near Toluca Lake, Studio City, or Burbank?",
     answer:
-      "Yes. We are on Vineland Ave in North Hollywood, close to Toluca Lake, Valley Village, Studio City, and Burbank, with street parking on Weddington St and metered spots in front of the studio.",
+      "Yes. We are on Vineland Ave in North Hollywood, close to Toluca Lake, Valley Village, Studio City, and Burbank. Metered street parking is available on Weddington St and Vineland Ave.",
   },
 ];
 

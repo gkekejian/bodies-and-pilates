@@ -41,7 +41,7 @@ export default function SchedulePage() {
             className="mb-8 border-l-2 border-sage-700 bg-cream-100 px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
           >
             <p>
-              <span className="font-medium text-charcoal-900">New here?</span> Arrive 10 minutes early to meet your
+              <span className="font-medium text-charcoal-900">New here?</span> Arrive at least 10 minutes early to meet your
               instructor and get set up on the reformer.
             </p>
             <p>{GRIP_SOCKS_LINE}</p>

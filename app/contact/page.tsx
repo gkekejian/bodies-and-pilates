@@ -108,8 +108,8 @@ export default function ContactPage() {
                 Parking
               </h2>
               <p className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/80">
-                Street parking on Weddington St and metered spots in front of the studio on Vineland Ave. Arrive 10
-                minutes early for your first class.
+                Metered street parking is available on Weddington St and Vineland Ave. Arrive at least 10 minutes early for your
+                first class.
               </p>
             </section>
           </div>
