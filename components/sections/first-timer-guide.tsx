@@ -26,13 +26,13 @@ const POINTS = [
   },
   {
     title: "Where to park",
-    body: "Street parking on Weddington St and metered spots in front of the studio on Vineland Ave.",
+    body: "Metered street parking is available on Weddington St and Vineland Ave.",
     href: "/contact",
     link: "Directions",
   },
   {
     title: "When to arrive",
-    body: "Arrive 10 minutes early so your instructor can meet you and set you up on the reformer.",
+    body: "Arrive at least 10 minutes early. Your instructor will meet you and set you up on the reformer.",
     href: "/schedule",
     link: "See class times",
   },

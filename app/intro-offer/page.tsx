@@ -46,7 +46,8 @@ export default function IntroOfferPage() {
           <p className="mx-auto max-w-2xl text-center font-sans text-base leading-[1.8] text-charcoal-800/85 sm:text-lg">
             Come try a full class with us. It is 50 minutes on a professional Merrithew reformer, in a room of never
             more than 7, on Vineland Ave. An experienced instructor watches your form the whole time, so you do not
-            need any experience. Take one class, or take a week and come as often as you like.
+            need any experience. Take one class, take a week and come as often as you like, or do the class first and
+            the week after it.
           </p>
           <p className="mt-5 text-center font-sans text-sm font-medium text-sage-700">
             <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
@@ -77,6 +78,9 @@ export default function IntroOfferPage() {
               </p>
             }
           />
+          <p className="mx-auto mb-8 max-w-2xl font-sans text-base font-medium leading-[1.8] text-charcoal-800 sm:text-[17px]">
+            Start with the $25 first class if you like. You can still take the $105 intro week after it.
+          </p>
           <CtaLink href="/pricing" variant="outline">
             See every plan
           </CtaLink>

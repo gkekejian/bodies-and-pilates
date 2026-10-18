@@ -28,15 +28,15 @@ const breadcrumb = breadcrumbSchema([
 const neighborhoods = [
   {
     name: "North Hollywood",
-    body: `We are at ${ADDRESS.street}. Park on Weddington St or at the metered spots in front of the studio on Vineland Ave.`,
+    body: `We are at ${ADDRESS.street}. Metered street parking is available on Weddington St and Vineland Ave.`,
   },
   {
     name: "Toluca Lake",
-    body: "Head west along Riverside Dr, then north on Vineland Ave. Street parking on Weddington St is right by the studio.",
+    body: "Head west along Riverside Dr, then north on Vineland Ave. Metered street parking is available on Weddington St and Vineland Ave.",
   },
   {
     name: "Valley Village",
-    body: "Magnolia Blvd brings you east toward Vineland Ave. Street parking on Weddington St is a short walk from the door.",
+    body: "Magnolia Blvd brings you east toward Vineland Ave. Metered street parking is available on Weddington St and Vineland Ave.",
   },
   {
     name: "Studio City",
@@ -44,7 +44,7 @@ const neighborhoods = [
   },
   {
     name: "Burbank",
-    body: "Magnolia Blvd runs west from Burbank's Magnolia Park into North Hollywood. Arrive 10 minutes early for your first class to park and settle in.",
+    body: "Magnolia Blvd runs west from Burbank's Magnolia Park into North Hollywood. Arrive at least 10 minutes early for your first class to park and settle in.",
   },
 ];
 

@@ -37,7 +37,7 @@ const facts = [
   `- Phone: ${PHONE.display} (call or text)`,
   `- Email: ${EMAIL}`,
   `- Hours: ${HOURS.map((h) => `${h.short} ${h.label}`).join('; ')}`,
-  `- Parking: street parking on Weddington St and metered spots in front of the studio on Vineland Ave`,
+  `- Parking: Metered street parking is available on Weddington St and Vineland Ave.`,
   `- Grip socks: ${GRIP_SOCKS_LINE}`,
   `- Cancellation: ${POLICY.cancellation}`,
   `- Memberships: ${POLICY.membership}`,
