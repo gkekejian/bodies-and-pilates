@@ -50,17 +50,17 @@ const quickLinks = [
   { label: "Blog", href: "/blog" },
 ];
 
-const heading = "mb-4 smallcaps text-sm text-sage-300";
-const muted = "inline-block py-1 text-cream-100/80 transition-colors hover:text-cream-50";
-const row = "flex items-start gap-4 font-accent text-[15px] leading-snug text-cream-50";
-const icon = "mt-0.5 size-5 shrink-0 text-taupe-300";
+const heading = "mb-4 smallcaps text-sm text-wix-icon";
+const muted = "inline-block py-1 text-wix-cream/80 transition-colors hover:text-wix-cream";
+const row = "flex items-start gap-4 font-accent text-[17px] leading-snug text-wix-cream";
+const icon = "mt-0.5 size-6 shrink-0 fill-wix-icon/25 text-wix-icon";
 
 const newTab = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 /** The old site's quiet "Get in Touch" footer, with the new site's links kept below it. */
 export function Footer() {
   return (
-    <footer className="bg-sage-900 text-cream-100">
+    <footer className="bg-wix-footer text-wix-cream">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-12">
           <Link
@@ -81,19 +81,19 @@ export function Footer() {
 
           {/* Get in Touch */}
           <div className="md:col-span-5">
-            <h2 className="inline-block border-b border-taupe-300/70 pb-2 pr-10 font-serif text-3xl text-cream-50 sm:text-4xl">
+            <h2 className="inline-block border-b border-wix-rule pb-1 pr-12 font-serif text-[2.4rem] font-light text-wix-cream">
               Get in Touch
             </h2>
             <address className="mt-7 not-italic">
               <ul className="flex flex-col gap-5">
                 <li>
-                  <a href={`mailto:${EMAIL}`} className={`${row} break-all hover:text-cream-100`}>
+                  <a href={`mailto:${EMAIL}`} className={`${row} break-all hover:opacity-80`}>
                     <Mail aria-hidden="true" className={icon} />
                     <span><span className="sr-only">Email: </span>{EMAIL}</span>
                   </a>
                 </li>
                 <li>
-                  <a href={MAPS_URL} {...newTab} className={`${row} hover:text-cream-100`}>
+                  <a href={MAPS_URL} {...newTab} className={`${row} hover:opacity-80`}>
                     <MapPin aria-hidden="true" className={icon} />
                     <span>
                       <span className="sr-only">Address: </span>
@@ -104,13 +104,13 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href={INSTAGRAM.url} {...newTab} className={`${row} hover:text-cream-100`}>
+                  <a href={INSTAGRAM.url} {...newTab} className={`${row} hover:opacity-80`}>
                     <Camera aria-hidden="true" className={icon} />
                     <span><span className="sr-only">Instagram: </span>{INSTAGRAM.handle}</span>
                   </a>
                 </li>
                 <li>
-                  <a href={PHONE.tel} className={`${row} hover:text-cream-100`}>
+                  <a href={PHONE.tel} className={`${row} hover:opacity-80`}>
                     <Phone aria-hidden="true" className={icon} />
                     <span><span className="sr-only">Phone: </span>{PHONE.display}</span>
                   </a>
@@ -130,8 +130,8 @@ export function Footer() {
               <ul className="flex flex-col gap-1.5 font-sans text-sm">
                 {HOURS.map((h) => (
                   <li key={h.day} className="flex justify-between gap-4">
-                    <span className="text-cream-50">{h.short}</span>
-                    <span className="text-cream-100/80">{h.label}</span>
+                    <span className="text-wix-cream">{h.short}</span>
+                    <span className="text-wix-cream/80">{h.label}</span>
                   </li>
                 ))}
               </ul>
@@ -139,7 +139,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-10 border-t border-cream-100/15 pt-10 sm:grid-cols-2">
+        <div className="mt-14 grid gap-10 border-t border-wix-cream/15 pt-10 sm:grid-cols-2">
           <nav aria-label="Footer navigation">
             <h2 className={heading}>Explore</h2>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-1 font-sans text-sm">
@@ -156,7 +156,7 @@ export function Footer() {
           <div>
             <h2 className={heading}>Find Us Online</h2>
             <ul className="flex flex-col gap-1 font-sans text-sm">
-              <li className="py-1 text-cream-100/80">
+              <li className="py-1 text-wix-cream/80">
                 Rated {GOOGLE_REVIEWS.rating} on Google ({GOOGLE_REVIEWS.count} reviews)
               </li>
               <li>
@@ -175,15 +175,15 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <MindbodyAccountLink className="[&_a]:text-cream-100/80 [&_a]:transition-colors [&_a:hover]:text-cream-50" />
+                <MindbodyAccountLink className="[&_a]:text-wix-cream/80 [&_a]:transition-colors [&_a:hover]:text-wix-cream" />
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-3 border-t border-cream-100/15 pt-6 text-xs text-cream-100/75 sm:flex-row sm:justify-between">
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-wix-cream/15 pt-6 text-xs text-wix-cream/75 sm:flex-row sm:justify-between">
           <p className="font-accent text-sm">
-            &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+            {SITE_NAME}. All rights reserved.
           </p>
           <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-sans">
             <Link href="/privacy" className={muted}>

@@ -151,7 +151,7 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
             <SectionHeading id="private-pricing" eyebrow="Pricing" title="Private session pricing" />
             <div className="grid max-w-[42rem] gap-6 sm:grid-cols-2">
               {PRIVATE.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} accent={offer.id === "duet" ? "tan" : "sage"} />
+                <OfferCard key={offer.id} offer={offer} accent={offer.id === "duet" ? "tan" : "sage"} tint="blush" showDetail />
               ))}
             </div>
             <p className="mt-8 font-sans text-sm">

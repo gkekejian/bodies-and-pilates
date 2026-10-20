@@ -14,10 +14,9 @@ export function Testimonials({
   headingId?: string;
 }) {
   return (
-    <section aria-labelledby={headingId} className="bg-cream-200 py-20 sm:py-28">
+    <section aria-labelledby={headingId} className="bg-wix-offwhite py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <p className="smallcaps mb-4 text-[15px] text-sage-700">Kind Words</p>
-        <h2 id={headingId} className="font-serif text-5xl font-light text-sage-900 sm:text-6xl">
+        <h2 id={headingId} className="font-serif text-5xl font-semibold tracking-[-0.015em] text-wix-footer sm:text-6xl lg:text-[4.25rem]">
           The Reviews
         </h2>
         <p className="mt-5 font-sans text-base text-charcoal-800/85">

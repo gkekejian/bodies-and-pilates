@@ -46,6 +46,12 @@ const config: Config = {
           800: "rgb(var(--bp-charcoal-800) / <alpha-value>)",
           900: "rgb(var(--bp-charcoal-900) / <alpha-value>)",
         },
+        // The old Wix site's colors by where it used them (app/globals.css).
+        wix: Object.fromEntries(
+          ["footer", "sage", "olive", "beige", "mauve", "pricing", "offwhite", "blush", "intro", "cocoa", "duet", "cream", "icon", "rule", "ink", "wash-warm"].map(
+            (k) => [k, `rgb(var(--wix-${k}) / <alpha-value>)`]
+          )
+        ),
         // shadcn compat
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

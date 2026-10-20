@@ -32,7 +32,7 @@ export default function ContactPage() {
         title="Visit Us in North Hollywood"
         banner={MEDIA.receptionWall}
         tone="sage"
-        intro={<p>Questions about classes, pricing, or your first visit? Call, text, or send a message.</p>}
+        intro={<p>Questions about classes, pricing, or your first visit? Call us, text us, or send an email.</p>}
       />
 
       <div className="bg-cream-100 py-16 sm:py-20">
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 Call, text, or email
               </h2>
               <p className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/80">
-                Questions about classes, pricing, or your first visit? Call, text, or email the studio.
+                Call or text the studio line, or email Naira directly.
               </p>
               <div className="mt-6 flex flex-col gap-3">
                 <CtaLink href={PHONE.tel} className="w-full">
@@ -150,7 +150,7 @@ export default function ContactPage() {
                 allowFullScreen
               />
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-sage-700/20 px-4 py-3">
-                <p className="font-sans text-xs text-charcoal-800/75">{ADDRESS.oneLine}</p>
+                <p className="font-sans text-xs text-charcoal-800/75">Bodies and Pilates, North Hollywood</p>
                 <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={`${link} inline-block py-1 font-sans text-xs`}>
                   Get directions
                 </a>

@@ -52,8 +52,8 @@ const CLASSPASS_REVIEWS: Testimonial[] = [
   },
 ];
 
-/** Home: three cards. */
-export const HOME_TESTIMONIALS: Testimonial[] = CLASSPASS_REVIEWS.slice(0, 3);
+/** Home and intro offer: every verified review, one at a time. */
+export const HOME_TESTIMONIALS: Testimonial[] = [...CLASSPASS_REVIEWS, CLIENT_REVIEW];
 
 /** About: all six, the client review first. */
 export const ABOUT_TESTIMONIALS: Testimonial[] = [CLIENT_REVIEW, ...CLASSPASS_REVIEWS];

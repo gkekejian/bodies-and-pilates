@@ -2,7 +2,6 @@ import { MediaItem, MediaPhoto } from "@/components/ui/media";
 import { CtaLink } from "@/components/ui/cta-link";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { FinalCta } from "@/components/sections/final-cta";
-import { ClassPassRating } from "@/components/sections/classpass-rating";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ABOUT_TESTIMONIALS } from "@/lib/testimonials";
 import { pageMetadata } from "@/lib/metadata";
@@ -111,7 +110,7 @@ export default function AboutPage() {
         title="About Bodies and Pilates"
         banner={MEDIA.studioLogoWallChair}
         tone="sage"
-        intro={<p>We are an independent, woman-owned reformer Pilates studio on Vineland Ave in North Hollywood.</p>}
+        intro={<p>We are an independent, woman-owned reformer Pilates studio in North Hollywood.</p>}
       />
 
       {/* Founder. TODO(owner): Naira's founder story in her own words. Until it
@@ -147,7 +146,6 @@ export default function AboutPage() {
 
       {/* Social proof, next to the founder: ClassPass rating, then all six
           reviews with the client review on Naira first. */}
-      <ClassPassRating className="bg-cream-50 pt-0 sm:pt-0" />
       <Testimonials items={ABOUT_TESTIMONIALS} />
 
       {/* Studio */}
@@ -163,8 +161,9 @@ export default function AboutPage() {
                 and experienced instructors who watch how you move.
               </p>
               <p>
-                The room is calm and unhurried. Your instructor sets your springs and coaches your form on the reformer
-                through every exercise, on your first class and your hundredth.
+                When you walk in, the wall says it&apos;s a good day to do Pilates, and if you forgot your grip socks we
+                have a pair for you at the studio. Your instructor sets your springs and coaches your form through every
+                exercise.
               </p>
             </div>
           </div>
@@ -208,8 +207,8 @@ export default function AboutPage() {
             title="Neighborhoods we serve"
             intro={
               <p>
-                Most clients come from North Hollywood and the neighborhoods around it. Here is the way in from each,
-                and where to park.
+                Most of our clients come from North Hollywood and the neighborhoods around it. Here is the way in from
+                each, and where to park.
               </p>
             }
           />

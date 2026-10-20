@@ -14,6 +14,7 @@ export function MediaPhoto({
   eager,
   aspectClassName = "aspect-[4/5]",
   className,
+  imgClassName,
 }: {
   media: PhotoMedia | null;
   sizes: string;
@@ -22,6 +23,8 @@ export function MediaPhoto({
   eager?: boolean;
   aspectClassName?: string;
   className?: string;
+  /** Extra classes for the <img>, e.g. an object-position for a crop. */
+  imgClassName?: string;
 }) {
   if (!media) return null;
   return (
@@ -34,7 +37,7 @@ export function MediaPhoto({
         priority={priority}
         loading={eager ? "eager" : undefined}
         fetchPriority={eager ? "high" : undefined}
-        className="object-cover object-center"
+        className={cn("object-cover object-center", imgClassName)}
       />
     </div>
   );

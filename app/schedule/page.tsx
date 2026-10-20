@@ -25,20 +25,17 @@ export default function SchedulePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
-      <PageHero display="Book Your Session" title="Class Schedule" banner={MEDIA.classKneelingLegPress} />
+      <PageHero display="Book Your Session" title="Class Schedule" banner={MEDIA.classKneelingLegPress} focus="object-[50%_55%]" />
 
-      {/* The old booking page: the timetable on a cream card over the sage band. */}
-      <section className="bg-sage-900 px-2 pb-16 pt-10 sm:px-0 sm:pb-20 sm:pt-14">
-        <div className="mx-auto max-w-5xl bg-cream-50 px-4 py-8 sm:rounded-xl sm:px-8 sm:py-10">
-          <p className="mx-auto mb-8 max-w-2xl text-center font-sans text-base leading-[1.8] text-charcoal-800/85">
-            We teach small-group reformer classes seven days a week on Vineland Ave. Pick a class, save your reformer,
-            and we will see you there.
-          </p>
+      {/* booking-1-top.png: the timetable on a rounded off-white card that starts
+          right under the banner, on the footer-sage band. */}
+      <section className="bg-wix-footer px-2 pb-16 pt-1 sm:px-4 sm:pb-20">
+        <div className="mx-auto max-w-[1174px] rounded-2xl bg-wix-offwhite px-4 py-8 sm:px-8 sm:py-10">
 
           {/* First-timer strip, directly above the widget. */}
           <aside
             aria-label="New here?"
-            className="mb-8 border-l-2 border-sage-700 bg-cream-100 px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
+            className="mb-8 border-l-2 border-wix-sage bg-wix-pricing px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
           >
             <p>
               <span className="font-medium text-charcoal-900">New here?</span> Arrive at least 10 minutes early to meet your
@@ -49,7 +46,6 @@ export default function SchedulePage() {
           </aside>
 
           {/* Primary path: the live Mindbody timetable. */}
-          <p className="smallcaps mb-4 text-[15px] text-sage-700">Book right here, no app download needed.</p>
           <MindbodyScheduleWidget widgetId={MINDBODY.scheduleWidgetId} />
         </div>
       </section>

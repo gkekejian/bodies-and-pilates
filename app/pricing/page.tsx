@@ -1,13 +1,11 @@
 import { CtaLink } from "@/components/ui/cta-link";
-import { PrivateShowcase } from "@/components/sections/class-media";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
 import { OfferCard } from "@/components/sections/offer-card";
 import { ClassPassStrip } from "@/components/sections/classpass-strip";
 import { FirstTimerGuide } from "@/components/sections/first-timer-guide";
-import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { COMMIT, FLEX, POLICY, PRICE_GROUPS, PRIVATE, TRY, offerHref } from "@/lib/pricing";
+import { COMMIT, FLEX, POLICY, PRICE_GROUPS, PRIVATE, TRY } from "@/lib/pricing";
 import { CLASSPASS_RATING_LINE, CLASSPASS_URL, SITE_URL } from "@/lib/site";
 import { MEDIA } from "@/lib/media";
 
@@ -18,10 +16,8 @@ export const metadata = pageMetadata({
   path: "/pricing",
 });
 
-const firstClass = TRY[0];
 const privateSession = PRIVATE.find((o) => o.id === "private")!;
 const duet = PRIVATE.find((o) => o.id === "duet")!;
-const START_CTA = "Start with the $25 first class";
 
 const breadcrumb = breadcrumbSchema([
   { name: "Home", path: "/" },
@@ -40,24 +36,27 @@ const firstClassOffer = {
   seller: { "@id": `${SITE_URL}/#gym` },
 };
 
-const container = "mx-auto max-w-5xl px-4 sm:px-6 lg:px-8";
+// pricing-1 to pricing-3: a 960px column on the pricing cream, light serif
+// group titles in each group's color, and 226px cards 18px apart.
+const container = "mx-auto max-w-[992px] px-4 sm:px-4";
+const cards = "mt-6 grid grid-cols-2 gap-[18px] sm:grid-cols-[repeat(auto-fill,226px)]";
 
-/** The old site's pricing section title: a large light serif, left on a narrow centered column. */
+/** The old site's group title: a large light serif in the group's color. */
 function GroupHeading({ id, children, className }: { id: string; children: React.ReactNode; className?: string }) {
   return (
-    <h2 id={id} className={`font-serif text-5xl font-light leading-[1.05] text-sage-900 sm:text-6xl ${className ?? ""}`}>
+    <h2 id={id} className={`font-serif text-5xl font-light leading-[1.05] tracking-[-0.01em] sm:text-[3.6rem] ${className ?? ""}`}>
       {children}
     </h2>
   );
 }
 
 function GroupNote({ children }: { children: React.ReactNode }) {
-  return <p className="mt-4 max-w-xl font-sans text-base leading-[1.8] text-charcoal-800/85">{children}</p>;
+  return <p className="mt-3 max-w-xl font-sans text-sm leading-[1.7] text-charcoal-800/80">{children}</p>;
 }
 
 function PolicyNotes({ lines }: { lines: string[] }) {
   return (
-    <ul className="mt-8 space-y-1.5 font-sans text-sm text-charcoal-800/80">
+    <ul className="mt-6 space-y-1 font-sans text-sm text-charcoal-800/80">
       {lines.map((line) => (
         <li key={line}>{line}</li>
       ))}
@@ -74,102 +73,88 @@ export default function PricingPage() {
       <PageHero
         display="Pricing"
         title="Pilates Pricing in North Hollywood"
-        banner={MEDIA.studioReformersBoxes}
-        action={<CtaLink href={offerHref(firstClass)}>{START_CTA}</CtaLink>}
-        intro={
-          <p>
-            Every class is 50 minutes on a Merrithew reformer, with no more than 7 people in the room. New here? Start
-            with an intro offer. After that, pick a class pack or a monthly membership. Private sessions and duets are
-            at the bottom of the page.
-          </p>
+        banner={MEDIA.classPlankRow}
+        focus="object-[50%_62%]"
+        action={
+          <CtaLink href="/schedule" className="min-w-[206px] px-10 text-[19px]">
+            Book Now
+          </CtaLink>
         }
       />
 
-      {/* INTRO OFFERS */}
-      <section aria-labelledby="try-heading" className="bg-cream-100 py-16 sm:py-20">
-        <div className={container}>
-          <GroupHeading id="try-heading">Intro Offers</GroupHeading>
+      <div className="bg-wix-pricing pb-20 pt-12 sm:pb-24 sm:pt-12">
+        {/* INTRO OFFERS */}
+        <section aria-labelledby="try-heading" className={container}>
+          <GroupHeading id="try-heading" className="text-wix-intro">
+            Intro Offers
+          </GroupHeading>
           <GroupNote>
             For your first visit. Start with the $25 first class if you like. You can still take the $105 intro week after
             it.
           </GroupNote>
-          <p className="mt-2 font-sans text-sm font-medium text-sage-700">
+          <p className="mt-1 font-sans text-sm font-medium text-sage-700">
             <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
               {CLASSPASS_RATING_LINE}
             </a>
           </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:max-w-[42rem]">
+          <div className={cards}>
             {TRY.map((offer) => (
               <OfferCard key={offer.id} offer={offer} accent="mauve" />
             ))}
           </div>
-          <p className="mt-8 font-sans text-sm leading-relaxed text-charcoal-800/80">
+          <p className="mt-6 font-sans text-sm leading-relaxed text-charcoal-800/80">
             Never tried reformer Pilates?{" "}
             <CtaLink href="/intro-offer" variant="text" className="ml-1">
               See how the $25 first class works
             </CtaLink>
           </p>
-        </div>
-      </section>
+        </section>
 
-      {/* CLASS PACKS */}
-      <section aria-labelledby="flex-heading" className="bg-cream-100 pb-16 sm:pb-20">
-        <div className={container}>
-          <GroupHeading id="flex-heading">Class Packs</GroupHeading>
-          <GroupNote>No monthly commitment. Buy a pack and book when it suits you.</GroupNote>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* CLASS PACKS */}
+        <section aria-labelledby="flex-heading" className={`${container} mt-16 sm:mt-20`}>
+          <GroupHeading id="flex-heading" className="text-wix-sage">
+            Class Packs
+          </GroupHeading>
+          <div className={cards}>
             {FLEX.map((offer) => (
               <OfferCard key={offer.id} offer={offer} accent="sage" />
             ))}
           </div>
           <PolicyNotes lines={[POLICY.cancellation, "Class packs expire 3 months after purchase."]} />
-        </div>
-      </section>
+        </section>
 
-      {/* AUTO RENEW MEMBERSHIPS */}
-      <section aria-labelledby="commit-heading" className="bg-cream-100 pb-16 sm:pb-24">
-        <div className={container}>
-          <GroupHeading id="commit-heading">Auto Renew Memberships</GroupHeading>
-          <GroupNote>The best per-class value.</GroupNote>
-          <div className="mt-10 grid gap-6 pt-3 sm:grid-cols-2 lg:grid-cols-4">
+        {/* AUTO RENEW MEMBERSHIPS */}
+        <section aria-labelledby="commit-heading" className={`${container} mt-16 sm:mt-20`}>
+          <GroupHeading id="commit-heading" className="text-wix-cocoa">
+            Auto Renew Memberships
+          </GroupHeading>
+          <div className={`${cards} pt-2`}>
             {COMMIT.map((offer) => (
               <OfferCard key={offer.id} offer={offer} accent="cocoa" />
             ))}
           </div>
-          <PolicyNotes lines={[POLICY.membership, POLICY.cancellation]} />
-          <p className="mt-6 font-sans text-sm leading-relaxed text-charcoal-800/80">
-            Not sure yet?{" "}
-            <CtaLink href={offerHref(firstClass)} variant="text" className="ml-1">
-              {START_CTA}
-            </CtaLink>
-          </p>
+          <PolicyNotes lines={[POLICY.membership]} />
+        </section>
+
+        {/* DUETS AND PRIVATE SESSIONS, side by side as on pricing-3-bottom.png */}
+        <div className={`${container} mt-16 grid gap-14 sm:mt-20 md:grid-cols-2 md:gap-6`}>
+          {[
+            { offer: duet, id: "duet-heading", title: "Duets", accent: "tan" as const, color: "text-wix-duet" },
+            { offer: privateSession, id: "private-heading", title: "Private Sessions", accent: "sage" as const, color: "text-wix-sage" },
+          ].map((g) => (
+            <section key={g.id} aria-labelledby={g.id}>
+              <GroupHeading id={g.id} className={g.color}>
+                {g.title}
+              </GroupHeading>
+              <div className="mt-6 w-[226px] max-w-full">
+                <OfferCard offer={g.offer} accent={g.accent} tint="blush" />
+              </div>
+            </section>
+          ))}
         </div>
-      </section>
+      </div>
 
       <ClassPassStrip showClassPassBooking />
-
-      {/* DUETS AND PRIVATE SESSIONS */}
-      <section aria-label="Duets and private sessions" className="bg-cream-100 py-16 sm:py-24">
-        <div className={container}>
-          <div className="grid gap-14 md:grid-cols-2 md:gap-10">
-            {[
-              { offer: duet, id: "duet-heading", title: "Duets", note: "Bring a friend or partner and share a session.", accent: "tan" as const, color: "text-taupe-700" },
-              { offer: privateSession, id: "private-heading", title: "Private Sessions", note: "One-on-one on the reformer, built around you.", accent: "sage" as const, color: "" },
-            ].map((g) => (
-              <section key={g.id} aria-labelledby={g.id}>
-                <GroupHeading id={g.id} className={g.color}>
-                  {g.title}
-                </GroupHeading>
-                <GroupNote>{g.note}</GroupNote>
-                <div className="mt-10 max-w-[20rem]">
-                  <OfferCard offer={g.offer} accent={g.accent} />
-                </div>
-              </section>
-            ))}
-          </div>
-          <PrivateShowcase />
-        </div>
-      </section>
 
       {/* All prices in one semantic table: easy for people to scan and for search and AI engines to extract. */}
       <section aria-labelledby="price-table-heading" className="bg-cream-50 py-20 sm:py-24">
@@ -210,12 +195,7 @@ export default function PricingPage() {
 
       <FirstTimerGuide />
 
-      <FinalCta
-        title="Start with the $25 first class."
-        body="Meet the reformer and your instructor, and see what a class of 7 or fewer feels like. Then pick the plan that fits your week."
-        cta={START_CTA}
-        href={offerHref(firstClass)}
-      />
+
     </>
   );
 }
