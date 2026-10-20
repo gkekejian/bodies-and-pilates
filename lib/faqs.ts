@@ -1,4 +1,3 @@
-import { GRIP_SOCKS_LINE } from "@/lib/site";
 
 /**
  * FAQ content. Rendered on /faq and used to generate FAQPage JSON-LD.
@@ -15,6 +14,70 @@ export interface Faq {
 }
 
 export const FAQS: Faq[] = [
+  // The old site's FAQs page, in its order and its words (design-reference/old-site/faqs-top.png).
+  // Fact-sheet overrides: no-show $15 (the old page printed a dead fee), metered parking (PR #9), arrive at least 10 minutes
+  // early (PR #9), the PR #7 pregnancy and age entries, no $25 member add-on (not on the locked menu).
+  {
+    id: "signed-up",
+    question: "I just signed up, what do I need for my first class?",
+    answer:
+      "Welcome! Please arrive at least 10 minutes prior to class starting to allow ample time to get settled. A waiver signature will be required upon arrival. Every class requires the use of grip socks. If you forget, we have grip socks available for purchase at the studio.",
+  },
+  {
+    id: "wear",
+    question: "What should I wear?",
+    answer:
+      "We recommend form fitting workout clothes that allow you to move freely. This helps instructors see and correct your form more easily. Loose clothing may hinder your exercise performance and cause potential dangers. Grip socks are required for safety and hygienic purposes.",
+  },
+  {
+    id: "parking",
+    question: "Where can I park?",
+    answer:
+      "Metered street parking is available on Weddington St and Vineland Ave.",
+  },
+  {
+    id: "cancellation",
+    question: "What is your cancellation policy?",
+    answer:
+      "Cancellations for classes must be made with a 12 hour notice of class start time. If you cancel within 12 hours of the scheduled class, you will be considered “Late cancel” and will forfeit that class with no additional charge. Absence to class without a cancellation will result in a $15 No Show fee and you will still retain your single class credit.",
+  },
+  {
+    id: "late",
+    question: "If I am running late, will I still be able to join the class?",
+    answer:
+      "We ask that you try your best to be on time to prevent distractions, and to allow proper warm up time during the beginning of class. If you arrive within 5 minutes of the start time, you will be allowed to join the class. Unfortunately, anything past that will result in a “late cancel” and your class credit will be forfeited.",
+  },
+  {
+    id: "pregnant",
+    question: "Can I take a class while pregnant?",
+    answer:
+      "Talk to your doctor or midwife before taking any class, and tell your instructor before class. This is general information, not medical advice.",
+  },
+  {
+    id: "age",
+    question: "Is there an age limit?",
+    answer:
+      "Classes welcome adults of all ages. Tell your instructor about any injuries or conditions before class.",
+  },
+  {
+    id: "pack-vs-membership",
+    question: "What is the difference between a class pack and an auto-renew membership?",
+    answer:
+      "Packages are a set number of classes to be used within three months. Once all classes are used up or expired, you will need to purchase more. Membership classes are to be used within the billing period, and new credits will automatically be applied during the next billing cycle. Memberships offer discounted rates on classes.",
+  },
+  {
+    id: "refunds",
+    question: "Do you offer refunds or transfers?",
+    answer:
+      "All sales are final. Classes are non-transferable and non-refundable.",
+  },
+  {
+    id: "rollover",
+    question: "Do auto-renew classes roll over?",
+    answer:
+      "Membership credits must be used within that billing cycle. Any unused credits will not rollover.",
+  },
+  // The rebuild's questions the old page did not have.
   {
     id: "cost",
     question: "How much does Pilates cost in North Hollywood?",
@@ -31,13 +94,7 @@ export const FAQS: Faq[] = [
     id: "experience",
     question: "Do I need experience to take a class?",
     answer:
-      "No. Beginner classes are built for first-timers, classes are capped at 7, and your instructor coaches your form throughout. Most new clients start with the $25 first class.",
-  },
-  {
-    id: "wear",
-    question: "What should I wear?",
-    answer:
-      `Form-fitting workout clothes you can move in. Skip loose clothing and jewelry. ${GRIP_SOCKS_LINE}`,
+      "No. Beginner classes are built for first-timers, and your instructor coaches your form throughout. Most new clients start with the $25 first class.",
   },
   {
     id: "how-often",
@@ -56,18 +113,6 @@ export const FAQS: Faq[] = [
     question: "Do you take ClassPass?",
     answer:
       "Yes. If you love it, coming direct is the better deal: the One-Week Unlimited ($105), then a membership from $130 a month that you can pause anytime and cancel with 7 days' notice, no fees.",
-  },
-  {
-    id: "cancellation",
-    question: "What is your cancellation policy?",
-    answer:
-      "Cancel 12 or more hours before class for no charge. Cancel within 12 hours and the class credit is forfeited. No-shows are charged $15.",
-  },
-  {
-    id: "parking",
-    question: "Where do I park?",
-    answer:
-      "Metered street parking is available on Weddington St and Vineland Ave. Arrive at least 10 minutes early for your first class.",
   },
   {
     id: "pause-cancel",
@@ -94,16 +139,10 @@ export const FAQS: Faq[] = [
       "Yes. 1:1 sessions are $100 for 55 minutes; duets are $70 per person. Good for beginners. Working around an injury? Get your doctor's OK, then tell your instructor before your session.",
   },
   {
-    id: "age",
-    question: "Is there an age limit?",
-    answer:
-      "Classes welcome adults of all ages. Tell your instructor about any injuries or conditions before class.",
-  },
-  {
     id: "club-pilates",
     question: "How is Bodies and Pilates different from Club Pilates?",
     answer:
-      "We are an independent, woman-owned boutique studio: classes capped at 7 people, professional Merrithew reformers, experienced instructors, and no franchise script.",
+      "We are an independent, woman-owned boutique studio with experienced instructors and no franchise script.",
   },
   {
     id: "lagree",
@@ -137,12 +176,6 @@ export const FAQS: Faq[] = [
     question: "What classes do you offer?",
     answer:
       "Four 50-minute group classes, all on the reformer: Beginner, Full Body, Flexibility, and Abs and Assets. Plus private sessions ($100 for 55 minutes) and duets ($70 per person).",
-  },
-  {
-    id: "pregnant",
-    question: "Can I take a class while pregnant?",
-    answer:
-      "Talk to your doctor or midwife before taking any class, and tell your instructor before class. This is general information, not medical advice.",
   },
   {
     id: "nearby",

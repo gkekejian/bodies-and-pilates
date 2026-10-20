@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -17,25 +17,57 @@ const LOGO = { src: "/images/bodies-and-pilates-logo-round-light.png", width: 13
 const LOGO_DARK = { src: "/images/bodies-and-pilates-logo-round.png", width: 1342, height: 1376 };
 const LOGO_ALT = "Bodies and Pilates logo";
 
+// Old-site labels for the old site's pages (Booking, Pricing, FAQs), in its
+// order, then the pages the rebuild added. Every href is unchanged.
 export const NAV_LINKS = [
-  { label: "Classes", href: "/classes" },
+  { label: "Booking", href: "/schedule" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Schedule", href: "/schedule" },
+  { label: "FAQs", href: "/faq" },
+  { label: "Classes", href: "/classes" },
   { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
+/** Blog posts open on plain text, so the header is solid there from the first paint. */
+const startsOverHero = (path: string) => !/^\/blog\/(?!page\/)[^/]+$/.test(path);
+
+/**
+ * The old site's header: the round logo with the nav beside it, set straight
+ * on the hero or banner photo. Pages whose first section carries [data-hero]
+ * slide under it; once that section scrolls away the header turns solid.
+ */
 export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const [overHero, setOverHero] = useState(() => startsOverHero(pathname));
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const bookHref = introBookingHref();
 
+  useEffect(() => {
+    const update = () => {
+      const hero = document.querySelector<HTMLElement>("[data-hero]");
+      if (!hero) return setOverHero(false);
+      setOverHero(hero.getBoundingClientRect().bottom > 96);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [pathname]);
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-sage-700 text-cream-50">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-20 sm:px-6 lg:px-10">
+    <header
+      className={cn(
+        "sticky top-0 z-50 h-[var(--header-h)] w-full text-wix-cream transition-colors duration-300",
+        overHero ? "bg-transparent" : "bg-wix-footer shadow-[0_1px_0_rgba(0,0,0,0.08)]"
+      )}
+    >
+      <div className="mx-auto flex h-full max-w-[1100px] items-center justify-between gap-3 px-4 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-5">
+        <span aria-hidden="true" className="hidden xl:block" />
         <Link
           href="/"
           className="flex shrink-0 items-center py-1 transition-opacity hover:opacity-80"
@@ -46,21 +78,21 @@ export function Header() {
             alt={LOGO_ALT}
             width={LOGO.width}
             height={LOGO.height}
-            sizes="64px"
-            className="h-12 w-auto object-contain sm:h-16"
-            priority
+            sizes="(min-width: 1280px) 88px, 56px"
+            className="h-14 w-auto object-contain xl:h-[5.5rem]"
+            loading="eager"
           />
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:flex xl:gap-8" aria-label="Main navigation">
+        <nav className="hidden items-center gap-6 xl:flex" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
               className={cn(
-                "font-accent text-[15px] underline-offset-[6px] transition-colors duration-200",
-                isActive(link.href) ? "text-cream-50 underline decoration-cream-50/60 decoration-1" : "text-cream-50/85 hover:text-cream-50"
+                "banner-text whitespace-nowrap font-accent text-[15px] text-wix-cream underline-offset-[6px] transition-opacity duration-200 hover:opacity-80",
+                isActive(link.href) && "underline decoration-wix-cream/70 decoration-1"
               )}
             >
               {link.label}
@@ -68,20 +100,12 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <CtaLink
-            href={bookHref}
-            variant="ghost-light"
-            className="hidden min-h-[40px] px-4 py-2.5 text-[10px] tracking-[0.12em] min-[360px]:inline-flex sm:px-5 sm:text-[11px] sm:tracking-[0.16em]"
-          >
-            {FIRST_CLASS_CTA}
-          </CtaLink>
-
-          <div className="xl:hidden">
+        <div className="flex items-center gap-2 sm:gap-3 xl:hidden">
+          <div>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger
                 aria-label="Open navigation menu"
-                className="inline-flex h-10 w-10 items-center justify-center text-cream-50 transition-colors hover:bg-sage-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream-50"
+                className="inline-flex h-11 w-11 items-center justify-center text-wix-cream transition-colors hover:bg-wix-footer/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wix-cream"
               >
                 <Menu className="size-5" />
               </SheetTrigger>

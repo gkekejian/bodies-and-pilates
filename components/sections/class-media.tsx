@@ -84,14 +84,15 @@ export const CLASS_CARD_PHOTO: Record<string, PhotoMedia | null> = {
 };
 
 /**
- * The old site's "The Classes" band: tall photo cards with the class name set
- * in white serif. Each card links to the class.
+ * The old site's "The Classes" band (home-3-practice-classes.png): mauve, the
+ * white serif title, its one-line subline, and tall photo cards with the class
+ * name set on each.
  */
 export function ClassCards({
   items,
   headingId,
   title = "The Classes",
-  intro = "We teach classes for every level, and private sessions are planned around you.",
+  intro = "We offer classes for all fitness levels and private sessions can be tailored to meet your individual needs.",
   headingLevel = "h2",
 }: {
   items: { key: string; name: string; href: string }[];
@@ -102,34 +103,33 @@ export function ClassCards({
 }) {
   const Heading = headingLevel;
   return (
-    <section aria-labelledby={headingId} className="bg-mauve-600 py-16 text-cream-50 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
-        <Heading id={headingId} className="font-serif text-5xl font-normal sm:text-6xl">
+    <section aria-labelledby={headingId} className="bg-wix-mauve pb-16 pt-10 text-white sm:pb-20 sm:pt-12">
+      <div className="mx-auto max-w-[1160px] px-4 text-center sm:px-6">
+        <Heading id={headingId} className="font-serif text-5xl font-semibold tracking-[-0.015em] sm:text-6xl lg:text-[4.25rem]">
           {title}
         </Heading>
-        <p className="mx-auto mt-5 max-w-xl font-accent text-base leading-relaxed text-cream-50 sm:text-lg">{intro}</p>
-        <ul
-          className={cn(
-            "mt-12 grid gap-4 sm:gap-6",
-            items.length === 3 ? "sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4",
-            items.length > 3 && "max-sm:gap-3"
-          )}
-        >
+        {/* 24px keeps white on the sampled mauve at the 3:1 large-text minimum. */}
+        <p className="mx-auto mt-3 max-w-3xl font-serif text-2xl font-light leading-snug text-white">{intro}</p>
+        <ul className={cn("mt-8 grid gap-[5px]", items.length === 3 ? "sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4")}>
           {items.map((c) => {
             const photo = CLASS_CARD_PHOTO[c.key];
             return (
               <li key={c.key}>
-                <a href={c.href} className="group relative block overflow-hidden bg-sage-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream-50 focus-visible:ring-offset-2 focus-visible:ring-offset-mauve-600">
+                <a
+                  href={c.href}
+                  className="group relative block overflow-hidden bg-wix-footer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-wix-mauve"
+                >
                   {photo && (
                     <MediaPhoto
                       media={photo}
-                      sizes={items.length === 3 ? "(max-width: 640px) 100vw, 33vw" : "(max-width: 1024px) 50vw, 25vw"}
-                      aspectClassName={items.length === 3 ? "aspect-[3/4] sm:aspect-[2/3]" : "aspect-[2/3]"}
+                      sizes={items.length === 3 ? "(max-width: 640px) 100vw, 33vw" : "(max-width: 1024px) 50vw, 290px"}
+                      aspectClassName="aspect-[285/430]"
                       className="transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   )}
-                  <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-charcoal-900/70 via-charcoal-900/10 to-transparent" />
-                  <span className="banner-text absolute inset-x-0 bottom-0 p-5 font-serif text-3xl text-cream-50 sm:text-4xl">
+                  {/* The old cards carry a soft warm wash. */}
+                  <span aria-hidden="true" className="absolute inset-0 bg-wix-wash-warm/30" />
+                  <span className="banner-text absolute inset-x-0 top-1/2 -translate-y-1/2 px-3 font-serif text-3xl font-semibold tracking-[-0.01em] text-white sm:text-[2.75rem] sm:leading-none">
                     {c.name}
                   </span>
                 </a>

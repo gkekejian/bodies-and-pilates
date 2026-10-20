@@ -5,18 +5,15 @@ import { SectionHeading } from "@/components/sections/section-heading";
 import { ClassCards } from "@/components/sections/class-media";
 import { InstagramIcon } from "@/components/layout/footer";
 import { OfferCard } from "@/components/sections/offer-card";
-import { ClassPassStrip } from "@/components/sections/classpass-strip";
 import { Testimonials } from "@/components/sections/testimonials";
-import { ClassPassRating } from "@/components/sections/classpass-rating";
 import { FaqTeaser } from "@/components/sections/faq-teaser";
-import { FinalCta } from "@/components/sections/final-cta";
 import { FirstTimerGuide } from "@/components/sections/first-timer-guide";
 import { pageMetadata } from "@/lib/metadata";
-import { MEDIA, present, type PhotoMedia } from "@/lib/media";
+import { MEDIA, present, type Media } from "@/lib/media";
 import { GROUP_CLASSES } from "@/lib/classes";
-import { TRY, priceOf } from "@/lib/pricing";
+import { TRY } from "@/lib/pricing";
 import { SERVICE_AREAS } from "@/lib/areas";
-import { FIRST_CLASS_CTA, INSTAGRAM, introBookingHref } from "@/lib/site";
+import { INSTAGRAM } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Reformer Pilates in North Hollywood | Bodies and Pilates",
@@ -25,42 +22,47 @@ export const metadata = pageMetadata({
   path: "/",
 });
 
-// Fact sheet (2026-10-14): 7-person cap, Merrithew reformers, experienced instructors.
-const proofPoints = [
-  {
-    title: "Small classes",
-    body: "Never more than 7 people in a class, so your instructor can see every person on every rep.",
-  },
-  {
-    title: "Experienced instructors",
-    body: "Experienced instructors coach your form for the full 50 minutes, with clear cues, spring changes and modifications.",
-  },
-  {
-    title: "Merrithew reformers",
-    body: "We teach every class on professional Merrithew reformers.",
-  },
-];
+// Layout measured from design-reference/old-site (home-1 to home-5): a 980px
+// centered column, 515px photos with the section name set on them, and the
+// paragraph centered in a 360px column beside each photo.
+const column = "mx-auto max-w-[980px] px-4 sm:px-6";
 
-const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
-
-/** The old site's two-up row: a studio photo with the section name set on it, and a centered paragraph. */
-function PhotoTitle({ media, label, className }: { media: PhotoMedia | null; label: string; className?: string }) {
-  if (!media) return null;
+/** The old site's two-up row: a photo with the section name on it, and a centered serif paragraph. */
+function TwoUp({
+  id,
+  title,
+  media,
+  reverse,
+  children,
+}: {
+  id: string;
+  title: string;
+  media: Media | null;
+  reverse?: boolean;
+  children: React.ReactNode;
+}) {
   return (
-    <div className={`relative ${className ?? ""}`}>
-      <MediaPhoto media={media} aspectClassName="aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]" sizes="(max-width: 1024px) 100vw, 50vw" />
-      <span aria-hidden="true" className="absolute inset-0 bg-charcoal-900/25" />
-      <span
-        aria-hidden="true"
-        className="banner-text absolute inset-0 flex items-center justify-center font-serif text-5xl text-cream-50 sm:text-6xl"
-      >
-        {label}
-      </span>
+    <div className="grid items-center gap-10 md:grid-cols-[515fr_465fr] md:gap-0">
+      <div className={reverse ? "relative md:order-2" : "relative"}>
+        <MediaItem media={media} aspectClassName="aspect-[515/444]" sizes="(max-width: 768px) 100vw, 515px" />
+        <h2
+          id={id}
+          className="banner-text pointer-events-none absolute inset-x-0 top-[14%] text-center font-serif text-5xl font-semibold tracking-[-0.015em] text-white sm:text-6xl lg:text-[4.25rem]"
+        >
+          {title}
+        </h2>
+      </div>
+      <div className={reverse ? "md:order-1 md:pr-[52px]" : "md:pl-[52px]"}>
+        <div className="mx-auto max-w-[360px] space-y-7 text-center font-serif text-[1.45rem] font-light leading-[1.22] text-wix-ink sm:text-[1.6rem]">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
 
-// Let's Be Friends: real studio photos, each linking to Instagram.
+// Let's Be Friends: the old site ran its Instagram feed here; these are real
+// studio photos, each linking to the account.
 const friends = present([
   MEDIA.receptionWall,
   MEDIA.matchaCup,
@@ -73,72 +75,97 @@ const friends = present([
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero: the old site's full-bleed photo with "Empower Your Essense". */}
-      <section className="relative isolate overflow-hidden bg-sage-900 text-cream-50">
-        {MEDIA.studioBrightRows && (
+      {/* 1. Hero (home-1-hero.png): full-bleed photo, muted green wash, the
+          logo and nav on the photo, a white serif headline, a thin outlined button. */}
+      <section data-hero className="relative isolate -mt-[var(--header-h)] overflow-hidden bg-wix-footer text-white">
+        {MEDIA.standingSplit && (
           <>
-            {/* Above the fold on every screen: load it eagerly. */}
+            {/* Above the fold on every screen and the LCP element: prioritized. */}
             <MediaPhoto
-              media={MEDIA.studioBrightRows}
-              eager
+              media={MEDIA.standingSplit}
+              priority
               sizes="100vw"
               aspectClassName=""
               className="absolute inset-0 -z-20 h-full w-full"
+              imgClassName="object-[50%_42%]"
             />
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-sage-900/60" />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-wix-footer/60" />
           </>
         )}
-        <div className="banner-text mx-auto flex min-h-[34rem] max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:min-h-[40rem] sm:px-6 lg:px-8">
-          <h1 className="smallcaps text-base text-cream-100 sm:text-lg">Reformer Pilates in North Hollywood</h1>
+        <div className="banner-text mx-auto flex min-h-[36rem] max-w-5xl flex-col items-center justify-center px-4 pb-16 pt-[calc(var(--header-h)+3rem)] text-center sm:min-h-[44rem] sm:px-6">
+          <h1 className="smallcaps text-[15px] text-white sm:text-base">Reformer Pilates in North Hollywood</h1>
           {/* TODO(owner): "Essense" is the old site's own spelling. Confirm keep, or correct to "Essence". */}
-          <p className="mt-6 font-serif text-6xl font-normal leading-[1.02] tracking-[-0.01em] sm:text-7xl lg:text-8xl">
+          <p className="mt-5 font-serif text-[3.4rem] font-semibold leading-[1.02] tracking-[-0.015em] sm:text-7xl lg:text-[5.25rem]">
             Empower Your Essense
           </p>
-          <p className="mt-7 max-w-xl font-sans text-base leading-[1.7] text-cream-50 sm:text-lg">
-            Reformer Pilates with never more than 7 people per class, on professional Merrithew reformers. An
-            independent, woman-owned studio on Vineland Ave. Your first class is $25.
-          </p>
           <div className="mt-9">
-            <CtaLink href={introBookingHref()} variant="ghost-light">
-              {FIRST_CLASS_CTA}
+            <CtaLink href="/schedule" variant="ghost-light" className="min-w-[254px]">
+              Book a Session
             </CtaLink>
           </div>
-          <p className="mt-6 font-sans text-sm text-cream-100">
-            First time?{" "}
-            <a href="#first-timers-guide" className="underline underline-offset-4 hover:text-cream-50">
-              What to wear, where to park, which class to take
-            </a>
-          </p>
         </div>
       </section>
 
-      {/* 2. Welcome */}
-      <section aria-label="Welcome" className="bg-olive-800 py-16 text-cream-50 sm:py-20">
-        <p className="mx-auto max-w-3xl px-4 text-center font-serif text-2xl font-light leading-[1.45] sm:px-6 sm:text-3xl">
-          Welcome to our studio. We teach small-group reformer Pilates in North Hollywood, in a room that stays calm
-          and a class that stays small. Come move with us, and get stronger together.
+      {/* 2. Welcome band (old site, verbatim). */}
+      <section aria-label="Welcome" className="bg-wix-olive px-4 py-16 text-wix-cream sm:py-[4.5rem]">
+        <p className="mx-auto max-w-[780px] text-center font-serif text-[1.55rem] font-light leading-[1.3] sm:text-[1.85rem]">
+          Welcome to our curated studio, where we offer boutique Pilates classes in a warm and inviting setting. Join us
+          on the journey to sculpt, balance, and grow together.
         </p>
       </section>
 
-      {/* 2b. ClassPass rating */}
-      <ClassPassRating className="bg-cream-50" />
+      {/* 3 and 4. The Space and The Practice (old site; Practice adapted). */}
+      <section aria-labelledby="space-heading" className="bg-wix-beige pb-16 pt-6 sm:pb-24">
+        <div className={`${column} space-y-12 md:space-y-12`}>
+          <TwoUp id="space-heading" title="The Space" media={MEDIA.studioBrightRows}>
+            <p>
+              At Bodies and Pilates, we pride ourselves in providing a luxurious, tranquil environment combined with
+              cutting-edge fitness. Our boutique studio is equipped with state-of-the-art equipment, while our small class
+              sizes allow for personalized attention and guidance throughout your workout.
+            </p>
+          </TwoUp>
+          <TwoUp id="reformer-heading" title="The Practice" media={MEDIA.classLungeInSync} reverse>
+              <p>
+                Pilates is a versatile exercise system that strengthens muscles, improves flexibility, and enhances
+                overall body alignment. We combine the best of low-impact movements with high-intensity focus to isolate
+                and fatigue each muscle group for maximum effectiveness.
+              </p>
+              <p>Our aim is not just for physical strength but also for a harmonious balance between mind and body.</p>
+            </TwoUp>
+        </div>
+      </section>
 
-      {/* 3. Intro offers */}
-      <section aria-labelledby="intro-offers-heading" className="bg-cream-50 pb-20 pt-4 sm:pb-28">
-        <div className={`${container} text-center`}>
-          <SectionHeading
-            id="intro-offers-heading"
-            eyebrow="New Here"
-            title="Intro Offers"
-            align="center"
-            intro={<p>Try one class, take a full week to find your rhythm, or do the class first and the week after it. Both are for first-timers.</p>}
-          />
-          <div className="mx-auto grid max-w-[42rem] gap-6 text-left sm:grid-cols-2">
+      {/* 5. The Classes (old site band and subline; Abs and Assets added). */}
+      <ClassCards
+        headingId="class-types-heading"
+        items={[
+          { key: "beginner", name: "Beginner", href: "/classes/beginner" },
+          { key: "flexibility", name: "Flexibility", href: "/classes/flexibility" },
+          { key: "fullbody", name: "Fullbody", href: "/classes/fullbody" },
+          { key: "abs-and-assets", name: "Abs and Assets", href: "/classes#abs-and-assets" },
+        ]}
+      />
+
+      {/* 6. The Reviews */}
+      <Testimonials />
+
+      {/* The rebuild's sections the old home page did not have, kept for first
+          visits and search, set in the old site's pricing and section styles. */}
+      <section aria-labelledby="intro-offers-heading" className="bg-wix-pricing py-16 sm:py-20">
+        <div className="mx-auto max-w-[980px] px-4 sm:px-6">
+          <h2 id="intro-offers-heading" className="font-serif text-5xl font-light leading-[1.05] text-wix-intro sm:text-6xl">
+            Intro Offers
+          </h2>
+          <p className="mt-4 max-w-xl font-sans text-base leading-[1.8] text-charcoal-800/85">
+            New to the studio? Try one class, take a full week, or do the class first and the week after it. Both are for
+            first-timers.
+          </p>
+          <div className="mt-10 grid max-w-[470px] grid-cols-2 gap-[18px]">
             {TRY.map((offer) => (
               <OfferCard key={offer.id} offer={offer} accent="mauve" />
             ))}
           </div>
-          <div className="mt-10">
+          <div className="mt-8">
             <CtaLink href="/intro-offer" variant="text">
               What to expect at your first class
             </CtaLink>
@@ -146,68 +173,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. The Space */}
-      <section aria-labelledby="space-heading" className="bg-taupe-300 py-16 sm:py-24">
-        <div className={`${container} grid items-center gap-10 lg:grid-cols-2 lg:gap-16`}>
-          <PhotoTitle media={MEDIA.studioLogoWall} label="The Space" />
-          <div className="mx-auto max-w-md text-center">
-            <h2 id="space-heading" className="smallcaps text-lg text-charcoal-900">
-              The Space
-            </h2>
-            <p className="mt-6 font-accent text-lg leading-[1.8] text-charcoal-900">
-              Our studio is on Vineland Ave in North Hollywood. It is bright and quiet, with rows of Merrithew
-              reformers and plenty of room to move.
-            </p>
-            <p className="mt-5 font-accent text-lg leading-[1.8] text-charcoal-900">
-              We keep every class to 7 people or fewer. That way your instructor knows your name, sees how you move,
-              and can help you on every rep.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. The Practice (reformer explainer) */}
-      <section aria-labelledby="reformer-heading" className="bg-taupe-300 pb-16 sm:pb-24">
-        <div className={`${container} grid items-center gap-10 lg:grid-cols-2 lg:gap-16`}>
-          <div className="mx-auto max-w-md text-center lg:order-1">
-            <h2 id="reformer-heading" className="smallcaps text-lg text-charcoal-900">
-              The Practice
-            </h2>
-            <p className="mt-6 font-accent text-lg leading-[1.8] text-charcoal-900">
-              Reformer Pilates is strength and mobility training on a machine called the reformer. Springs add
-              resistance to classic Pilates movements, so you build strength and control while going easy on your
-              joints.
-            </p>
-            <p className="mt-5 font-accent text-lg leading-[1.8] text-charcoal-900">
-              Every group class at our studio is taught on the reformer.
-            </p>
-          </div>
-          <PhotoTitle media={MEDIA.standingSplit} label="The Practice" className="lg:order-2" />
-        </div>
-        <ul className={`${container} mt-14 grid gap-8 sm:grid-cols-3`}>
-          {proofPoints.map((p) => (
-            <li key={p.title} className="border-t border-charcoal-900/30 pt-5 text-center">
-              <h3 className="font-serif text-2xl text-charcoal-900">{p.title}</h3>
-              <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-900">{p.body}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* 6. The Classes */}
-      <ClassCards
-        headingId="class-types-heading"
-        items={[
-          { key: "beginner", name: "Beginner", href: "/classes/beginner" },
-          { key: "flexibility", name: "Flexibility", href: "/classes/flexibility" },
-          { key: "fullbody", name: "Full Body", href: "/classes/fullbody" },
-          { key: "abs-and-assets", name: "Abs and Assets", href: "/classes#abs-and-assets" },
-        ]}
-      />
-
-      {/* 7. Small-group classes */}
-      <section aria-labelledby="small-group-heading" className="bg-cream-50 py-20 sm:py-28">
-        <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
+      <section aria-labelledby="small-group-heading" className="bg-wix-offwhite py-16 sm:py-24">
+        <div className="mx-auto grid max-w-[980px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-7">
             <SectionHeading
               id="small-group-heading"
@@ -215,14 +182,14 @@ export default function HomePage() {
               title="Classes of 7 or Fewer"
               intro={
                 <p>
-                  Every group class runs on a Merrithew reformer with no more than 7 people. You get the energy of a
-                  class and the attention of a private session. Pick the one that fits your week.
+                  Every group class runs on a Merrithew reformer. You get the energy of a class and the attention of a
+                  private session.
                 </p>
               }
             />
             <dl className="divide-y divide-sage-700/25 border-y border-sage-700/25">
               {GROUP_CLASSES.map((c) => (
-                <div key={c.slug} className="grid gap-1 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
+                <div key={c.slug} className="grid gap-1 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
                   <dt className="font-serif text-2xl text-sage-900">
                     <Link href={`/classes/${c.slug}`} className="hover:text-sage-700">
                       {c.name}
@@ -231,15 +198,13 @@ export default function HomePage() {
                   <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{c.oneLiner}</dd>
                 </div>
               ))}
-              <div className="grid gap-1 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
+              <div className="grid gap-1 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
                 <dt className="font-serif text-2xl text-sage-900">
                   <Link href="/classes#abs-and-assets" className="hover:text-sage-700">
                     Abs and Assets
                   </Link>
                 </dt>
-                <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">
-                  A 50-minute reformer class on professional Merrithew reformers, capped at 7 people.
-                </dd>
+                <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">A 50-minute reformer class on our weekly schedule.</dd>
               </div>
             </dl>
             <div className="mt-10 flex flex-wrap items-center gap-6">
@@ -257,96 +222,17 @@ export default function HomePage() {
                 media={MEDIA.classStandingWork}
                 aspectClassName="aspect-[4/5]"
                 className="mx-auto max-w-sm lg:max-w-none"
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, 400px"
               />
             </div>
           )}
         </div>
       </section>
 
-      {/* 8. ClassPass */}
-      <ClassPassStrip />
-
-      {/* 9. The Reviews */}
-      <Testimonials />
-
-      {/* 10. Pricing teaser */}
-      <section aria-labelledby="pricing-teaser-heading" className="bg-cream-50 py-20 sm:py-28">
-        <div className={container}>
-          <SectionHeading
-            id="pricing-teaser-heading"
-            eyebrow="Pricing"
-            title="Simple, honest pricing"
-            align="center"
-            intro={<p>Start with an intro offer. After that, choose a membership or a class pack.</p>}
-          />
-          <div className="grid gap-px border border-sage-700/25 bg-sage-700/25 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: "Try", price: priceOf("first-class"), note: `First class. Or ${priceOf("intro-week")} for the One-Week Unlimited.` },
-              {
-                label: "Commit",
-                price: `${priceOf("membership-5")}/mo`,
-                note: `5, 8, or 12 classes a month, or unlimited for ${priceOf("membership-unlimited")}. 8 classes is our most popular plan. Pause anytime. Cancel with 7 days' notice. No fees.`,
-              },
-              { label: "Flex", price: priceOf("single"), note: `Single class. Packs of 5 for ${priceOf("pack-5")} or 10 for ${priceOf("pack-10")}.` },
-              { label: "Private", price: priceOf("private"), note: `55-minute 1:1 session. Duets ${priceOf("duet")} per person.` },
-            ].map((tier) => (
-              <div key={tier.label} className="bg-cream-50 p-7 text-center">
-                <p className="smallcaps text-[15px] text-sage-700">{tier.label}</p>
-                <p className="mt-3 font-poppins text-5xl font-extralight text-sage-900">{tier.price}</p>
-                <p className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/80">{tier.note}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <CtaLink href="/pricing" variant="outline">
-              See full pricing
-            </CtaLink>
-          </div>
-        </div>
-      </section>
-
-      {/* 11. FAQ teaser */}
       <FaqTeaser />
 
-      {/* 12. Let's Be Friends */}
-      <section aria-labelledby="friends-heading" className="relative isolate overflow-hidden bg-sage-900 py-16 text-cream-50 sm:py-24">
-        <div className={`${container} text-center`}>
-          <h2 id="friends-heading" className="font-serif text-5xl font-normal sm:text-6xl">
-            Let&apos;s Be Friends
-          </h2>
-          <a
-            href={INSTAGRAM.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 py-1 font-accent text-lg text-cream-50 underline-offset-4 hover:underline"
-          >
-            <InstagramIcon className="size-5" />
-            {INSTAGRAM.handle}
-          </a>
-          {friends.length > 0 && (
-            <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
-              {friends.map((m) => (
-                <li key={m.file}>
-                  <a
-                    href={INSTAGRAM.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${m.alt}. See more on Instagram`}
-                    className="block transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream-50"
-                  >
-                    <MediaPhoto media={m} aspectClassName="aspect-square" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </section>
-
-      {/* 13. Areas we serve */}
-      <section aria-labelledby="areas-heading" className="bg-cream-100 py-20 sm:py-28">
-        <div className={container}>
+      <section aria-labelledby="areas-heading" className="bg-wix-pricing py-16 sm:py-24">
+        <div className="mx-auto max-w-[980px] px-4 sm:px-6">
           <SectionHeading
             id="areas-heading"
             eyebrow="Areas We Serve"
@@ -360,7 +246,7 @@ export default function HomePage() {
           />
           <ul className="grid gap-px border border-sage-700/25 bg-sage-700/25 sm:grid-cols-2 lg:grid-cols-4">
             {SERVICE_AREAS.map((a) => (
-              <li key={a.name} className="bg-cream-100 p-6">
+              <li key={a.name} className="bg-wix-pricing p-6">
                 <h3 className="font-serif text-2xl text-sage-900">{a.name}</h3>
                 <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-800/80">{a.line}</p>
               </li>
@@ -377,11 +263,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 14. Final CTA */}
-      <FinalCta />
-
-      {/* 15. First-timer's guide (on-page; replaces the email form at launch) */}
       <FirstTimerGuide />
+
+      {/* 7. Let's Be Friends (home-5-friends-footer.png): a darkened photo band,
+          the title, the Instagram handle, and a row of photos edge to edge. */}
+      <section aria-labelledby="friends-heading" className="relative isolate overflow-hidden bg-wix-footer pb-16 pt-14 text-white sm:pb-20 sm:pt-16">
+        {MEDIA.studioLogoWall && (
+          <>
+            <MediaPhoto
+              media={MEDIA.studioLogoWall}
+              sizes="100vw"
+              aspectClassName=""
+              className="absolute inset-0 -z-20 h-full w-full"
+            />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-wix-footer/80" />
+          </>
+        )}
+        <div className="banner-text px-4 text-center">
+          <h2 id="friends-heading" className="font-serif text-5xl font-semibold tracking-[-0.015em] sm:text-6xl lg:text-[4.25rem]">
+            Let&apos;s Be Friends
+          </h2>
+          <a
+            href={INSTAGRAM.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex flex-col items-center gap-2 py-1 font-serif text-2xl font-light text-white/90 underline-offset-4 hover:underline"
+          >
+            <InstagramIcon className="size-8 text-wix-icon" />
+            {INSTAGRAM.handle}
+          </a>
+        </div>
+        {friends.length > 0 && (
+          <ul className="mt-8 grid grid-cols-2 gap-3 px-3 sm:grid-cols-3 lg:grid-cols-6">
+            {friends.map((m) => (
+              <li key={m.file}>
+                <a
+                  href={INSTAGRAM.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${m.alt}. See more on Instagram`}
+                  className="block transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  <MediaPhoto media={m} aspectClassName="aspect-square" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </>
   );
 }

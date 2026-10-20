@@ -101,8 +101,8 @@ export default function ClassesPage() {
                     joints.
                   </p>
                   <p className="mt-4">
-                    We teach on Merrithew reformers. Your instructor changes the springs to make each exercise harder or
-                    more supportive, so the same machine works on your first day and your hundredth.
+                    Your instructor changes the springs to make each exercise harder or more supportive, so the same
+                    machine works for you on your first day and every class after.
                   </p>
                 </>
               }
@@ -145,7 +145,7 @@ export default function ClassesPage() {
               id="abs-and-assets-heading"
               eyebrow="Also on the schedule"
               title="Abs and Assets"
-              intro={<p>Abs and Assets is a 50-minute reformer class on professional Merrithew reformers, capped at 7 people.</p>}
+              intro={<p>Abs and Assets is a 50-minute reformer class on our weekly schedule.</p>}
             />
             {/* TODO(owner): add a 1 to 2 sentence description, level, and who it is for. */}
             <CtaLink href="/schedule" variant="text">

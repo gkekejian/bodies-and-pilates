@@ -73,6 +73,7 @@ export function PageHero({
   tone = "warm",
   media,
   action,
+  focus,
 }: {
   eyebrow?: string;
   display?: string;
@@ -87,10 +88,20 @@ export function PageHero({
   media?: React.ReactNode;
   /** One button set on the banner itself, under the title. */
   action?: React.ReactNode;
+  /** object-position for the banner photo crop. */
+  focus?: string;
 }) {
   return (
     <>
-      <section className={cn("relative isolate overflow-hidden bg-sage-900 text-cream-50", banner ? "py-20 sm:py-28 lg:py-32" : "py-16 sm:py-20")}>
+      {/* The old site's banner: the header sits on the photo (data-hero), then an
+          oversized white serif title, and at most one button. */}
+      <section
+        data-hero
+        className={cn(
+          "relative isolate -mt-[var(--header-h)] overflow-hidden bg-wix-footer pt-[calc(var(--header-h)+1.5rem)] text-white",
+          action ? "pb-11 sm:pb-12" : "pb-9 sm:pb-10"
+        )}
+      >
         {banner && (
           <>
             <MediaPhoto
@@ -99,26 +110,27 @@ export function PageHero({
               sizes="100vw"
               aspectClassName=""
               className="absolute inset-0 -z-20 h-full w-full"
+              imgClassName={focus}
             />
             <div
               aria-hidden="true"
-              className={cn("absolute inset-0 -z-10", tone === "warm" ? "bg-[#6b4f3f]/65" : "bg-sage-900/70")}
+              className={cn("absolute inset-0 -z-10", tone === "warm" ? "bg-wix-wash-warm/80" : "bg-wix-footer/60")}
             />
           </>
         )}
         <div className="banner-text mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          {eyebrow && !display && <p className="smallcaps mb-4 text-[15px] text-cream-100">{eyebrow}</p>}
+          {eyebrow && !display && <p className="smallcaps mb-3 text-[15px] text-white">{eyebrow}</p>}
           {display ? (
             <>
-              <p aria-hidden="true" className="font-serif text-6xl font-normal leading-[1] tracking-[-0.01em] sm:text-7xl lg:text-8xl">
+              <p aria-hidden="true" className="font-serif text-6xl font-semibold leading-[1] tracking-[-0.015em] sm:text-7xl lg:text-[5.25rem]">
                 {display}
               </p>
-              <h1 className="smallcaps mt-6 text-base text-cream-100 sm:text-lg">{title}</h1>
+              <h1 className="smallcaps mt-3 text-[15px] text-white sm:text-base">{title}</h1>
             </>
           ) : (
-            <h1 className="font-serif text-5xl font-normal leading-[1.05] tracking-[-0.01em] sm:text-6xl lg:text-7xl">{title}</h1>
+            <h1 className="font-serif text-5xl font-semibold leading-[1.05] tracking-[-0.015em] sm:text-6xl lg:text-7xl">{title}</h1>
           )}
-          {action && <div className="mt-9 flex justify-center">{action}</div>}
+          {action && <div className="mt-6 flex justify-center">{action}</div>}
         </div>
       </section>
       {(intro || children || media) && (

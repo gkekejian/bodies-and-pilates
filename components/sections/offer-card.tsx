@@ -2,24 +2,36 @@ import { CtaLink } from "@/components/ui/cta-link";
 import { offerHref, type Offer } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
-/** Top-bar color per pricing group, matched to the old site's cards. */
+/** Pricing group colors, sampled from the old pricing page (pricing-1 to pricing-3). */
 export type OfferAccent = "mauve" | "sage" | "cocoa" | "tan";
 
 const bar: Record<OfferAccent, string> = {
-  mauve: "bg-mauve-600",
-  sage: "bg-sage-700",
-  cocoa: "bg-cocoa-700",
-  tan: "bg-taupe-700",
+  mauve: "bg-wix-intro",
+  sage: "bg-wix-sage",
+  cocoa: "bg-wix-cocoa",
+  tan: "bg-wix-duet",
+};
+
+// Name, price and unit use the group color, as on the old cards. All of them
+// are set at 24px or more, where the sampled colors pass 3:1.
+const ink: Record<OfferAccent, string> = {
+  mauve: "text-wix-intro",
+  sage: "text-wix-sage",
+  cocoa: "text-wix-cocoa",
+  tan: "text-wix-duet",
 };
 
 /**
  * One pricing tier in the old site's card style: a colored top bar, the name
- * and price centered in light sans, and a full-width Book bar. One CTA.
+ * and price centered in light Poppins, and a full-width "Book Now" bar. The
+ * offer name rides along for screen readers and the booking event label.
  */
 export function OfferCard({
   offer,
   accent = "sage",
   headingLevel = "h3",
+  tint = "pricing",
+  showDetail = false,
   className,
 }: {
   offer: Offer;
@@ -27,44 +39,45 @@ export function OfferCard({
   /** Kept for call sites from before the restyle; the badge alone marks the featured tier. */
   highlight?: boolean;
   headingLevel?: "h2" | "h3";
+  /** Card body: the pricing cream, or the blush the old duet and private cards use. */
+  tint?: "pricing" | "blush";
+  /** The old cards carry no description; pages that need one opt in. */
+  showDetail?: boolean;
   className?: string;
 }) {
   const Heading = headingLevel;
+  const monthly = offer.unit === "/month";
   return (
     <article
       className={cn(
-        "flex h-full flex-col bg-cream-50 text-center shadow-[0_1px_3px_rgba(43,42,39,0.10),0_8px_24px_rgba(43,42,39,0.05)]",
-        offer.badge && "ring-1 ring-sage-700",
+        "flex h-full flex-col text-center shadow-[0_1px_4px_rgba(0,0,0,0.16)]",
+        tint === "blush" ? "bg-wix-blush" : "bg-wix-pricing",
         className
       )}
     >
-      <div aria-hidden={offer.badge ? undefined : true} className={cn("flex min-h-6 items-center justify-center", bar[accent])}>
-        {offer.badge && <span className="smallcaps py-1.5 text-[13px] text-cream-50">{offer.badge}</span>}
+      <div aria-hidden={offer.badge ? undefined : true} className={cn("flex min-h-[24px] items-center justify-center", bar[accent])}>
+        {offer.badge && <span className="smallcaps py-1 text-[13px] text-white">{offer.badge}</span>}
       </div>
-      <div className="flex flex-1 flex-col items-center px-6 pb-7 pt-7">
-        <Heading className="font-poppins text-2xl font-light leading-snug text-charcoal-800">{offer.name}</Heading>
-        <p className="mt-5 whitespace-nowrap font-poppins text-[3.25rem] font-extralight leading-none text-sage-900">
+      <div className={cn("flex flex-1 flex-col items-center px-3 pb-6 pt-5", ink[accent])}>
+        <Heading className="flex min-h-[2.9em] items-center text-balance font-poppins text-[1.6rem] font-light leading-[1.45] sm:text-[1.85rem]">
+          {offer.name}
+        </Heading>
+        <p className="whitespace-nowrap pt-4 font-poppins text-[3.1rem] font-light leading-none sm:text-[3.5rem]">
           {offer.price}
-          {/* The old site's short "/mo". The data keeps "/month" for the pricing guard. */}
-          {offer.unit === "/month" && (
+          {monthly && (
             <>
-              <span aria-hidden="true" className="text-2xl">/mo</span>
+              <span aria-hidden="true" className="text-[1.6rem]">/mo</span>
               <span className="sr-only"> per month</span>
             </>
           )}
         </p>
-        {offer.unit && offer.unit !== "/month" && (
-          <p className="mt-2 font-poppins text-lg font-light text-charcoal-800/80">{offer.unit}</p>
-        )}
-        {offer.perClass && <p className="mt-2 font-sans text-sm text-charcoal-800/80">{offer.perClass}</p>}
-        <p className="mt-5 flex-1 font-sans text-sm leading-relaxed text-charcoal-800/80">{offer.detail}</p>
+        {offer.unit && !monthly && <p className="mt-3 font-poppins text-[1.6rem] font-light leading-tight">{offer.unit}</p>}
+        {offer.perClass && <p className="mt-2 font-poppins text-base text-wix-cocoa">{offer.perClass}</p>}
+        {offer.intro && <p className="mt-2 font-poppins text-sm text-wix-cocoa">First-timers only</p>}
+        {showDetail && <p className="mt-4 font-sans text-sm leading-relaxed text-charcoal-800/80">{offer.detail}</p>}
       </div>
-      <CtaLink
-        href={offerHref(offer)}
-        variant="cocoa"
-        className="w-full px-4 font-accent text-[13px] normal-case tracking-[0.08em]"
-      >
-        {offer.cta}
+      <CtaLink href={offerHref(offer)} variant="cocoa" className="min-h-[40px] w-full px-3 py-2 text-[15px]">
+        Book Now<span className="sr-only">: {offer.name}</span>
       </CtaLink>
     </article>
   );

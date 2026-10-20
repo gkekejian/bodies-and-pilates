@@ -14,6 +14,11 @@
     font-variant-caps: all-small-caps;
     letter-spacing: 0.22em;
   }
+  /* The old site's display serif (The Seasons) is a high-contrast cut at every
+     size; Fraunces gets there with its optical-size axis pinned high. */
+  .font-serif {
+    font-variation-settings: "opsz" 144;
+  }
   /* Soft shadow behind white type set over photo banners. */
   .banner-text {
     text-shadow: 0 1px 24px rgb(0 0 0 / 0.25);
@@ -22,26 +27,47 @@
 
 @layer base {
   :root {
+    /* Header height; hero and banner sections slide up under the header by this much. */
+    --header-h: 5rem;
     /*
-     * Brand palette, from the old Wix site (design-reference/old-site).
-     * RGB triplets so Tailwind opacity modifiers keep working.
+     * Brand palette, sampled pixel by pixel from the old Wix site captures in
+     * design-reference/old-site (2026-10-20). Each name says where the old site
+     * uses the color. RGB triplets so Tailwind opacity modifiers keep working.
      */
-    --bp-cream-50: 251 249 246;   /* #FBF9F6 page background */
-    --bp-cream-100: 244 240 234;  /* #F4F0EA pricing body */
-    --bp-cream-200: 236 229 220;  /* #ECE5DC soft band */
-    --bp-sage-300: 201 209 191;   /* #C9D1BF light sage, text on dark */
-    --bp-sage-500: 111 125 105;   /* #6F7D69 */
-    --bp-sage-700: 85 100 80;     /* #556450 header band, buttons */
-    --bp-sage-900: 74 84 72;      /* #4A5448 footer, booking band */
-    --bp-taupe-300: 217 204 189;  /* #D9CCBD The Space band */
-    --bp-taupe-500: 163 146 126;  /* #A3927E */
-    --bp-taupe-700: 111 96 79;    /* #6F604F text-safe taupe */
-    --bp-blush-500: 212 166 154;  /* #D4A69A */
-    --bp-olive-800: 67 61 51;     /* #433D33 Welcome band */
-    --bp-mauve-600: 132 104 92;   /* #84685C The Classes band (darkened for contrast) */
-    --bp-cocoa-700: 82 72 71;     /* #524847 pricing Book Now bars */
-    --bp-charcoal-800: 43 42 39;  /* #2B2A27 near-black soft text */
-    --bp-charcoal-900: 31 30 27;  /* #1F1E1B */
+    --wix-footer: 75 84 72;        /* #4B5448 footer, booking band, FAQ band, pricing hero Book Now, hero underlay */
+    --wix-sage: 85 100 80;         /* #556450 class packs and private bars, headings and prices; calendar "today" */
+    --wix-olive: 67 65 52;         /* #434134 welcome band under the home hero */
+    --wix-beige: 211 199 182;      /* #D3C7B6 The Space and The Practice band */
+    --wix-mauve: 172 143 125;      /* #AC8F7D The Classes band (sampled #AE907E, 2 steps darker for 3:1 white text) */
+    --wix-pricing: 244 241 235;    /* #F4F1EB pricing page body and card body */
+    --wix-offwhite: 251 249 246;   /* #FBF9F6 booking widget card, outlined button text */
+    --wix-blush: 246 235 228;      /* #F6EBE4 duet and private card body */
+    --wix-intro: 141 127 121;      /* #8D7F79 intro offers bar, heading, names and prices */
+    --wix-cocoa: 83 71 69;         /* #534745 Book Now bars; memberships bar, heading, names, prices */
+    --wix-duet: 158 132 107;       /* #9E846B duets bar and heading (sampled #A2876E, darkened for 3:1) */
+    --wix-cream: 255 252 240;      /* #FFFCF0 cream text on the welcome band and footer */
+    --wix-icon: 235 208 183;       /* #EBD0B7 footer contact icons */
+    --wix-rule: 204 174 147;       /* #CCAE93 footer "Get in Touch" underline */
+    --wix-ink: 0 0 0;              /* #000000 body text on the beige band */
+    --wix-wash-warm: 207 180 155;  /* #CFB49B pricing and booking banner wash (brightest banner area; overlay alpha estimated) */
+
+    /* Scale names the components use, mapped onto the sampled palette. */
+    --bp-cream-50: var(--wix-offwhite);
+    --bp-cream-100: var(--wix-pricing);
+    --bp-cream-200: var(--wix-blush);
+    --bp-sage-300: 201 209 191;    /* #C9D1BF light sage, text on dark (not on the old site; kept for contrast) */
+    --bp-sage-500: 111 125 105;    /* #6F7D69 hover tint (not on the old site) */
+    --bp-sage-700: var(--wix-sage);
+    --bp-sage-900: var(--wix-footer);
+    --bp-taupe-300: var(--wix-beige);
+    --bp-taupe-500: 163 146 126;   /* #A3927E (not on the old site) */
+    --bp-taupe-700: 111 96 79;     /* #6F604F small text that must pass 4.5:1 (not on the old site) */
+    --bp-blush-500: 212 166 154;   /* #D4A69A (not on the old site) */
+    --bp-olive-800: var(--wix-olive);
+    --bp-mauve-600: var(--wix-mauve);
+    --bp-cocoa-700: var(--wix-cocoa);
+    --bp-charcoal-800: var(--wix-ink);
+    --bp-charcoal-900: var(--wix-ink);
 
     /* shadcn tokens */
     --background: 40 25% 99%;
@@ -66,6 +92,12 @@
     --radius: 0.125rem;
   }
 
+  @media (min-width: 1280px) {
+    :root {
+      --header-h: 7.5rem;
+    }
+  }
+
   * {
     @apply border-border;
   }
@@ -85,5 +117,6 @@
   h5,
   h6 {
     @apply font-serif font-light;
+    font-variation-settings: "opsz" 144;
   }
 }
