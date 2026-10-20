@@ -3,7 +3,7 @@ import { MediaPhoto } from "@/components/ui/media";
 import type { PhotoMedia } from "@/lib/media";
 
 /** Small-caps, letter-spaced serif kicker (the old site's INTRO OFFERS style). */
-export const eyebrowClass = "smallcaps text-[15px] text-sage-700";
+export const eyebrowClass = "smallcaps text-[15px] text-brown-700";
 
 export function SectionHeading({
   eyebrow,
@@ -25,20 +25,20 @@ export function SectionHeading({
   return (
     <div className={cn("mb-10 max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && (
-        <p className={cn(eyebrowClass, "mb-4", tone === "dark" && "text-sage-300")}>{eyebrow}</p>
+        <p className={cn(eyebrowClass, "mb-4", tone === "dark" && "text-brown-300")}>{eyebrow}</p>
       )}
       <h2
         id={id}
         className={cn(
-          "font-serif text-4xl font-light leading-[1.1] sm:text-5xl",
-          tone === "dark" ? "text-cream-50" : "text-sage-900"
+          "font-serif text-4xl font-semibold leading-[1.1] tracking-[-0.015em] sm:text-5xl",
+          tone === "dark" ? "text-cream-50" : "text-brown-900"
         )}
       >
         {title}
       </h2>
       <div
         aria-hidden="true"
-        className={cn("my-7 h-px w-16", align === "center" && "mx-auto", tone === "dark" ? "bg-taupe-300/70" : "bg-sage-700/50")}
+        className={cn("my-7 h-px w-16", align === "center" && "mx-auto", tone === "dark" ? "bg-tan-300/70" : "bg-brown-700/50")}
       />
       {intro && (
         <div
@@ -55,8 +55,8 @@ export function SectionHeading({
 }
 
 /**
- * Page banner in the old site's style: a full-bleed studio photo under a warm
- * wash, with an oversized serif title set straight on it.
+ * Page banner in the old site's style: a full-bleed studio photo under a tan
+ * wash or a dark overlay, with an oversized serif title set straight on it.
  *
  * `display` is the oversized word the old site used ("Pricing", "FAQs").
  * When it is set, the page's SEO H1 (`title`) runs under it as a small-caps
@@ -70,7 +70,7 @@ export function PageHero({
   intro,
   children,
   banner,
-  tone = "warm",
+  tone = "tan",
   media,
   action,
   focus,
@@ -80,10 +80,10 @@ export function PageHero({
   title: React.ReactNode;
   intro?: React.ReactNode;
   children?: React.ReactNode;
-  /** Full-bleed studio photo behind the title. Falls back to the sage band. */
+  /** Full-bleed studio photo behind the title. Falls back to the dark band. */
   banner?: PhotoMedia | null;
-  /** Photo wash: warm peach (Pricing, Book Your Session) or deep sage. */
-  tone?: "warm" | "sage";
+  /** Photo wash: the theme tan (Pricing, Book Your Session) or a dark overlay (FAQs and the rest). */
+  tone?: "tan" | "dark";
   /** Optional photo or clip beside the intro on large screens. */
   media?: React.ReactNode;
   /** One button set on the banner itself, under the title. */
@@ -98,7 +98,7 @@ export function PageHero({
       <section
         data-hero
         className={cn(
-          "relative isolate -mt-[var(--header-h)] overflow-hidden bg-wix-footer pt-[calc(var(--header-h)+1.5rem)] text-white",
+          "relative isolate -mt-[var(--header-h)] overflow-hidden bg-theme-dark pt-[calc(var(--header-h)+1.5rem)] text-white",
           action ? "pb-11 sm:pb-12" : "pb-9 sm:pb-10"
         )}
       >
@@ -114,7 +114,7 @@ export function PageHero({
             />
             <div
               aria-hidden="true"
-              className={cn("absolute inset-0 -z-10", tone === "warm" ? "bg-wix-wash-warm/80" : "bg-wix-footer/60")}
+              className={cn("absolute inset-0 -z-10", tone === "tan" ? "bg-theme-tan/80" : "bg-theme-dark/60")}
             />
           </>
         )}

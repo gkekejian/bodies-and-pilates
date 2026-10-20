@@ -24,3 +24,12 @@
 - `pr-flexibility-*.jpg` and `pr-post-*.jpg` in both sets are copies of the `/classes/flexibility`
   and `/blog/what-is-reformer-pilates` captures under shorter names. GitHub rewrites the
   original file names inside PR descriptions, so the PR table links these copies.
+
+## Theme palette pass (2026-10-20)
+
+- The Wix editor's theme palette replaces the sampled colors: `--theme-*` in
+  `app/globals.css` (#FFFFFF, #534745, #CCAE93, #A2876E, #EBD0B7, #FFFCF0), no sage. The
+  scale names the components use (`cream-*`, `brown-*`, `tan-300`) map onto it.
+- `--font-accent` is now Times New Roman, the old theme's paragraph font, a system font with
+  nothing to download. Fraunces is pinned at optical size 120, display headlines semibold.
+- Captures and old-vs-new pairs: `theme-2026-10-20/`.

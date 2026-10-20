@@ -6,7 +6,7 @@ import type { Testimonial } from "@/lib/testimonials";
 import { cn } from "@/lib/utils";
 
 const arrow =
-  "inline-flex h-11 w-11 items-center justify-center border border-sage-700/40 text-sage-700 transition-colors hover:bg-sage-700 hover:text-cream-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-700 focus-visible:ring-offset-2";
+  "inline-flex h-11 w-11 items-center justify-center border border-brown-700/40 text-brown-700 transition-colors hover:bg-brown-700 hover:text-cream-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-700 focus-visible:ring-offset-2";
 
 /** One review at a time. Without JavaScript the first review shows. */
 export function ReviewCarousel({ items }: { items: Testimonial[] }) {
@@ -27,7 +27,7 @@ export function ReviewCarousel({ items }: { items: Testimonial[] }) {
               <blockquote className="font-accent text-xl italic leading-[1.7] text-charcoal-800 sm:text-2xl sm:leading-[1.65]">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <figcaption className="smallcaps mt-8 text-[15px] text-sage-700">{t.attribution}</figcaption>
+              <figcaption className="smallcaps mt-8 text-[15px] text-brown-700">{t.attribution}</figcaption>
             </figure>
           </li>
         ))}
@@ -39,7 +39,7 @@ export function ReviewCarousel({ items }: { items: Testimonial[] }) {
           </button>
           <div className="flex items-center gap-1" aria-hidden="true">
             {items.map((t, i) => (
-              <span key={t.id} className={cn("h-1.5 w-1.5 rounded-full", i === active ? "bg-sage-700" : "bg-sage-700/30")} />
+              <span key={t.id} className={cn("h-1.5 w-1.5 rounded-full", i === active ? "bg-brown-700" : "bg-brown-700/30")} />
             ))}
           </div>
           <button type="button" onClick={() => go(1)} className={arrow} aria-label="Next review">

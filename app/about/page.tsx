@@ -47,7 +47,7 @@ const neighborhoods = [
   },
 ];
 
-const label = "smallcaps text-[15px] text-sage-700";
+const label = "smallcaps text-[15px] text-brown-700";
 
 function InstructorCard({ person }: { person: Instructor }) {
   // Only fields with real content render; an empty label never shows.
@@ -64,8 +64,8 @@ function InstructorCard({ person }: { person: Instructor }) {
       />
       <div className="flex flex-1 flex-col gap-5 p-6">
         <div>
-          <h3 className="font-serif text-3xl text-sage-900">{person.name}</h3>
-          {person.role && <p className="mt-1 font-sans text-sm text-sage-700">{person.role}</p>}
+          <h3 className="font-serif text-3xl text-brown-900">{person.name}</h3>
+          {person.role && <p className="mt-1 font-sans text-sm text-brown-700">{person.role}</p>}
         </div>
         {fields.length > 0 && (
           <dl className="space-y-4">
@@ -109,7 +109,7 @@ export default function AboutPage() {
         eyebrow="Our Story"
         title="About Bodies and Pilates"
         banner={MEDIA.studioLogoWallChair}
-        tone="sage"
+        tone="dark"
         intro={<p>We are an independent, woman-owned reformer Pilates studio in North Hollywood.</p>}
       />
 
@@ -136,7 +136,7 @@ export default function AboutPage() {
           )}
           <div className="lg:col-span-5">
             <p className={label}>Founder</p>
-            <h2 id="founder-heading" className="mt-4 font-serif text-5xl font-light leading-[1.05] text-sage-900 sm:text-6xl">
+            <h2 id="founder-heading" className="mt-4 font-serif text-5xl font-light leading-[1.05] text-brown-900 sm:text-6xl">
               Naira Sarkian
             </h2>
             <p className="mt-3 font-sans text-base text-charcoal-800/85">Founder and Owner</p>
@@ -212,10 +212,10 @@ export default function AboutPage() {
               </p>
             }
           />
-          <dl className="max-w-4xl divide-y divide-sage-700/25 border-y border-sage-700/25">
+          <dl className="max-w-4xl divide-y divide-brown-700/25 border-y border-brown-700/25">
             {neighborhoods.map((n) => (
               <div key={n.name} className="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-6">
-                <dt className="font-serif text-2xl text-sage-900">{n.name}</dt>
+                <dt className="font-serif text-2xl text-brown-900">{n.name}</dt>
                 <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{n.body}</dd>
               </div>
             ))}

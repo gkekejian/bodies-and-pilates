@@ -12,45 +12,29 @@ const config: Config = {
     extend: {
       colors: {
         // Design system palette. Every value is a CSS variable defined in
-        // app/globals.css (the old Wix site's palette, restyle 2026-10-16), so
-        // the whole site re-themes from one place.
+        // app/globals.css (the old Wix site's theme palette, read from the Wix
+        // editor 2026-10-19), so the whole site re-themes from one place.
         cream: {
           50: "rgb(var(--bp-cream-50) / <alpha-value>)",
           100: "rgb(var(--bp-cream-100) / <alpha-value>)",
           200: "rgb(var(--bp-cream-200) / <alpha-value>)",
         },
-        sage: {
-          300: "rgb(var(--bp-sage-300) / <alpha-value>)",
-          500: "rgb(var(--bp-sage-500) / <alpha-value>)",
-          700: "rgb(var(--bp-sage-700) / <alpha-value>)",
-          900: "rgb(var(--bp-sage-900) / <alpha-value>)",
+        brown: {
+          300: "rgb(var(--bp-brown-300) / <alpha-value>)",
+          500: "rgb(var(--bp-brown-500) / <alpha-value>)",
+          700: "rgb(var(--bp-brown-700) / <alpha-value>)",
+          900: "rgb(var(--bp-brown-900) / <alpha-value>)",
         },
-        taupe: {
-          300: "rgb(var(--bp-taupe-300) / <alpha-value>)",
-          500: "rgb(var(--bp-taupe-500) / <alpha-value>)",
-          700: "rgb(var(--bp-taupe-700) / <alpha-value>)",
-        },
-        blush: {
-          500: "rgb(var(--bp-blush-500) / <alpha-value>)",
-        },
-        olive: {
-          800: "rgb(var(--bp-olive-800) / <alpha-value>)",
-        },
-        mauve: {
-          600: "rgb(var(--bp-mauve-600) / <alpha-value>)",
-        },
-        cocoa: {
-          700: "rgb(var(--bp-cocoa-700) / <alpha-value>)",
+        tan: {
+          300: "rgb(var(--bp-tan-300) / <alpha-value>)",
         },
         charcoal: {
           800: "rgb(var(--bp-charcoal-800) / <alpha-value>)",
           900: "rgb(var(--bp-charcoal-900) / <alpha-value>)",
         },
-        // The old Wix site's colors by where it used them (app/globals.css).
-        wix: Object.fromEntries(
-          ["footer", "sage", "olive", "beige", "mauve", "pricing", "offwhite", "blush", "intro", "cocoa", "duet", "cream", "icon", "rule", "ink", "wash-warm"].map(
-            (k) => [k, `rgb(var(--wix-${k}) / <alpha-value>)`]
-          )
+        // The six theme colors by name (app/globals.css).
+        theme: Object.fromEntries(
+          ["white", "dark", "tan", "brown", "sand", "cream", "ink"].map((k) => [k, `rgb(var(--theme-${k}) / <alpha-value>)`])
         ),
         // shadcn compat
         background: "hsl(var(--background))",
@@ -88,11 +72,12 @@ const config: Config = {
         ring: "hsl(var(--ring))",
       },
       fontFamily: {
-        // Display serif: Fraunces, the old site's working serif (The Seasons is
-        // a commercial face with no web license on file).
+        // Display serif: Fraunces, the old site's own display face (Wix editor:
+        // Fraunces 120 Semi Bold).
         serif: ["var(--font-display)", "Georgia", "serif"],
-        // Serif body accents: nav, reviews, footer rows, small-caps headings.
-        accent: ["var(--font-accent)", "Georgia", "serif"],
+        // The old theme's paragraph font, Times New Roman: nav, buttons, reviews,
+        // footer rows, small-caps headings. A system font, so nothing to download.
+        accent: ["var(--font-accent)"],
         // Light sans for body text.
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         // Poppins ExtraLight: offer names, prices, intro lines.

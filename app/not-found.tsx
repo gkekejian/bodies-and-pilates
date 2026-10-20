@@ -14,7 +14,7 @@ export default function NotFound() {
     <section className="bg-cream-100 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
         <p className={`${eyebrowClass} mb-6`}>404</p>
-        <h1 className="font-serif text-5xl font-light leading-[1.05] text-sage-900 sm:text-6xl">
+        <h1 className="font-serif text-5xl font-light leading-[1.05] text-brown-900 sm:text-6xl">
           This page has stepped off the reformer.
         </h1>
         <p className="mx-auto mt-7 max-w-xl font-sans text-lg leading-[1.7] text-charcoal-800/85">

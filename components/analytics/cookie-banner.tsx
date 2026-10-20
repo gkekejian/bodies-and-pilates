@@ -55,7 +55,7 @@ export default function CookieBanner() {
               until you accept, and you can change your choice anytime under Cookie settings.{" "}
             </>
           )}
-          <Link href="/privacy" className="underline underline-offset-2 hover:text-sage-700">
+          <Link href="/privacy" className="underline underline-offset-2 hover:text-brown-700">
             Privacy policy
           </Link>
         </p>

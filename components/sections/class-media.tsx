@@ -84,7 +84,7 @@ export const CLASS_CARD_PHOTO: Record<string, PhotoMedia | null> = {
 };
 
 /**
- * The old site's "The Classes" band (home-3-practice-classes.png): mauve, the
+ * The old site's "The Classes" band (home-3-practice-classes.png): the theme medium brown, the
  * white serif title, its one-line subline, and tall photo cards with the class
  * name set on each.
  */
@@ -103,12 +103,12 @@ export function ClassCards({
 }) {
   const Heading = headingLevel;
   return (
-    <section aria-labelledby={headingId} className="bg-wix-mauve pb-16 pt-10 text-white sm:pb-20 sm:pt-12">
+    <section aria-labelledby={headingId} className="bg-theme-brown pb-16 pt-10 text-white sm:pb-20 sm:pt-12">
       <div className="mx-auto max-w-[1160px] px-4 text-center sm:px-6">
         <Heading id={headingId} className="font-serif text-5xl font-semibold tracking-[-0.015em] sm:text-6xl lg:text-[4.25rem]">
           {title}
         </Heading>
-        {/* 24px keeps white on the sampled mauve at the 3:1 large-text minimum. */}
+        {/* 24px keeps white on the theme brown at the 3:1 large-text minimum. */}
         <p className="mx-auto mt-3 max-w-3xl font-serif text-2xl font-light leading-snug text-white">{intro}</p>
         <ul className={cn("mt-8 grid gap-[5px]", items.length === 3 ? "sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4")}>
           {items.map((c) => {
@@ -117,7 +117,7 @@ export function ClassCards({
               <li key={c.key}>
                 <a
                   href={c.href}
-                  className="group relative block overflow-hidden bg-wix-footer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-wix-mauve"
+                  className="group relative block overflow-hidden bg-theme-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-theme-brown"
                 >
                   {photo && (
                     <MediaPhoto
@@ -128,7 +128,7 @@ export function ClassCards({
                     />
                   )}
                   {/* The old cards carry a soft warm wash. */}
-                  <span aria-hidden="true" className="absolute inset-0 bg-wix-wash-warm/30" />
+                  <span aria-hidden="true" className="absolute inset-0 bg-theme-tan/30" />
                   <span className="banner-text absolute inset-x-0 top-1/2 -translate-y-1/2 px-3 font-serif text-3xl font-semibold tracking-[-0.01em] text-white sm:text-[2.75rem] sm:leading-none">
                     {c.name}
                   </span>

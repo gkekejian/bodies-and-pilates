@@ -10,12 +10,12 @@ export function ClassPassRating({ className }: { className?: string }) {
   return (
     <section aria-labelledby="classpass-rating-heading" className={cn("py-10 sm:py-14", className)}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-6 border-y border-sage-700/25 py-8 text-center sm:flex-row sm:justify-between sm:py-10 sm:text-left">
+        <div className="flex flex-col items-center gap-6 border-y border-brown-700/25 py-8 text-center sm:flex-row sm:justify-between sm:py-10 sm:text-left">
           <div>
-            <h2 id="classpass-rating-heading" className="font-serif text-4xl font-light leading-tight text-sage-900 sm:text-5xl">
+            <h2 id="classpass-rating-heading" className="font-serif text-4xl font-light leading-tight text-brown-900 sm:text-5xl">
               Rated {CLASSPASS_RATING.rating} on ClassPass
             </h2>
-            <p className="smallcaps mt-3 text-[15px] text-taupe-700">
+            <p className="smallcaps mt-3 text-[15px] text-brown-700">
               {CLASSPASS_RATING.ratings} ratings · {CLASSPASS_RATING.reviews} reviews
             </p>
           </div>

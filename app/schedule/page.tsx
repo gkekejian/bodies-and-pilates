@@ -18,7 +18,7 @@ const breadcrumb = breadcrumbSchema([
   { name: "Schedule", path: "/schedule" },
 ]);
 
-const link = "text-sage-700 underline underline-offset-4 hover:text-sage-500";
+const link = "text-brown-700 underline underline-offset-4 hover:text-brown-500";
 
 export default function SchedulePage() {
   return (
@@ -28,14 +28,14 @@ export default function SchedulePage() {
       <PageHero display="Book Your Session" title="Class Schedule" banner={MEDIA.classKneelingLegPress} focus="object-[50%_55%]" />
 
       {/* booking-1-top.png: the timetable on a rounded off-white card that starts
-          right under the banner, on the footer-sage band. */}
-      <section className="bg-wix-footer px-2 pb-16 pt-1 sm:px-4 sm:pb-20">
-        <div className="mx-auto max-w-[1174px] rounded-2xl bg-wix-offwhite px-4 py-8 sm:px-8 sm:py-10">
+          right under the tan banner, on the theme dark brown band. */}
+      <section className="bg-theme-dark px-2 pb-16 pt-1 sm:px-4 sm:pb-20">
+        <div className="mx-auto max-w-[1174px] rounded-2xl bg-theme-white px-4 py-8 sm:px-8 sm:py-10">
 
           {/* First-timer strip, directly above the widget. */}
           <aside
             aria-label="New here?"
-            className="mb-8 border-l-2 border-wix-sage bg-wix-pricing px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
+            className="mb-8 border-l-2 border-theme-dark bg-theme-cream px-5 py-4 font-sans text-sm leading-relaxed text-charcoal-800/85"
           >
             <p>
               <span className="font-medium text-charcoal-900">New here?</span> Arrive at least 10 minutes early to meet your
@@ -68,7 +68,7 @@ export default function SchedulePage() {
             </p>
           </div>
           <div>
-            <h2 className="mb-4 font-serif text-3xl text-sage-900">Studio hours</h2>
+            <h2 className="mb-4 font-serif text-3xl text-brown-900">Studio hours</h2>
             <HoursList />
           </div>
         </div>

@@ -5,7 +5,7 @@ import { faqById, TEASER_FAQ_IDS } from "@/lib/faqs";
 export function FaqTeaser() {
   const faqs = TEASER_FAQ_IDS.map(faqById);
   return (
-    <section aria-labelledby="faq-teaser-heading" className="bg-cream-50 py-20 sm:py-28">
+    <section aria-labelledby="faq-teaser-heading" className="bg-cream-100 py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
           <SectionHeading id="faq-teaser-heading" eyebrow="Questions" title="Before your first class" />
@@ -13,10 +13,10 @@ export function FaqTeaser() {
             Read all FAQs
           </CtaLink>
         </div>
-        <dl className="divide-y divide-sage-700/25 border-y border-sage-700/25 lg:col-span-8">
+        <dl className="divide-y divide-brown-700/25 border-y border-brown-700/25 lg:col-span-8">
           {faqs.map((f) => (
             <div key={f.id} className="py-6">
-              <dt className="font-serif text-2xl text-sage-900">{f.question}</dt>
+              <dt className="font-serif text-2xl text-brown-900">{f.question}</dt>
               <dd className="mt-3 font-sans text-base leading-[1.75] text-charcoal-800/85">{f.answer}</dd>
             </div>
           ))}

@@ -53,13 +53,16 @@ function TwoUp({
         </h2>
       </div>
       <div className={reverse ? "md:order-1 md:pr-[52px]" : "md:pl-[52px]"}>
-        <div className="mx-auto max-w-[360px] space-y-7 text-center font-serif text-[1.45rem] font-light leading-[1.22] text-wix-ink sm:text-[1.6rem]">
+        <div className="mx-auto max-w-[360px] space-y-7 text-center font-serif text-[1.45rem] font-light leading-[1.22] text-theme-ink sm:text-[1.6rem]">
           {children}
         </div>
       </div>
     </div>
   );
 }
+
+// The video strip under The Classes.
+const strip = present([MEDIA.classMoodyBacklit, MEDIA.classStandingWork, MEDIA.partnerSideStretch]);
 
 // Let's Be Friends: the old site ran its Instagram feed here; these are real
 // studio photos, each linking to the account.
@@ -75,9 +78,10 @@ const friends = present([
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero (home-1-hero.png): full-bleed photo, muted green wash, the
-          logo and nav on the photo, a white serif headline, a thin outlined button. */}
-      <section data-hero className="relative isolate -mt-[var(--header-h)] overflow-hidden bg-wix-footer text-white">
+      {/* 1. Hero (home-1-hero.png): full-bleed studio photo under a dark overlay
+          (the published old site ran a stock video here), the logo and nav on
+          the photo, a white serif headline, a thin outlined button. */}
+      <section data-hero className="relative isolate -mt-[var(--header-h)] overflow-hidden bg-theme-dark text-white">
         {MEDIA.standingSplit && (
           <>
             {/* Above the fold on every screen and the LCP element: prioritized. */}
@@ -89,7 +93,7 @@ export default function HomePage() {
               className="absolute inset-0 -z-20 h-full w-full"
               imgClassName="object-[50%_42%]"
             />
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-wix-footer/60" />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-theme-dark/60" />
           </>
         )}
         <div className="banner-text mx-auto flex min-h-[36rem] max-w-5xl flex-col items-center justify-center px-4 pb-16 pt-[calc(var(--header-h)+3rem)] text-center sm:min-h-[44rem] sm:px-6">
@@ -106,16 +110,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Welcome band (old site, verbatim). */}
-      <section aria-label="Welcome" className="bg-wix-olive px-4 py-16 text-wix-cream sm:py-[4.5rem]">
+      {/* 2. Welcome band, theme dark brown (old site, verbatim). */}
+      <section aria-label="Welcome" className="bg-theme-dark px-4 py-16 text-theme-cream sm:py-[4.5rem]">
         <p className="mx-auto max-w-[780px] text-center font-serif text-[1.55rem] font-light leading-[1.3] sm:text-[1.85rem]">
           Welcome to our curated studio, where we offer boutique Pilates classes in a warm and inviting setting. Join us
           on the journey to sculpt, balance, and grow together.
         </p>
       </section>
 
-      {/* 3 and 4. The Space and The Practice (old site; Practice adapted). */}
-      <section aria-labelledby="space-heading" className="bg-wix-beige pb-16 pt-6 sm:pb-24">
+      {/* 3 and 4. The Space and The Practice on the theme cream (old site; Practice adapted). */}
+      <section aria-labelledby="space-heading" className="bg-theme-cream pb-16 pt-6 sm:pb-24">
         <div className={`${column} space-y-12 md:space-y-12`}>
           <TwoUp id="space-heading" title="The Space" media={MEDIA.studioBrightRows}>
             <p>
@@ -135,25 +139,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. The Classes (old site band and subline; Abs and Assets added). */}
+      {/* 5. The Classes: the old site's band, subline and three cards. Abs and
+          Assets is listed under "Classes of 7 or Fewer" below. */}
       <ClassCards
         headingId="class-types-heading"
         items={[
           { key: "beginner", name: "Beginner", href: "/classes/beginner" },
           { key: "flexibility", name: "Flexibility", href: "/classes/flexibility" },
           { key: "fullbody", name: "Fullbody", href: "/classes/fullbody" },
-          { key: "abs-and-assets", name: "Abs and Assets", href: "/classes#abs-and-assets" },
         ]}
       />
 
-      {/* 6. The Reviews */}
-      <Testimonials />
+      {/* 6. The video strip: three studio clips edge to edge. Only the middle
+          one plays on its own; the others wait for a tap. */}
+      {strip.length > 0 && (
+        <section aria-label="Classes at the studio" className="bg-theme-dark p-[5px]">
+          <ul className="grid grid-cols-3 gap-[5px]">
+            {strip.map((m, i) => (
+              <li key={m.file}>
+                <MediaItem
+                  media={m}
+                  aspectClassName="aspect-[3/4] sm:aspect-[4/5]"
+                  autoPlay={i === 1}
+                  sizes="33vw"
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* 7. The Reviews: a photo beside the slideshow. */}
+      <Testimonials photo={MEDIA.nairaThird} />
 
       {/* The rebuild's sections the old home page did not have, kept for first
           visits and search, set in the old site's pricing and section styles. */}
-      <section aria-labelledby="intro-offers-heading" className="bg-wix-pricing py-16 sm:py-20">
+      <section aria-labelledby="intro-offers-heading" className="bg-theme-white py-16 sm:py-20">
         <div className="mx-auto max-w-[980px] px-4 sm:px-6">
-          <h2 id="intro-offers-heading" className="font-serif text-5xl font-light leading-[1.05] text-wix-intro sm:text-6xl">
+          <h2 id="intro-offers-heading" className="font-serif text-5xl font-light leading-[1.05] text-theme-dark sm:text-6xl">
             Intro Offers
           </h2>
           <p className="mt-4 max-w-xl font-sans text-base leading-[1.8] text-charcoal-800/85">
@@ -162,7 +185,7 @@ export default function HomePage() {
           </p>
           <div className="mt-10 grid max-w-[470px] grid-cols-2 gap-[18px]">
             {TRY.map((offer) => (
-              <OfferCard key={offer.id} offer={offer} accent="mauve" />
+              <OfferCard key={offer.id} offer={offer} />
             ))}
           </div>
           <div className="mt-8">
@@ -173,7 +196,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="small-group-heading" className="bg-wix-offwhite py-16 sm:py-24">
+      <section aria-labelledby="small-group-heading" className="bg-theme-cream py-16 sm:py-24">
         <div className="mx-auto grid max-w-[980px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-7">
             <SectionHeading
@@ -187,11 +210,11 @@ export default function HomePage() {
                 </p>
               }
             />
-            <dl className="divide-y divide-sage-700/25 border-y border-sage-700/25">
+            <dl className="divide-y divide-brown-700/25 border-y border-brown-700/25">
               {GROUP_CLASSES.map((c) => (
                 <div key={c.slug} className="grid gap-1 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
-                  <dt className="font-serif text-2xl text-sage-900">
-                    <Link href={`/classes/${c.slug}`} className="hover:text-sage-700">
+                  <dt className="font-serif text-2xl text-brown-900">
+                    <Link href={`/classes/${c.slug}`} className="hover:text-brown-700">
                       {c.name}
                     </Link>
                   </dt>
@@ -199,8 +222,8 @@ export default function HomePage() {
                 </div>
               ))}
               <div className="grid gap-1 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
-                <dt className="font-serif text-2xl text-sage-900">
-                  <Link href="/classes#abs-and-assets" className="hover:text-sage-700">
+                <dt className="font-serif text-2xl text-brown-900">
+                  <Link href="/classes#abs-and-assets" className="hover:text-brown-700">
                     Abs and Assets
                   </Link>
                 </dt>
@@ -216,10 +239,10 @@ export default function HomePage() {
               </CtaLink>
             </div>
           </div>
-          {MEDIA.classStandingWork && (
+          {MEDIA.studioReformersBoxes && (
             <div className="lg:col-span-5">
               <MediaItem
-                media={MEDIA.classStandingWork}
+                media={MEDIA.studioReformersBoxes}
                 aspectClassName="aspect-[4/5]"
                 className="mx-auto max-w-sm lg:max-w-none"
                 sizes="(max-width: 1024px) 100vw, 400px"
@@ -231,7 +254,7 @@ export default function HomePage() {
 
       <FaqTeaser />
 
-      <section aria-labelledby="areas-heading" className="bg-wix-pricing py-16 sm:py-24">
+      <section aria-labelledby="areas-heading" className="bg-theme-cream py-16 sm:py-24">
         <div className="mx-auto max-w-[980px] px-4 sm:px-6">
           <SectionHeading
             id="areas-heading"
@@ -244,10 +267,10 @@ export default function HomePage() {
               </p>
             }
           />
-          <ul className="grid gap-px border border-sage-700/25 bg-sage-700/25 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="grid gap-px border border-brown-700/25 bg-brown-700/25 sm:grid-cols-2 lg:grid-cols-4">
             {SERVICE_AREAS.map((a) => (
-              <li key={a.name} className="bg-wix-pricing p-6">
-                <h3 className="font-serif text-2xl text-sage-900">{a.name}</h3>
+              <li key={a.name} className="bg-theme-cream p-6">
+                <h3 className="font-serif text-2xl text-brown-900">{a.name}</h3>
                 <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-800/80">{a.line}</p>
               </li>
             ))}
@@ -265,9 +288,9 @@ export default function HomePage() {
 
       <FirstTimerGuide />
 
-      {/* 7. Let's Be Friends (home-5-friends-footer.png): a darkened photo band,
+      {/* 8. Let's Be Friends (home-5-friends-footer.png): a darkened photo band,
           the title, the Instagram handle, and a row of photos edge to edge. */}
-      <section aria-labelledby="friends-heading" className="relative isolate overflow-hidden bg-wix-footer pb-16 pt-14 text-white sm:pb-20 sm:pt-16">
+      <section aria-labelledby="friends-heading" className="relative isolate overflow-hidden bg-theme-dark pb-16 pt-14 text-white sm:pb-20 sm:pt-16">
         {MEDIA.studioLogoWall && (
           <>
             <MediaPhoto
@@ -276,7 +299,7 @@ export default function HomePage() {
               aspectClassName=""
               className="absolute inset-0 -z-20 h-full w-full"
             />
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-wix-footer/80" />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-theme-dark/80" />
           </>
         )}
         <div className="banner-text px-4 text-center">
@@ -289,7 +312,7 @@ export default function HomePage() {
             rel="noopener noreferrer"
             className="mt-6 inline-flex flex-col items-center gap-2 py-1 font-serif text-2xl font-light text-white/90 underline-offset-4 hover:underline"
           >
-            <InstagramIcon className="size-8 text-wix-icon" />
+            <InstagramIcon className="size-8 text-theme-sand" />
             {INSTAGRAM.handle}
           </a>
         </div>
