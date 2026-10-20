@@ -22,7 +22,7 @@ export function BlogIndex({ page }: { page: number }) {
         eyebrow="Journal"
         title="Pilates Blog"
         banner={MEDIA.entryBench}
-        tone="sage"
+        tone="dark"
         intro={<p>Practical guides to reformer Pilates from our studio in North Hollywood.</p>}
         media={
           MEDIA.artisticPose && (
@@ -39,18 +39,18 @@ export function BlogIndex({ page }: { page: number }) {
 
       <section className="bg-cream-50 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <ul className="grid gap-px border border-sage-700/25 bg-sage-700/25 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-px border border-brown-700/25 bg-brown-700/25 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <li key={post.slug} className="bg-cream-50">
                 <Link
                   href={`/blog/${post.slug}`}
                   className="group flex h-full flex-col gap-3 p-7 transition-colors hover:bg-cream-100"
                 >
-                  <span className="smallcaps text-sm text-sage-700">
+                  <span className="smallcaps text-sm text-brown-700">
                     <time dateTime={post.publishDate}>{formatPostDate(post.publishDate)}</time> &middot;{' '}
                     {post.readingMinutes} min read
                   </span>
-                  <h2 className="font-serif text-2xl leading-snug text-sage-900 group-hover:text-sage-700">
+                  <h2 className="font-serif text-2xl leading-snug text-brown-900 group-hover:text-brown-700">
                     {post.title}
                   </h2>
                   <p className="font-sans text-sm leading-relaxed text-charcoal-800/80">{post.description}</p>
@@ -68,8 +68,8 @@ export function BlogIndex({ page }: { page: number }) {
                   aria-current={n === page ? 'page' : undefined}
                   className={
                     n === page
-                      ? 'flex h-10 w-10 items-center justify-center bg-sage-700 text-cream-50'
-                      : 'flex h-10 w-10 items-center justify-center border border-sage-700/40 text-charcoal-800 hover:border-sage-700'
+                      ? 'flex h-10 w-10 items-center justify-center bg-brown-700 text-cream-50'
+                      : 'flex h-10 w-10 items-center justify-center border border-brown-700/40 text-charcoal-800 hover:border-brown-700'
                   }
                 >
                   {n}

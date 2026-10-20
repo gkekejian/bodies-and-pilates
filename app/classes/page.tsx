@@ -34,7 +34,7 @@ export default function ClassesPage() {
         eyebrow="Small-Group Reformer Pilates"
         title="Reformer Pilates Classes"
         banner={MEDIA.studioBrightRows}
-        tone="sage"
+        tone="dark"
         media={
           MEDIA.classMoodyBacklit && (
             <MediaItem
@@ -53,8 +53,8 @@ export default function ClassesPage() {
           </p>
         }
       >
-        <p className="mb-6 font-sans text-sm font-medium text-sage-700">
-          <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
+        <p className="mb-6 font-sans text-sm font-medium text-brown-700">
+          <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-brown-900">
             {CLASSPASS_RATING_LINE}
           </a>
         </p>
@@ -63,14 +63,14 @@ export default function ClassesPage() {
             <a
               key={c.slug}
               href={`#${c.slug}`}
-              className="smallcaps inline-block py-1 text-[15px] text-sage-700 underline-offset-4 hover:underline"
+              className="smallcaps inline-block py-1 text-[15px] text-brown-700 underline-offset-4 hover:underline"
             >
               {c.name}
             </a>
           ))}
           <a
             href="#abs-and-assets"
-            className="smallcaps inline-block py-1 text-[15px] text-sage-700 underline-offset-4 hover:underline"
+            className="smallcaps inline-block py-1 text-[15px] text-brown-700 underline-offset-4 hover:underline"
           >
             Abs and Assets
           </a>
@@ -123,7 +123,7 @@ export default function ClassesPage() {
             <ClassFormatBlock format={c} reverse={i % 2 === 1} />
             {c.slug === "private" && (
               <>
-                <p className="mt-10 font-serif text-3xl font-light text-sage-900">
+                <p className="mt-10 font-serif text-3xl font-light text-brown-900">
                   {priceOf("private")} for 55 minutes. Duets {priceOf("duet")} per person.
                 </p>
                 <PrivateShowcase includeDuet={false} />

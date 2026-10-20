@@ -15,8 +15,9 @@ export interface Faq {
 
 export const FAQS: Faq[] = [
   // The old site's FAQs page, in its order and its words (design-reference/old-site/faqs-top.png).
-  // Fact-sheet overrides: no-show $15 (the old page printed a dead fee), metered parking (PR #9), arrive at least 10 minutes
-  // early (PR #9), the PR #7 pregnancy and age entries, no $25 member add-on (not on the locked menu).
+  // Fact-sheet overrides: no-show $15 with no credit kept (the old page printed a dead fee and said a no-show keeps the
+  // credit), metered parking (PR #9), arrive at least 10 minutes early (PR #9), the PR #7 pregnancy and age entries, no $25
+  // member add-on (not on the locked menu). The old 5-minute late-arrival rule is held until the owner confirms it.
   {
     id: "signed-up",
     question: "I just signed up, what do I need for my first class?",
@@ -39,13 +40,7 @@ export const FAQS: Faq[] = [
     id: "cancellation",
     question: "What is your cancellation policy?",
     answer:
-      "Cancellations for classes must be made with a 12 hour notice of class start time. If you cancel within 12 hours of the scheduled class, you will be considered “Late cancel” and will forfeit that class with no additional charge. Absence to class without a cancellation will result in a $15 No Show fee and you will still retain your single class credit.",
-  },
-  {
-    id: "late",
-    question: "If I am running late, will I still be able to join the class?",
-    answer:
-      "We ask that you try your best to be on time to prevent distractions, and to allow proper warm up time during the beginning of class. If you arrive within 5 minutes of the start time, you will be allowed to join the class. Unfortunately, anything past that will result in a “late cancel” and your class credit will be forfeited.",
+      "Cancellations for classes must be made with a 12 hour notice of class start time. If you cancel within 12 hours of the scheduled class, you will be considered “Late cancel” and will forfeit that class with no additional charge. Absence to class without a cancellation will result in a $15 No Show fee.",
   },
   {
     id: "pregnant",

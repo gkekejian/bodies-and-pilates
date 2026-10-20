@@ -7,7 +7,7 @@ const introWeek = TRY.find((o) => o.id === "intro-week")!;
 /** `showClassPassBooking` adds the "Book on ClassPass" button (/pricing and /intro-offer). */
 export function ClassPassStrip({ showClassPassBooking = false }: { showClassPassBooking?: boolean }) {
   return (
-    <section aria-labelledby="classpass-heading" className="bg-sage-700 py-16 text-cream-50 sm:py-24">
+    <section aria-labelledby="classpass-heading" className="bg-brown-700 py-16 text-cream-50 sm:py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-8">
           <h2 id="classpass-heading" className="font-serif text-4xl font-light leading-tight sm:text-5xl">

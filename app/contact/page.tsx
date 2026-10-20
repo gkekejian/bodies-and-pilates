@@ -20,7 +20,7 @@ const breadcrumb = breadcrumbSchema([
 ]);
 
 const card = "bg-cream-50 p-6 shadow-[0_1px_3px_rgba(43,42,39,0.10),0_8px_24px_rgba(43,42,39,0.05)] sm:p-8";
-const link = "text-sage-700 underline-offset-4 hover:text-sage-500 hover:underline";
+const link = "text-brown-700 underline-offset-4 hover:text-brown-500 hover:underline";
 
 export default function ContactPage() {
   return (
@@ -31,7 +31,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Visit Us in North Hollywood"
         banner={MEDIA.receptionWall}
-        tone="sage"
+        tone="dark"
         intro={<p>Questions about classes, pricing, or your first visit? Call us, text us, or send an email.</p>}
       />
 
@@ -39,7 +39,7 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div className="space-y-8">
             <section className={card} aria-labelledby="get-in-touch">
-              <h2 id="get-in-touch" className="font-serif text-3xl text-sage-900">
+              <h2 id="get-in-touch" className="font-serif text-3xl text-brown-900">
                 Get in touch
               </h2>
               <dl className="mt-6 space-y-5 font-sans text-sm">
@@ -97,14 +97,14 @@ export default function ContactPage() {
             </section>
 
             <section className={card} aria-labelledby="hours-heading">
-              <h2 id="hours-heading" className="mb-4 font-serif text-3xl text-sage-900">
+              <h2 id="hours-heading" className="mb-4 font-serif text-3xl text-brown-900">
                 Studio hours
               </h2>
               <HoursList />
             </section>
 
             <section className={card} aria-labelledby="parking-heading">
-              <h2 id="parking-heading" className="font-serif text-3xl text-sage-900">
+              <h2 id="parking-heading" className="font-serif text-3xl text-brown-900">
                 Parking
               </h2>
               <p className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/80">
@@ -119,7 +119,7 @@ export default function ContactPage() {
                 that submits nowhere does not ship. Call, text, and email go
                 straight to the studio. */}
             <section className={card} aria-labelledby="reach-heading">
-              <h2 id="reach-heading" className="font-serif text-3xl text-sage-900">
+              <h2 id="reach-heading" className="font-serif text-3xl text-brown-900">
                 Call, text, or email
               </h2>
               <p className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/80">
@@ -149,7 +149,7 @@ export default function ContactPage() {
                 className="block w-full border-0"
                 allowFullScreen
               />
-              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-sage-700/20 px-4 py-3">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-brown-700/20 px-4 py-3">
                 <p className="font-sans text-xs text-charcoal-800/75">Bodies and Pilates, North Hollywood</p>
                 <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={`${link} inline-block py-1 font-sans text-xs`}>
                   Get directions

@@ -50,17 +50,17 @@ const quickLinks = [
   { label: "Blog", href: "/blog" },
 ];
 
-const heading = "mb-4 smallcaps text-sm text-wix-icon";
-const muted = "inline-block py-1 text-wix-cream/80 transition-colors hover:text-wix-cream";
-const row = "flex items-start gap-4 font-accent text-[17px] leading-snug text-wix-cream";
-const icon = "mt-0.5 size-6 shrink-0 fill-wix-icon/25 text-wix-icon";
+const heading = "mb-4 smallcaps text-sm text-theme-sand";
+const muted = "inline-block py-1 text-theme-cream/80 transition-colors hover:text-theme-cream";
+const row = "flex items-start gap-4 font-accent text-[17px] leading-snug text-theme-cream";
+const icon = "mt-0.5 size-6 shrink-0 fill-theme-sand/25 text-theme-sand";
 
 const newTab = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 /** The old site's quiet "Get in Touch" footer, with the new site's links kept below it. */
 export function Footer() {
   return (
-    <footer className="bg-wix-footer text-wix-cream">
+    <footer className="bg-theme-dark text-theme-cream">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-12">
           <Link
@@ -68,7 +68,7 @@ export function Footer() {
             className="inline-flex w-fit justify-self-center transition-opacity hover:opacity-80 md:col-span-3 md:justify-self-start"
             aria-label="Bodies and Pilates, home"
           >
-            {/* Official round logo, light version for the sage footer. */}
+            {/* Official round logo, light version for the dark brown footer. */}
             <Image
               src="/images/bodies-and-pilates-logo-round-light.png"
               alt="Bodies and Pilates logo"
@@ -81,7 +81,7 @@ export function Footer() {
 
           {/* Get in Touch */}
           <div className="md:col-span-5">
-            <h2 className="inline-block border-b border-wix-rule pb-1 pr-12 font-serif text-[2.4rem] font-light text-wix-cream">
+            <h2 className="inline-block border-b border-theme-tan pb-1 pr-12 font-serif text-[2.4rem] font-light text-theme-cream">
               Get in Touch
             </h2>
             <address className="mt-7 not-italic">
@@ -130,8 +130,8 @@ export function Footer() {
               <ul className="flex flex-col gap-1.5 font-sans text-sm">
                 {HOURS.map((h) => (
                   <li key={h.day} className="flex justify-between gap-4">
-                    <span className="text-wix-cream">{h.short}</span>
-                    <span className="text-wix-cream/80">{h.label}</span>
+                    <span className="text-theme-cream">{h.short}</span>
+                    <span className="text-theme-cream/80">{h.label}</span>
                   </li>
                 ))}
               </ul>
@@ -139,7 +139,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-10 border-t border-wix-cream/15 pt-10 sm:grid-cols-2">
+        <div className="mt-14 grid gap-10 border-t border-theme-cream/15 pt-10 sm:grid-cols-2">
           <nav aria-label="Footer navigation">
             <h2 className={heading}>Explore</h2>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-1 font-sans text-sm">
@@ -156,7 +156,7 @@ export function Footer() {
           <div>
             <h2 className={heading}>Find Us Online</h2>
             <ul className="flex flex-col gap-1 font-sans text-sm">
-              <li className="py-1 text-wix-cream/80">
+              <li className="py-1 text-theme-cream/80">
                 Rated {GOOGLE_REVIEWS.rating} on Google ({GOOGLE_REVIEWS.count} reviews)
               </li>
               <li>
@@ -175,13 +175,13 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <MindbodyAccountLink className="[&_a]:text-wix-cream/80 [&_a]:transition-colors [&_a:hover]:text-wix-cream" />
+                <MindbodyAccountLink className="[&_a]:text-theme-cream/80 [&_a]:transition-colors [&_a:hover]:text-theme-cream" />
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-3 border-t border-wix-cream/15 pt-6 text-xs text-wix-cream/75 sm:flex-row sm:justify-between">
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-theme-cream/15 pt-6 text-xs text-theme-cream/75 sm:flex-row sm:justify-between">
           <p className="font-accent text-sm">
             {SITE_NAME}. All rights reserved.
           </p>

@@ -38,7 +38,7 @@ export default function IntroOfferPage() {
         eyebrow="New Client Offer · North Hollywood"
         title="Your First Reformer Class Is $25"
         banner={MEDIA.classPlankRow}
-        tone="sage"
+        tone="dark"
       />
 
       <section aria-label="Intro offers" className="bg-cream-100 py-16 sm:py-20">
@@ -49,14 +49,14 @@ export default function IntroOfferPage() {
             need any experience. Take one class, take a week and come as often as you like, or do the class first and
             the week after it.
           </p>
-          <p className="mt-5 text-center font-sans text-sm font-medium text-sage-700">
-            <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-sage-900">
+          <p className="mt-5 text-center font-sans text-sm font-medium text-brown-700">
+            <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-brown-900">
               {CLASSPASS_RATING_LINE}
             </a>
           </p>
           <div className="mx-auto mt-12 grid max-w-[42rem] gap-6 sm:grid-cols-2">
             {TRY.map((offer) => (
-              <OfferCard key={offer.id} offer={offer} accent="mauve" headingLevel="h2" />
+              <OfferCard key={offer.id} offer={offer} headingLevel="h2" />
             ))}
           </div>
           <p className="mx-auto mt-6 max-w-[42rem] text-center font-sans text-sm text-charcoal-800/80">{POLICY.cancellation}</p>

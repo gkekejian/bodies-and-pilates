@@ -22,6 +22,29 @@ const CLIENT_REVIEW: Testimonial = {
   attribution: "Client review",
 };
 
+// The old site's "The Reviews" slideshow, verbatim (research-report.md,
+// Testimonials 1 to 3). The old site printed no names, so they carry the same
+// attribution as the owner-supplied client review.
+const OLD_SITE_REVIEWS: Testimonial[] = [
+  {
+    id: "old-site-1",
+    quote:
+      "Naira is a 10 out of 10. She is a genuine instructor. She is friendly and really cares about everyone in the class. She has a lovely presence. I felt like I got my moneys worth. I was very impressed and I look forward to taking another class there.",
+    attribution: "Client review",
+  },
+  {
+    id: "old-site-2",
+    quote:
+      "Naira is very charming and kind but works us to a sweat, while being accommodating to our particular circumstances. I really enjoy her sessions.",
+    attribution: "Client review",
+  },
+  {
+    id: "old-site-3",
+    quote: "I LOVE her classes! She has the best energy, it's calm and yet the sessions are very challenging.",
+    attribution: "Client review",
+  },
+];
+
 const CLASSPASS_REVIEWS: Testimonial[] = [
   {
     id: "sasha",
@@ -52,8 +75,12 @@ const CLASSPASS_REVIEWS: Testimonial[] = [
   },
 ];
 
-/** Home and intro offer: every verified review, one at a time. */
-export const HOME_TESTIMONIALS: Testimonial[] = [...CLASSPASS_REVIEWS, CLIENT_REVIEW];
+/**
+ * Home and intro offer: the old site's three reviews first, as its slideshow
+ * ran them, then the ClassPass reviews. The first old review is the full text
+ * of the owner-supplied excerpt, so the excerpt is not repeated here.
+ */
+export const HOME_TESTIMONIALS: Testimonial[] = [...OLD_SITE_REVIEWS, ...CLASSPASS_REVIEWS];
 
 /** About: all six, the client review first. */
 export const ABOUT_TESTIMONIALS: Testimonial[] = [CLIENT_REVIEW, ...CLASSPASS_REVIEWS];

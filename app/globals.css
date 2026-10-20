@@ -10,14 +10,14 @@
   }
   /* Small-caps, letter-spaced serif heading (INTRO OFFERS, THE SPACE). */
   .smallcaps {
-    font-family: var(--font-accent), Georgia, serif;
+    font-family: var(--font-accent);
     font-variant-caps: all-small-caps;
     letter-spacing: 0.22em;
   }
-  /* The old site's display serif (The Seasons) is a high-contrast cut at every
-     size; Fraunces gets there with its optical-size axis pinned high. */
+  /* The old site's display face is Fraunces at the 120 optical size (the Wix
+     editor's "Fraunces 120"), the high-contrast cut, at every size. */
   .font-serif {
-    font-variation-settings: "opsz" 144;
+    font-variation-settings: "opsz" 120;
   }
   /* Soft shadow behind white type set over photo banners. */
   .banner-text {
@@ -27,68 +27,55 @@
 
 @layer base {
   :root {
+    /* The old theme's paragraph font. A system font: nothing to download. */
+    --font-accent: "Times New Roman", Times, "Liberation Serif", serif;
     /* Header height; hero and banner sections slide up under the header by this much. */
     --header-h: 5rem;
     /*
-     * Brand palette, sampled pixel by pixel from the old Wix site captures in
-     * design-reference/old-site (2026-10-20). Each name says where the old site
-     * uses the color. RGB triplets so Tailwind opacity modifiers keep working.
+     * Brand palette: the old Wix site's theme palette, read from the Wix editor
+     * (Site Design, Color theme) on 2026-10-19. Six colors, no sage. RGB
+     * triplets so Tailwind opacity modifiers keep working.
      */
-    --wix-footer: 75 84 72;        /* #4B5448 footer, booking band, FAQ band, pricing hero Book Now, hero underlay */
-    --wix-sage: 85 100 80;         /* #556450 class packs and private bars, headings and prices; calendar "today" */
-    --wix-olive: 67 65 52;         /* #434134 welcome band under the home hero */
-    --wix-beige: 211 199 182;      /* #D3C7B6 The Space and The Practice band */
-    --wix-mauve: 172 143 125;      /* #AC8F7D The Classes band (sampled #AE907E, 2 steps darker for 3:1 white text) */
-    --wix-pricing: 244 241 235;    /* #F4F1EB pricing page body and card body */
-    --wix-offwhite: 251 249 246;   /* #FBF9F6 booking widget card, outlined button text */
-    --wix-blush: 246 235 228;      /* #F6EBE4 duet and private card body */
-    --wix-intro: 141 127 121;      /* #8D7F79 intro offers bar, heading, names and prices */
-    --wix-cocoa: 83 71 69;         /* #534745 Book Now bars; memberships bar, heading, names, prices */
-    --wix-duet: 158 132 107;       /* #9E846B duets bar and heading (sampled #A2876E, darkened for 3:1) */
-    --wix-cream: 255 252 240;      /* #FFFCF0 cream text on the welcome band and footer */
-    --wix-icon: 235 208 183;       /* #EBD0B7 footer contact icons */
-    --wix-rule: 204 174 147;       /* #CCAE93 footer "Get in Touch" underline */
-    --wix-ink: 0 0 0;              /* #000000 body text on the beige band */
-    --wix-wash-warm: 207 180 155;  /* #CFB49B pricing and booking banner wash (brightest banner area; overlay alpha estimated) */
+    --theme-white: 255 255 255;  /* #FFFFFF text on dark */
+    --theme-dark: 83 71 69;      /* #534745 footer, welcome band, FAQ accordion, Book Now strips, headings */
+    --theme-tan: 204 174 147;    /* #CCAE93 Pricing and Booking header bands, rules */
+    --theme-brown: 162 135 110;  /* #A2876E secondary accents: card top strips, The Classes band */
+    --theme-sand: 235 208 183;   /* #EBD0B7 pricing card faces, footer icons */
+    --theme-cream: 255 252 240;  /* #FFFCF0 page section backgrounds */
+    --theme-ink: 0 0 0;          /* body text (Times New Roman on cream) */
 
-    /* Scale names the components use, mapped onto the sampled palette. */
-    --bp-cream-50: var(--wix-offwhite);
-    --bp-cream-100: var(--wix-pricing);
-    --bp-cream-200: var(--wix-blush);
-    --bp-sage-300: 201 209 191;    /* #C9D1BF light sage, text on dark (not on the old site; kept for contrast) */
-    --bp-sage-500: 111 125 105;    /* #6F7D69 hover tint (not on the old site) */
-    --bp-sage-700: var(--wix-sage);
-    --bp-sage-900: var(--wix-footer);
-    --bp-taupe-300: var(--wix-beige);
-    --bp-taupe-500: 163 146 126;   /* #A3927E (not on the old site) */
-    --bp-taupe-700: 111 96 79;     /* #6F604F small text that must pass 4.5:1 (not on the old site) */
-    --bp-blush-500: 212 166 154;   /* #D4A69A (not on the old site) */
-    --bp-olive-800: var(--wix-olive);
-    --bp-mauve-600: var(--wix-mauve);
-    --bp-cocoa-700: var(--wix-cocoa);
-    --bp-charcoal-800: var(--wix-ink);
-    --bp-charcoal-900: var(--wix-ink);
+    /* Scale names the components use, mapped onto the theme palette. */
+    --bp-cream-50: var(--theme-cream);
+    --bp-cream-100: var(--theme-white);
+    --bp-cream-200: var(--theme-sand);
+    --bp-brown-300: var(--theme-sand);
+    --bp-brown-500: var(--theme-brown);
+    --bp-brown-700: var(--theme-dark);
+    --bp-brown-900: var(--theme-dark);
+    --bp-tan-300: var(--theme-tan);
+    --bp-charcoal-800: var(--theme-ink);
+    --bp-charcoal-900: var(--theme-ink);
 
     /* shadcn tokens */
-    --background: 40 25% 99%;
+    --background: 49 100% 97%;
     --foreground: 0 0% 17%;
     --card: 40 25% 97%;
     --card-foreground: 0 0% 17%;
-    --popover: 40 25% 99%;
+    --popover: 49 100% 97%;
     --popover-foreground: 0 0% 17%;
-    --primary: 106 11% 35%;      /* sage-700 #556450 */
+    --primary: 8 9% 30%;         /* theme dark #534745 */
     --primary-foreground: 40 33% 98%;
-    --secondary: 30 22% 78%;     /* taupe-300 */
+    --secondary: 29 36% 69%;     /* theme tan #CCAE93 */
     --secondary-foreground: 0 0% 17%;
     --muted: 35 20% 92%;
     --muted-foreground: 30 8% 45%;
-    --accent: 9 34% 72%;         /* blush-500 */
+    --accent: 29 59% 82%;         /* theme sand #EBD0B7 */
     --accent-foreground: 0 0% 17%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 30 15% 86%;
     --input: 30 15% 86%;
-    --ring: 106 11% 35%;
+    --ring: 8 9% 30%;
     --radius: 0.125rem;
   }
 
@@ -116,7 +103,7 @@
   h4,
   h5,
   h6 {
-    @apply font-serif font-light;
-    font-variation-settings: "opsz" 144;
+    @apply font-serif font-semibold;
+    font-variation-settings: "opsz" 120;
   }
 }

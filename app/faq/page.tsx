@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/sections/section-heading";
-import { FinalCta } from "@/components/sections/final-cta";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { FAQS, faqPageSchema } from "@/lib/faqs";
@@ -23,24 +23,15 @@ export default function FaqPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema()) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
-      <PageHero display="FAQs" title="Pilates Questions, Answered" banner={MEDIA.studioEmptyRoom} tone="sage" />
+      <PageHero display="FAQs" title="Pilates Questions, Answered" banner={MEDIA.studioEmptyRoom} tone="dark" />
 
-      {/* faqs-top.png: each question with its answer under it, in one narrow
-          column. Every answer is in the HTML, matching the FAQPage schema. */}
-      <section className="bg-wix-offwhite py-14 sm:py-20">
-        <div className="mx-auto max-w-[760px] px-4 sm:px-6">
-          <dl className="divide-y divide-sage-700/20">
-            {FAQS.filter((faq) => faq.answer).map((faq) => (
-              <div key={faq.id} id={faq.id} className="scroll-mt-32 py-7 first:pt-0">
-                <dt className="font-serif text-2xl leading-snug text-wix-footer">{faq.question}</dt>
-                <dd className="mt-3 font-sans text-base leading-[1.8] text-charcoal-800/85">{faq.answer}</dd>
-              </div>
-            ))}
-          </dl>
+      {/* faqs-top.png: the dark accordion straight under the banner, then the
+          dark footer, as on the old page. */}
+      <section aria-label="Frequently asked questions" className="bg-theme-dark pb-16 pt-10 sm:pb-24 sm:pt-14">
+        <div className="mx-auto max-w-[860px] px-4 sm:px-6">
+          <FaqAccordion faqs={FAQS.filter((faq) => faq.answer)} />
         </div>
       </section>
-
-      <FinalCta />
     </>
   );
 }

@@ -83,14 +83,14 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
         eyebrow={isPrivate ? "Private Reformer Pilates" : "Small-Group Reformer Pilates"}
         title={c.pageTitle}
         banner={CLASS_CARD_PHOTO[c.slug]}
-        tone="sage"
+        tone="dark"
         intro={
           isPrivate ? (
             <p>{PRIVATE_INTRO}</p>
           ) : (
             <>
               <p>{c.oneLiner}</p>
-              <p className="smallcaps mt-4 text-[15px] text-sage-700">
+              <p className="smallcaps mt-4 text-[15px] text-brown-700">
                 50 minutes &middot; 7 people max &middot; Merrithew reformers &middot; First class $25
               </p>
             </>
@@ -100,7 +100,7 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
         <nav aria-label="Breadcrumb">
           <ol className="flex items-center gap-2 font-sans text-sm text-charcoal-800/75">
             <li>
-              <Link href="/classes" className="hover:text-sage-700">
+              <Link href="/classes" className="hover:text-brown-700">
                 Classes
               </Link>
             </li>
@@ -128,12 +128,12 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
               <blockquote className="font-accent text-xl italic leading-[1.65] text-charcoal-800 sm:text-2xl">
                 &ldquo;{review.quote}&rdquo;
               </blockquote>
-              <figcaption className="smallcaps mt-6 text-[15px] text-sage-700">
+              <figcaption className="smallcaps mt-6 text-[15px] text-brown-700">
                 {review.attribution}
               </figcaption>
             </figure>
             <p className="mt-6 font-sans text-sm">
-              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-900">
+              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-brown-700 underline underline-offset-4 hover:text-brown-900">
                 {CLASSPASS_RATING_LINE}
               </a>
             </p>
@@ -151,11 +151,11 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
             <SectionHeading id="private-pricing" eyebrow="Pricing" title="Private session pricing" />
             <div className="grid max-w-[42rem] gap-6 sm:grid-cols-2">
               {PRIVATE.map((offer) => (
-                <OfferCard key={offer.id} offer={offer} accent={offer.id === "duet" ? "tan" : "sage"} tint="blush" showDetail />
+                <OfferCard key={offer.id} offer={offer} showDetail />
               ))}
             </div>
             <p className="mt-8 font-sans text-sm">
-              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline underline-offset-4 hover:text-sage-900">
+              <a href={CLASSPASS_URL} target="_blank" rel="noopener noreferrer" className="text-brown-700 underline underline-offset-4 hover:text-brown-900">
                 {CLASSPASS_RATING_LINE}
               </a>
             </p>

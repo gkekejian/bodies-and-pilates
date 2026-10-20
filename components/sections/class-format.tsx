@@ -43,28 +43,28 @@ export function ClassFormatBlock({
           {format.level} &middot; {format.duration}
         </p>
         {showHeading && (
-          <Heading className="font-serif text-4xl font-light leading-tight text-sage-900 sm:text-5xl">{format.name}</Heading>
+          <Heading className="font-serif text-4xl font-light leading-tight text-brown-900 sm:text-5xl">{format.name}</Heading>
         )}
         <p className="mt-5 font-sans text-base leading-[1.75] text-charcoal-800/85 sm:text-lg">{format.blurb}</p>
 
         <dl className="mt-8 grid gap-8 sm:grid-cols-2">
           <div>
-            <dt className="smallcaps text-[15px] text-sage-700">Who it is for</dt>
+            <dt className="smallcaps text-[15px] text-brown-700">Who it is for</dt>
             <dd className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/85">{format.forWho}</dd>
-            <dt className="mt-6 smallcaps text-[15px] text-sage-700">
+            <dt className="mt-6 smallcaps text-[15px] text-brown-700">
               Difficulty
             </dt>
             <dd className="mt-3 font-sans text-sm leading-relaxed text-charcoal-800/85">{format.level}</dd>
           </div>
           <div>
-            <dt className="smallcaps text-[15px] text-sage-700">
+            <dt className="smallcaps text-[15px] text-brown-700">
               {expectHeading}
             </dt>
             <dd className="mt-3">
               <ul className="space-y-2.5 font-sans text-sm leading-relaxed text-charcoal-800/85">
                 {format.expect.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-sage-500" />
+                    <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brown-500" />
                     {item}
                   </li>
                 ))}

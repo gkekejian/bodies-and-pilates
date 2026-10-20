@@ -15,9 +15,9 @@ export function FinalCta({
   // Top padding is 8px shy of the bottom to offset the headline's half-leading,
   // so the visible content (cap height to button edge) sits optically centered.
   return (
-    <section aria-labelledby="final-cta-heading" className="bg-wix-pricing pb-24 pt-[5.5rem] sm:pb-32 sm:pt-[7.5rem]">
+    <section aria-labelledby="final-cta-heading" className="bg-theme-cream pb-24 pt-[5.5rem] sm:pb-32 sm:pt-[7.5rem]">
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 id="final-cta-heading" className="font-serif text-5xl font-light leading-[1.05] text-wix-footer sm:text-6xl lg:text-7xl">
+        <h2 id="final-cta-heading" className="font-serif text-5xl font-light leading-[1.05] text-theme-dark sm:text-6xl lg:text-7xl">
           {title}
         </h2>
         <p className="mx-auto mt-8 max-w-xl font-sans text-base leading-[1.75] text-charcoal-800/85 sm:text-lg">{body}</p>

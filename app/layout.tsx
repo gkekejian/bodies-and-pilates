@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Libre_Baskerville, Montserrat, Poppins } from "next/font/google";
+import { Fraunces, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -10,23 +10,15 @@ import { exerciseGymSchema, websiteSchema, jsonLd } from "@/lib/schema";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 // Type system from the old site. Only the display serif (the hero headline,
-// the LCP text) is preloaded; the others swap in when first used.
+// the LCP text) is preloaded; the others swap in when first used. The theme's
+// paragraph font, Times New Roman, is a system font (--font-accent, globals.css).
 const display = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  // Variable font with the optical-size axis: large sizes get the
-  // high-contrast cut that stands in for The Seasons.
+  // Variable font with the optical-size axis, pinned at 120 in globals.css
+  // (the Wix editor's "Fraunces 120 Semi Bold").
   axes: ["opsz"],
-});
-
-const accent = Libre_Baskerville({
-  subsets: ["latin"],
-  variable: "--font-accent",
-  display: "swap",
-  weight: ["400"],
-  style: ["normal", "italic"],
-  preload: false,
 });
 
 const sans = Montserrat({
@@ -64,12 +56,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#556450",
+  themeColor: "#534745",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${accent.variable} ${sans.variable} ${light.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${light.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

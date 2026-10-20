@@ -44,21 +44,21 @@ export function FirstTimerGuide({ id = "first-timers-guide" }: { id?: string }) 
       <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className={MEDIA.gripSocksFlatLay ? "lg:col-span-7" : "lg:col-span-12"}>
           <p className={`${eyebrowClass} mb-5`}>First-Timer&apos;s Guide</p>
-          <h2 id={`${id}-heading`} className="font-serif text-4xl font-light leading-[1.15] text-sage-900 sm:text-5xl">
+          <h2 id={`${id}-heading`} className="font-serif text-4xl font-light leading-[1.15] text-brown-900 sm:text-5xl">
             What to wear, where to park, which class to take
           </h2>
-          <ol className="mt-10 divide-y divide-sage-700/25 border-y border-sage-700/25">
+          <ol className="mt-10 divide-y divide-brown-700/25 border-y border-brown-700/25">
             {POINTS.map((p, i) => (
               <li key={p.title} className="flex gap-5 py-5">
-                <span aria-hidden="true" className="font-poppins text-xl font-extralight text-sage-700">
+                <span aria-hidden="true" className="font-poppins text-xl font-extralight text-brown-700">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="font-serif text-2xl text-sage-900">{p.title}</h3>
+                  <h3 className="font-serif text-2xl text-brown-900">{p.title}</h3>
                   <p className="mt-1.5 font-sans text-base leading-relaxed text-charcoal-800/85">{p.body}</p>
                   <Link
                     href={p.href}
-                    className="mt-2 inline-block py-1 font-sans text-sm text-sage-700 underline-offset-4 hover:text-sage-500 hover:underline"
+                    className="mt-2 inline-block py-1 font-sans text-sm text-brown-700 underline-offset-4 hover:text-brown-500 hover:underline"
                   >
                     {p.link}
                   </Link>

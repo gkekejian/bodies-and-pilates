@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 // Official round logo, used exactly as supplied (1342x1376). Rendered at a
 // fixed height with width auto so it is never stretched or cropped. The light
-// version sits on the sage header band, as on the old site.
+// version sits on the dark brown header band, as on the old site.
 const LOGO = { src: "/images/bodies-and-pilates-logo-round-light.png", width: 1342, height: 1376 };
 const LOGO_DARK = { src: "/images/bodies-and-pilates-logo-round.png", width: 1342, height: 1376 };
 const LOGO_ALT = "Bodies and Pilates logo";
@@ -62,8 +62,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 h-[var(--header-h)] w-full text-wix-cream transition-colors duration-300",
-        overHero ? "bg-transparent" : "bg-wix-footer shadow-[0_1px_0_rgba(0,0,0,0.08)]"
+        "sticky top-0 z-50 h-[var(--header-h)] w-full text-theme-cream transition-colors duration-300",
+        overHero ? "bg-transparent" : "bg-theme-dark shadow-[0_1px_0_rgba(0,0,0,0.08)]"
       )}
     >
       <div className="mx-auto flex h-full max-w-[1100px] items-center justify-between gap-3 px-4 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-5">
@@ -91,8 +91,8 @@ export function Header() {
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
               className={cn(
-                "banner-text whitespace-nowrap font-accent text-[15px] text-wix-cream underline-offset-[6px] transition-opacity duration-200 hover:opacity-80",
-                isActive(link.href) && "underline decoration-wix-cream/70 decoration-1"
+                "banner-text whitespace-nowrap font-accent text-[15px] text-theme-cream underline-offset-[6px] transition-opacity duration-200 hover:opacity-80",
+                isActive(link.href) && "underline decoration-theme-cream/70 decoration-1"
               )}
             >
               {link.label}
@@ -105,7 +105,7 @@ export function Header() {
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger
                 aria-label="Open navigation menu"
-                className="inline-flex h-11 w-11 items-center justify-center text-wix-cream transition-colors hover:bg-wix-footer/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wix-cream"
+                className="inline-flex h-11 w-11 items-center justify-center text-theme-cream transition-colors hover:bg-theme-dark/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme-cream"
               >
                 <Menu className="size-5" />
               </SheetTrigger>
@@ -128,8 +128,8 @@ export function Header() {
                       onClick={() => setOpen(false)}
                       aria-current={isActive(link.href) ? "page" : undefined}
                       className={cn(
-                        "block border-b border-taupe-300/40 py-4 font-accent text-base transition-colors duration-150",
-                        isActive(link.href) ? "text-sage-700" : "text-charcoal-800 hover:text-sage-700"
+                        "block border-b border-tan-300/40 py-4 font-accent text-base transition-colors duration-150",
+                        isActive(link.href) ? "text-brown-700" : "text-charcoal-800 hover:text-brown-700"
                       )}
                     >
                       {link.label}
