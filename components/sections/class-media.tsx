@@ -111,7 +111,8 @@ export function ClassCards({
         </Heading>
         {/* 24px keeps white on the theme brown at the 3:1 large-text minimum. */}
         <p className="mx-auto mt-3 max-w-3xl font-serif text-2xl font-light leading-snug text-white">{intro}</p>
-        <ul className={cn("mt-8 grid gap-[5px]", items.length === 3 ? "sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4")}>
+        {/* Three cards: the old row, 285px cards 5px apart (865px). */}
+        <ul className={cn("mt-8 grid gap-[5px]", items.length === 3 ? "mx-auto max-w-[865px] sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4")}>
           {items.map((c) => {
             const photo = c.photo !== undefined ? c.photo : CLASS_CARD_PHOTO[c.key];
             return (
@@ -123,7 +124,7 @@ export function ClassCards({
                   {photo && (
                     <MediaPhoto
                       media={photo}
-                      sizes={items.length === 3 ? "(max-width: 640px) 100vw, 33vw" : "(max-width: 1024px) 50vw, 290px"}
+                      sizes={items.length === 3 ? "(max-width: 640px) 100vw, 290px" : "(max-width: 1024px) 50vw, 290px"}
                       aspectClassName="aspect-[285/430]"
                       className="transition-transform duration-500 group-hover:scale-[1.03]"
                     />

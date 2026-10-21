@@ -20,22 +20,22 @@ export function renderOgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#F5F0EB",
+          background: "#FFFCF0",
           padding: "72px 80px",
-          color: "#1A1A1A",
+          color: "#534745",
           fontFamily: "serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 24, letterSpacing: 6, color: "#7D8A6D", textTransform: "uppercase" }}>
+        <div style={{ display: "flex", fontSize: 24, letterSpacing: 6, color: "#A2876E", textTransform: "uppercase" }}>
           Woman-owned · North Hollywood
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 88, lineHeight: 1.05 }}>Bodies and Pilates</div>
-          <div style={{ fontSize: 40, marginTop: 24, color: "#2C2C2C" }}>Boutique reformer Pilates studio</div>
+          <div style={{ fontSize: 40, marginTop: 24, color: "#534745" }}>Boutique reformer Pilates studio</div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-          <div style={{ display: "flex", fontSize: 30, color: "#5A6B4A" }}>Your first class is $25</div>
-          <div style={{ display: "flex", fontSize: 24, color: "#A3927E" }}>bodiesandpilates.com</div>
+          <div style={{ display: "flex", fontSize: 30, color: "#534745" }}>Your first class is $25</div>
+          <div style={{ display: "flex", fontSize: 24, color: "#A2876E" }}>bodiesandpilates.com</div>
         </div>
       </div>
     ),

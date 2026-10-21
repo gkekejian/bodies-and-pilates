@@ -145,14 +145,14 @@ export const PRIVATE: Offer[] = [
   },
 ];
 
-/** Owner-confirmed policy lines shown on /pricing (FAQ carries the longer versions). */
+/** Owner-confirmed short policy lines (/intro-offer, llms.txt); the FAQ carries the longer versions. */
 export const POLICY = {
   cancellation: "Cancel 12+ hours ahead at no charge. Inside 12 hours, the class credit is forfeited. No-show: $15.",
   membership: "Pause anytime. Cancel with 7 days' notice. No fees.",
 } as const;
 
 /**
- * Every price surface (cards, the /pricing table, the Home teaser) reads from
+ * Every price surface (cards, the /pricing table, the class pages) reads from
  * the arrays above. The table walks these groups in order.
  */
 export const PRICE_GROUPS: { type: string; offers: Offer[] }[] = [

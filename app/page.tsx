@@ -1,18 +1,10 @@
-import Link from "next/link";
 import { CtaLink } from "@/components/ui/cta-link";
 import { MediaItem, MediaPhoto } from "@/components/ui/media";
-import { SectionHeading } from "@/components/sections/section-heading";
 import { ClassCards } from "@/components/sections/class-media";
 import { InstagramIcon } from "@/components/layout/footer";
-import { OfferCard } from "@/components/sections/offer-card";
 import { Testimonials } from "@/components/sections/testimonials";
-import { FaqTeaser } from "@/components/sections/faq-teaser";
-import { FirstTimerGuide } from "@/components/sections/first-timer-guide";
 import { pageMetadata } from "@/lib/metadata";
 import { MEDIA, STOCK, present, type Media } from "@/lib/media";
-import { GROUP_CLASSES } from "@/lib/classes";
-import { TRY } from "@/lib/pricing";
-import { SERVICE_AREAS } from "@/lib/areas";
 import { INSTAGRAM } from "@/lib/site";
 
 export const metadata = pageMetadata({
@@ -78,9 +70,10 @@ const friends = present([
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero (home-1-hero.png): full-bleed studio photo under a dark overlay
-          (the published old site ran a stock video here), the logo and nav on
-          the photo, a white serif headline, a thin outlined button. */}
+      {/* 1. Hero (home-1-hero.png): full-bleed photo under a dark overlay, the
+          logo and nav on the photo, a white serif headline, a thin outlined
+          button. TODO(owner): placeholder. The old hero photo (the Cadillac
+          shot) replaces standingSplit here once the owner uploads it. */}
       <section data-hero className="relative isolate -mt-[var(--header-h)] overflow-hidden bg-theme-dark text-white">
         {MEDIA.standingSplit && (
           <>
@@ -139,8 +132,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. The Classes: the old site's band, subline and three cards. Abs and
-          Assets is listed under "Classes of 7 or Fewer" below. */}
+      {/* 5. The Classes (home-3-practice-classes.png): the old band, its intro
+          line and the three cards. Abs and Assets and the rest of the schedule
+          are one click away on /classes. */}
       <ClassCards
         headingId="class-types-heading"
         items={[
@@ -171,122 +165,6 @@ export default function HomePage() {
 
       {/* 7. The Reviews: a photo beside the slideshow. */}
       <Testimonials photo={STOCK.yogaStandingPose} />
-
-      {/* The rebuild's sections the old home page did not have, kept for first
-          visits and search, set in the old site's pricing and section styles. */}
-      <section aria-labelledby="intro-offers-heading" className="bg-theme-white py-16 sm:py-20">
-        <div className="mx-auto max-w-[980px] px-4 sm:px-6">
-          <h2 id="intro-offers-heading" className="font-serif text-5xl font-light leading-[1.05] text-theme-dark sm:text-6xl">
-            Intro Offers
-          </h2>
-          <p className="mt-4 max-w-xl font-sans text-base leading-[1.8] text-charcoal-800/85">
-            New to the studio? Try one class, take a full week, or do the class first and the week after it. Both are for
-            first-timers.
-          </p>
-          <div className="mt-10 grid max-w-[470px] grid-cols-2 gap-[18px]">
-            {TRY.map((offer) => (
-              <OfferCard key={offer.id} offer={offer} />
-            ))}
-          </div>
-          <div className="mt-8">
-            <CtaLink href="/intro-offer" variant="text">
-              What to expect at your first class
-            </CtaLink>
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="small-group-heading" className="bg-theme-cream py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[980px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-7">
-            <SectionHeading
-              id="small-group-heading"
-              eyebrow="The Format"
-              title="Classes of 7 or Fewer"
-              intro={
-                <p>
-                  Every group class runs on a Merrithew reformer. You get the energy of a class and the attention of a
-                  private session.
-                </p>
-              }
-            />
-            <dl className="divide-y divide-brown-700/25 border-y border-brown-700/25">
-              {GROUP_CLASSES.map((c) => (
-                <div key={c.slug} className="grid gap-1 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
-                  <dt className="font-serif text-2xl text-brown-900">
-                    <Link href={`/classes/${c.slug}`} className="hover:text-brown-700">
-                      {c.name}
-                    </Link>
-                  </dt>
-                  <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">{c.oneLiner}</dd>
-                </div>
-              ))}
-              <div className="grid gap-1 py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
-                <dt className="font-serif text-2xl text-brown-900">
-                  <Link href="/classes#abs-and-assets" className="hover:text-brown-700">
-                    Abs and Assets
-                  </Link>
-                </dt>
-                <dd className="font-sans text-base leading-relaxed text-charcoal-800/85">A 50-minute reformer class on our weekly schedule.</dd>
-              </div>
-            </dl>
-            <div className="mt-10 flex flex-wrap items-center gap-6">
-              <CtaLink href="/classes" variant="outline">
-                View all classes
-              </CtaLink>
-              <CtaLink href="/schedule" variant="text">
-                See this week&apos;s schedule
-              </CtaLink>
-            </div>
-          </div>
-          {MEDIA.studioReformersBoxes && (
-            <div className="lg:col-span-5">
-              <MediaItem
-                media={MEDIA.studioReformersBoxes}
-                aspectClassName="aspect-[4/5]"
-                className="mx-auto max-w-sm lg:max-w-none"
-                sizes="(max-width: 1024px) 100vw, 400px"
-              />
-            </div>
-          )}
-        </div>
-      </section>
-
-      <FaqTeaser />
-
-      <section aria-labelledby="areas-heading" className="bg-theme-cream py-16 sm:py-24">
-        <div className="mx-auto max-w-[980px] px-4 sm:px-6">
-          <SectionHeading
-            id="areas-heading"
-            eyebrow="Areas We Serve"
-            title="Reformer Pilates near you"
-            intro={
-              <p>
-                Our studio is on Vineland Ave in North Hollywood. Most of our clients come from North Hollywood and the
-                neighborhoods around it.
-              </p>
-            }
-          />
-          <ul className="grid gap-px border border-brown-700/25 bg-brown-700/25 sm:grid-cols-2 lg:grid-cols-4">
-            {SERVICE_AREAS.map((a) => (
-              <li key={a.name} className="bg-theme-cream p-6">
-                <h3 className="font-serif text-2xl text-brown-900">{a.name}</h3>
-                <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-800/80">{a.line}</p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 flex flex-wrap items-center gap-6">
-            <CtaLink href="/contact" variant="outline">
-              Directions and parking
-            </CtaLink>
-            <CtaLink href="/about#neighborhoods" variant="text">
-              Routes from nearby neighborhoods
-            </CtaLink>
-          </div>
-        </div>
-      </section>
-
-      <FirstTimerGuide />
 
       {/* 8. Let's Be Friends (home-5-friends-footer.png): a darkened photo band,
           the title, the Instagram handle, and a row of photos edge to edge. */}
