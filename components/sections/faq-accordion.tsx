@@ -2,6 +2,11 @@ import { ChevronDown } from "lucide-react";
 import type { Faq } from "@/lib/faqs";
 import { FaqHashOpener } from "@/components/sections/faq-hash-opener";
 
+/** Renders `**text**` in an answer as bold, as the old FAQ page set it. */
+function Answer({ text }: { text: string }) {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, i) => (i % 2 ? <strong key={i} className="font-bold">{part}</strong> : part));
+}
+
 /**
  * The old FAQs page's dark accordion: theme dark brown, cream type, a rule
  * between questions, a chevron on each, one open at a time. Built on
@@ -17,7 +22,7 @@ export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
             {faq.question}
             <ChevronDown aria-hidden="true" className="size-6 shrink-0 text-theme-sand transition-transform duration-200 group-open:rotate-180" />
           </summary>
-          <p className="max-w-[640px] pb-7 font-accent text-lg leading-[1.6] text-theme-cream/90">{faq.answer}</p>
+          <p className="max-w-[640px] pb-7 font-accent text-lg leading-[1.6] text-theme-cream/90">{faq.answer && <Answer text={faq.answer} />}</p>
         </details>
       ))}
       <FaqHashOpener />

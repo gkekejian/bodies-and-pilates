@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { COMMIT, FLEX, POLICY, PRICE_GROUPS, PRIVATE, TRY } from "@/lib/pricing";
 import { CLASSPASS_RATING_LINE, CLASSPASS_URL, SITE_URL } from "@/lib/site";
-import { MEDIA } from "@/lib/media";
+import { STOCK } from "@/lib/media";
 
 export const metadata = pageMetadata({
   title: "Reformer Pilates Prices, North Hollywood | Bodies and Pilates",
@@ -74,7 +74,7 @@ export default function PricingPage() {
       <PageHero
         display="Pricing"
         title="Pilates Pricing in North Hollywood"
-        banner={MEDIA.classPlankRow}
+        banner={STOCK.groupSideBend}
         focus="object-[50%_62%]"
         action={
           <CtaLink href="/schedule" className="min-w-[206px] px-10 text-[19px]">

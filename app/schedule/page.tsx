@@ -4,7 +4,7 @@ import { MindbodyScheduleWidget } from "@/components/mindbody/schedule-widget";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { MINDBODY, PHONE, GRIP_SOCKS_LINE } from "@/lib/site";
-import { MEDIA } from "@/lib/media";
+import { STOCK } from "@/lib/media";
 
 export const metadata = pageMetadata({
   title: "Reformer Pilates Schedule, North Hollywood | Bodies and Pilates",
@@ -25,7 +25,7 @@ export default function SchedulePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
-      <PageHero display="Book Your Session" title="Class Schedule" banner={MEDIA.classKneelingLegPress} focus="object-[50%_55%]" />
+      <PageHero display="Book Your Session" title="Class Schedule" banner={STOCK.groupSideBend} focus="object-[50%_55%]" />
 
       {/* booking-1-top.png: the timetable on a rounded off-white card that starts
           right under the tan banner, on the theme dark brown band. */}

@@ -6,7 +6,9 @@ import manifestJson from "./media-manifest.json";
  * Files are imported with `python3 scripts/import_media.py`, which writes
  * public/media/ and lib/media-manifest.json. An asset that is not in the
  * manifest resolves to null and its slot renders nothing: there are no
- * placeholders and no stock or AI imagery anywhere on the site.
+ * placeholders and no AI imagery anywhere on the site. The only stock images
+ * are the four the old Wix site used, kept by owner decision (October 21,
+ * 2026) in the old slots only (STOCK below).
  *
  * Filenames are final (they carry SEO value). Alt text describes what is in
  * the frame. Instructor photos follow "[Full Name], instructor at Bodies and
@@ -117,6 +119,20 @@ export const MEDIA = {
   sitaHeadshot: photo("instructor-headshot-black-tee.jpg", "Sita Acevedo, instructor at Bodies and Pilates in North Hollywood"),
   theresiaHeadshot: photo("instructor-headshot-black-cami.jpg", "Theresia Bunch, instructor at Bodies and Pilates in North Hollywood"),
   hannahHeadshot: photo("instructor-headshot-one-shoulder-top.jpg", "Hannah Pink, instructor at Bodies and Pilates in North Hollywood"),
+} as const;
+
+/**
+ * The old Wix site's stock photos (not of this studio), self-hosted. Owner
+ * decision, October 21, 2026: used only in the slots the old site used them,
+ * the Home class cards for Beginner, Flexibility and Fullbody, the Home
+ * reviews photo, and the Pricing, FAQs and Booking banners. Alt text
+ * describes the frame and does not present it as the studio.
+ */
+export const STOCK = {
+  groupSideBend: photo("stock-group-side-bend-on-reformers.jpg", "Group doing a side bend on Pilates reformers"),
+  groupLegStraps: photo("stock-group-leg-straps-on-reformers.jpg", "Group lying on Pilates reformers with their legs in the straps"),
+  lungeOnReformer: photo("stock-lunge-on-reformer.jpg", "Woman in a standing lunge on a Pilates reformer"),
+  yogaStandingPose: photo("stock-yoga-standing-pose.jpg", "Woman in a standing yoga pose with her arms outstretched"),
 } as const;
 
 /** Default Open Graph / social share image: 1200x630 crop of the home hero. */

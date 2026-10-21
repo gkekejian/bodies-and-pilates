@@ -14,3 +14,8 @@ The old Wix site's theme palette and fonts, read from the Wix editor on
 
 No image here contains the old footer's phone number: every old capture
 comes from the redacted set in `../old-site`.
+
+Updated 2026-10-21 (owner decisions): the Home Beginner, Flexibility and
+Fullbody cards, the Home reviews photo, and the Pricing, FAQs and Booking
+banners now use the old site's Wix stock photos (`public/media/photos/stock-*.jpg`).
+The Home, Pricing, FAQs and Booking pairs and captures were retaken.

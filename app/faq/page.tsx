@@ -3,7 +3,7 @@ import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { FAQS, faqPageSchema } from "@/lib/faqs";
-import { MEDIA } from "@/lib/media";
+import { STOCK } from "@/lib/media";
 
 export const metadata = pageMetadata({
   title: "Pilates FAQs | Bodies and Pilates North Hollywood",
@@ -23,7 +23,7 @@ export default function FaqPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema()) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
 
-      <PageHero display="FAQs" title="Pilates Questions, Answered" banner={MEDIA.studioEmptyRoom} tone="dark" />
+      <PageHero display="FAQs" title="Pilates Questions, Answered" banner={STOCK.groupSideBend} tone="dark" />
 
       {/* faqs-top.png: the dark accordion straight under the banner, then the
           dark footer, as on the old page. */}
