@@ -8,6 +8,7 @@
 export interface Faq {
   id: string;
   question: string;
+  /** Plain text; `**text**` marks bold, as the old site set it. */
   answer: string | null;
   /** What the owner must provide when `answer` is null. */
   pending?: string;
@@ -16,8 +17,8 @@ export interface Faq {
 export const FAQS: Faq[] = [
   // The old site's FAQs page, in its order and its words (design-reference/old-site/faqs-top.png).
   // Fact-sheet overrides: no-show $15 with no credit kept (the old page printed a dead fee and said a no-show keeps the
-  // credit), metered parking (PR #9), arrive at least 10 minutes early (PR #9), the PR #7 pregnancy and age entries, no $25
-  // member add-on (not on the locked menu). The old 5-minute late-arrival rule is held until the owner confirms it.
+  // credit), metered parking (PR #9), arrive at least 10 minutes early (PR #9), the PR #7 pregnancy entry, no $25 member add-on
+  // (not on the locked menu). The late-arrival and age entries are the old site's, owner-confirmed as current policy.
   {
     id: "signed-up",
     question: "I just signed up, what do I need for my first class?",
@@ -43,6 +44,12 @@ export const FAQS: Faq[] = [
       "Cancellations for classes must be made with a 12 hour notice of class start time. If you cancel within 12 hours of the scheduled class, you will be considered “Late cancel” and will forfeit that class with no additional charge. Absence to class without a cancellation will result in a $15 No Show fee.",
   },
   {
+    id: "late",
+    question: "If I am running late, will I still be able to join the class?",
+    answer:
+      "We ask that you try your best to be on time to prevent distractions, and to allow proper warm up time during the beginning of class. If you arrive **within 5 minutes of the start time**, you will be allowed to join the class. Unfortunately, anything past that will result in a “late cancel” and your class credit will be forfeited.",
+  },
+  {
     id: "pregnant",
     question: "Can I take a class while pregnant?",
     answer:
@@ -50,9 +57,9 @@ export const FAQS: Faq[] = [
   },
   {
     id: "age",
-    question: "Is there an age limit?",
+    question: "Is there an age limit for classes?",
     answer:
-      "Classes welcome adults of all ages. Tell your instructor about any injuries or conditions before class.",
+      "Clients 16-17 years old must receive instructor approval prior to joining. The parent or guardian must sign the liability waiver on behalf of the client. Any clients under 16 years of age must be accompanied by a parent or guardian during the entirety of class.",
   },
   {
     id: "pack-vs-membership",
@@ -189,6 +196,9 @@ export const faqById = (id: string) => {
 /** The three questions used by the FAQ teasers on Home and /intro-offer. */
 export const TEASER_FAQ_IDS = ["experience", "first-class", "parking"] as const;
 
+/** An answer without its bold markers, for schema and other plain-text uses. */
+export const plainAnswer = (answer: string) => answer.replace(/\*\*(.+?)\*\*/g, "$1");
+
 export function faqPageSchema() {
   return {
     "@context": "https://schema.org",
@@ -196,7 +206,7 @@ export function faqPageSchema() {
     mainEntity: FAQS.filter((f) => f.answer).map((f) => ({
       "@type": "Question",
       name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.answer },
+      acceptedAnswer: { "@type": "Answer", text: plainAnswer(f.answer!) },
     })),
   };
 }
