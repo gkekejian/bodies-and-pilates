@@ -95,7 +95,8 @@ export function ClassCards({
   intro = "We offer classes for all fitness levels and private sessions can be tailored to meet your individual needs.",
   headingLevel = "h2",
 }: {
-  items: { key: string; name: string; href: string }[];
+  /** `photo` overrides the class photo (the Home cards use the old site's stock photos). */
+  items: { key: string; name: string; href: string; photo?: PhotoMedia | null }[];
   headingId: string;
   title?: string;
   intro?: string;
@@ -112,7 +113,7 @@ export function ClassCards({
         <p className="mx-auto mt-3 max-w-3xl font-serif text-2xl font-light leading-snug text-white">{intro}</p>
         <ul className={cn("mt-8 grid gap-[5px]", items.length === 3 ? "sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4")}>
           {items.map((c) => {
-            const photo = CLASS_CARD_PHOTO[c.key];
+            const photo = c.photo !== undefined ? c.photo : CLASS_CARD_PHOTO[c.key];
             return (
               <li key={c.key}>
                 <a

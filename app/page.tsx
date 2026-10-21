@@ -9,7 +9,7 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { FaqTeaser } from "@/components/sections/faq-teaser";
 import { FirstTimerGuide } from "@/components/sections/first-timer-guide";
 import { pageMetadata } from "@/lib/metadata";
-import { MEDIA, present, type Media } from "@/lib/media";
+import { MEDIA, STOCK, present, type Media } from "@/lib/media";
 import { GROUP_CLASSES } from "@/lib/classes";
 import { TRY } from "@/lib/pricing";
 import { SERVICE_AREAS } from "@/lib/areas";
@@ -144,9 +144,9 @@ export default function HomePage() {
       <ClassCards
         headingId="class-types-heading"
         items={[
-          { key: "beginner", name: "Beginner", href: "/classes/beginner" },
-          { key: "flexibility", name: "Flexibility", href: "/classes/flexibility" },
-          { key: "fullbody", name: "Fullbody", href: "/classes/fullbody" },
+          { key: "beginner", name: "Beginner", href: "/classes/beginner", photo: STOCK.groupSideBend },
+          { key: "flexibility", name: "Flexibility", href: "/classes/flexibility", photo: STOCK.groupLegStraps },
+          { key: "fullbody", name: "Fullbody", href: "/classes/fullbody", photo: STOCK.lungeOnReformer },
         ]}
       />
 
@@ -170,7 +170,7 @@ export default function HomePage() {
       )}
 
       {/* 7. The Reviews: a photo beside the slideshow. */}
-      <Testimonials photo={MEDIA.nairaThird} />
+      <Testimonials photo={STOCK.yogaStandingPose} />
 
       {/* The rebuild's sections the old home page did not have, kept for first
           visits and search, set in the old site's pricing and section styles. */}
