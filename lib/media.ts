@@ -124,11 +124,13 @@ export const MEDIA = {
 /**
  * The old Wix site's stock photos (not of this studio), self-hosted. Owner
  * decision, October 21, 2026: used only in the slots the old site used them,
- * the Home class cards for Beginner, Flexibility and Fullbody, the Home
- * reviews photo, and the Pricing, FAQs and Booking banners. Alt text
+ * the Home hero (a still from the old hero video), the Home class cards for
+ * Beginner, Flexibility and Fullbody, the Home reviews photo, and the
+ * Pricing, FAQs and Booking banners. Alt text
  * describes the frame and does not present it as the studio.
  */
 export const STOCK = {
+  heroCadillac: photo("stock-hero-cadillac.jpg", "Woman on a Pilates Cadillac holding the push-through bar, legs raised"),
   groupSideBend: photo("stock-group-side-bend-on-reformers.jpg", "Group doing a side bend on Pilates reformers"),
   groupLegStraps: photo("stock-group-leg-straps-on-reformers.jpg", "Group lying on Pilates reformers with their legs in the straps"),
   lungeOnReformer: photo("stock-lunge-on-reformer.jpg", "Woman in a standing lunge on a Pilates reformer"),
