@@ -11,5 +11,6 @@ keeping the theme colors, photos and copy from PRs #10 to #12.
   390px. The header is pinned to the top and the Mindbody widget is blocked,
   so the booking card is empty in these captures.
 
-The Home hero still shows the studio placeholder photo until the owner's
-upload of the old Cadillac hero arrives.
+The Home hero is the old hero: a still (the 11-second frame) from the old
+site's stock hero video, uploaded by the owner on 2026-10-21. The video
+itself is not on the page.

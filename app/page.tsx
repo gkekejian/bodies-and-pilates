@@ -72,19 +72,19 @@ export default function HomePage() {
     <>
       {/* 1. Hero (home-1-hero.png): full-bleed photo under a dark overlay, the
           logo and nav on the photo, a white serif headline, a thin outlined
-          button. TODO(owner): placeholder. The old hero photo (the Cadillac
-          shot) replaces standingSplit here once the owner uploads it. */}
+          button. The photo is the old hero: a still from its stock video. */}
       <section data-hero className="relative isolate -mt-[var(--header-h)] overflow-hidden bg-theme-dark text-white">
-        {MEDIA.standingSplit && (
+        {STOCK.heroCadillac && (
           <>
-            {/* Above the fold on every screen and the LCP element: prioritized. */}
+            {/* Above the fold on every screen and the LCP element: prioritized.
+                The crop keeps her in frame on narrow screens. */}
             <MediaPhoto
-              media={MEDIA.standingSplit}
+              media={STOCK.heroCadillac}
               priority
               sizes="100vw"
               aspectClassName=""
               className="absolute inset-0 -z-20 h-full w-full"
-              imgClassName="object-[50%_42%]"
+              imgClassName="object-[68%_50%]"
             />
             <div aria-hidden="true" className="absolute inset-0 -z-10 bg-theme-dark/60" />
           </>
