@@ -27,3 +27,10 @@ Note: some shots show the Wix "Preview mode" bar at the very top. That bar is th
 2. STALE POLICY in the old FAQs: it lists a $35 no-show fee. Current confirmed policy: no-show $15, cancel free 12+ hours ahead, late cancel forfeits the class credit.
 3. The old footer prints Naira's personal mobile number. It must never come back. Business phone only: 818-813-4446.
 4. The hero headline spelling "Essense" is the old site's own. Flagged for the owners to confirm keep or correct; never silently changed either way in this set.
+
+## Hero video (added 2026-10-21)
+
+`hero-video/hero-video-original.mov` is the old homepage hero video as
+downloaded from the Wix Media Manager (stock, 1920x1080, 19 s, about 24 MB),
+with the owner's `README-HERO.md`. It is a master only: the site serves the
+compressed renditions made by `scripts/encode_hero_video.sh`.

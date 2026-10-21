@@ -11,6 +11,6 @@ keeping the theme colors, photos and copy from PRs #10 to #12.
   390px. The header is pinned to the top and the Mindbody widget is blocked,
   so the booking card is empty in these captures.
 
-The Home hero is the old hero: a still (the 11-second frame) from the old
-site's stock hero video, uploaded by the owner on 2026-10-21. The video
-itself is not on the page.
+The Home hero is the old hero video (stock, 19 s loop) under the dark wash,
+with its poster frame as the first paint and the reduced-motion fallback
+(2026-10-21). Master and notes: `../old-site/hero-video/`.
