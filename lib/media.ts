@@ -124,18 +124,36 @@ export const MEDIA = {
 /**
  * The old Wix site's stock photos (not of this studio), self-hosted. Owner
  * decision, October 21, 2026: used only in the slots the old site used them,
- * the Home hero (a still from the old hero video), the Home class cards for
+ * the Home hero (the old hero video and its poster), the Home class cards for
  * Beginner, Flexibility and Fullbody, the Home reviews photo, and the
  * Pricing, FAQs and Booking banners. Alt text
  * describes the frame and does not present it as the studio.
  */
 export const STOCK = {
-  heroCadillac: photo("stock-hero-cadillac.jpg", "Woman on a Pilates Cadillac holding the push-through bar, legs raised"),
+  heroVideoPoster: photo("stock-hero-video-poster.jpg", "Woman on a Pilates Cadillac holding the push-through bar, legs raised"),
   groupSideBend: photo("stock-group-side-bend-on-reformers.jpg", "Group doing a side bend on Pilates reformers"),
   groupLegStraps: photo("stock-group-leg-straps-on-reformers.jpg", "Group lying on Pilates reformers with their legs in the straps"),
   lungeOnReformer: photo("stock-lunge-on-reformer.jpg", "Woman in a standing lunge on a Pilates reformer"),
   yogaStandingPose: photo("stock-yoga-standing-pose.jpg", "Woman in a standing yoga pose with her arms outstretched"),
 } as const;
+
+/**
+ * The old Home hero video (stock, 19 s loop), owner decision October 21, 2026.
+ * Encoded by scripts/encode_hero_video.sh from the master in
+ * design-reference/old-site/hero-video/; not in the manifest, because
+ * scripts/import_media.py caps clips at 15 s.
+ */
+export const HERO_VIDEO = {
+  poster: STOCK.heroVideoPoster,
+  wide: [
+    { src: "/media/video/stock-hero-cadillac.webm", type: "video/webm" },
+    { src: "/media/video/stock-hero-cadillac.mp4", type: "video/mp4" },
+  ],
+  narrow: [
+    { src: "/media/video/stock-hero-cadillac-640.mp4", type: "video/mp4" },
+    { src: "/media/video/stock-hero-cadillac-640.webm", type: "video/webm" },
+  ],
+};
 
 /** Default Open Graph / social share image: 1200x630 crop of the home hero. */
 export const SHARE_IMAGE = manifest.og

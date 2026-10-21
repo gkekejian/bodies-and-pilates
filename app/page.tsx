@@ -1,10 +1,11 @@
 import { CtaLink } from "@/components/ui/cta-link";
 import { MediaItem, MediaPhoto } from "@/components/ui/media";
+import { HeroVideo } from "@/components/ui/hero-video";
 import { ClassCards } from "@/components/sections/class-media";
 import { InstagramIcon } from "@/components/layout/footer";
 import { Testimonials } from "@/components/sections/testimonials";
 import { pageMetadata } from "@/lib/metadata";
-import { MEDIA, STOCK, present, type Media } from "@/lib/media";
+import { HERO_VIDEO, MEDIA, STOCK, present, type Media } from "@/lib/media";
 import { INSTAGRAM } from "@/lib/site";
 
 export const metadata = pageMetadata({
@@ -70,25 +71,13 @@ const friends = present([
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero (home-1-hero.png): full-bleed photo under a dark overlay, the
-          logo and nav on the photo, a white serif headline, a thin outlined
-          button. The photo is the old hero: a still from its stock video. */}
+      {/* 1. Hero (home-1-hero.png): the old hero video looping under a dark
+          wash (README-HERO.md: the old site set the clip faint over a dark
+          backing), the logo and nav over it, a white serif headline, a thin
+          outlined button. The poster is the LCP image and the fallback. */}
       <section data-hero className="relative isolate -mt-[var(--header-h)] overflow-hidden bg-theme-dark text-white">
-        {STOCK.heroCadillac && (
-          <>
-            {/* Above the fold on every screen and the LCP element: prioritized.
-                The crop keeps her in frame on narrow screens. */}
-            <MediaPhoto
-              media={STOCK.heroCadillac}
-              priority
-              sizes="100vw"
-              aspectClassName=""
-              className="absolute inset-0 -z-20 h-full w-full"
-              imgClassName="object-[68%_50%]"
-            />
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-theme-dark/60" />
-          </>
-        )}
+        <HeroVideo poster={HERO_VIDEO.poster} wide={HERO_VIDEO.wide} narrow={HERO_VIDEO.narrow} imgClassName="object-[68%_50%]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-theme-dark/60" />
         <div className="banner-text mx-auto flex min-h-[36rem] max-w-5xl flex-col items-center justify-center px-4 pb-16 pt-[calc(var(--header-h)+3rem)] text-center sm:min-h-[44rem] sm:px-6">
           <h1 className="smallcaps text-[15px] text-white sm:text-base">Reformer Pilates in North Hollywood</h1>
           {/* TODO(owner): "Essense" is the old site's own spelling. Confirm keep, or correct to "Essence". */}
