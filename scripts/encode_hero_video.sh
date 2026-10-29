@@ -3,13 +3,12 @@
 #
 # Usage: scripts/encode_hero_video.sh path/to/hero-video-studio-original.mp4 path/to/hero-poster.jpg
 #
-# The master is the owners' studio footage (1920x1080, 30 fps, 53.5 s), used
-# complete and uncut by owner directive: every rendition keeps every frame and
-# the full running time. Only the delivery changes: the audio track is
-# stripped (the hero is a muted loop) and the picture is scaled down, never
-# cropped. WebM (VP9) is listed first and MP4 (H.264, faststart) is the
-# fallback: 1920x1080 for wide screens, 1080x608 for phones (a 640 tier
-# looked soft on phones, which are about 1,170 device pixels across).
+# The master is the owners' studio footage (1920x1080, 30 fps, 53.5 s, about
+# 2.9 Mbps H.264 High), used complete and uncut by owner directive. It is
+# served as is: the video stream is copied bit for bit (no re-encode, so no
+# detail is lost) and only the audio track is dropped, with the index moved to
+# the front (faststart) so playback starts while the file downloads. One file
+# for every screen size: earlier downscaled tiers looked soft on phones.
 #
 # The poster (the owners' frame at 26 s) and three stills used on the home
 # page are written to public/media/photos/ with metadata stripped, like
@@ -22,17 +21,7 @@ VIDEO="$ROOT/public/media/video"
 PHOTOS="$ROOT/public/media/photos"
 mkdir -p "$VIDEO" "$PHOTOS"
 
-encode() { # width, file suffix, mp4 crf, webm crf, max kbps
-  local vf="scale=$1:-2:flags=lanczos"
-  ffmpeg -y -v error -i "$SRC" -an -vf "$vf" \
-    -c:v libx264 -profile:v high -preset slow -crf "$3" -maxrate "${5}k" -bufsize "$((2 * $5))k" \
-    -pix_fmt yuv420p -movflags +faststart "$VIDEO/studio-hero$2.mp4"
-  ffmpeg -y -v error -i "$SRC" -an -vf "$vf" \
-    -c:v libvpx-vp9 -crf "$4" -b:v "$(($5 * 8 / 10))k" -maxrate "${5}k" -bufsize "$((2 * $5))k" \
-    -row-mt 1 -deadline good -cpu-used 2 -pix_fmt yuv420p "$VIDEO/studio-hero$2.webm"
-}
-encode 1920 "" 24 34 1300
-encode 1080 "-1080" 25 36 600
+ffmpeg -y -v error -i "$SRC" -map 0:v -c:v copy -an -movflags +faststart "$VIDEO/studio-hero.mp4"
 
 # Poster and stills: JPEG q82, progressive, no metadata (ffmpeg writes none we keep).
 still() { # seconds, output name
@@ -56,5 +45,5 @@ still 53.2 "class-in-session-window-light"
 still 35.5 "instructor-hands-on-correction"
 still 12.5 "instructor-cueing-class-with-mic"
 
-ls -l "$VIDEO"/studio-hero* "$PHOTOS"/studio-hero-poster.jpg "$PHOTOS"/class-in-session-window-light.jpg \
+ls -l "$VIDEO"/studio-hero.mp4 "$PHOTOS"/studio-hero-poster.jpg "$PHOTOS"/class-in-session-window-light.jpg \
   "$PHOTOS"/instructor-hands-on-correction.jpg "$PHOTOS"/instructor-cueing-class-with-mic.jpg

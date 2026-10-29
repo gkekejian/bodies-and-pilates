@@ -138,8 +138,9 @@ export const STOCK = {
 
 /**
  * The Home hero: the owners' own studio footage (October 28, 2026), complete
- * and uncut (53.5 s, every frame), muted. Encoded by
- * scripts/encode_hero_video.sh; not in the manifest, because
+ * and uncut (53.5 s, every frame), muted. The video stream is the master's,
+ * copied bit for bit by scripts/encode_hero_video.sh (1920x1080, about
+ * 2.9 Mbps); one file serves every screen. Not in the manifest, because
  * scripts/import_media.py caps library clips at 15 s. The poster is the
  * owners' frame at 26 s: the first paint and the reduced-motion fallback.
  */
@@ -148,14 +149,7 @@ export const HERO_VIDEO = {
     "studio-hero-poster.jpg",
     `Instructor walking between two rows of clients mid-class at ${STUDIO}`
   ),
-  wide: [
-    { src: "/media/video/studio-hero.webm", type: "video/webm" },
-    { src: "/media/video/studio-hero.mp4", type: "video/mp4" },
-  ],
-  narrow: [
-    { src: "/media/video/studio-hero-1080.mp4", type: "video/mp4" },
-    { src: "/media/video/studio-hero-1080.webm", type: "video/webm" },
-  ],
+  sources: [{ src: "/media/video/studio-hero.mp4", type: "video/mp4" }],
 };
 
 /** Default Open Graph / social share image: 1200x630 crop of the home hero. */
