@@ -43,6 +43,13 @@ OUT_OG = ROOT / "public" / "media" / "og"
 MANIFEST = ROOT / "lib" / "media-manifest.json"
 
 MAX_PHOTO_SIDE = 2048
+# Written by scripts/encode_hero_video.sh, not imported from the library.
+HERO_VIDEO_FILES = (
+    "studio-hero-poster.jpg",
+    "class-in-session-window-light.jpg",
+    "instructor-hands-on-correction.jpg",
+    "instructor-cueing-class-with-mic.jpg",
+)
 MAX_VIDEO_SIDE = 1280
 MAX_SECONDS = 15
 OG_SOURCE = "group-class-plank-wide.jpg"
@@ -178,6 +185,14 @@ def main():
         else:
             manifest["photos"][final] = import_photo(path, final)
         print(f"ok  {final}  <-  {path.relative_to(src)}")
+
+    # Files written by scripts/encode_hero_video.sh (the hero poster and the
+    # stills cut from the hero video) are not in the photo library; keep their
+    # entries so a re-import does not drop them from the site.
+    previous = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {"photos": {}}
+    for name in HERO_VIDEO_FILES:
+        if name in previous.get("photos", {}) and (OUT_PHOTOS / name).exists():
+            manifest["photos"][name] = previous["photos"][name]
 
     if OG_SOURCE in manifest["photos"]:
         manifest["og"] = make_og(OUT_PHOTOS / OG_SOURCE)
