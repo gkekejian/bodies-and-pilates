@@ -100,7 +100,7 @@ export default function HomePage() {
         data-hero
         className="relative isolate -mt-[var(--header-h)] flex min-h-[40rem] items-end overflow-hidden bg-theme-dark text-white sm:min-h-[46rem] lg:min-h-[max(46rem,92vh)] portrait:min-h-[min(80svh,28rem)] sm:portrait:min-h-[min(80svh,40rem)] lg:portrait:min-h-[min(80svh,46rem)]"
       >
-        <HeroVideo poster={HERO_VIDEO.poster} wide={HERO_VIDEO.wide} narrow={HERO_VIDEO.narrow} />
+        <HeroVideo poster={HERO_VIDEO.poster} sources={HERO_VIDEO.sources} />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-theme-dark/45" />
         <div className={`${wrap} banner-text pb-24 pt-[calc(var(--header-h)+5rem)] sm:pb-20 portrait:pb-14 portrait:pt-[calc(var(--header-h)+2rem)]`}>
           <p className="max-w-[12ch] font-serif text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.025em] sm:max-w-none sm:text-7xl lg:text-[6.5rem]">
@@ -137,8 +137,8 @@ export default function HomePage() {
         <div className={`${wrap} grid gap-10 py-24 sm:py-32 lg:grid-cols-12 lg:items-end lg:gap-12 lg:py-40`}>
           <MediaPhoto
             media={MEDIA.classInSession}
-            aspectClassName="aspect-[3/2]"
-            className="lg:col-span-7"
+            aspectClassName="aspect-[4/3] sm:aspect-[3/2]"
+            className="-mx-5 sm:mx-0 lg:col-span-7"
             sizes="(max-width: 1024px) 100vw, 720px"
           />
           <div className="lg:col-span-5">
@@ -181,7 +181,7 @@ export default function HomePage() {
           <MediaPhoto
             media={MEDIA.handsOnCorrection}
             aspectClassName="aspect-[4/5]"
-            className="lg:col-span-5 lg:col-start-8"
+            className="-mx-5 max-sm:order-first sm:mx-0 lg:col-span-5 lg:col-start-8"
             imgClassName="object-[70%_50%]"
             sizes="(max-width: 1024px) 100vw, 480px"
           />
@@ -232,10 +232,19 @@ export default function HomePage() {
 
       {/* A5. The Space: the room, its chairs and its reformers. */}
       <section aria-labelledby="space-heading" className="bg-theme-white text-theme-dark">
-        <div className={`${wrap} grid gap-12 pb-24 pt-16 sm:py-32 lg:grid-cols-12 lg:items-center lg:py-40`}>
-          <div className="grid grid-cols-2 gap-4 lg:col-span-7">
-            <MediaPhoto media={MEDIA.studioLogoWallChair} aspectClassName="aspect-[3/4]" className="mt-8 lg:mt-16" sizes="(max-width: 1024px) 50vw, 350px" />
-            <MediaPhoto media={MEDIA.studioEmptyRoom} aspectClassName="aspect-[3/4]" sizes="(max-width: 1024px) 50vw, 350px" />
+        <div className={`${wrap} grid gap-12 py-24 sm:py-32 lg:grid-cols-12 lg:items-center lg:py-40`}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+            <MediaPhoto
+              media={MEDIA.studioLogoWallChair}
+              aspectClassName="aspect-[4/3] sm:aspect-[3/4]"
+              className="sm:mt-8 lg:mt-16"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px"
+            />
+            <MediaPhoto
+              media={MEDIA.studioEmptyRoom}
+              aspectClassName="aspect-[4/3] sm:aspect-[3/4]"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px"
+            />
           </div>
           <div className="lg:col-span-5">
             <h2 id="space-heading" className={h2}>

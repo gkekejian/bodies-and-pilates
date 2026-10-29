@@ -15,8 +15,8 @@ export interface VideoSource {
  * normal speed, under a dark wash).
  *
  * Performance: the poster is a prioritized next/image, so it stays the LCP
- * element. The video is only requested after the page has loaded, picks the
- * small rendition below 768px, and is skipped entirely when the visitor
+ * element. The video is only requested after the page has loaded, the same
+ * file at every screen size, and is skipped entirely when the visitor
  * prefers reduced motion or has Save-Data on (the poster stays). It fades in
  * once frames are playing, so the switch from the poster is soft, and pauses
  * while the hero is off screen.
@@ -26,15 +26,12 @@ export interface VideoSource {
  */
 export function HeroVideo({
   poster,
-  wide,
-  narrow,
+  sources: clip,
   imgClassName,
 }: {
   poster: PhotoMedia | null;
-  /** Sources for 768px and up, in order of preference. */
-  wide: VideoSource[];
-  /** Sources below 768px, in order of preference. */
-  narrow: VideoSource[];
+  /** Video sources in order of preference, used at every screen size. */
+  sources: VideoSource[];
   /** object-position for the poster and the video, e.g. "object-[68%_50%]". */
   imgClassName?: string;
 }) {
@@ -50,13 +47,13 @@ export function HeroVideo({
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
     if (reduced || saveData) return;
-    const start = () => setSources(window.innerWidth < 768 ? narrow : wide);
+    const start = () => setSources(clip);
     if (document.readyState === "complete") start();
     else {
       window.addEventListener("load", start, { once: true });
       return () => window.removeEventListener("load", start);
     }
-  }, [wide, narrow]);
+  }, [clip]);
 
   // Play while the hero is on screen, unless the visitor paused it.
   useEffect(() => {

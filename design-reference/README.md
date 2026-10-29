@@ -56,3 +56,12 @@
 - `hero-fix-2026-10-29/hero-{390,1440}.jpg`: the hero with the video playing at 26 s, before
   (left, PR #15: 640 and 1280 renditions, 640px-tall portrait hero) and after (right: 1080 and
   1920 renditions, portrait hero capped at min(80svh, 28rem)).
+
+## Hero at master quality and mobile conformance (2026-10-29)
+
+- `conformance-2026-10-29/frame-{5,26,46}.jpg`: 100% crops of the owners' master beside the
+  file every screen now receives (`studio-hero.mp4`, the master's video stream copied without
+  re-encoding). The decoded frames are pixel-identical.
+- `conformance-2026-10-29/{group,private,space}-{1440,390}.jpg`: before (master) and after for
+  the phone-only conformance changes against the Focus Pilates reference (photo-led,
+  full-bleed sections on phones). The 1440 captures are unchanged by design.
