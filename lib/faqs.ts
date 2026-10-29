@@ -19,8 +19,9 @@ export interface Faq {
 export const FAQS: Faq[] = [
   // The old site's FAQs page, in its order and its words (design-reference/old-site/faqs-top.png).
   // Fact-sheet overrides: no-show $15 with no credit kept (the old page printed a dead fee and said a no-show keeps the
-  // credit), metered parking (PR #9), arrive at least 10 minutes early (PR #9), the PR #7 pregnancy entry, no $25 member add-on
-  // (not on the locked menu). The late-arrival and age entries are the old site's, owner-confirmed as current policy.
+  // credit), metered parking (PR #9), arrive at least 10 minutes early (PR #9), no $25 member add-on (not on the locked
+  // menu). The late-arrival and age entries are the old site's, owner-confirmed as current policy. The pregnancy answer is
+  // the owners' own policy (October 2026), published as written.
   {
     id: "signed-up",
     question: "I just signed up, what do I need for my first class?",
@@ -55,7 +56,7 @@ export const FAQS: Faq[] = [
     id: "pregnant",
     question: "Can I take a class while pregnant?",
     answer:
-      "Talk to your doctor or midwife before taking any class, and tell your instructor before class. This is general information, not medical advice.",
+      "Congratulations on your pregnancy. Pilates can be great for pregnant clients, but please check with your doctor prior to joining. We recommend a Beginner class for pregnant clients, and from the third trimester on, private sessions only, based on instructor discretion.",
   },
   {
     id: "age",
@@ -82,12 +83,6 @@ export const FAQS: Faq[] = [
       "Membership credits must be used within that billing cycle. Any unused credits will not rollover.",
   },
   // The rebuild's questions the old page did not have.
-  {
-    id: "cost",
-    question: "How much does Pilates cost in North Hollywood?",
-    answer:
-      "Your first class is $25 and the One-Week Unlimited is $105. After that: single class $36, 5-pack $160, 10-pack $300. Memberships run from $130/month for 5 classes to $280/month unlimited. Private sessions are $100.",
-  },
   {
     id: "what-is-reformer",
     question: "What is reformer Pilates?",
@@ -173,7 +168,7 @@ export const FAQS: Faq[] = [
   {
     id: "equipment",
     question: "What equipment do you use?",
-    answer: "Every class runs on professional Merrithew reformers.",
+    answer: "Every class runs on professional Merrithew reformers and stability chairs.",
   },
   {
     id: "classes",
