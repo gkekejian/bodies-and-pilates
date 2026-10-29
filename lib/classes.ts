@@ -1,13 +1,17 @@
 /**
- * Class formats. Every format is small-group reformer Pilates except Private.
+ * The class list: the one place class names live. Renaming a class is an
+ * edit to this file; the pages, the FAQ, llms.txt and the team list read the
+ * names from here. (Free text outside code still names classes: the One-Week
+ * Unlimited detail in lib/pricing.ts and some blog posts. Search for the old
+ * name there when renaming.)
  *
- * Group classes are 50 minutes (confirmed from the Mindbody schedule).
+ * Every format is small-group reformer Pilates except Private (and its Duet
+ * option). Group classes are 50 minutes (confirmed from the Mindbody
+ * schedule).
  * TODO(owner): confirm the difficulty level and the "who it is for" line for
- * each format.
- * TODO(owner): the schedule also runs "Abs and Assets" (Sun 12:00 PM, week of
- * Oct 12, 2026). It is not on the site yet. Send a 1 to 2 sentence description,
- * level, and who it is for, and it gets its own block on /classes.
+ * each format, and send a description for Abs and Assets.
  */
+import { PRIVATE } from "@/lib/pricing";
 
 export type ClassSlug = "beginner" | "fullbody" | "flexibility" | "private";
 
@@ -124,6 +128,49 @@ export const CLASSES: ClassFormat[] = [
 ];
 
 export const GROUP_CLASSES = CLASSES.filter((c) => c.slug !== "private");
+
+/** On the weekly schedule; no detail page yet (it has a block on /classes). */
+export const ABS_AND_ASSETS = {
+  slug: "abs-and-assets",
+  name: "Abs and Assets",
+  duration: "50 minutes",
+  oneLiner: "A 50-minute reformer class on our weekly schedule.",
+} as const;
+
+/** The four group classes by name, in schedule order. */
+export const GROUP_CLASS_NAMES = [...GROUP_CLASSES.map((c) => c.name), ABS_AND_ASSETS.name];
+
+/** "A, B, C, and D" */
+export const listWithAnd = (items: string[]) =>
+  items.length < 3 ? items.join(" and ") : `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+
+const duetOffer = PRIVATE.find((o) => o.id === "duet")!;
+
+export interface LineupEntry {
+  key: string;
+  name: string;
+  /** The class's detail page (or its block on /classes). */
+  href: string;
+  /** The description the codebase already uses for it. */
+  description: string;
+}
+
+/**
+ * The six ways in, as the Home carousel shows them: the four group classes,
+ * then Private and its Duet option (which shares the Private page). Names and
+ * descriptions come from the entries above and the Duet offer.
+ */
+export const CLASS_LINEUP: LineupEntry[] = [
+  ...GROUP_CLASSES.map((c) => ({ key: c.slug, name: c.name, href: `/classes/${c.slug}`, description: c.oneLiner })),
+  { key: ABS_AND_ASSETS.slug, name: ABS_AND_ASSETS.name, href: `/classes#${ABS_AND_ASSETS.slug}`, description: ABS_AND_ASSETS.oneLiner },
+  ...CLASSES.filter((c) => c.slug === "private").map((c) => ({
+    key: c.slug,
+    name: c.name,
+    href: `/classes/${c.slug}`,
+    description: c.oneLiner,
+  })),
+  { key: duetOffer.id, name: duetOffer.name, href: "/classes/private", description: duetOffer.detail },
+];
 
 export const classBySlug = (slug: ClassSlug) => {
   const c = CLASSES.find((k) => k.slug === slug);

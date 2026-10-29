@@ -1,4 +1,5 @@
 import { MEDIA, type PhotoMedia } from "@/lib/media";
+import { classBySlug } from "@/lib/classes";
 
 /**
  * Team on /about. Owner-confirmed October 12, 2026: exactly four instructors
@@ -28,7 +29,11 @@ export const SHOW_TEAM = true;
  */
 export const SHOW_BIOS = false;
 
-export type ClassType = "Beginner" | "Full Body" | "Flexibility" | "Abs and Assets";
+/** A group class name, from lib/classes.ts (so a rename there reaches this list). */
+export type ClassType = string;
+
+const fullBody = classBySlug("fullbody").name;
+const flexibility = classBySlug("flexibility").name;
 
 export interface InstructorBio {
   specialty: string | null;
@@ -61,7 +66,7 @@ export const TEAM: Instructor[] = [
     name: "Naira Sarkian",
     firstName: "Naira",
     role: "Founder and Owner",
-    teaches: ["Full Body"],
+    teaches: [fullBody],
     // The main photo leads the founder block; the card uses her third photo
     // so the same shot does not appear twice on /about.
     photo: MEDIA.nairaThird ?? MEDIA.nairaMain,
@@ -71,7 +76,7 @@ export const TEAM: Instructor[] = [
     name: "Sita Acevedo",
     firstName: "Sita",
     role: null,
-    teaches: ["Full Body", "Flexibility"],
+    teaches: [fullBody, flexibility],
     photo: MEDIA.sitaHeadshot,
     bio: noBio,
   },
@@ -79,7 +84,7 @@ export const TEAM: Instructor[] = [
     name: "Theresia Bunch",
     firstName: "Theresia",
     role: null,
-    teaches: ["Full Body"],
+    teaches: [fullBody],
     photo: MEDIA.theresiaHeadshot,
     bio: noBio,
   },
@@ -87,7 +92,7 @@ export const TEAM: Instructor[] = [
     name: "Hannah Pink",
     firstName: "Hannah",
     role: null,
-    teaches: ["Full Body"],
+    teaches: [fullBody],
     photo: MEDIA.hannahHeadshot,
     bio: noBio,
   },

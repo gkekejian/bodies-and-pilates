@@ -1,4 +1,4 @@
-import { CLASSES } from '@/lib/classes'
+import { CLASSES, GROUP_CLASS_NAMES, classBySlug } from '@/lib/classes'
 import { FAQS } from '@/lib/faqs'
 import { COMMIT, FLEX, POLICY, PRIVATE, TRY, offerHref, type Offer } from '@/lib/pricing'
 import { TEAM, SHOW_BIOS, bioEntries } from '@/lib/team'
@@ -52,7 +52,7 @@ const facts = [
 const pages = [
   `- [Intro offer](${url('/intro-offer')}): $25 first class or the $105 One-Week Unlimited for first-timers`,
   `- [Pricing](${url('/pricing')}): every class pack, membership, and private session price with booking links`,
-  `- [Classes](${url('/classes')}): Beginner, Full Body, Flexibility, Abs and Assets, and Private formats`,
+  `- [Classes](${url('/classes')}): ${[...GROUP_CLASS_NAMES, classBySlug('private').name].slice(0, -1).join(', ')}, and ${classBySlug('private').name} formats`,
   `- [Schedule](${url('/schedule')}): live class timetable`,
   `- [FAQ](${url('/faq')}): pricing, what to wear, parking, policies, Lagree vs Pilates`,
   `- [About](${url('/about')}): studio story, instructors, neighborhoods served`,

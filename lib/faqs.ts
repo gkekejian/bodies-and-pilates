@@ -5,6 +5,8 @@
  * of the schema until the owner supplies the text.
  */
 
+import { GROUP_CLASS_NAMES, listWithAnd } from "@/lib/classes";
+
 export interface Faq {
   id: string;
   question: string;
@@ -177,7 +179,7 @@ export const FAQS: Faq[] = [
     id: "classes",
     question: "What classes do you offer?",
     answer:
-      "Four 50-minute group classes, all on the reformer: Beginner, Full Body, Flexibility, and Abs and Assets. Plus private sessions ($100 for 55 minutes) and duets ($70 per person).",
+      `Four 50-minute group classes, all on the reformer: ${listWithAnd(GROUP_CLASS_NAMES)}. Plus private sessions ($100 for 55 minutes) and duets ($70 per person).`,
   },
   {
     id: "nearby",

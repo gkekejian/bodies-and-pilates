@@ -6,7 +6,7 @@ import { ClassFormatBlock } from "@/components/sections/class-format";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
-import { CLASSES, GROUP_CLASSES } from "@/lib/classes";
+import { ABS_AND_ASSETS, CLASSES, GROUP_CLASSES, GROUP_CLASS_NAMES } from "@/lib/classes";
 import { MEDIA } from "@/lib/media";
 import { CLASSPASS_RATING_LINE, CLASSPASS_URL, FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 import { priceOf } from "@/lib/pricing";
@@ -14,7 +14,7 @@ import { priceOf } from "@/lib/pricing";
 export const metadata = pageMetadata({
   title: "Reformer Pilates Classes in North Hollywood | Bodies and Pilates",
   description:
-    "Reformer Pilates classes in North Hollywood: Beginner, Full Body, Flexibility, Abs and Assets, privates and duets. 50 minutes, 7 people max.",
+    `Reformer Pilates classes in North Hollywood: ${GROUP_CLASS_NAMES.join(", ")}, privates and duets. 50 minutes, 7 people max.`,
   path: "/classes",
 });
 
@@ -69,10 +69,10 @@ export default function ClassesPage() {
             </a>
           ))}
           <a
-            href="#abs-and-assets"
+            href={`#${ABS_AND_ASSETS.slug}`}
             className="smallcaps inline-block py-1 text-[15px] text-brown-700 underline-offset-4 hover:underline"
           >
-            Abs and Assets
+            {ABS_AND_ASSETS.name}
           </a>
         </nav>
       </PageHero>
@@ -81,7 +81,7 @@ export default function ClassesPage() {
         headingId="the-classes"
         items={[
           ...GROUP_CLASSES.map((c) => ({ key: c.slug, name: c.name, href: `#${c.slug}` })),
-          { key: "abs-and-assets", name: "Abs and Assets", href: "#abs-and-assets" },
+          { key: ABS_AND_ASSETS.slug, name: ABS_AND_ASSETS.name, href: `#${ABS_AND_ASSETS.slug}` },
         ]}
       />
 
@@ -144,12 +144,12 @@ export default function ClassesPage() {
             <SectionHeading
               id="abs-and-assets-heading"
               eyebrow="Also on the schedule"
-              title="Abs and Assets"
-              intro={<p>Abs and Assets is a 50-minute reformer class on our weekly schedule.</p>}
+              title={ABS_AND_ASSETS.name}
+              intro={<p>{`${ABS_AND_ASSETS.name} is a 50-minute reformer class on our weekly schedule.`}</p>}
             />
             {/* TODO(owner): add a 1 to 2 sentence description, level, and who it is for. */}
             <CtaLink href="/schedule" variant="text">
-              See Abs and Assets class times
+              {`See ${ABS_AND_ASSETS.name} class times`}
             </CtaLink>
           </div>
           <ClassMedia mediaKey="abs-and-assets" className="lg:col-span-5" />
