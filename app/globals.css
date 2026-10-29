@@ -93,6 +93,11 @@
     scroll-behavior: smooth;
   }
 
+  /* In-page links land below the sticky header (utilities such as scroll-mt-32 still win). */
+  [id] {
+    scroll-margin-top: calc(var(--header-h) + 1rem);
+  }
+
   body {
     @apply bg-cream-50 text-charcoal-800 font-sans antialiased;
   }

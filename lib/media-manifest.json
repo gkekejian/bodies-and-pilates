@@ -9,6 +9,10 @@
       "height": 2048,
       "width": 1536
     },
+    "class-in-session-window-light.jpg": {
+      "height": 1080,
+      "width": 1920
+    },
     "duet-two-clients-on-chair.jpg": {
       "height": 2048,
       "width": 1536
@@ -32,6 +36,14 @@
     "group-class-plank-wide.jpg": {
       "height": 2048,
       "width": 1536
+    },
+    "instructor-cueing-class-with-mic.jpg": {
+      "height": 1080,
+      "width": 1920
+    },
+    "instructor-hands-on-correction.jpg": {
+      "height": 1080,
+      "width": 1920
     },
     "instructor-headshot-black-cami.jpg": {
       "height": 2048,
@@ -73,25 +85,17 @@
       "height": 2048,
       "width": 1536
     },
-    "stock-group-leg-straps-on-reformers.jpg": {
-      "height": 1390,
-      "width": 2048
-    },
     "stock-group-side-bend-on-reformers.jpg": {
       "height": 1365,
-      "width": 2048
-    },
-    "stock-hero-video-poster.jpg": {
-      "height": 1080,
-      "width": 1920
-    },
-    "stock-lunge-on-reformer.jpg": {
-      "height": 1381,
       "width": 2048
     },
     "stock-yoga-standing-pose.jpg": {
       "height": 1365,
       "width": 2048
+    },
+    "studio-hero-poster.jpg": {
+      "height": 1080,
+      "width": 1920
     },
     "studio-logo-wall-chair-interior.jpg": {
       "height": 2048,

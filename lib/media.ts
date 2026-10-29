@@ -7,8 +7,7 @@ import manifestJson from "./media-manifest.json";
  * public/media/ and lib/media-manifest.json. An asset that is not in the
  * manifest resolves to null and its slot renders nothing: there are no
  * placeholders and no AI imagery anywhere on the site. The only stock images
- * are the four the old Wix site used, kept by owner decision (October 21,
- * 2026) in the old slots only (STOCK below).
+ * are the two the old Wix site used that the owners kept (STOCK below).
  *
  * Filenames are final (they carry SEO value). Alt text describes what is in
  * the frame. Instructor photos follow "[Full Name], instructor at Bodies and
@@ -102,6 +101,11 @@ export const MEDIA = {
   privateShoulderAssist: video("private-hands-on-shoulder-assist.mp4", `Hands-on shoulder assist during a private session at ${STUDIO}`),
   duetOnChair: photo("duet-two-clients-on-chair.jpg", `Two clients seated on Pilates chairs for a duet session at ${STUDIO}`),
 
+  // Stills cut from the owners' studio hero video by scripts/encode_hero_video.sh
+  classInSession: photo("class-in-session-window-light.jpg", `Instructor cueing a group reformer class by the windows at ${STUDIO}`),
+  handsOnCorrection: photo("instructor-hands-on-correction.jpg", `Instructor correcting a client's shoulder position on the reformer at ${STUDIO}`),
+  cueingWithMic: photo("instructor-cueing-class-with-mic.jpg", `Instructor with a headset mic adjusting a client's arms during class at ${STUDIO}`),
+
   // Brand and details
   receptionWall: photo("reception-good-day-wall.jpg", `Reception wall reading "It's a good day to do Pilates" at ${STUDIO}`),
   entryBench: photo("entry-bench-patent-drawings.jpg", `Entry bench and Pilates patent drawings at ${STUDIO}`),
@@ -123,35 +127,34 @@ export const MEDIA = {
 
 /**
  * The old Wix site's stock photos (not of this studio), self-hosted. Owner
- * decision, October 21, 2026: used only in the slots the old site used them,
- * the Home hero (the old hero video and its poster), the Home class cards for
- * Beginner, Flexibility and Fullbody, the Home reviews photo, and the
- * Pricing, FAQs and Booking banners. Alt text
- * describes the frame and does not present it as the studio.
+ * decisions (October 21 and 28, 2026): used only for the Pricing, FAQs and
+ * Booking banners and the Home reviews photo. No other stock anywhere. Alt
+ * text describes the frame and does not present it as the studio.
  */
 export const STOCK = {
-  heroVideoPoster: photo("stock-hero-video-poster.jpg", "Woman on a Pilates Cadillac holding the push-through bar, legs raised"),
   groupSideBend: photo("stock-group-side-bend-on-reformers.jpg", "Group doing a side bend on Pilates reformers"),
-  groupLegStraps: photo("stock-group-leg-straps-on-reformers.jpg", "Group lying on Pilates reformers with their legs in the straps"),
-  lungeOnReformer: photo("stock-lunge-on-reformer.jpg", "Woman in a standing lunge on a Pilates reformer"),
   yogaStandingPose: photo("stock-yoga-standing-pose.jpg", "Woman in a standing yoga pose with her arms outstretched"),
 } as const;
 
 /**
- * The old Home hero video (stock, 19 s loop), owner decision October 21, 2026.
- * Encoded by scripts/encode_hero_video.sh from the master in
- * design-reference/old-site/hero-video/; not in the manifest, because
- * scripts/import_media.py caps clips at 15 s.
+ * The Home hero: the owners' own studio footage (October 28, 2026), complete
+ * and uncut (53.5 s, every frame), muted. Encoded by
+ * scripts/encode_hero_video.sh; not in the manifest, because
+ * scripts/import_media.py caps library clips at 15 s. The poster is the
+ * owners' frame at 26 s: the first paint and the reduced-motion fallback.
  */
 export const HERO_VIDEO = {
-  poster: STOCK.heroVideoPoster,
+  poster: photo(
+    "studio-hero-poster.jpg",
+    `Instructor walking between two rows of clients mid-class at ${STUDIO}`
+  ),
   wide: [
-    { src: "/media/video/stock-hero-cadillac.webm", type: "video/webm" },
-    { src: "/media/video/stock-hero-cadillac.mp4", type: "video/mp4" },
+    { src: "/media/video/studio-hero.webm", type: "video/webm" },
+    { src: "/media/video/studio-hero.mp4", type: "video/mp4" },
   ],
   narrow: [
-    { src: "/media/video/stock-hero-cadillac-640.mp4", type: "video/mp4" },
-    { src: "/media/video/stock-hero-cadillac-640.webm", type: "video/webm" },
+    { src: "/media/video/studio-hero-640.mp4", type: "video/mp4" },
+    { src: "/media/video/studio-hero-640.webm", type: "video/webm" },
   ],
 };
 
