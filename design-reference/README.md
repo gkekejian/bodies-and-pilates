@@ -37,12 +37,15 @@
 ## Homepage redesign, FAQ edits and SEO pass (2026-10-28)
 
 - `homepage-2026-10-28/pairs/h*-{1440,390}.jpg`: the current homepage (master after PR #14) beside
-  the new one, section by section. `h3-services` is new (no counterpart); `h6-video-strip` is
-  removed. Video is blocked in these captures, so the hero shows its poster.
+  the new one, section by section: hero, welcome, services (new, no counterpart), classes,
+  space and practice, the video strip (removed), and the rest (reviews, friends, footer). Video
+  is blocked in these captures, so the hero shows its poster. File names stay under 18
+  characters because longer image names in PR descriptions get escaped.
 - `homepage-2026-10-28/pairs/faq-*.jpg`: the `/faq` entries Part B changed, opened (pregnancy and
   equipment), and the spot where "How much does Pilates cost in North Hollywood?" was removed.
 - `homepage-2026-10-28/new/`: full-page captures of the new homepage (1440 scaled to 640 wide,
-  390 scaled to 312 wide) and two frames of the hero with the studio video playing at each width.
+  390 scaled to 312 wide) and `video-*.jpg`, two frames of the hero with the studio video playing
+  at each width.
 - Hero video: the owners' `hero-video-studio-original.mp4` (53.5 s, 1,605 frames), encoded uncut
   and muted by `scripts/encode_hero_video.sh` to 1280x720 and 640x360 in WebM and MP4. The
   poster is the owners' `hero-poster.jpg`. The section stills (`class-in-session-window-light`,
