@@ -126,8 +126,11 @@ export default function PricingPage() {
         <section aria-labelledby="price-table-heading" className={`${container} mt-20 sm:mt-24`}>
           <GroupHeading id="price-table-heading">All Prices</GroupHeading>
           <p className="mt-5 max-w-xl font-poppins text-base font-light leading-[1.7] text-theme-dark">
-            For your first visit. Start with the $25 first class if you like. You can still take the $105 intro week after
-            it.
+            For your first visit.{" "}
+            <Link href="/intro-offer" className="underline underline-offset-4 hover:text-theme-brown">
+              Start with the $25 first class
+            </Link>{" "}
+            if you like. You can still take the $105 intro week after it.
           </p>
           <p className="mt-2 font-poppins text-base font-light leading-[1.7] text-theme-dark">
             Cancellations, pack expiry, memberships and more:{" "}
