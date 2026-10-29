@@ -153,8 +153,8 @@ export const HERO_VIDEO = {
     { src: "/media/video/studio-hero.mp4", type: "video/mp4" },
   ],
   narrow: [
-    { src: "/media/video/studio-hero-640.mp4", type: "video/mp4" },
-    { src: "/media/video/studio-hero-640.webm", type: "video/webm" },
+    { src: "/media/video/studio-hero-1080.mp4", type: "video/mp4" },
+    { src: "/media/video/studio-hero-1080.webm", type: "video/webm" },
   ],
 };
 

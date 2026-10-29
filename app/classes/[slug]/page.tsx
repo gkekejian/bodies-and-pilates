@@ -24,8 +24,12 @@ const CLASS_REVIEW: Partial<Record<ClassSlug, { quote: string; attribution: stri
   },
 };
 
-const PRIVATE_INTRO =
-  "A 55-minute one-on-one session on a professional Merrithew reformer with an experienced instructor. $100, or $70 per person as a duet.";
+/** The class pages' one contextual link to the reformer explainer (wraps existing words only). */
+const reformerLink = (text: string) => (
+  <Link href="/blog/what-is-reformer-pilates" className="underline underline-offset-4 hover:text-brown-900">
+    {text}
+  </Link>
+);
 
 export const dynamicParams = false;
 
@@ -86,12 +90,15 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
         tone="dark"
         intro={
           isPrivate ? (
-            <p>{PRIVATE_INTRO}</p>
+            <p>
+              A 55-minute one-on-one session on a professional {reformerLink("Merrithew reformer")} with an experienced
+              instructor. $100, or $70 per person as a duet.
+            </p>
           ) : (
             <>
               <p>{c.oneLiner}</p>
               <p className="smallcaps mt-4 text-[15px] text-brown-700">
-                50 minutes &middot; 7 people max &middot; Merrithew reformers &middot; First class $25
+                50 minutes &middot; 7 people max &middot; {reformerLink("Merrithew reformers")} &middot; First class $25
               </p>
             </>
           )

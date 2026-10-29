@@ -93,14 +93,16 @@ export default function HomePage() {
   return (
     <>
       {/* A1. Hero: the owners' studio footage, complete and uncut, as a muted
-          loop under a flat dark scrim. The poster is the first paint. */}
+          loop under a flat dark scrim. The poster is the first paint. On portrait
+          screens the hero is capped at min(80svh, 28rem) so the 16:9 cover crop
+          shows about half the frame's width instead of a third. */}
       <section
         data-hero
-        className="relative isolate -mt-[var(--header-h)] flex min-h-[40rem] items-end overflow-hidden bg-theme-dark text-white sm:min-h-[46rem] lg:min-h-[max(46rem,92vh)]"
+        className="relative isolate -mt-[var(--header-h)] flex min-h-[40rem] items-end overflow-hidden bg-theme-dark text-white sm:min-h-[46rem] lg:min-h-[max(46rem,92vh)] portrait:min-h-[min(80svh,28rem)] sm:portrait:min-h-[min(80svh,40rem)] lg:portrait:min-h-[min(80svh,46rem)]"
       >
         <HeroVideo poster={HERO_VIDEO.poster} wide={HERO_VIDEO.wide} narrow={HERO_VIDEO.narrow} />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-theme-dark/45" />
-        <div className={`${wrap} banner-text pb-24 pt-[calc(var(--header-h)+5rem)] sm:pb-20`}>
+        <div className={`${wrap} banner-text pb-24 pt-[calc(var(--header-h)+5rem)] sm:pb-20 portrait:pb-14 portrait:pt-[calc(var(--header-h)+2rem)]`}>
           <p className="max-w-[12ch] font-serif text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.025em] sm:max-w-none sm:text-7xl lg:text-[6.5rem]">
             Real Pilates for every body.
           </p>
@@ -219,7 +221,7 @@ export default function HomePage() {
               The Classes
             </h2>
             <p className={`${body} lg:col-span-5 lg:col-start-8`}>
-              Six ways in. Every class is 50 minutes, capped at seven people, and led start to finish.
+              Six ways in. Group classes are 50 minutes and capped at seven people. Privates and duets are 55 minutes, built around you.
             </p>
           </div>
           <div className="mt-12">

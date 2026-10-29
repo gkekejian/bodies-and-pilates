@@ -50,3 +50,9 @@
   and muted by `scripts/encode_hero_video.sh` to 1280x720 and 640x360 in WebM and MP4. The
   poster is the owners' `hero-poster.jpg`. The section stills (`class-in-session-window-light`,
   `instructor-hands-on-correction`, `instructor-cueing-class-with-mic`) are frames of that video.
+
+## Hero video fix (2026-10-29)
+
+- `hero-fix-2026-10-29/hero-{390,1440}.jpg`: the hero with the video playing at 26 s, before
+  (left, PR #15: 640 and 1280 renditions, 640px-tall portrait hero) and after (right: 1080 and
+  1920 renditions, portrait hero capped at min(80svh, 28rem)).

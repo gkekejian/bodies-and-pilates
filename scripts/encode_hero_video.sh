@@ -8,7 +8,8 @@
 # the full running time. Only the delivery changes: the audio track is
 # stripped (the hero is a muted loop) and the picture is scaled down, never
 # cropped. WebM (VP9) is listed first and MP4 (H.264, faststart) is the
-# fallback: 1280x720 for wide screens, 640x360 for phones.
+# fallback: 1920x1080 for wide screens, 1080x608 for phones (a 640 tier
+# looked soft on phones, which are about 1,170 device pixels across).
 #
 # The poster (the owners' frame at 26 s) and three stills used on the home
 # page are written to public/media/photos/ with metadata stripped, like
@@ -30,8 +31,8 @@ encode() { # width, file suffix, mp4 crf, webm crf, max kbps
     -c:v libvpx-vp9 -crf "$4" -b:v "$(($5 * 8 / 10))k" -maxrate "${5}k" -bufsize "$((2 * $5))k" \
     -row-mt 1 -deadline good -cpu-used 2 -pix_fmt yuv420p "$VIDEO/studio-hero$2.webm"
 }
-encode 1280 "" 28 38 1000
-encode 640 "-640" 29 40 400
+encode 1920 "" 24 34 1300
+encode 1080 "-1080" 25 36 600
 
 # Poster and stills: JPEG q82, progressive, no metadata (ffmpeg writes none we keep).
 still() { # seconds, output name
