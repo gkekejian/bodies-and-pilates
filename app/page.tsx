@@ -13,11 +13,12 @@ import { priceOf } from "@/lib/pricing";
 import { EMAIL, INSTAGRAM, PHONE } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  // Search Console: "pilates north hollywood" sits at position 2 to 3 with a
-  // 4% to 5% click rate. The title leads with the query and the two hooks.
+  // Search Console, 28 days to October 28, 2026: the homepage took 49 clicks
+  // from 1,089 impressions (4.5%), and "pilates north hollywood" ranks 2.7.
+  // The title leads with that query and the two hooks.
   title: "Pilates in North Hollywood: Max 7 Per Class, $25 First Class",
   description:
-    "Small-group reformer Pilates on Vineland Ave: every class is capped at 7 people, on Merrithew reformers. Rated 4.9 on ClassPass. Start with a $25 first class.",
+    "Every class is capped at 7 people on Merrithew reformers. Small-group Pilates in North Hollywood, rated 4.9 on ClassPass. Your first class is $25.",
   path: "/",
 });
 
