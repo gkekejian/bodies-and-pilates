@@ -24,8 +24,11 @@ export function MediaClip({
   autoPlay = true,
   sizes = "(max-width: 1024px) 100vw, 40vw",
   priority,
+  fit = "cover",
 }: {
   media: VideoMedia;
+  /** "contain" shows the whole frame inside the box (a portrait clip in a wider slot). */
+  fit?: "cover" | "contain";
   /** next/image sizes for the poster. */
   sizes?: string;
   /** Above-the-fold clip: load the poster eagerly. */
@@ -94,11 +97,11 @@ export function MediaClip({
 
   return (
     <div ref={box} className={cn("relative overflow-hidden bg-cream-200", aspectClassName, className)} style={style}>
-      <Image src={media.poster} alt="" fill sizes={sizes} priority={priority} className="object-cover object-center" />
+      <Image src={media.poster} alt="" fill sizes={sizes} priority={priority} className={cn(fit === "contain" ? "object-contain" : "object-cover", "object-center")} />
       {near && (
         <video
           ref={video}
-          className="absolute inset-0 h-full w-full object-cover"
+          className={cn("absolute inset-0 h-full w-full", fit === "contain" ? "object-contain" : "object-cover")}
           src={media.src}
           aria-label={media.label}
           muted

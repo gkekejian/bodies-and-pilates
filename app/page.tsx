@@ -25,6 +25,7 @@ export const metadata = pageMetadata({
 // One frame for the whole page: a 1240px column with equal 20px/32px margins.
 const wrap = "mx-auto w-full max-w-[1240px] px-5 sm:px-8";
 const h2 = "font-serif text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.02em] sm:text-6xl lg:text-[4.5rem]";
+const h3 = "font-serif text-[2.25rem] font-semibold leading-[1] tracking-[-0.015em] lg:text-[2.75rem]";
 const body = "font-sans text-[17px] leading-[1.65] sm:text-lg";
 const inlineLink = "font-medium underline decoration-2 underline-offset-4 hover:decoration-1";
 
@@ -118,13 +119,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* A2. Welcome band, owner copy verbatim. */}
+      {/* A2. Welcome band: the owners' facts, tightened (October 29, 2026). */}
       <section aria-label="Welcome" className="bg-theme-dark text-theme-cream">
         <div className={`${wrap} py-24 sm:py-32`}>
           <p className="max-w-[58rem] font-serif text-[1.375rem] font-light leading-[1.45] sm:text-[1.75rem]">
-            Bodies and Pilates is North Hollywood&apos;s boutique reformer studio, built on a simple idea: Pilates works
-            best when it is personal. Classes are capped at seven people, every session runs on professional Merrithew
-            reformers and stability chairs, and our instructors know your name, your goals, and when to push you.
+            Bodies and Pilates is a boutique reformer studio in North Hollywood, and we keep Pilates personal. Classes
+            are capped at seven people on professional Merrithew reformers and stability chairs. Your instructor knows
+            your name, your goals, and when to push you.
           </p>
           <p className="mt-12 font-serif text-[1.75rem] font-semibold leading-[1.1] tracking-[-0.015em] sm:mt-16 sm:text-[2.25rem] lg:text-right">
             Small classes. Real instruction. Results you can feel.
@@ -132,85 +133,83 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* A3.1 Group Classes: the class in session, then the claim and the $25 way in. */}
-      <section aria-labelledby="group-classes-heading" className="bg-theme-cream text-theme-dark">
-        <div className={`${wrap} grid gap-10 py-24 sm:py-32 lg:grid-cols-12 lg:items-end lg:gap-12 lg:py-40`}>
-          <MediaPhoto
-            media={MEDIA.classInSession}
-            aspectClassName="aspect-[4/3] sm:aspect-[3/2]"
-            className="-mx-5 sm:mx-0 lg:col-span-7"
-            sizes="(max-width: 1024px) 100vw, 720px"
-          />
-          <div className="lg:col-span-5">
-            <h2 id="group-classes-heading" className={h2}>
+      {/* A3. Services: three columns on one cream field, as on the Focus Pilates
+          reference (owner request, October 29, 2026). Each: photo, heading, one or
+          two sentences, one button. Stacked on phones. */}
+      <section aria-label="Services" className="bg-theme-cream text-theme-dark">
+        <div className={`${wrap} grid gap-16 py-24 sm:py-32 md:grid-cols-3 md:gap-8 lg:gap-12`}>
+          <article aria-labelledby="group-classes-heading" className="flex flex-col">
+            <MediaPhoto
+              media={MEDIA.classInSession}
+              aspectClassName="aspect-[4/3]"
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+            <h2 id="group-classes-heading" className={`${h3} mt-8`}>
               Group Classes
             </h2>
-            <p className={`${body} mt-6`}>
-              Small by design. Every group class is capped at seven people and runs on professional Merrithew reformers
-              and stability chairs, so your instructor sees every rep and your form never slips by. Classes are 50
-              minutes, open to all levels, and built to progress with you. New here?{" "}
+            <p className={`${body} mt-4`}>
+              Every group class is capped at seven people on professional Merrithew reformers, so your instructor sees every
+              rep. New here?{" "}
               <Link href="/intro-offer" className={inlineLink}>
                 Start with a {priceOf("first-class")} first class
               </Link>
               .
             </p>
-            <CtaLink href="/classes" variant="fill-dark" className="mt-9">
-              See the Classes
-            </CtaLink>
-          </div>
-        </div>
-      </section>
+            <div className="mt-auto pt-8">
+              <CtaLink href="/schedule" variant="fill-dark">
+                Book Now
+              </CtaLink>
+            </div>
+          </article>
 
-      {/* A3.2 Private Training: a whole field of dark brown, the instructor's hands at work. */}
-      <section aria-labelledby="private-training-heading" className="bg-theme-dark text-theme-cream">
-        <div className={`${wrap} grid gap-12 py-24 sm:py-32 lg:grid-cols-12 lg:items-center lg:py-40`}>
-          <div className="lg:col-span-6">
-            <h2 id="private-training-heading" className={h2}>
+          <article aria-labelledby="private-training-heading" className="flex flex-col">
+            <MediaPhoto
+              media={MEDIA.handsOnCorrection}
+              aspectClassName="aspect-[4/3]"
+              imgClassName="object-[70%_50%]"
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+            <h2 id="private-training-heading" className={`${h3} mt-8`}>
               Private Training
             </h2>
-            <p className={`${body} mt-6`}>
-              One client, one instructor, one plan. Private sessions are built entirely around your body and your goals,
-              whether that is strength, flexibility, returning from time away, or preparing for a role or a performance.
-              Fifty-five minutes of undivided attention, on your schedule. {priceOf("private")} per session; duets{" "}
-              {priceOf("duet")} per person.
+            <p className={`${body} mt-4`}>
+              One instructor and a plan built around your body and your goals. Fifty-five minutes for{" "}
+              {priceOf("private")}; duets are {priceOf("duet")} per person.
             </p>
-            <CtaLink href="/pricing#private-heading" variant="fill-cream" className="mt-9">
-              See Private Training
-            </CtaLink>
-          </div>
-          <MediaPhoto
-            media={MEDIA.handsOnCorrection}
-            aspectClassName="aspect-[4/5]"
-            className="-mx-5 max-sm:order-first sm:mx-0 lg:col-span-5 lg:col-start-8"
-            imgClassName="object-[70%_50%]"
-            sizes="(max-width: 1024px) 100vw, 480px"
-          />
-        </div>
-      </section>
+            <div className="mt-auto pt-8">
+              <CtaLink href="/schedule" variant="fill-dark">
+                Book a Private Session
+              </CtaLink>
+            </div>
+          </article>
 
-      {/* A3.3 Studio Rental (owner-approval draft): the room, edge to edge, and an email to start. */}
-      <section aria-labelledby="studio-rental-heading" className="bg-theme-sand text-theme-dark">
-        <BleedSplit side="left" media={MEDIA.studioBrightRows} imgClassName="object-[50%_62%]">
-          <h2 id="studio-rental-heading" className={h2}>
-            Studio Rental
-          </h2>
-          <p className={`${body} mt-6`}>
-            Our space, your occasion. The studio is available for private rental: a light-filled room on Vineland Avenue
-            with seven Merrithew reformers, wood floors, and room to gather. Tell us what you are planning and we will
-            help you shape it.
-          </p>
-          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <CtaLink href={`mailto:${EMAIL}?subject=${encodeURIComponent("Studio rental")}`} variant="fill-dark">
-              Email us about your date
-            </CtaLink>
-            <p className={body}>
+          {/* Studio Rental is the owners' draft awaiting sign-off: shortened only, no new claims. */}
+          <article aria-labelledby="studio-rental-heading" className="flex flex-col">
+            <MediaPhoto
+              media={MEDIA.studioEmptyRoom}
+              aspectClassName="aspect-[4/3]"
+              imgClassName="object-[50%_60%]"
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+            <h2 id="studio-rental-heading" className={`${h3} mt-8`}>
+              Studio Rental
+            </h2>
+            <p className={`${body} mt-4`}>
+              Our space, your occasion. Tell us what you are planning and we will help you shape it.
+            </p>
+            <p className={`${body} mt-3`}>
               Or call{" "}
               <a href={PHONE.tel} className={inlineLink}>
                 {PHONE.display}
               </a>
             </p>
-          </div>
-        </BleedSplit>
+            <div className="mt-auto pt-8">
+              <CtaLink href={`mailto:${EMAIL}?subject=${encodeURIComponent("Studio rental")}`} variant="fill-dark">
+                Email us about your date
+              </CtaLink>
+            </div>
+          </article>
+        </div>
       </section>
 
       {/* A4. The Classes: all six in one sideways row. */}
@@ -230,30 +229,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* A5. The Space: the room, its chairs and its reformers. */}
+      {/* A5. The Space: the owners' copy (October 29, 2026), verbatim, beside the
+          widest view of the room. */}
       <section aria-labelledby="space-heading" className="bg-theme-white text-theme-dark">
         <div className={`${wrap} grid gap-12 py-24 sm:py-32 lg:grid-cols-12 lg:items-center lg:py-40`}>
-          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
-            <MediaPhoto
-              media={MEDIA.studioLogoWallChair}
-              aspectClassName="aspect-[4/3] sm:aspect-[3/4]"
-              className="sm:mt-8 lg:mt-16"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px"
-            />
-            <MediaPhoto
-              media={MEDIA.studioEmptyRoom}
-              aspectClassName="aspect-[4/3] sm:aspect-[3/4]"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px"
-            />
-          </div>
+          <MediaPhoto
+            media={MEDIA.studioBrightRows}
+            aspectClassName="aspect-[4/3] lg:aspect-[5/4]"
+            className="-mx-5 sm:mx-0 lg:col-span-7"
+            imgClassName="object-[50%_62%]"
+            sizes="(max-width: 1024px) 100vw, 720px"
+          />
           <div className="lg:col-span-5">
             <h2 id="space-heading" className={h2}>
               The Space
             </h2>
             <p className={`${body} mt-6`}>
-              Step off Vineland Avenue and the noise drops away. Our studio is one light-filled room: seven professional
-              Merrithew V2 Max reformers, stability chairs, and everything within reach of your instructor. Nothing about
-              the room is an accident; it is set up so a class of seven feels calm, focused, and personal.
+              At Bodies and Pilates, we pride ourselves in providing a luxurious, tranquil environment combined with
+              cutting-edge fitness. Our boutique studio is equipped with state-of-the-art equipment, while our small
+              class sizes allow for personalized attention and guidance throughout your workout.
             </p>
           </div>
         </div>
@@ -266,10 +260,9 @@ export default function HomePage() {
             The Practice
           </h2>
           <p className={`${body} mt-6`}>
-            Pilates was built as a practice, not a workout of the month. We teach it that way: precise, progressive, and
-            personal. Your instructor learns your body, your history, and your goals, then cues and corrects you through
-            every session so the work keeps working. Show up consistently, and everyday movement starts to feel
-            different.
+            We teach Pilates as a practice you come back to, with precise, progressive work. Your instructor learns your
+            body, your history, and your goals, then cues and corrects you through every session. Come consistently and
+            everyday movement starts to feel different.
           </p>
         </BleedSplit>
       </section>

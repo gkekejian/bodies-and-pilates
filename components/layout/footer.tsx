@@ -44,10 +44,8 @@ const quickLinks = [
   { label: "Classes", href: "/classes" },
   { label: "Pricing", href: "/pricing" },
   { label: "Schedule", href: "/schedule" },
-  { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
-  { label: "Blog", href: "/blog" },
 ];
 
 const heading = "mb-4 smallcaps text-sm text-theme-sand";

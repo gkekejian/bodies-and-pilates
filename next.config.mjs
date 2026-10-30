@@ -100,6 +100,13 @@ const nextConfig = {
       moved("/instructors/:slug", "/about#team"),
       moved("/locations", "/about#neighborhoods"),
       moved("/locations/:slug", "/about#neighborhoods"),
+
+      // About is hidden for now (owner request, October 29, 2026) while new
+      // photos and bios are prepared. Temporary (307), so search engines keep
+      // the URL. To restore: delete this rule and re-add About to NAV_LINKS
+      // (components/layout/header.tsx), quickLinks (footer.tsx), app/sitemap.ts
+      // and lib/llms.ts. The page source in app/about/ is unchanged.
+      { source: "/about", destination: "/", permanent: false },
     ];
   },
 };

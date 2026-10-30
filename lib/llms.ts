@@ -55,7 +55,6 @@ const pages = [
   `- [Classes](${url('/classes')}): ${[...GROUP_CLASS_NAMES, classBySlug('private').name].slice(0, -1).join(', ')}, and ${classBySlug('private').name} formats`,
   `- [Schedule](${url('/schedule')}): live class timetable`,
   `- [FAQ](${url('/faq')}): pricing, what to wear, parking, policies, Lagree vs Pilates`,
-  `- [About](${url('/about')}): studio story, instructors, neighborhoods served`,
   `- [Contact](${url('/contact')}): phone, text, email, map`,
   `- [Blog](${url('/blog')}): reformer Pilates guides`,
 ].join('\n')

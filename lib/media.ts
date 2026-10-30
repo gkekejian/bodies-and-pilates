@@ -88,6 +88,8 @@ export const MEDIA = {
   legsInStraps: video("first-person-legs-in-straps.mp4", `First-person view of legs in the reformer straps at ${STUDIO}`),
   springsCloseUp: video("reformer-springs-close-up.mp4", `Close-up of reformer springs at ${STUDIO}`),
   boxAbs: video("reformer-box-abs-close-up.mp4", `Close-up of ab work on the reformer box at ${STUDIO}`),
+  // Owners' clip (October 29, 2026), stream-copied without audio; on /classes in place of boxAbs.
+  chairStandingWork: video("stability-chair-standing-work.mp4", `Client working on a stability chair at ${STUDIO}`),
   artisticPose: photo("artistic-black-and-white-reformer-pose.jpg", `Black and white photo of a Pilates pose on the reformer at ${STUDIO}`),
 
   // Private and duets
