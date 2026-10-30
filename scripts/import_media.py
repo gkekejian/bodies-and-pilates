@@ -50,6 +50,10 @@ HERO_VIDEO_FILES = (
     "instructor-hands-on-correction.jpg",
     "instructor-cueing-class-with-mic.jpg",
 )
+# The owners' stability chair clip for /classes (October 29, 2026): the video
+# stream is copied as supplied (no re-encode, audio dropped), so it is not run
+# through import_video's 1 Mbps cap. Kept, with its poster, on re-import.
+KEPT_VIDEO_FILES = ("stability-chair-standing-work.mp4",)
 MAX_VIDEO_SIDE = 1280
 MAX_SECONDS = 15
 OG_SOURCE = "group-class-plank-wide.jpg"
@@ -193,6 +197,9 @@ def main():
     for name in HERO_VIDEO_FILES:
         if name in previous.get("photos", {}) and (OUT_PHOTOS / name).exists():
             manifest["photos"][name] = previous["photos"][name]
+    for name in KEPT_VIDEO_FILES:
+        if name in previous.get("videos", {}) and (OUT_VIDEO / name).exists():
+            manifest["videos"][name] = previous["videos"][name]
 
     if OG_SOURCE in manifest["photos"]:
         manifest["og"] = make_og(OUT_PHOTOS / OG_SOURCE)

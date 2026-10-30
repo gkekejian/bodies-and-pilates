@@ -30,9 +30,17 @@ export function OfferCard({
   headingLevel = "h3",
   showDetail = false,
   old,
+  wholeCard = false,
   className,
 }: {
   offer: Offer;
+  /**
+   * The whole card opens the booking link (/pricing). The card's one link is
+   * still its Book Now strip; a pseudo-element stretches its click area over
+   * the card, so there is one link per card, no nested controls, and the
+   * same accessible name and tracking label as before.
+   */
+  wholeCard?: boolean;
   /** The old pricing page's labels; drops the badge and the first-timer line, as the old cards had neither. */
   old?: OldCardLabel;
   headingLevel?: "h2" | "h3";
@@ -44,7 +52,14 @@ export function OfferCard({
   const monthly = offer.unit === "/month";
   const badge = old ? undefined : offer.badge;
   return (
-    <article className={cn("flex h-full flex-col bg-theme-sand text-center text-theme-dark shadow-[0_1px_4px_rgba(0,0,0,0.16)]", className)}>
+    <article
+      className={cn(
+        "flex h-full flex-col bg-theme-sand text-center text-theme-dark shadow-[0_1px_4px_rgba(0,0,0,0.16)]",
+        wholeCard &&
+          "relative cursor-pointer transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.22)] focus-within:-translate-y-1 focus-within:ring-2 focus-within:ring-theme-dark focus-within:ring-offset-4 focus-within:ring-offset-theme-cream",
+        className
+      )}
+    >
       {/* The badge is set bold at 19px: large text, where white on the strip passes 3:1. */}
       <div aria-hidden={badge ? undefined : true} className="flex min-h-[24px] items-center justify-center bg-theme-brown">
         {badge && <span className="py-1 font-accent text-[19px] font-bold leading-tight text-white">{badge}</span>}
@@ -91,7 +106,14 @@ export function OfferCard({
         )}
         {showDetail && <p className="mt-4 font-sans text-sm leading-relaxed text-theme-ink/80">{offer.detail}</p>}
       </div>
-      <CtaLink href={offerHref(offer)} variant="cocoa" className="min-h-[40px] w-full px-3 py-2 text-[15px]">
+      <CtaLink
+        href={offerHref(offer)}
+        variant="cocoa"
+        className={cn(
+          "min-h-[40px] w-full px-3 py-2 text-[15px]",
+          wholeCard && "after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:ring-0"
+        )}
+      >
         Book Now<span className="sr-only">: {offer.name}</span>
       </CtaLink>
     </article>

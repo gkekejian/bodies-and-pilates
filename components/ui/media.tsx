@@ -51,6 +51,7 @@ export function MediaItem({
   aspectClassName,
   className,
   autoPlay,
+  fit,
 }: {
   media: Media | null;
   sizes: string;
@@ -59,6 +60,8 @@ export function MediaItem({
   className?: string;
   /** Clips only. Defaults to playing while in view. */
   autoPlay?: boolean;
+  /** Clips only: "contain" keeps the whole frame visible. */
+  fit?: "cover" | "contain";
 }) {
   if (!media) return null;
   if (media.kind === "video") {
@@ -70,6 +73,7 @@ export function MediaItem({
         autoPlay={autoPlay}
         sizes={sizes}
         priority={priority}
+        fit={fit}
       />
     );
   }

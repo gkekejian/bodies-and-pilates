@@ -18,14 +18,15 @@ const LOGO_DARK = { src: "/images/bodies-and-pilates-logo-round.png", width: 134
 const LOGO_ALT = "Bodies and Pilates logo";
 
 // Old-site labels for the old site's pages (Booking, Pricing, FAQs), in its
-// order, then the pages the rebuild added. Every href is unchanged.
+// order, then the pages the rebuild added. Every href is unchanged. About and
+// Blog are out of the nav for now (owner request, October 29, 2026): /about
+// redirects to / until new photos and bios arrive, and the blog stays live and
+// in the sitemap without a nav link.
 export const NAV_LINKS = [
   { label: "Booking", href: "/schedule" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQs", href: "/faq" },
   { label: "Classes", href: "/classes" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

@@ -1,13 +1,13 @@
 import { MediaItem } from "@/components/ui/media";
-import { ClassCards, ClassMedia, PrivateShowcase } from "@/components/sections/class-media";
+import { CLASS_MEDIA, ClassCards, ClassMedia } from "@/components/sections/class-media";
 import { CtaLink } from "@/components/ui/cta-link";
 import { PageHero, SectionHeading } from "@/components/sections/section-heading";
-import { ClassFormatBlock } from "@/components/sections/class-format";
+import { classCta } from "@/components/sections/class-format";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { ABS_AND_ASSETS, CLASSES, GROUP_CLASSES, GROUP_CLASS_NAMES } from "@/lib/classes";
-import { MEDIA } from "@/lib/media";
+import { MEDIA, type Media } from "@/lib/media";
 import { CLASSPASS_RATING_LINE, CLASSPASS_URL, FIRST_CLASS_CTA, introBookingHref } from "@/lib/site";
 import { priceOf } from "@/lib/pricing";
 
@@ -24,6 +24,74 @@ const breadcrumb = breadcrumbSchema([
 ]);
 
 const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
+
+/**
+ * One class on /classes. Every class uses this same pattern so the page reads
+ * as one list: media on the left (first on phones), then the name, the
+ * overview, the details and the buttons.
+ */
+function ClassBlock({
+  id,
+  name,
+  media,
+  fit,
+  overview,
+  details,
+  tone,
+  children,
+}: {
+  id: string;
+  name: string;
+  media: Media | null;
+  /** "contain" for a clip whose subject fills its whole frame. */
+  fit?: "cover" | "contain";
+  overview: string;
+  details: { term: string; detail: string | string[] }[];
+  tone: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id} aria-labelledby={`${id}-heading`} className={`scroll-mt-28 py-20 sm:py-24 ${tone}`}>
+      <div className={`${container} grid items-start gap-10 lg:grid-cols-12 lg:gap-16`}>
+        <MediaItem
+          media={media}
+          fit={fit}
+          aspectClassName="aspect-[3/4]"
+          className={`mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none ${fit === "contain" ? "bg-theme-dark" : ""}`}
+          sizes="(max-width: 1024px) 100vw, 40vw"
+        />
+        <div className="lg:col-span-7">
+          <h2 id={`${id}-heading`} className="font-serif text-4xl font-light leading-tight text-brown-900 sm:text-5xl">
+            {name}
+          </h2>
+          <p className="mt-5 font-sans text-base leading-[1.75] text-charcoal-800/85 sm:text-lg">{overview}</p>
+          <dl className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {details.map((d) => (
+              <div key={d.term} className={Array.isArray(d.detail) ? "sm:col-span-2" : undefined}>
+                <dt className="smallcaps text-[15px] text-brown-700">{d.term}</dt>
+                <dd className="mt-2 font-sans text-sm leading-relaxed text-charcoal-800/85">
+                  {Array.isArray(d.detail) ? (
+                    <ul className="space-y-2.5">
+                      {d.detail.map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brown-500" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    d.detail
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-9 flex flex-wrap items-center gap-6">{children}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function ClassesPage() {
   return (
@@ -113,48 +181,53 @@ export default function ClassesPage() {
         </div>
       </section>
 
-      {CLASSES.map((c, i) => (
-        <section
-          key={c.slug}
-          aria-label={`${c.name} class`}
-          className={i % 2 === 0 ? "bg-cream-100 py-20 sm:py-24" : "bg-cream-50 py-20 sm:py-24"}
-        >
-          <div className={container}>
-            <ClassFormatBlock format={c} reverse={i % 2 === 1} />
-            {c.slug === "private" && (
-              <>
-                <p className="mt-10 font-serif text-3xl font-light text-brown-900">
-                  {priceOf("private")} for 55 minutes. Duets {priceOf("duet")} per person.
-                </p>
-                <PrivateShowcase includeDuet={false} />
-              </>
+      {/* Every class in the same pattern: one 3:4 photo or clip, the name, the
+          overview, the details, then the buttons (owner request, October 29, 2026). */}
+      {CLASSES.map((c, i) => {
+        const cta = classCta(c);
+        return (
+          <ClassBlock
+            key={c.slug}
+            id={c.slug}
+            name={c.name}
+            media={CLASS_MEDIA[c.slug]?.[0] ?? null}
+            overview={c.blurb}
+            details={[
+              { term: "Difficulty", detail: c.level },
+              { term: "Length", detail: c.duration },
+              ...(c.slug === "private"
+                ? [{ term: "Price", detail: `${priceOf("private")} for 55 minutes. Duets ${priceOf("duet")} per person.` }]
+                : []),
+              { term: "Who it is for", detail: c.forWho },
+              { term: `What to expect in ${c.duration}`, detail: c.expect },
+            ]}
+            tone={i % 2 === 0 ? "bg-cream-100" : "bg-cream-50"}
+          >
+            <CtaLink href={cta.href}>{cta.label}</CtaLink>
+            {c.slug !== "private" && (
+              <CtaLink href="/schedule" variant="text">
+                See {c.name} class times
+              </CtaLink>
             )}
-          </div>
-        </section>
-      ))}
-
-      {/* Abs and Assets: on the live schedule, no owner description yet. */}
-      <section
-        id="abs-and-assets"
-        aria-labelledby="abs-and-assets-heading"
-        className={`scroll-mt-28 ${CLASSES.length % 2 === 0 ? "bg-cream-100 py-20 sm:py-24" : "bg-cream-50 py-20 sm:py-24"}`}
-      >
-        <div className={`${container} grid items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
-          <div className="lg:col-span-7">
-            <SectionHeading
-              id="abs-and-assets-heading"
-              eyebrow="Also on the schedule"
-              title={ABS_AND_ASSETS.name}
-              intro={<p>{`${ABS_AND_ASSETS.name} is a 50-minute reformer class on our weekly schedule.`}</p>}
-            />
-            {/* TODO(owner): add a 1 to 2 sentence description, level, and who it is for. */}
-            <CtaLink href="/schedule" variant="text">
-              {`See ${ABS_AND_ASSETS.name} class times`}
+            <CtaLink href={`/classes/${c.slug}`} variant="text">
+              More about {c.name}
             </CtaLink>
-          </div>
-          <ClassMedia mediaKey="abs-and-assets" className="lg:col-span-5" />
-        </div>
-      </section>
+          </ClassBlock>
+        );
+      })}
+
+      <ClassBlock
+        id={ABS_AND_ASSETS.slug}
+        name={ABS_AND_ASSETS.name}
+        media={CLASS_MEDIA[ABS_AND_ASSETS.slug]?.[0] ?? null}
+        fit="contain"
+        overview={`${ABS_AND_ASSETS.name} is a 50-minute reformer class on our weekly schedule.`}
+        details={[{ term: "Length", detail: ABS_AND_ASSETS.duration }]}
+        tone={CLASSES.length % 2 === 0 ? "bg-cream-100" : "bg-cream-50"}
+      >
+        {/* TODO(owner): add a 1 to 2 sentence description, level, and who it is for. */}
+        <CtaLink href="/schedule">{`See ${ABS_AND_ASSETS.name} class times`}</CtaLink>
+      </ClassBlock>
 
       <FinalCta />
     </>

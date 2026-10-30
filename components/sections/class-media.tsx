@@ -13,7 +13,8 @@ export const CLASS_MEDIA: Record<string, (Media | null)[]> = {
   fullbody: [MEDIA.classPlankRow],
   flexibility: [MEDIA.mermaidStretch, MEDIA.partnerSideStretch],
   private: [MEDIA.duetOnChair],
-  "abs-and-assets": [MEDIA.supineBridge, MEDIA.boxAbs],
+  // The owners' stability chair clip replaced the reformer box clip (October 29, 2026).
+  "abs-and-assets": [MEDIA.chairStandingWork],
   "what-is-reformer": [MEDIA.standingSplit, MEDIA.classLungeInSync],
 };
 
@@ -41,35 +42,6 @@ export function ClassMedia({ mediaKey, className }: { mediaKey: string; classNam
           sizes={items.length > 1 ? "(max-width: 1024px) 50vw, 20vw" : "(max-width: 1024px) 100vw, 40vw"}
         />
       ))}
-    </div>
-  );
-}
-
-/**
- * Private and duet visuals (classes and pricing pages): the landscape ring
- * clip leads, with the hands-on assist clips and the duet photo beside it.
- */
-export function PrivateShowcase({ includeDuet = true }: { includeDuet?: boolean }) {
-  const main = MEDIA.privateRingLandscape;
-  const supporting = present([
-    MEDIA.privateKneelingAssist,
-    MEDIA.privateChairAssist,
-    MEDIA.privateShoulderAssist,
-    includeDuet ? MEDIA.duetOnChair : null,
-  ]);
-  if (!main && supporting.length === 0) return null;
-  return (
-    <div className="mt-12 space-y-4">
-      {main && <MediaItem media={main} aspectClassName="aspect-video" sizes="(max-width: 1024px) 100vw, 70vw" />}
-      {supporting.length > 0 && (
-        <ul className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {supporting.map((m) => (
-            <li key={m.file}>
-              <MediaItem media={m} aspectClassName="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 25vw" autoPlay={false} />
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }

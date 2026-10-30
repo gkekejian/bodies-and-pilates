@@ -65,3 +65,12 @@
 - `conformance-2026-10-29/{group,private,space}-{1440,390}.jpg`: before (master) and after for
   the phone-only conformance changes against the Focus Pilates reference (photo-led,
   full-bleed sections on phones). The 1440 captures are unchanged by design.
+
+## Naira edits (2026-10-29)
+
+- `naira-edits-2026-10-29/svc-{1440,390}.jpg`: the three service sections (before) beside the one
+  three-column services section (after).
+- `naira-edits-2026-10-29/space-{1440,390}.jpg`: The Space with the owners' copy and one wide photo.
+- `naira-edits-2026-10-29/{classes,pricing}-{1440,390}.jpg`: full pages, before and after (scaled).
+- The /classes chair clip (`stability-chair-standing-work.mp4`) is the owners' file with its video
+  stream copied as supplied and the audio dropped; its poster is the frame at 5.6 s.
