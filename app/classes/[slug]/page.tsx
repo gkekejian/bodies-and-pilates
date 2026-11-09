@@ -5,6 +5,7 @@ import { ClassFormatBlock } from "@/components/sections/class-format";
 import { OfferCard } from "@/components/sections/offer-card";
 import { CLASS_CARD_PHOTO } from "@/components/sections/class-media";
 import { FinalCta } from "@/components/sections/final-cta";
+import { ClassNext } from "@/components/sections/class-next";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 import { CLASSES, type ClassSlug } from "@/lib/classes";
@@ -172,6 +173,8 @@ export default async function ClassDetailPage(props: { params: Promise<{ slug: s
           </div>
         </section>
       )}
+
+      <ClassNext slug={c.slug} />
 
       <FinalCta />
     </>
