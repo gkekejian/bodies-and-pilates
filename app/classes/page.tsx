@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MediaItem } from "@/components/ui/media";
 import { CLASS_MEDIA, ClassCards, ClassMedia } from "@/components/sections/class-media";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -171,6 +172,24 @@ export default function ClassesPage() {
                   <p className="mt-4">
                     Your instructor changes the springs to make each exercise harder or more supportive, so the same
                     machine works for you on your first day and every class after.
+                  </p>
+                  {/* Two clicks from the homepage to each guide (home, /classes, post). */}
+                  <p className="mt-4">
+                    Read <Link href="/blog/what-is-reformer-pilates" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">our full guide to reformer Pilates</Link>,
+                    then see how it compares with{" "}
+                    <Link href="/blog/reformer-vs-mat-pilates" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">mat Pilates</Link>,{" "}
+                    <Link href="/blog/lagree-vs-reformer-pilates" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">Lagree</Link>,{" "}
+                    <Link href="/blog/reformer-pilates-vs-yoga" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">yoga</Link> and{" "}
+                    <Link href="/blog/pilates-vs-barre-which-should-you-try" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">barre</Link>. Choosing a
+                    studio? Start with{" "}
+                    <Link href="/blog/7-things-to-look-for-in-a-pilates-studio" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">
+                      seven things to look for in a Pilates studio
+                    </Link>{" "}
+                    and{" "}
+                    <Link href="/blog/why-small-pilates-classes-get-better-results" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">
+                      why class size matters
+                    </Link>
+                    . Everything else is on <Link href="/blog" className="font-medium text-brown-700 underline underline-offset-4 hover:text-brown-900">the studio blog</Link>.
                   </p>
                 </>
               }
