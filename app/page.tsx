@@ -18,7 +18,7 @@ export const metadata = pageMetadata({
   // The title leads with that query and the two hooks.
   title: "Pilates in North Hollywood: Max 7 Per Class, $25 First Class",
   description:
-    "Every class is capped at 7 people on Merrithew reformers. Small-group Pilates in North Hollywood, rated 4.9 on ClassPass. Your first class is $25.",
+    "Every class is capped at 7 people on Merrithew reformers. A small-group Pilates studio in North Hollywood, rated 4.9 on ClassPass. Your first class is $25.",
   path: "/",
 });
 
@@ -123,7 +123,7 @@ export default function HomePage() {
       <section aria-label="Welcome" className="bg-theme-dark text-theme-cream">
         <div className={`${wrap} py-24 sm:py-32`}>
           <p className="max-w-[58rem] font-serif text-[1.375rem] font-light leading-[1.45] sm:text-[1.75rem]">
-            Bodies and Pilates is a boutique reformer studio in North Hollywood, and we keep Pilates personal. Classes
+            Bodies and Pilates is a boutique reformer Pilates studio in North Hollywood, and we keep the work personal. Classes
             are capped at seven people on professional Merrithew reformers and stability chairs. Your instructor knows
             your name, your goals, and when to push you.
           </p>
