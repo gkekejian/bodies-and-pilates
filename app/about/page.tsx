@@ -23,19 +23,20 @@ const breadcrumb = breadcrumbSchema([
 ]);
 
 // TODO(owner): verify each route and landmark below reads right to a local.
-// No drive times (owner rule, 2026-10-13): directions and parking only.
+// No drive times (owner rule, 2026-10-13): directions and parking only. Parking text is the
+// owners' canonical sentence (2026-11-13).
 const neighborhoods = [
   {
     name: "North Hollywood",
-    body: `We are at ${ADDRESS.street}. Metered street parking is available on Weddington St and Vineland Ave.`,
+    body: `We are at ${ADDRESS.street}. A few retail parking spots are available in the Museum Apartments garage, first come. Most clients park on the street: metered street parking is available on Weddington St and Vineland Ave.`,
   },
   {
     name: "Toluca Lake",
-    body: "Head west along Riverside Dr, then north on Vineland Ave. Metered street parking is available on Weddington St and Vineland Ave.",
+    body: "Head west along Riverside Dr, then north on Vineland Ave. A few retail parking spots are available in the Museum Apartments garage, first come. Most clients park on the street: metered street parking is available on Weddington St and Vineland Ave.",
   },
   {
     name: "Valley Village",
-    body: "Magnolia Blvd brings you east toward Vineland Ave. Metered street parking is available on Weddington St and Vineland Ave.",
+    body: "Magnolia Blvd brings you east toward Vineland Ave. A few retail parking spots are available in the Museum Apartments garage, first come. Most clients park on the street: metered street parking is available on Weddington St and Vineland Ave.",
   },
   {
     name: "Studio City",

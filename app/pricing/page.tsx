@@ -9,7 +9,7 @@ import { SITE_URL } from "@/lib/site";
 import { STOCK } from "@/lib/media";
 
 export const metadata = pageMetadata({
-  title: "Reformer Pilates Prices, North Hollywood | Bodies and Pilates",
+  title: "Reformer Pilates Prices in North Hollywood",
   description:
     "Reformer Pilates prices in North Hollywood: $25 first class, $36 single, packs from $160, memberships from $130/month. Pause anytime.",
   path: "/pricing",

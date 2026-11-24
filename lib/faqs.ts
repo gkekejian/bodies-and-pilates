@@ -19,7 +19,7 @@ export interface Faq {
 export const FAQS: Faq[] = [
   // The old site's FAQs page, in its order and its words (design-reference/old-site/faqs-top.png).
   // Fact-sheet overrides: no-show $15 with no credit kept (the old page printed a dead fee and said a no-show keeps the
-  // credit), metered parking (PR #9), arrive at least 10 minutes early (PR #9), no $25 member add-on (not on the locked
+  // credit), parking (owners' canonical sentence, 2026-11-13), arrive at least 10 minutes early (PR #9), no $25 member add-on (not on the locked
   // menu). The late-arrival and age entries are the old site's, owner-confirmed as current policy. The pregnancy answer is
   // the owners' own policy (October 2026), published as written.
   {
@@ -38,7 +38,7 @@ export const FAQS: Faq[] = [
     id: "parking",
     question: "Where can I park?",
     answer:
-      "Metered street parking is available on Weddington St and Vineland Ave.",
+      "A few retail parking spots are available in the Museum Apartments garage, first come. Most clients park on the street: metered street parking is available on Weddington St and Vineland Ave.",
   },
   {
     id: "cancellation",
@@ -180,7 +180,7 @@ export const FAQS: Faq[] = [
     id: "nearby",
     question: "Is the studio near Toluca Lake, Studio City, or Burbank?",
     answer:
-      "Yes. We are on Vineland Ave in North Hollywood, close to Toluca Lake, Valley Village, Studio City, and Burbank. Metered street parking is available on Weddington St and Vineland Ave.",
+      "Yes. We are on Vineland Ave in North Hollywood, close to Toluca Lake, Valley Village, Studio City, and Burbank. A few retail parking spots are available in the Museum Apartments garage, first come. Most clients park on the street: metered street parking is available on Weddington St and Vineland Ave.",
   },
 ];
 

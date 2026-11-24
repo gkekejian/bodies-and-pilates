@@ -13,7 +13,7 @@ import { CLASSPASS_RATING_LINE, CLASSPASS_URL, FIRST_CLASS_CTA, introBookingHref
 import { priceOf } from "@/lib/pricing";
 
 export const metadata = pageMetadata({
-  title: "Reformer Pilates Classes in North Hollywood | Bodies and Pilates",
+  title: "Reformer Pilates Classes in North Hollywood",
   description:
     `Reformer Pilates classes in North Hollywood: ${GROUP_CLASS_NAMES.join(", ")}, privates and duets. 50 minutes, 7 people max.`,
   path: "/classes",

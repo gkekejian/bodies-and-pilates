@@ -37,7 +37,7 @@ const facts = [
   `- Phone: ${PHONE.display} (call or text)`,
   `- Email: ${EMAIL}`,
   `- Hours: ${HOURS.map((h) => `${h.short} ${h.label}`).join('; ')}`,
-  `- Parking: Metered street parking is available on Weddington St and Vineland Ave.`,
+  `- Parking: A few retail parking spots are available in the Museum Apartments garage, first come. Most clients park on the street: metered street parking is available on Weddington St and Vineland Ave.`,
   `- Grip socks: ${GRIP_SOCKS_LINE}`,
   `- Cancellation: ${POLICY.cancellation}`,
   `- Memberships: ${POLICY.membership}`,
