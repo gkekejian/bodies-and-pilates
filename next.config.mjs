@@ -73,6 +73,14 @@ const nextConfig = {
       },
 
       // Legacy Wix URLs
+      // Instagram bio short link: pretty URL for the bio that lands on the
+      // schedule with Instagram attribution baked in. Temporary (307) on
+      // purpose, so a real /start landing page can take this path later.
+      {
+        source: "/start",
+        destination: "/schedule?utm_source=instagram&utm_medium=bio&utm_campaign=bio-link",
+        statusCode: 307,
+      },
       moved("/bookings", "/schedule"),
       moved("/book-online", "/schedule"),
       moved("/faqs", "/faq"),
